@@ -1,0 +1,178 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:50:05
+*/
+
+/* warnvideoDownload.css
+ * This file provides css styles in warning video download (batch) page.
+ */
+
+.warnvideo-download-wrap{
+	height: 100vh;
+}
+
+.warnvideo-download-table-wrap{
+	border-top: 1px solid #cecece;
+	border-left: 1px solid #cecece;
+	border-right: 1px solid #cecece;
+	border-radius: 5px 5px 5px 5px;
+	margin: 5px;
+	height: calc( 100% - 58px );
+}
+
+.warnvideo-download-table-wrap>form{
+	height: 100%;
+}
+
+.warnvideo-download-content-header{
+	width: 100%;
+	background-color: #616161f0;
+	background-color: rgba(97, 97, 97, 0.9411764705882353);
+	overflow: hidden;
+	float: left;
+	color: white;
+}
+
+.warnvideo-download-content-header-func{
+	float: right;
+	display: inline-block;
+	background-color: transparent;
+	white-space: nowrap;
+}
+
+.warnvideo-download-content-header-content1{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 20px;
+	min-width: 100px;
+}
+
+.warnvideo-download-content-header-content2{
+	margin-right: 10px;
+	display: inline-block;
+	white-space: nowrap;
+	line-height: 52px;
+	vertical-align: top;
+}
+
+.warnvideo-download-content-header-content2 button{
+	vertical-align: top;
+	margin-top: 7.5px;
+}
+
+.warnvideo-download-content-header-content2 button:focus, .warnvideo-download-content-header-content2 button:active{
+	outline: none;
+	box-shadow: none !important;
+}
+
+.warnvideo-download-content-header-content1 p{
+	margin-top: .5rem !important;
+	margin-bottom: .5rem !important;
+	font-size: 1.5rem;
+	font-weight: 500;
+	height: 1.2;
+	font-family: inherit;
+	color: inherit;
+}
+
+.warnvideo-download-input-box{
+	width: 100%;
+	display: flex;
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  	display: -ms-flexbox;      /* TWEENER - IE 10 */
+  	display: -webkit-flex;
+  	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-moz-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	background-color: rgba(97,97,97,0.8117647058823529);
+	border-radius: 0 0 .25rem .25rem;
+}
+
+.warnvideo-download-input-box>textarea{
+	height: 100%;
+	min-height: 250px;
+	resize: none;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0 0 .25rem .25rem;
+	outline: none;
+	box-shadow: none;
+}
+
+.warnvideo-download-input-box>textarea:focus{
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da;
+}
+
+.warnvideo-download-input-box>.warnvideo-download-input-hint{
+	padding:.375rem .75rem;
+	background-color: white;
+	-ms-flex:1 0 auto;
+	-webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    -o-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+}
+
+.warnvideo-download-input-box>.warnvideo-download-input-hint label{
+	display: block;
+}
+
+.warnvideo-download-input-box>.warnvideo-download-input-hint>.was-validated .form-control:valid:focus,
+.warnvideo-download-input-box>.warnvideo-download-input-hint .form-control.is-invalid:focus{
+	box-shadow: none;
+}
+
+.warnvideo-download-input-box>.warnvideo-download-input-hint>.form-group:not(.was-validated) .form-control:not(.is-invalid):focus{
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da;
+}
+
+.warnvideo-download-input-box>.warnvideo-download-input-hint>.form-group:last-child{
+	margin-bottom: 4px !important;
+}
+
+@media screen and (max-width: 745px){
+	.warnvideo-download-content-header-func{
+		float: left;
+		margin-top: -15px;
+		display: block;
+		margin-left: 20px;
+	}
+	.warnvideo-download-content-header-content1{
+		display: block;
+	}
+	.warnvideo-download-content-header-content2{
+		margin-right: 0px;
+	}
+}
+
+@media screen and (max-width: 332px){
+	.warnvideo-download-content-header-func{
+	    margin-left: 10px;
+	}
+	.warnvideo-download-content-header-content1{
+	    margin-left: 10px;
+	}
+}
+
+@media screen and (max-width: 319px){
+	.warnvideo-download-content-header-func{
+	    margin-left: 5px;
+	}
+	.warnvideo-download-content-header-content1{
+	    margin-left: 5px;
+	}
+}

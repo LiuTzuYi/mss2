@@ -1,0 +1,5 @@
+//Start Time (yyyy, mm-1, dd, hh, mm, ss)
+var startTime = new Date(2019, 07, 01, 12, 00, 00);
+
+//Duration(hours)
+var duration = 20;

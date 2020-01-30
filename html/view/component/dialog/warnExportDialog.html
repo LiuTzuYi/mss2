@@ -1,0 +1,149 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:20:03
+*/ -->
+<md-dialog aria-label="dialogSelect" class="set-dialog-wrap">
+    <form name="dialogSelect" ng-cloak autocomplete="off">
+        <md-toolbar class="set-dialog-toolbar">
+            <div class="md-toolbar-tools">
+                <h2 ng-if="action=='video'"><b translate="dialogSelect" translate-value-item="{{'exportVideo'|translate}}"></b></h2>
+                <h2 ng-if="action=='warning'"><b translate="dialogSelect" translate-value-item="{{'warnType'|translate}}"></b></h2>
+                <h2 ng-if="action=='driverAction'"><b translate="dialogSelect" translate-value-item="{{'driverAction'|translate}}"></b></h2>
+                <h2 ng-if="action=='driver'"><b translate="dialogSelect" translate-value-item="{{'driver'|translate}}"></b></h2>
+                <h2 ng-if="action=='driverDept'"><b translate="dialogSelect" translate-value-item="{{'driver'|translate}}{{'department'|translate}}"></b></h2>
+                <h2 ng-if="action=='driverGrp'"><b translate="dialogSelect" translate-value-item="{{'driverGrp'|translate}}"></b></h2>
+                <h2 ng-if="action=='vehicle'"><b translate="dialogSelect" translate-value-item="{{'vehicle'|translate}}"></b></h2>
+                <h2 ng-if="action=='vehicleDept'"><b translate="dialogSelect" translate-value-item="{{'vehicle'|translate}}{{'department'|translate}}"></b></h2>
+                <h2 ng-if="action=='vehicleGrp'"><b translate="dialogSelect" translate-value-item="{{'vehicleGrp'|translate}}"></b></h2>
+                <h2 ng-if="action=='vehicleBrand'"><b translate="dialogSelect" translate-value-item="{{'vehicle'|translate}}{{'brand'|translate}}"></b></h2>
+                <h2 ng-if="action=='vehicleModel'"><b translate="dialogSelect" translate-value-item="{{'vehicle'|translate}}{{'model'|translate}}"></b></h2>
+                <h2 ng-if="action=='vehicleType'"><b translate="dialogSelect" translate-value-item="{{'exportType'|translate}}"></b></h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()" aria-label="cancel">
+                    <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="set-dialog-content">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-addon">
+                    <span class="input-group-text" id="inputGroup-sizing-sm"> <i class="fa fa-search" aria-hidden="true"></i></span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                    ng-model="searchText" ng-change="filterList(searchText)">
+            </div>
+            <div ng-if="items.length!==0 || ((action=='driver'||action=='driverAction') && displayNullBox)">
+                <div flex-xs flex="50" class="extraCheckbox" ng-if="action=='driver' && displayNullBox">
+                    <md-checkbox aria-label="No driver" ng-checked="includeNull" ng-click="toggleNull()">
+                        EMPTY
+                    </md-checkbox>
+                </div>
+                <div flex-xs flex="50" class="extraCheckbox" ng-if="action=='driverAction' && displayNullBox">
+                    <md-checkbox aria-label="Driver action null" ng-checked="includeNull" ng-click="toggleNull()">
+                        {{"DA-N"|translate}}
+                    </md-checkbox>
+                </div>
+                <div flex-xs flex="50" class="extraCheckbox" ng-if="action=='driverAction' && items.length!==0">
+                    <md-checkbox aria-label="Driver action intersect" ng-checked="intersectVehStatus" ng-click="toggleIntersect()">
+                        {{"intersectState"|translate}}
+                    </md-checkbox>
+                </div>
+                <div flex-xs flex="50" class="toggleAllCheck">
+                    <md-checkbox aria-label="Select All" ng-if="(action=='driverAction' || action=='driver') && items.length!==0"
+                        ng-checked="isChecked()" md-indeterminate="isIndeterminate()" ng-click="toggleAll()">
+                        {{"selectAll"|translate}}
+                    </md-checkbox>
+                    <md-checkbox aria-label="Select All" ng-if="action!=='driverDept' && action!=='vehicleDept' && action!=='driverAction' && action!=='driver'"
+                        ng-checked="isChecked()" md-indeterminate="isIndeterminate()" ng-click="toggleAll()">
+                        {{"selectAll"|translate}}
+                    </md-checkbox>
+                    <md-checkbox aria-label="Select All" ng-if="action=='driverDept' || action=='vehicleDept'"
+                        ng-checked="allChildrenSelected(items[0])" md-indeterminate="isIndeterminateParent(items[0])"
+                        ng-click="toggleAll()">
+                        {{"selectAll"|translate}}
+                    </md-checkbox>
+                </div>
+                <md-virtual-repeat-container id="vertical-container" ng-if="action=='driver'||action=='vehicle'">
+                    <div class="demo-select-all-checkboxes" flex="100" md-virtual-repeat="item in items">
+                        <md-checkbox aria-label="item" ng-checked="exists(item)" ng-click="toggle(item)">
+                            <span>{{ item.name }}</span>
+                        </md-checkbox>
+                    </div>
+                </md-virtual-repeat-container>
+                <!--template of parent tree-->
+                <script type="text/ng-template" id="parentTree">
+                    <md-checkbox aria-label="item" ng-if="!isParent(item)" ng-checked="exists(item)"
+                               ng-click="toggle(item)">
+                               <span>{{ item.name }}</span>
+                   </md-checkbox>
+                   <md-checkbox aria-label="item" ng-if="isParent(item)" ng-checked="exists(item)" ng-click="selectAllChild(item)">
+                               <span>{{ item.name }}</span>
+                   </md-checkbox>
+                   <ul ng-if="item.children">
+                       <li ng-repeat="item in item.children track by $index" ng-include="'parentTree'"></li>
+                   </ul>
+               </script>
+                <!--template of parent tree-->
+                <div class="checklist-wrapper" ng-if="action=='driverDept' || action=='vehicleDept'">
+                    <ul>
+                        <li ng-repeat="item in items track by $index" ng-include src="'parentTree'"></li>
+                    </ul>
+                </div>
+                <div class="checklist-wrapper" ng-if="action=='warning'">
+                    <div flex="100" ng-repeat="item in items track by $index">
+                        <div class="demo-select-all-checkboxes">
+                            <md-checkbox aria-label="item" ng-if="!isParent(item) && item.parent==null" ng-checked="exists(item)"
+                                ng-click="toggle(item)">
+                                <span>{{ item.name }}</span>
+                            </md-checkbox>
+                        </div>
+                        <div class="demo-select-all-checkboxes child">
+                            <md-checkbox aria-label="item" ng-if="!isParent(item) && item.parent" ng-checked="exists(item)"
+                                ng-click="toggle(item)">
+                                <span>{{ item.name }}</span>
+                            </md-checkbox>
+                        </div>
+                        <div class="demo-select-all-checkboxes">
+                            <md-checkbox aria-label="item" ng-if="isParent(item)" ng-checked="exists(item)||allChildrenSelected(item)"
+                                md-indeterminate="isIndeterminateParent(item)" ng-click="selectAllChild(item)">
+                                <span>{{ item.name }}</span>
+                            </md-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="checklist-wrapper" ng-if="action!=='driver'&&action!=='vehicle'&&action!=='warning'&&action!=='driverDept'&&action!=='vehicleDept'"
+                    ng-class="{'driver-action':action=='driverAction'}">
+                    <div flex="100" ng-repeat="item in items track by $index">
+                        <div class="demo-select-all-checkboxes">
+                            <md-checkbox aria-label="item" ng-checked="exists(item)" ng-click="toggle(item)">
+                                <svg class="vehtype" ng-if="action=='vehicleType'">
+                                    <use ng-attr-href="{{'../images/veh_type/'+item.svgName+'.svg#'+item.svgName}}" />
+                                    <!-- <use href="../images/veh_type/{{item.svgName}}.svg#{{item.svgName}}" /> -->
+                                </svg>
+                                <span ng-if="action=='driverGrp' || action=='vehicleGrp' || action=='video' || action=='driverAction' || action=='vehicleType'">{{
+                                    item.name }}</span>
+                                <span ng-if="action=='vehicleBrand'">{{ item.brand }}</span>
+                                <span ng-if="action=='vehicleModel'">{{ item.model }}</span>
+                            </md-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="(items.length==0 && ((action=='driver'||action=='driverAction') && !displayNullBox)) || (items.length==0 && (action!=='driver'&&action!=='driverAction')) "
+                class="filter-no-record">
+                {{'noRecord'|translate}}
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" class="set-dialog-content-button">
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                {{"cancel"|translate}}
+            </md-button>
+            <md-button ng-mousedown="submit()">
+                {{"ok"|translate}}
+            </md-button>
+            </md-dialog-actsions>
+    </form>
+</md-dialog>

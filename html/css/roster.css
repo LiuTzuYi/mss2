@@ -1,0 +1,169 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:49:05
+*/
+
+/* roster.css
+ * This file provides css styles in roster input page.
+ */
+
+.roster-wrap{
+	height: 100vh;
+}
+
+.roster-table-wrap{
+	border-top: 1px solid #cecece;
+	border-left: 1px solid #cecece;
+	border-right: 1px solid #cecece;
+	border-radius: 5px 5px 5px 5px;
+	margin: 5px;
+	height: calc( 100% - 58px );
+}
+
+.roster-content-header{
+	width: 100%;
+	background-color: #616161f0;
+	background-color: rgba(97, 97, 97, 0.9411764705882353);
+	overflow: hidden;
+	float: left;
+	color: white;
+}
+
+.roster-content-header-func{
+	float: right;
+	display: inline-block;
+	background-color: transparent;
+	white-space: nowrap;
+}
+
+.roster-content-header-content1{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10px;
+	min-width: 100px;
+}
+
+.roster-content-header-content2{
+	margin-right: 10px;
+	display: inline-block;
+	white-space: nowrap;
+	line-height: 52px;
+	vertical-align: top;
+}
+
+.roster-content-header-content2 button{
+	vertical-align: top;
+	margin-top: 7.5px;
+}
+
+.roster-content-header-content2 button:focus, .roster-content-header-content2 button:active{
+	outline: none;
+	box-shadow: none !important;
+}
+
+.roster-content-header-content1 p{
+	margin-top: .5rem !important;
+	margin-bottom: .5rem !important;
+	font-size: 1.5rem;
+	font-weight: 500;
+	height: 1.2;
+	font-family: inherit;
+	color: inherit;
+}
+
+.roster-input-box{
+	width: 100%;
+	height: calc( 100% - 52px );
+	display: flex;
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  	display: -ms-flexbox;      /* TWEENER - IE 10 */
+  	display: -webkit-flex;
+  	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-moz-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	background-color: rgba(97,97,97,0.8117647058823529);
+	border-radius: 0 0 .25rem .25rem;
+}
+
+.roster-input-box .roster-hint-toggle{
+	margin-right: 4px;
+}
+
+.roster-input-box .roster-hint-toggle:hover,
+.roster-input-box .roster-hint-toggle2:hover{
+	cursor: pointer;
+}
+
+.roster-input-box .roster-hint-toggle:focus,
+.roster-input-box .roster-hint-toggle2:focus{
+	outline: none;
+}
+
+.roster-input-box>textarea{
+	height: 100%;
+	min-height: 250px;
+	resize: none;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0 0 .25rem .25rem;
+	outline: none;
+	box-shadow: none;
+}
+
+.roster-input-box>textarea:focus{
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da;
+}
+
+.roster-input-box>.roster-input-hint{
+	margin:.375rem .75rem;
+	color: white;
+	-ms-flex:1 0 auto;
+	-webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    -o-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+}
+
+.roster-input-box>.roster-input-hint>.divider{
+	border: 1px solid #565656;
+}
+
+.roster-input-box>.roster-input-hint label{
+	display: block;
+}
+
+.roster-input-box>.roster-input-hint>.col-group{
+	font-size: 0;
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	margin-left: 25px;
+}
+
+.roster-input-box>.roster-input-hint .col-group>.column{
+	font-size: 1rem;
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.roster-input-box>.roster-input-hint>label>label{
+	font-size: 12px;
+	margin-top: .5rem;
+	margin-bottom: 0;
+	margin-left: 25px;
+}
+
+.roster-input-box>.roster-input-hint md-checkbox{
+	margin-bottom: 0;
+	width: 100%;
+}

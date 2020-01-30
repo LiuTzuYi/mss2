@@ -1,0 +1,18 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:20:40
+*/ -->
+<div class="panel-heading" ng-click="toggleOpen()">
+  <h4 class="panel-title">
+    <a href tabindex="0" class="accordion-toggle" uib-accordion-transclude="heading">
+      <span uib-accordion-header ng-class="{'text-muted': isDisabled}" style="word-wrap: break-word; overflow-wrap: break-word; word-break: break-all;">
+        {{heading}}
+      </span>
+    </a>
+  </h4>
+</div>
+<div class="panel-collapse collapse" uib-collapse="!isOpen">
+  <div class="panel-body" style="text-align: center;" ng-transclude></div>
+</div>

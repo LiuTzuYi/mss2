@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="../">
+    <title>JSDoc: source : refetchMap.js</title>
+    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
+    <link href="css/site.css" type="text/css" rel="stylesheet">
+    <link href="css/custom.css" type="text/css" rel="stylesheet">
+  </head>
+  <body ng-app>
+    <nav id="toc">
+      <div class="sidenav-search">
+      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">
+      </div>
+      <div class="nav-wrapper">
+      <h2><a href="index.html">Home</a></h2>
+      <ul class="module">
+        <!-- undefined -->
+        <li id="undefined" ng-hide="moduleundefined">
+          <ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="undefinedModule = !undefinedModule">
+                Module
+              </a>
+              <i ng-cloak ng-show="undefinedModule">+</i>
+            </h2>
+            <ul ng-hide="undefinedModule">
+              <li>
+                <a href="carSafety.html">carSafety</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- car_afety -->
+        <h2 class="module">
+          <a chref ng-click="modulecar_afety = !modulecar_afety">
+            module: carSafety
+          </a>
+          <i ng-cloak ng-show="modulecar_afety">+</i>
+        </h2>
+        <li id="carSafety" ng-hide="modulecar_afety">
+          <ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyController = !car_afetyController">
+                Controller
+              </a>
+              <i ng-cloak ng-show="car_afetyController">+</i>
+            </h2>
+            <ul ng-hide="car_afetyController">
+              <li>
+                <a href="carSafety.adminpanelloginCtrl.html">adminpanelloginCtrl</a>
+              </li><li>
+                <a href="carSafety.adminpanelnavCtrl.html">adminpanelnavCtrl</a>
+              </li><li>
+                <a href="carSafety.apcompanyaddCtrl.html">apcompanyaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apcompanyeditCtrl.html">apcompanyeditCtrl</a>
+              </li><li>
+                <a href="carSafety.apcompanylistCtrl.html">apcompanylistCtrl</a>
+              </li><li>
+                <a href="carSafety.apdeviceaddCtrl.html">apdeviceaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apdeviceeditCtrl.html">apdeviceeditCtrl</a>
+              </li><li>
+                <a href="carSafety.apdevicelistCtrl.html">apdevicelistCtrl</a>
+              </li><li>
+                <a href="carSafety.apdrvcardaddCtrl.html">apdrvcardaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apdrvcardlogCtrl.html">apdrvcardlogCtrl</a>
+              </li><li>
+                <a href="carSafety.apmailnotifyaddCtrl.html">apmailnotifyaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apmailnotifyeditCtrl.html">apmailnotifyeditCtrl</a>
+              </li><li>
+                <a href="carSafety.apmailnotifylistCtrl.html">apmailnotifylistCtrl</a>
+              </li><li>
+                <a href="carSafety.autologinCtrl.html">autologinCtrl</a>
+              </li><li>
+                <a href="carSafety.companyProfileCtrl.html">companyProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.404Ctrl.html">404Ctrl</a>
+              </li><li>
+                <a href="carSafety.dashCtrl.html">dashCtrl</a>
+              </li><li>
+                <a href="carSafety.deviceSetCtrl.html">deviceSetCtrl</a>
+              </li><li>
+                <a href="carSafety.drivergrpProfileCtrl.html">drivergrpProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.drivergrpSetCtrl.html">drivergrpSetCtrl</a>
+              </li><li>
+                <a href="carSafety.driverProfileCtrl.html">driverProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.driverSetCtrl.html">driverSetCtrl</a>
+              </li><li>
+                <a href="carSafety.forgetPwdCtrl.html">forgetPwdCtrl</a>
+              </li><li>
+                <a href="carSafety.helpCtrl.html">helpCtrl</a>
+              </li><li>
+                <a href="carSafety.liveLocationCtrl.html">liveLocationCtrl</a>
+              </li><li>
+                <a href="carSafety.liveMonitorCtrl.html">liveMonitorCtrl</a>
+              </li><li>
+                <a href="carSafety.loginCtrl.html">loginCtrl</a>
+              </li><li>
+                <a href="carSafety.mailNotifySetCtrl.html">mailNotifySetCtrl</a>
+              </li><li>
+                <a href="carSafety.orgchartSetCtrl.html">orgchartSetCtrl</a>
+              </li><li>
+                <a href="carSafety.resetPwdCtrl.html">resetPwdCtrl</a>
+              </li><li>
+                <a href="carSafety.rosterSetCtrl.html">rosterSetCtrl</a>
+              </li><li>
+                <a href="carSafety.tripDetailCtrl.html">tripDetailCtrl</a>
+              </li><li>
+                <a href="carSafety.tripDrvImportCtrl.html">tripDrvImportCtrl</a>
+              </li><li>
+                <a href="carSafety.tripSetCtrl.html">tripSetCtrl</a>
+              </li><li>
+                <a href="carSafety.updatePwdCtrl.html">updatePwdCtrl</a>
+              </li><li>
+                <a href="carSafety.userroleSetCtrl.html">userroleSetCtrl</a>
+              </li><li>
+                <a href="carSafety.userSetCtrl.html">userSetCtrl</a>
+              </li><li>
+                <a href="carSafety.vehiclegrpProfileCtrl.html">vehiclegrpProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.vehiclegrpSetCtrl.html">vehiclegrpSetCtrl</a>
+              </li><li>
+                <a href="carSafety.vehicleProfileCtrl.html">vehicleProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.vehicleSetCtrl.html">vehicleSetCtrl</a>
+              </li><li>
+                <a href="carSafety.warnExportCtrl.html">warnExportCtrl</a>
+              </li><li>
+                <a href="carSafety.warnvideoDownloadCtrl.html">warnvideoDownloadCtrl</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyService = !car_afetyService">
+                Service
+              </a>
+              <i ng-cloak ng-show="car_afetyService">+</i>
+            </h2>
+            <ul ng-hide="car_afetyService">
+              <li>
+                <a href="carSafety.alertBox.html">alertBox</a>
+              </li><li>
+                <a href="carSafety.formValidService.html">formValidService</a>
+              </li><li>
+                <a href="carSafety.httpSuccessCheck.html">httpSuccessCheck</a>
+              </li><li>
+                <a href="carSafety.langService.html">langService</a>
+              </li><li>
+                <a href="carSafety.profileService.html">profileService</a>
+              </li><li>
+                <a href="carSafety.refetchMapService.html">refetchMapService</a>
+              </li><li>
+                <a href="carSafety.responsiveCheck.html">responsiveCheck</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyConfig = !car_afetyConfig">
+                Config
+              </a>
+              <i ng-cloak ng-show="car_afetyConfig">+</i>
+            </h2>
+            <ul ng-hide="car_afetyConfig">
+              <li>
+                <a href="carSafety.angular-chart-js.html">angular-chart-js</a>
+              </li><li>
+                <a href="carSafety.angular-dynamic-locale.html">angular-dynamic-locale</a>
+              </li><li>
+                <a href="carSafety.angular-translate.html">angular-translate</a>
+              </li><li>
+                <a href="carSafety.angularjs.html">angularjs</a>
+              </li><li>
+                <a href="carSafety.angularjs-material.html">angularjs-material</a>
+              </li><li>
+                <a href="carSafety.block-ui.html">block-ui</a>
+              </li><li>
+                <a href="carSafety.ng-idle.html">ng-idle</a>
+              </li><li>
+                <a href="carSafety.state-transition.html">state-transition</a>
+              </li><li>
+                <a href="carSafety.ui-router.html">ui-router</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyConstant = !car_afetyConstant">
+                Constant
+              </a>
+              <i ng-cloak ng-show="car_afetyConstant">+</i>
+            </h2>
+            <ul ng-hide="car_afetyConstant">
+              <li>
+                <a href="carSafety.appConfig.html">appConfig</a>
+              </li><li>
+                <a href="carSafety.chartConfig.html">chartConfig</a>
+              </li><li>
+                <a href="carSafety.errorCodeConfig.html">errorCodeConfig</a>
+              </li><li>
+                <a href="carSafety.exportConfig.html">exportConfig</a>
+              </li><li>
+                <a href="carSafety.mapConfig.html">mapConfig</a>
+              </li><li>
+                <a href="carSafety.regexConfig.html">regexConfig</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyDirective = !car_afetyDirective">
+                Directive
+              </a>
+              <i ng-cloak ng-show="car_afetyDirective">+</i>
+            </h2>
+            <ul ng-hide="car_afetyDirective">
+              <li>
+                <a href="carSafety.bInfoWindow.html">bInfoWindow</a>
+              </li><li>
+                <a href="carSafety.bMarker.html">bMarker</a>
+              </li><li>
+                <a href="carSafety.bPolyline.html">bPolyline</a>
+              </li><li>
+                <a href="carSafety.bTrafficLayer.html">bTrafficLayer</a>
+              </li><li>
+                <a href="carSafety.convertToNumber.html">convertToNumber</a>
+              </li><li>
+                <a href="carSafety.customOnChange.html">customOnChange</a>
+              </li><li>
+                <a href="carSafety.fileInputImg.html">fileInputImg</a>
+              </li><li>
+                <a href="carSafety.multicheckListbox.html">multicheckListbox</a>
+              </li><li>
+                <a href="carSafety.navbar.html">navbar</a>
+              </li><li>
+                <a href="carSafety.pageSelect.html">pageSelect</a>
+              </li><li>
+                <a href="carSafety.showTooltipOnTextOverflow.html">showTooltipOnTextOverflow</a>
+              </li><li>
+                <a href="carSafety.stFiltered.html">stFiltered</a>
+              </li><li>
+                <a href="carSafety.stPersist.html">stPersist</a>
+              </li><li>
+                <a href="carSafety.stSelectDistinct.html">stSelectDistinct</a>
+              </li><li>
+                <a href="carSafety.virtualResize.html">virtualResize</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyFilter = !car_afetyFilter">
+                Filter
+              </a>
+              <i ng-cloak ng-show="car_afetyFilter">+</i>
+            </h2>
+            <ul ng-hide="car_afetyFilter">
+              <li>
+                <a href="carSafety.fixNum.html">fixNum</a>
+              </li><li>
+                <a href="carSafety.optionalFilter.html">optionalFilter</a>
+              </li><li>
+                <a href="carSafety.tableCustomFilter.html">tableCustomFilter</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyRun = !car_afetyRun">
+                Run
+              </a>
+              <i ng-cloak ng-show="car_afetyRun">+</i>
+            </h2>
+            <ul ng-hide="car_afetyRun">
+              <li>
+                <a href="carSafety.state-transition-init.html">state-transition-init</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+    <div id="content" class="page-wrap">
+      <h1 class="title">
+        source : refetchMap.js
+      </h1>
+      <div id="main" class="big-container">
+        <!-- source code html -->
+        <article>
+          <pre class="prettyprint source linenums"><code>/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-10-08 11:31:00
+*/
+'use strict';
+/**
+ * @memberof carSafety
+ * @ngdoc Service
+ * @name refetchMapService
+ * @description
+ *   Service for remove the map script
+ *
+ * @example
+ * refetchMapService.deleteGoogle();
+ */
+angular.module('carSafety').service('refetchMapService', function() {
+	this.deleteGoogle = function(){
+		var scriptEl = document.body.querySelector('script[src^="https://maps.google"]')
+		if (scriptEl) {
+          document.body.removeChild(scriptEl);
+          var scriptHead = document.head.querySelectorAll('script[src^="https://maps.google"]')
+          for(var i=0;i&lt;scriptHead.length;i++){
+          	document.head.removeChild(scriptHead[i])
+          }
+        }
+        delete window.google
+	}
+	this.deleteBaidu = function(){
+		var scriptEl = document.querySelectorAll('script[src^="https://api.map.baidu.com/"]')
+		if (scriptEl) {
+          for(var i=0;i&lt;scriptEl.length;i++){
+          	document.body.removeChild(scriptEl[i])
+          }
+          var stylesheetBMap = document.head.querySelectorAll('style')
+          for(var j=0; j&lt;stylesheetBMap;j++){
+          	if(stylesheetBMap[j].textContent.indexOf('BMap')!==-1){
+          		document.head.removeChild(stylesheetBMap[j])
+          	}
+          }
+        }
+        delete window.baiduMapLoaded
+	}
+});</code></pre>
+        </article>
+        <!-- index.html -->
+        <!-- class files -->
+      </div>
+      <footer style="clear:both">
+        Documentation generated by
+        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
+        using
+        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>
+      </footer>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/site.js"></script>
+    <!--%= prettyJson %-->
+    <script>
+      prettyPrint();
+      var lineNo = window.location.hash.match(/#line([0-9]+)$/);
+      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();
+    </script>
+  </body>
+</html>

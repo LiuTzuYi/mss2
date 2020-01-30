@@ -1,0 +1,50 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-26 18:31:43
+*/ -->
+<div>
+	<ul class="checkmenu-list">
+		<li ng-if="extraSettings.allCheck" class="all-check">
+			<a ng-click="checkALL()"><i class="fa fa-check" aria-hidden="true"></i>{{textOption.checkAllText|translate}}</a><a ng-click="uncheckALL()"><i class="fa fa-times" aria-hidden="true"></i>{{textOption.uncheckAllText|translate}}</a>
+		</li>
+		<li ng-if="extraSettings.allCheck" class="search-top divider"></li>
+		<li ng-if="extraSettings.search">
+			<div class="checkmenu-list-header">
+				<input ng-if="extraSettings.hasGroup" type="text" ng-model="grpText.search" class="form-control" placeholder="{{textOption.searchText|translate}}" autocomplete="off">
+				<input ng-if="!extraSettings.hasGroup" type="text" ng-model="itemText[extraSettings.itemLabel]" class="form-control" placeholder="{{textOption.searchText|translate}}" autocomplete="off">
+			</div>
+		</li>
+		<li ng-if="extraSettings.search" class="search-bottom divider"></li>
+		<div class="checklist-content-wrap">
+			<div ng-if='extraSettings.hasGroup'>
+				<li ng-repeat="group in optionList|optionalFilter: {groupName: grpText.search}:{[extraSettings.grpOptsubLabel]:{[extraSettings.subOptionLabel]: grpText.search}}:grpText.search">
+					<a>
+						<md-checkbox ng-checked="allChecked(group[$parent.extraSettings.grpOptionId])" md-indeterminate="isIndeterminate(group[$parent.extraSettings.grpOptionId])" ng-click="toggleAll(group[$parent.extraSettings.grpOptionId])" ng-disabled="group[$parent.extraSettings.grpOptsubLabel].length==0" aria-label="checkType"  class="md-primary">
+							{{group[$parent.extraSettings.grpOptionLabel]}}
+						</md-checkbox>
+						<i class="fa fa-list" aria-hidden="true" ng-click="shSubListFunc(group[$parent.extraSettings.grpOptionId])" ng-if="group[$parent.extraSettings.grpOptsubLabel].length!==0"></i>
+					</a>
+					<ul ng-show="showSubList.indexOf(group[$parent.extraSettings.grpOptionId])!==-1">
+						<li ng-repeat="option in group[$parent.extraSettings.grpOptsubLabel]">
+							<a>
+								<md-checkbox ng-click="toggleSub($parent.group[$parent.extraSettings.grpOptionId],option)" ng-checked="existsSub($parent.group[$parent.extraSettings.grpOptionId],option[$parent.$parent.extraSettings.subOptionId])" class="md-primary" aria-label="checkSub">{{option[$parent.$parent.extraSettings.subOptionLabel]}}</md-checkbox>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</div>
+			<md-virtual-repeat-container id="vertical-container" class="vertical-container" ng-if="!extraSettings.hasGroup">
+				<li md-virtual-repeat="option in optionList|filter: itemText" class="single-row">
+					<a>
+						<md-checkbox ng-checked="itemExists(option)" ng-click="toggleItem(option)" class="md-primary">{{option[$parent.extraSettings.itemLabel]}}</md-checkbox>
+					</a>
+				</li>
+			</md-virtual-repeat-container>
+			<li ng-if="optionList.length==0" class="no-options">
+				<p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{'noRecord'|translate}}</p>
+			</li>
+		</div>
+	</ul>
+</div>

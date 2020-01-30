@@ -1,0 +1,15 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-07-24 13:22:39
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-07-24 13:23:12
+*/
+
+/* videojs-fix.css
+ * This file fix css styles for videoJS.
+ */
+
+.vjs-paused .vjs-big-play-button,
+.vjs-paused.vjs-has-started .vjs-big-play-button {
+   display: block;
+}

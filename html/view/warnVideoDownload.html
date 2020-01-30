@@ -1,0 +1,53 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-05-31 12:04:48
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 12:18:29
+*/ -->
+<div class="warnvideo-download-wrap">
+	<navbar></navbar>
+	<div class="warnvideo-download-table-wrap">
+		<form name="vdoConfig">
+			<div class="warnvideo-download-content-header">
+				<div class="warnvideo-download-content-header-content1">
+					<p><b>{{"warnVideoDownload"|translate}}</b></p>
+				</div>
+				<div class="warnvideo-download-content-header-func">
+					<div class="warnvideo-download-content-header-content2">
+						<button type="button" ng-click="vdoConfig.$valid&&submit()"
+							class="btn btn-md btn-setting-table">
+							<i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;{{"download"|translate}}
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="warnvideo-download-input-box">
+				<div class="warnvideo-download-input-hint">
+					<div class="form-group">
+						<label for="licence">{{"archiveFilename"|translate}}</label>
+						<input type="text" class="form-control" name="archiveFilename" ng-model="archiveFilename"
+							ng-model-options="{allowInvalid: true}" ng-pattern='filenameregex'
+							ng-change="validate('archiveFilename')" ng-blur="validate('archiveFilename')"
+							ng-maxlength="100">
+						<div class="invalid-feedback"
+							ng-show="vdoConfig.archiveFilename.$error.pattern && !vdoConfig.archiveFilename.$error.maxlength"
+							style="white-space: pre-wrap;">{{'filenameRegex'|translate}}</div>
+						<div class="invalid-feedback" ng-show="vdoConfig.archiveFilename.$error.maxlength"
+							style="white-space: pre-wrap;">{{'filenameLength'|translate}}</div>
+					</div>
+					<div class="form-group">
+						<label for="licence">{{"videoPrefix"|translate}}</label>
+						<input type="text" class="form-control" name="videoPrefix" ng-model="videoPrefix"
+							ng-model-options="{allowInvalid: true}" ng-pattern='filenameregex'
+							ng-change="validate('videoPrefix')" ng-blur="validate('videoPrefix')">
+						<div class="invalid-feedback" ng-show="vdoConfig.videoPrefix.$error.pattern"
+							style="white-space: pre-wrap;">{{'filenameRegex'|translate}}</div>
+					</div>
+				</div>
+				<textarea class="form-control" ng-model="videoArray" ng-list="&#10;" ng-trim="false"
+					ng-attr-placeholder="{{'warnvideoDownloadTextarea'|translate}}&nbsp;&#13;&#10;e.g. 5_20190105_000148_0dhvJB2"
+					autocomplete="off"></textarea>
+			</div>
+		</form>
+	</div>
+</div>

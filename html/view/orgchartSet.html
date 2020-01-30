@@ -1,0 +1,33 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:31:56
+*/ -->
+<div class="orgchart-wrap">
+	<navbar></navbar>
+	<div class="orgchart-table-wrap">
+		<div class="orgchart-content-header">
+			<div class="orgchart-content-header-content1">
+				<p><b>{{"orgchartSet"|translate}}</b></p>
+			</div>
+			<div class="orgchart-content-header-func">
+				<div class="orgchart-content-header-content3">
+					<div class="input-group table-global-search">
+		  				<span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+		  				<input class="form-control" placeholder="{{'search'|translate}}" type="text" aria-describedby="sizing-addon2" ng-model="filter" ng-change="filterChart()" autocomplete="off"/>
+					</div>
+				</div>
+				<div class="orgchart-content-header-content2">
+					<button type="button" ng-click="exportOrgchart()" class="btn btn-md btn-setting-table">
+						<i class="fa fa-download" aria-hidden="true"></i>
+					</button>
+					<button type="button" ng-click="refreshList()" class="btn btn-md btn-setting-table">
+						<i class="fa fa-refresh" aria-hidden="true"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div id="chart-container" class="orgchart-container"></div>
+	</div>
+</div>

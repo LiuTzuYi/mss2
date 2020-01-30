@@ -1,0 +1,45 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:46:00
+*/
+
+/* dialog-fix.css
+ * This file provides fixed css styles in dialog box.
+ */
+
+.md-dialog-is-showing .map-wrap,
+.md-dialog-is-showing .setting-wrap,
+.md-dialog-is-showing .orgchart-wrap{
+	position: relative;
+    max-width: 100%;
+}
+
+.md-dialog-is-showing .pro-wrap{
+	position: absolute;
+    max-width: 100%;
+}
+
+md-backdrop{
+	height: 100% !important;
+	position: fixed !important;
+}
+
+.md-dialog-container{
+	height: 100% !important;
+	position: fixed !important;
+	top: 0px !important;
+	/*overflow: auto;*/
+}
+
+
+.md-dialog-is-showing{
+	min-height: 100%;
+	overflow: hidden;
+	/* position: fixed !important; */
+}
+
+.md-dialog-is-showing::-webkit-scrollbar{
+	display: none;
+}

@@ -1,0 +1,33 @@
+{
+    "name": "Car Safety MSS2 Platform",
+    "description": "API Documentation (PHP Slim Framework)",
+    "title": "API Documentation",
+    "version": "2.0.0",
+    "template": {
+      "forceLanguage": "en"
+    },
+    "order": [
+      "Authentication",
+      "User",
+      "LiveLocation",
+      "TripDetail",
+      "TripSet",
+      "WarnDataExport",
+      "WarnVideoBatch",
+      "Profile",
+      "Download",
+      "Streaming",
+      "VehicleDtlSet",
+      "VehicleSet",
+      "VehicleGrpSet",
+      "DriverSet",
+      "DriverGrpSet",
+      "DeviceSet",
+      "UserSet",
+      "UserRoleSet",
+      "OrgChartSet",
+      "MailNotifySet",
+      "RosterSet",
+      "Exception"
+    ]
+}

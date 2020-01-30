@@ -1,0 +1,44 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:32:02
+*/ -->
+<div class="roster-wrap">
+	<navbar></navbar>
+	<div class="roster-table-wrap">
+		<div class="roster-content-header">
+			<div class="roster-content-header-content1">
+				<p><b>{{"roster"|translate}}</b></p>
+			</div>
+			<div class="roster-content-header-func">
+				<div class="roster-content-header-content2">
+					<button type="button" ng-click="submit()" class="btn btn-md btn-setting-table">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;{{"submit"|translate}}
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="roster-input-box">
+			<div class="roster-input-hint">
+				<label for="licence"><b>{{"inputRoster"|translate}}</b></label>
+				<label>
+					<i class="fa fa-keyboard-o" aria-hidden="true"></i>&nbsp;&nbsp;{{"column"|translate}} ( <i class="fa fa-info-circle roster-hint-toggle" aria-hidden="true"  ng-click="examplestateChange()"></i><span class="roster-hint-toggle2" translate="exampleaction" translate-value-action="{{showexample|translate}}" ng-click="examplestateChange()"></span> ) :
+				</label>
+				<label class="col-group">
+					<span class="column">{{"licence"|translate}},</span>
+					<span class="column">{{"driverCode"|translate}},</span>
+					<span class="column">{{"startTime"|translate}}</span>
+					<span class="column">(yyyy-MM-dd hh:mm)</span>
+				</label>
+				<label ng-show="showexample=='hide'">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;{{"example"|translate}} :
+					<label>B07536C,V15648,2017-10-24 08:00</label>
+	        		<label>TK1253,95213_1,2017-05-04 16:00</label>
+	        		<label>RY5685,0002,2017-05-04 16:00</label>
+				</label>
+	        </div>
+			<textarea class="form-control" ng-model="csv" ng-list="&#10;" ng-trim="false" ng-attr-placeholder="{{'rosterTextarea'|translate}}&nbsp;&#13;&#10;e.g. B07536C,V15648,2017-10-24 08:00" autocomplete="off"></textarea>
+		</div>
+	</div>
+</div>

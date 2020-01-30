@@ -1,0 +1,16 @@
+Dear %fullname%,
+
+We received a request to reset you password for your account: %username%.
+
+To reset your password (link expires in 24 hours), please cut and paste the following URL into your browser.
+%link%
+
+Note:
+If you did not request to reset your password, please ignore this email, and all your account information will remain the same.
+
+Sincerely,
+Greensafety Technology Limited
+
+----------
+Please do not reply this email.
+If you need help, or you have any other queries, feel free to contact customer support.

@@ -1,0 +1,156 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:46:45
+*/
+
+/* help.css
+ * This file provides css styles in help page.
+ */
+
+.help-wrap {
+	height: 100%;
+	min-width: 300px;
+	position: relative;
+}
+
+.help-wrap #helpTop a {
+	cursor: pointer;
+	display: unset;
+}
+
+.help-wrap #helpTop li.nav-item {
+	margin-bottom: 1rem;
+}
+
+.help-wrap #gradeTable {
+	min-width: 300px;
+	max-width: 300px;
+}
+
+.help-wrap h4 {
+	margin: 16px;
+}
+
+.help-wrap .col-12 {
+	padding-right: 0px !important;
+}
+
+.help-wrap .row {
+	margin-right: 0px !important;
+}
+
+.help-wrap .breadcrumb {
+	margin-bottom: 0;
+}
+
+.help-wrap img {
+	max-width: 100%;
+	/* margin-bottom: 30px; */
+	margin-top: 10px;
+}
+
+.help-wrap li {
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+
+.help-wrap .explanation {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.help-wrap .explanation li {
+	counter-increment: step-counter;
+	margin-bottom: 10px;
+}
+
+.help-wrap .explanation li::before {
+	content: counter(step-counter);
+	margin-right: 5px;
+	font-size: 80%;
+	background-color: rgb(200, 0, 0);
+	color: white;
+	font-weight: bold;
+	padding: 3px 8px;
+	border-radius: 10px;
+}
+
+.help-wrap i.fa.fa-info-circle {
+	color: #007bff;
+}
+
+.help-wrap i.fa.fa-car.online {
+	color: #278dc0;
+}
+
+.help-wrap .inline {
+	margin: 0;
+}
+
+.help-wrap .card-body {
+	line-height: 2;
+}
+
+.help-wrap #goToTopBtn {
+	display: none;
+	/* Hidden by default */
+	position: fixed;
+	/* Fixed/sticky position */
+	bottom: 20px;
+	/* Place the button at the bottom of the page */
+	right: 30px;
+	/* Place the button 30px from the right */
+	z-index: 99;
+	/* Make sure it does not overlap */
+	border: none;
+	/* Remove borders */
+	outline: none;
+	/* Remove outline */
+	background-color: rgba(5, 5, 5, 0.5);
+	/* Set a background color */
+	color: white;
+	/* Text color */
+	cursor: pointer;
+	/* Add a mouse pointer on hover */
+	padding: 15px;
+	/* Some padding */
+	border-radius: 10px;
+	/* Rounded corners */
+	font-size: 18px;
+	/* Increase font size */
+}
+
+.help-wrap #goToTopBtn:hover {
+	background-color: #555;
+	/* Add a dark-grey background on hover */
+}
+
+.help-wrap .example {
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+}
+
+.help-wrap .notes {
+	font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", "細明體", "MingLiU", "標楷體", "DFKai-sb", serif;
+	font-size: 90%;
+}
+
+.help-wrap #helpTop .menu-title {
+	margin-bottom: -.5rem;
+}
+
+.help-wrap #helpTop sub {
+	margin-left: 4px;
+}
+
+.help-wrap #uploadCSV table {
+	width: auto;
+}
+
+.help-wrap svg.vehtype {
+	width: 30px;
+	height: 30px;
+	vertical-align: sub;
+}

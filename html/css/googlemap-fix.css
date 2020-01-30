@@ -1,0 +1,19 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:46:41
+*/
+
+/* googlemap-fix.css
+ * This file provides google map fix styles.
+ */
+
+.gm-iv-address{
+	height: 56px !important;
+	padding: 8px !important;
+}
+
+.gm-style > .gm-style-cc:not(:last-child){
+	display: none;
+}

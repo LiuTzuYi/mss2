@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="../">
+    <title>JSDoc: source : autologinCtrl.js</title>
+    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
+    <link href="css/site.css" type="text/css" rel="stylesheet">
+    <link href="css/custom.css" type="text/css" rel="stylesheet">
+  </head>
+  <body ng-app>
+    <nav id="toc">
+      <div class="sidenav-search">
+      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">
+      </div>
+      <div class="nav-wrapper">
+      <h2><a href="index.html">Home</a></h2>
+      <ul class="module">
+        <!-- undefined -->
+        <h2 class="module">
+          <a chref ng-click="moduleundefined = !moduleundefined">
+            module: undefined
+          </a>
+          <i ng-cloak ng-show="moduleundefined">+</i>
+        </h2>
+        <li id="undefined" ng-hide="moduleundefined">
+          <ul class="group">
+            <h2>
+              <a href ng-click="undefinedundefined = !undefinedundefined">
+                undefined
+              </a>
+              <i ng-cloak ng-show="undefinedundefined">+</i>
+            </h2>
+            <ul ng-hide="undefinedundefined">
+              <li>
+                <a href="404Ctrl.html">404Ctrl</a>
+              </li><li>
+                <a href="autologinCtrl.html">autologinCtrl</a>
+              </li><li>
+                <a href="companyProfileCtrl.html">companyProfileCtrl</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+    <div id="content" class="page-wrap">
+      <h1 class="title">
+        source : autologinCtrl.js
+      </h1>
+      <div id="main" class="big-container">
+        <!-- source code html -->
+        <article>
+          <pre class="prettyprint source linenums"><code>/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:29
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:00:13
+*/
+/**
+ * @category Controller
+ *
+ * @name autologinCtrl
+ * @function
+ * @constructor
+ * @param {String} controllerName controller name
+ * @param {Array} CtrlArray array to new controller
+ * @param {...String} CtrlArray[].name name of modules
+ * @param {autologinCtrlConstructorCallback} CtrlArray[].constructorCallback callback to construct
+ **/
+/**
+ * @callback autologinCtrlConstructorCallback
+ * @memberOf autologinCtrl
+ * @param {Object} $scope scope object
+ * @param {Object} $state state object
+ * @param {Object} $stateParams stateParam object
+ * @param {Object} $http http object
+ * @param {Object} blockUI blockUI object
+ * @param {Object} $timeout timeout object
+ * @param {Object} $translate translate object
+ * @param {Object} langService langService object
+ * @param {Object} appConfig appConfig object
+ * @param {Object} Idle idle object
+ * @param {Object} Keepalive keepalive object
+ * @param {Object} appConfig appConfig object
+ * @param {Object} httpSuccessCheck httpSuccessCheck object
+ * @param {Object} alertBox alertBox object
+ * @param {Object} refetchMapService refetchMapService object 
+ * @param {Object} $location $location object
+ *
+ */
+angular.module('carSafety').controller("autologinCtrl", ["$scope", "$state", "$stateParams", "$http", "blockUI", "$timeout", "$translate", "langService", "Idle", "Keepalive", "appConfig", "httpSuccessCheck", "alertBox", "refetchMapService", "$location", function ($scope, $state, $stateParams, $http, blockUI, $timeout, $translate, langService, Idle, Keepalive, appConfig, httpSuccessCheck, alertBox, refetchMapService, $location) {
+	Idle.unwatch();
+	var blockUi = angular.element(document.getElementsByTagName("BODY")[0]);
+	window.document.title = $translate.instant('GST');
+	/**
+	 * @memberOf autologinCtrl
+	 * @property {String[]} credential credentials of user
+	 */
+	var credential = atob(decodeURI($stateParams.credential)).split('&')
+	/**
+	 * @memberOf autologinCtrl
+	 * @member $scope
+	 * @property {String} $scope.username username
+	 * @property {String} $scope.password password
+	 */
+	$scope.username = credential[0].split('usr=')[1]
+	$scope.password = credential[1].split('pwd=')[1]
+	/**
+	 * @memberOf autologinCtrl
+	 * @property {Object} postData data object posting to server
+	 * @property {String} postData.username username of user
+	 * @property {String} postData.password password of user
+	 * @property {String} postData.company_code company code of user
+	 * @property {Boolean} postData.api 
+	 */
+	var postData = {
+		username: $scope.username,
+		password: $scope.password,
+		company_code: $stateParams.company_code,
+		api: true,
+	}
+	$http({
+		method: 'POST',
+		url: '/api/login',
+		data: postData
+	}).then(function successCallback(response) {
+		blockUi.removeClass('block-ui-active block-ui-visible')
+		var errorphp = httpSuccessCheck.checkHttp(response)
+		if (errorphp) {
+			alertBox.errorAlert('90002_01')
+		} else {
+			if (response.data.code) {
+				var func = function () {
+					Idle.watch();
+					$location.path("/" + $stateParams.company_code + "/companyProfile");
+				}
+				alertBox.errorAlert(response.data.code, func)
+			} else {
+				Idle.watch();
+				$location.path("/" + $stateParams.company_code + "/companyProfile");
+			}
+		}
+	}, function errorCallback(response) {
+		blockUi.removeClass('block-ui-active block-ui-visible')
+		var errorphp = httpSuccessCheck.checkerrorHttp(response)
+		if (errorphp) {
+			alertBox.errorAlert('90002_' + errorphp)
+		} else {
+			if (response.data.code == '10028' || response.data.code == '10029') {
+				$state.go('updatePwd', {}, {
+					reload: true
+				})
+			} else if (response.data.link) {
+				window.location.href = response.data.link;
+			} else {
+				alertBox.errorAlert(response.data.code)
+			}
+		}
+	})
+}]);</code></pre>
+        </article>
+        <!-- index.html -->
+        <!-- class files -->
+      </div>
+      <footer style="clear:both">
+        Documentation generated by
+        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a>
+        using
+        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>
+      </footer>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/site.js"></script>
+    <!--%= prettyJson %-->
+    <script>
+      prettyPrint();
+      var lineNo = window.location.hash.match(/#line([0-9]+)$/);
+      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();
+    </script>
+  </body>
+</html>

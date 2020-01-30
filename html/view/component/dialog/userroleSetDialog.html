@@ -1,0 +1,49 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:19:47
+*/ -->
+<md-dialog aria-label="addEdit" class="set-dialog-wrap">
+  <form name="addEdit" ng-cloak autocomplete="off">
+    <md-toolbar class="set-dialog-toolbar">
+      <div class="md-toolbar-tools">
+        <h2 ng-if="action=='add'"><b translate="dialogAdd" translate-value-item="{{'userRole'|translate}}"></b></h2>
+        <h2 ng-if="action=='edit'"><b translate="dialogEdit" translate-value-item="{{'userRole'|translate}}"></b></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="cancel">
+          <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content class="set-dialog-content">
+      <div class="md-dialog-content">
+        <div class="form-group" ng-if="action=='edit'">
+          <label for="licence">{{"roleID"|translate}}</label>
+          <input type="text" class="form-control" name="roleId" ng-model="row.roleId" disabled readonly>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"roleName"|translate}}</label>
+          <input type="text" class="form-control" name="roleName" required ng-model="row.roleName" ng-model-options="{allowInvalid: true}" ng-maxlength="50" ng-change="validate('roleName')" ng-blur="validate('roleName')">
+          <div class="invalid-feedback" ng-show="addEdit.roleName.$error.maxlength" translate="tooLong" translate-value-column="{{'roleName'|translate}}"></div>
+          <div class="invalid-feedback" ng-show="(attempt||action=='edit'||addEdit.roleName.$dirty||addEdit.roleName.$touched) && addEdit.roleName.$error.required" translate="required" translate-value-column="{{'roleName'|translate}}"></div>
+        </div>
+        <div class="form-group multiselect-custom user-role">
+          <label for="licence">{{"userFunc"|translate}}</label>
+          <div ng-dropdown-multiselect="" options="tmpuserFuncs" selected-model="tmpuserFunc" extra-settings="userFuncSelect" translation-texts="userFuncSelectTexts" events="closeEvent"></div>
+          <textarea class="form-control" name="userFunc" ng-bind="userFuncTranslate()" readonly disabled ng-if="row.userFunc.length>0"></textarea>
+          <textarea class="form-control" name="userFunc" ng-value="noselectedFunc" readonly disabled ng-if="!row.userFunc||row.userFunc.length<=0"></textarea>
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" class="set-dialog-content-button">
+      <span flex></span>
+      <md-button ng-click="cancel()">
+        {{"cancel"|translate}}
+      </md-button>
+      <md-button ng-mousedown="validateForm();addEdit.$valid&&row.userFunc.length>0&&submit(row)">
+        {{"ok"|translate}}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

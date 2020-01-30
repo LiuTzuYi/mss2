@@ -1,0 +1,22 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:20:57
+*/ -->
+<nav aria-label="..." ng-if="pages.length >= 2" class="table-page-footer">
+  <ul class="pagination">
+    <li class="page-item" ng-class="{disabled: currentPage <= 1}">
+      <a class="page-link" ng-click="selectPage(currentPage-1)">{{"previous"|translate}}</a>
+    </li>
+    <li class="page-item" ng-repeat="page in pages" ng-class="{active: page==currentPage}">
+      <a class="page-link" ng-click="selectPage(page)">{{page}}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link page-input"><page-select></page-select> / {{numPages}}</a>
+    </li>
+    <li class="page-item" ng-class="{disabled: currentPage == numPages}">
+      <a class="page-link" ng-click="selectPage(currentPage+1)">{{"next"|translate}}</a>
+    </li>
+  </ul>
+</nav>

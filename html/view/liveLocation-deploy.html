@@ -1,0 +1,217 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-06-12 17:53:47
+*/ -->
+<div class="map-wrap">
+	<navbar></navbar>
+	<div class="map-header-sm">{{'liveLocation'|translate}}</div>
+	<div class="marker-info-content-fullscreen" ng-if="markinfoFullscreen">
+		<div class="marker-info-header">
+			<svg class="vehtype" ng-class="markerInfo.runStatus">
+				<use ng-attr-href="{{'../images/veh_type/'+markerInfo.type+'.svg#'+markerInfo.type}}" />
+				<!-- <use href="../images/veh_type/{{markerInfo.type}}.svg#{{markerInfo.type}}" /> -->
+			</svg>
+			<div class="licence" uib-tooltip="{{markerInfo.licence}} [{{markerInfo.department}}]" tooltip-placement="top-left" show-tooltip-on-text-overflow tooltip-enable="false" tooltip-class="trip-licence-tooltip-na">{{markerInfo.licence}} [{{markerInfo.department}}]</div>
+			<div class="marker-info-close" ng-click="closeDataBox()">
+				<i class="fa fa-times"></i>
+			</div>
+			<div class="marker-info-expand" ng-click="showDatainNorm()">
+				<i class="material-icons md-scale-fa">fullscreen_exit</i>
+			</div>
+		</div>
+		<div class="marker-info-table">
+			<table>
+				<tr>
+					<th nowrap>{{'brand'|translate}}</th>
+					<td nowrap>{{markerInfo.brand}}</td>
+				</tr>
+				<tr>
+					<th nowrap>{{'model'|translate}}</th>
+					<td nowrap>{{markerInfo.model}}</td>
+				</tr>
+				<tr>
+					<th nowrap>{{'driver'|translate}}</th>
+					<td nowrap>{{markerInfo.driver}}</td>
+				</tr>
+				<tr>
+					<th nowrap>{{'runStatus'|translate}}</th>
+					<td nowrap>{{markerInfo.runStatus|translate}}</td>
+				</tr>
+				<tr>
+					<th nowrap>{{'lastLocUpdate'|translate}}</th>
+					<td nowrap>{{markerInfo.last_loc_update_ts}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="map-panel" ng-click="showListFunc()"></div>
+	<div class="map-select-panel-fake" ng-if="mapchoosen=='googleMap'" ng-class="{'map-en': lang=='en', 'map-cn': lang=='zh-cn', 'map-tw': lang=='zh-tw', 'map-g-mtc': isMobile}"><i class="fa fa-map-o"></i></div>
+	<div class="map-select-panel-fake-2" ng-if="mapchoosen=='baiduMap'"><i class="fa fa-map-o"></i></div>
+	<select class="form-control form-control-sm map-select-panel" id="map-select" ng-model="mapset.map" ng-change="updatemap(mapset.map)" ng-class="{'map-en': lang=='en', 'map-cn': lang=='zh-cn', 'map-tw': lang=='zh-tw', 'map-g-mtc': isMobile}" ng-if="!mapLoading&&mapchoosen=='googleMap'">
+        <option value="baiduMap">{{'baiduMap'|translate}}</option>
+        <option value="googleMap">{{'googleMap'|translate}}</option>
+    </select>
+    <select class="form-control form-control-sm map-select-panel-2" id="map-select" ng-model="mapset.map" ng-change="updatemap(mapset.map)" ng-if="!mapLoading&&mapchoosen=='baiduMap'">
+        <option value="baiduMap">{{'baiduMap'|translate}}</option>
+        <option value="googleMap">{{'googleMap'|translate}}</option>
+    </select>
+	<div class="map-list" ng-if="showList">
+		<div class="list-panel" ng-click="hideListFunc()"></div>
+		<div class="list-content-wrap">
+			<div class=" list-filter">
+				<div class="list-header">
+					<h5 ng-click="toggleFilter()">
+						<i class="fa fa-filter" aria-hidden="true"></i>{{'filter'|translate}}
+						<span>
+							<i class="fa fa-angle-down" aria-hidden="true" ng-show="hideFilter"></i>
+							<i class="fa fa-angle-up" aria-hidden="true" ng-show="!hideFilter"></i>
+						</span>
+					</h5>
+					<div class="list-detail" ng-show="!hideFilter">
+						<div class="filterinput">
+				          <input type="text" class="form-control" name="filterLic.licence" ng-model="filterLic.licence" ng-change="checkSelectedMark()" placeholder="{{'licence'|translate}}" autocomplete="off">
+				        </div>
+						<div>
+					        <label for="licence" class="additional-info"><b>{{"runStatus"|translate}}</b><i class="fa fa-info-circle" aria-hidden="true" ng-click="showRunAssist=!showRunAssist" ng-class="showRunAssist?'additional-info-show':'additional-info-hide'"></i></label>
+					        <div ng-if="showRunAssist" class="additional-info-content">
+						    	<p ng-repeat="status in runStatuss">
+						    		<i class="fa fa-car" aria-hidden="true" ng-class="status"></i>{{status|translate}}
+						    	</p>
+					    	</div>
+					        <div layout="row" layout-align="space-between" layout-wrap flex>
+					        	<md-checkbox md-no-ink ng-repeat="status in runStatuss" ng-checked="exists(status, runStatus)" ng-click="toggle(status, runStatus, 'runStatus')" class="md-primary checkbox-custom" aria-label="check">
+					                <i class="fa fa-car" aria-hidden="true" ng-class="status"></i> ({{statusCnt[status]}})
+					            </md-checkbox>
+					    	</div>
+					    </div>
+					    <div>
+					    	<label for="licence" class="additional-info"><b>{{"devicestatus"|translate}}</b></label>
+					    	<div layout="row" layout-align="space-between" layout-wrap flex>
+					        	<md-checkbox md-no-ink ng-repeat="status in deviceStatuss" ng-checked="exists(status, deviceStatus)" ng-click="toggle(status, deviceStatus, 'status')" class="md-primary checkbox-custom" aria-label="check">
+					                {{status|translate}} ({{deviceCnt[status]}})
+					            </md-checkbox>
+					    	</div>
+					    </div>
+				        <button type="button" class="btn btn-primary btn-block list-btn-custom" ng-click="resetFilter()">{{'clear'|translate}}</button>
+					</div>
+					<h5 ng-click="hideFilterlist=!hideFilterlist" class="bottom-header">
+						<i class="fa fa-car" aria-hidden="true"></i>{{'vehicleList'|translate}}
+						<span>
+							<i class="fa fa-paperclip toggle-infobox" aria-hidden="true" ng-class="{'infobox-on':infoboxOpen}" ng-click="toggleInfo($event)"></i>
+							<i class="fa fa-refresh reload-data" aria-hidden="true" ng-click="refreshList($event)"></i>
+							<i class="fa fa-angle-down" aria-hidden="true" ng-show="hideFilterlist"></i>
+							<i class="fa fa-angle-up" aria-hidden="true" ng-show="!hideFilterlist"></i>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="list-filterlist">
+				<div class="list-header">
+					<div class="list-detail-list" ng-show="!hideFilterlist">
+						<md-virtual-repeat-container id="vertical-container" class="vertical-container" ng-if="(markersList|filter:filterLic).length>0" md-auto-shrink virtual-resize>
+							<div md-virtual-repeat="mark in markersList|filter:filterLic|orderBy:'-last_loc_update_ts_utc'" class="marker-list" ng-click="showMarkDataByList(mark)" ng-class="{'selected-list':$parent.isListSelected(mark), 'marklist-non-click':$parent.isListClickable(mark)}" flex>
+								<p>
+									<svg class="vehtype" ng-class="mark.runStatus">
+										<use ng-attr-href="{{'../images/veh_type/'+mark.type+'.svg#'+mark.type}}" />
+										<!-- <use href="../images/veh_type/{{mark.type}}.svg#{{mark.type}}" /> -->
+									</svg><span class="live-v-ou"><span class="live-licence" uib-tooltip="{{mark.licence}}" tooltip-placement="bottom-left" show-tooltip-on-text-overflow tooltip-enable="false" tooltip-class="trip-dv-tooltip-li">{{mark.licence}}</span><span class="live-ou" uib-tooltip="{{mark.department}}" tooltip-placement="bottom-right" show-tooltip-on-text-overflow tooltip-enable="false" tooltip-class="trip-dv-tooltip-na"><i class="fa fa-sitemap" aria-hidden="true"></i>{{mark.department}}</span></span></p>
+								<p><i class="fa fa-history" aria-hidden="true"></i>{{mark.last_loc_update_ts}}</p>
+								<div class="divider" ng-show="$index!==($parent.markersList|filter:$parent.filterLic).length-1"></div>
+							</div>
+						</md-virtual-repeat-container>
+						<div ng-if="(markersList|filter:filterLic).length==0" class="marker-list-no-result">
+							<p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{'noRecord'|translate}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="marker-info-wrapper" ng-if='infoboxOpen&&markerInfo' ng-class="markinfoFullwidth?'marker-info-fullwidth':'marker-info-normal'" ng-mousedown="dragResize($event)">
+		<div class="marker-info-content">
+			<div class="marker-info-header">
+				<svg class="vehtype" ng-class="markerInfo.runStatus">
+					<use href="../images/veh_type/{{markerInfo.type}}.svg#{{markerInfo.type}}"/>
+				</svg>
+				<div class="licence" uib-tooltip="{{markerInfo.licence}} [{{markerInfo.department}}]" tooltip-placement="top-left" show-tooltip-on-text-overflow tooltip-enable="false" tooltip-class="trip-licence-tooltip-na">{{markerInfo.licence}} [{{markerInfo.department}}]</div>
+				<div class="marker-info-close" ng-click="closeDataBox()">
+					<i class="fa fa-times"></i>
+				</div>
+				<div class="marker-info-expand" ng-click="showDatainFull()">
+					<i class="material-icons md-scale-fa">fullscreen</i>
+				</div>
+			</div>
+			<div class="marker-info-table">
+				<table>
+					<tr>
+						<th nowrap>{{'brand'|translate}}</th>
+						<td nowrap>{{markerInfo.brand}}</td>
+					</tr>
+					<tr>
+						<th nowrap>{{'model'|translate}}</th>
+						<td nowrap>{{markerInfo.model}}</td>
+					</tr>
+					<tr>
+						<th nowrap>{{'driver'|translate}}</th>
+						<td nowrap>{{markerInfo.driver}}</td>
+					</tr>
+					<tr>
+						<th nowrap>{{'runStatus'|translate}}</th>
+						<td nowrap>{{markerInfo.runStatus|translate}}</td>
+					</tr>
+					<tr>
+						<th nowrap>{{'lastLocUpdate'|translate}}</th>
+						<td nowrap>{{markerInfo.last_loc_update_ts}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div map-lazy-load="https://maps.google.com/maps/api/js"
+	  map-lazy-load-params="{{gmapUrl}}" ng-if="mapchoosen=='googleMap'">
+	  <ng-map id="map" center="22.4, 114.1" lazy-init="true" zoom-to-include-markers="true" zoom="15" zoom-control-options="{position:'RIGHT_TOP'}" default-style="false" class="google-map-wrap" fullscreen-control="false" street-view-control="false" scale-control="true" clickable-icons="false" min-zoom="3" max-zoom="19" gesture-handling="cooperative" map-type-control-options="{mapTypeIds:['ROADMAP','HYBRID'],position:'TOP_RIGHT'}" on-center-changed="checkBoundsGMap()" on-zoom_changed="checkZoomGMap()" map-initialized="loadGoogle(map)">
+	  	<traffic-layer></traffic-layer>
+	  	<marker id="{{mark.sn}}" z-index="{{$index+1}}" ng-repeat="mark in markers|filter:filterLic" icon="{url:'{{$parent[mark.runStatus]}}'}" position="{{mark.lat}},{{mark.lng}}" on-click="showMarkDataGMap(mark)" on-mouseover="hoverMarkDataGMap(mark)" on-mouseout="hideHoverMarkGMap()"></marker>
+	  	<marker z-index="9999999" position="{{selectedMark.lat}},{{selectedMark.lng}}" visible="{{showSelectedMark}}" icon="{url:'{{selectedMarkIcon}}'}" on-mouseover="hoverMarkDataGMap(selectedMark)" on-mouseout="hideHoverMarkGMap()"></marker>
+	  	<info-window id="live-point" on-closeclick="hideHoverMark()">
+	        <div ng-non-bindable="">
+	        	<p class="live-infowindow">
+	        		<svg class="vehtype" ng-class="hoverPopData.runStatus">
+						<use ng-attr-href="{{'../images/veh_type/'+hoverPopData.type+'.svg#'+hoverPopData.type}}" />
+						<!-- <use href="../images/veh_type/{{hoverPopData.type}}.svg#{{hoverPopData.type}}" /> -->
+					</svg><b>{{hoverPopData.licence|translate}} [{{hoverPopData.department}}]</b>
+	        	</p>
+	        	<p><b>{{"brand"|translate}}:</b> {{hoverPopData.brand}}</p>
+	        	<p><b>{{"model"|translate}}:</b> {{hoverPopData.model}}</p>
+	        	<p><b>{{"driver"|translate}}:</b> {{hoverPopData.driver}}</p>
+	        	<p><b>{{"runStatus"|translate}}:</b> {{hoverPopData.runStatus|translate}}</p>
+	        	<p><b>{{"lastLocUpdate"|translate}}:</b> {{hoverPopData.last_loc_update_ts}}</p>
+	        </div>
+      	</info-window>
+	  </ng-map>
+	</div>
+	<div ng-if="mapchoosen=='baiduMap'">
+		<div id="map" baidu-map="{{bmapUrl}}" map-ready="bmapReady(map)" map-opts="bmapOption" class="baidu-map-wrap">
+			<b-traffic-layer></b-traffic-layer>
+			<b-marker id="{{mark.sn}}" ng-repeat="mark in $parent.markers|filter:$parent.filterLic" position="{lat: mark.lat, lng: mark.lng}" icon="{url:$parent.$parent[mark.runStatus],scale:[40,40]}" z-index="$index+1" on-click="$parent.$parent.showMarkDataBMap(mark)" offset="[0,-15]" on-mouseover="$parent.$parent.hoverMarkDataBMap(mark)" on-mouseout="$parent.$parent.hideHoverMarkBMap()"></b-marker>
+			<b-marker z-index="9999999" position="{lat: $parent.selectedMark.lat, lng: $parent.selectedMark.lng}" icon="{url:$parent.selectedMarkIcon,scale:[40,40]}" visible="$parent.showSelectedMark" offset="[0,-15]" on-mouseover="$parent.$parent.hoverMarkDataBMap($parent.selectedMark)" on-mouseout="$parent.$parent.hideHoverMarkBMap()"></b-marker>
+			<b-info-window id="b-live-point">
+		        <div>
+		        	<p class="live-infowindow">
+		        		<svg class="vehtype" ng-class="$parent.hoverPopData.runStatus">
+							<use ng-attr-href="{{'../images/veh_type/'+hoverPopData.type+'.svg#'+hoverPopData.type}}" />
+							<!-- <use href="../images/veh_type/{{$parent.hoverPopData.type}}.svg#{{$parent.hoverPopData.type}}" /> -->
+						</svg><b>{{$parent.hoverPopData.licence|translate}} [{{$parent.hoverPopData.department}}]</b>
+		        	</p>
+		        	<p><b>{{"brand"|translate}}:</b> {{$parent.hoverPopData.brand}}</p>
+		        	<p><b>{{"model"|translate}}:</b> {{$parent.hoverPopData.model}}</p>
+		        	<p><b>{{"driver"|translate}}:</b> {{$parent.hoverPopData.driver}}</p>
+		        	<p><b>{{"runStatus"|translate}}:</b> {{$parent.hoverPopData.runStatus|translate}}</p>
+		        	<p><b>{{"lastLocUpdate"|translate}}:</b> {{$parent.hoverPopData.last_loc_update_ts}}</p>
+		        </div>
+	      	</b-info-window>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,101 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:19:53
+*/ -->
+<md-dialog aria-label="addEdit" class="set-dialog-wrap">
+  <form name="addEdit" ng-cloak autocomplete="off">
+    <md-toolbar class="set-dialog-toolbar">
+      <div class="md-toolbar-tools">
+        <h2 ng-if="action=='add'"><b translate="dialogAdd" translate-value-item="{{'vehicleGrp'|translate}}"></b></h2>
+        <h2 ng-if="action=='edit'"><b translate="dialogEdit" translate-value-item="{{'vehicleGrp'|translate}}"></b></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="cancel">
+          <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content class="set-dialog-content">
+      <div class="md-dialog-content">
+        <div class="form-group" ng-if="action=='edit'">
+          <label for="licence">{{"vehiclegrpID"|translate}}</label>
+          <input type="text" class="form-control" name="vehiclegrpId" ng-model="row.vehiclegrpId" disabled readonly>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"groupName"|translate}}</label>
+          <input type="text" class="form-control" name="groupName" required ng-model="row.groupName" ng-model-options="{allowInvalid: true}" ng-maxlength="20" ng-change="validate('groupName')" ng-blur="validate('groupName')">
+          <div class="invalid-feedback" ng-show="addEdit.groupName.$error.maxlength" translate="tooLong" translate-value-column="{{'groupName'|translate}}"></div>
+          <div class="invalid-feedback" ng-show="(attempt||action=='edit'||addEdit.groupName.$dirty||addEdit.groupName.$touched) && addEdit.groupName.$error.required" translate="required" translate-value-column="{{'groupName'|translate}}"></div>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"groupDesc"|translate}}</label>
+          <input type="text" class="form-control" name="groupDesc" required ng-model="row.groupDesc" ng-model-options="{allowInvalid: true}" ng-maxlength="45" ng-change="validate('groupDesc')" ng-blur="validate('groupDesc')">
+          <div class="invalid-feedback" ng-show="addEdit.groupDesc.$error.maxlength" translate="tooLong" translate-value-column="{{'groupDesc'|translate}}"></div>
+          <div class="invalid-feedback" ng-show="(attempt||action=='edit'||addEdit.groupDesc.$dirty||addEdit.groupDesc.$touched) && addEdit.groupDesc.$error.required" translate="required" translate-value-column="{{'groupDesc'|translate}}"></div>
+        </div>
+        <div class="form-group typeahead-demo">
+          <label for="sel1">{{"department"|translate}}</label>
+          <input id="typeahead#1" class="form-control" type="text" ng-model="row.department" uib-typeahead="item as item.department for item in departments | filter:{department:$viewValue}" typeahead-editable="false" typeahead-select-on-exact="true" typeahead-popup-template-url="/view/component/typeahead/typeaheadInput_department_user.html" typeahead-show-hint="true" typeahead-min-length="0" required name="departmentTAH" typeahead-no-results="noResultsdepartmentTAH" ng-keypress="validate('departmentTAH')" ng-keydown="typeaheadscroll();validate('departmentTAH')" typeahead-on-select="validateSelect('departmentTAH')" ng-blur="validate('departmentTAH')" ng-trim="false">
+          <div class="invalid-feedback-custom" ng-show="noResultsdepartmentTAH && !addEdit.departmentTAH.$error.required">
+            {{"noDepartmentInList"|translate}}
+          </div>
+          <div class="invalid-feedback-custom" ng-show="((attempt||addEdit.departmentTAH.$dirty||addEdit.departmentTAH.$touched) && addEdit.departmentTAH.$error.required) || (action=='edit'&&row.department.id==null&&addEdit.departmentTAH.$error.required)">
+            {{"departmentRequired"|translate}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"vehicleBelong"|translate}}</label>
+          <div class="dual-select-wrapper">
+            <div class="input-group dual-select-input-bar">
+              <span class="input-group-addon dual-select-search-icon" id="sizing-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+              <input type="text" class="form-control dual-select-search" ng-model="listfilter.licence">
+              <div class="input-group-addon dual-select-clearfilter" ng-click="clearFilter()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </div>
+              <div class="input-group-addon dual-select-reset" ng-click="resetList()">
+                <i class="fa fa-history" aria-hidden="true"></i>&nbsp;&nbsp;{{'reset'|translate}}
+              </div>
+            </div>
+            <div class="option-header-wrap">
+              <div class="option-header left-head-divider">{{'vehicleUnselected'|translate}}</div><div class="option-header right-head-divider">{{'vehicleSelected'|translate}}</div>
+            </div>
+            <div class="dual-select-button-bar">
+              <button type="button" class="btn btn-default left-group" ng-click="selectAll()">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+              </button><button type="button" class="btn btn-default left-group left-divider" ng-click="selectChecked()">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+              </button><button type="button" class="btn btn-default right-group right-divider" ng-click="removeChecked()">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              </button><button type="button" class="btn btn-default right-group" ng-click="removeAll()">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="non-selected-wrapper" ng-mousedown="checkmousedownnon=true">
+              <label ng-repeat="vehicle in optionList|filter:listfilter" class="checkbox-select" ng-class="{'checked':selecting[vehicle.id]}" ng-hide="hasMatch(vehicle.id)" ng-mouseover="checknon(vehicle.id)" ng-mouseleave="checkfirstdragnon(vehicle.id)">
+                <input type="checkbox" ng-model="selecting[vehicle.id]"/>
+                {{vehicle.licence}}
+              </label>
+            </div><div class="selected-wrapper" ng-mousedown="checkmousedownsed=true">
+              <label ng-repeat="vehicle in row.vehicleBelong|filter:listfilter" class="checkbox-select" ng-class="{'checked':removing[vehicle.id]}" ng-mouseover="checksed(vehicle.id)" ng-mouseleave="checkfirstdragsed(vehicle.id)">
+                <input type="checkbox" ng-model="removing[vehicle.id]"/>
+                {{vehicle.licence}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" class="set-dialog-content-button">
+      <span flex></span>
+      <md-button ng-click="cancel()">
+        {{"cancel"|translate}}
+      </md-button>
+      <md-button ng-mousedown="validateForm();addEdit.$valid&&submit(row)">
+        {{"ok"|translate}}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

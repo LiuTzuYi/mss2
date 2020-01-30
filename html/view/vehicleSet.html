@@ -1,0 +1,116 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:32:35
+*/ -->
+<div class="setting-wrap">
+	<navbar></navbar>
+	<div st-table="displayedCollection" st-safe-src="realCollection" class="table-wrap" st-filtered="filteredCollection">
+		<div class="table-content-header">
+			<div class="table-content-header-content1">
+				<p><b>{{"vehicleSet"|translate}}</b></p>
+			</div>
+			<div class="table-content-header-func">
+				<div class="table-content-header-content3">
+					<div class="input-group table-global-search">
+						<span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+						<input st-search="" class="form-control" placeholder="{{'search'|translate}}" type="text" aria-describedby="sizing-addon2"
+						 autocomplete="off" />
+					</div>
+				</div>
+				<div class="table-content-header-content2">
+					<button type="button" ng-click="addeditItem($event,'add')" class="btn btn-md btn-setting-table">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+					</button>
+					<label class="custom-file">
+						<input type="file" class="custom-file-input" accept=".csv,text/csv" custom-on-change="uploadFile">
+						<span class="custom-file-control form-control"><i class="fa fa-upload" aria-hidden="true"></i></span>
+					</label>
+					<button type="button" ng-csv="getcsvData(filteredCollection)" lazy-load="true" csv-header="getcsvHeader()"
+					 csv-column-order="excelOrder" filename="{{'vehicleSet'|translate}}.csv" ng-disabled="filteredCollection.length<=0"
+					 add-bom="true" class="btn btn-md btn-setting-table">
+						<i class="fa fa-download" aria-hidden="true"></i>
+					</button>
+					<button type="button" ng-click="refreshList()" class="btn btn-md btn-setting-table">
+						<i class="fa fa-refresh" aria-hidden="true"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="ng-table-content">
+			<table class="table table-striped veh-table">
+				<thead>
+					<tr>
+						<th st-sort="vehicleId" st-skip-natural="true" st-sort-default="true">{{"vehicleID"|translate}}</th>
+						<th st-sort="licence" st-skip-natural="true">{{"licence"|translate}}</th>
+						<th st-sort="vin" st-skip-natural="true">{{"vin"|translate}}</th>
+						<th st-sort="brand" st-skip-natural="true">{{"brand"|translate}}</th>
+						<th st-sort="model" st-skip-natural="true">{{"model"|translate}}</th>
+						<th st-sort="type" st-skip-natural="true">{{"type"|translate}}</th>
+						<th st-sort="year" st-skip-natural="true">{{"year"|translate}}</th>
+						<th st-sort="department" st-skip-natural="true">{{"department"|translate}}</th>
+						<th st-sort="runDistance" st-skip-natural="true">{{"runDistance"|translate}}</th>
+						<th st-sort="status" st-skip-natural="true">{{"status"|translate}}</th>
+						<th st-sort="updateBy" st-skip-natural="true">{{"lastUpdateBy"|translate}}</th>
+						<th>{{"action"|translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="row in displayedCollection">
+						<td>{{row.vehicleId}}</td>
+						<td>{{row.licence}}</td>
+						<td>{{row.vin}}</td>
+						<td>{{row.brand}}</td>
+						<td>{{row.model}}</td>
+						<td><svg class="vehtype">
+								<use ng-attr-href="{{'../images/veh_type/'+row.type+'.svg#'+row.type}}" />
+								<!-- <use href="../images/veh_type/{{row.type}}.svg#{{row.type}}"/> -->
+							</svg>{{row.type}}</td>
+						<td>{{row.year}}</td>
+						<td>{{row.department}}</td>
+						<td class="setting-content-right">{{row.runDistance|fixNum:1}} {{'km'|translate}}</td>
+						<td>{{row.status}}</td>
+						<td>{{row.updateBy}}</td>
+						<td>
+							<button type="button" ng-click="addeditItem($event,'edit',row)" class="btn btn-sm btn-primary">
+								<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							</button>
+							<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger table-right-margin">
+								<i class="fa fa-trash" aria-hidden="true"></i>
+							</button>
+						</td>
+					</tr>
+					<tr ng-if="displayedCollection.length<=0">
+						<td colspan="12">{{"noRecord"|translate}}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="12">
+							<form class="form-inline pull-left">
+								<p class="table-page-footer table-footer-text">{{"showing"|translate}}</p>
+								<div class="table-pagination-select">
+									<select class="table-page-footer" ng-model="itemsByPage" convert-to-number>
+										<option value='10'>10</option>
+										<option value='25'>25</option>
+										<option value='50'>50</option>
+										<option value='100'>100</option>
+									</select></div>
+								<p class="table-page-footer table-footer-text">{{"recordperPage"|translate}}</p>
+							</form>
+							<div st-template="/view/component/paginationSummary.html" st-pagination="" st-items-by-page="itemsByPage"
+							 st-displayed-pages="displayPage"></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="12">
+							<div st-template="/view/component/pagination.html" st-pagination="" st-items-by-page="itemsByPage"
+							 st-displayed-pages="displayPage"></div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,69 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-05-16 18:45:43
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-27 17:25:46
+*/ -->
+<div class="adminpanel-wrap edit">
+	<h3 class="header"><span class="navigate" ng-click="toNav()">Admin Panel</span></h3>
+    <h5 class="header sub"><span class="navigate" ng-click="toList()">Device Management</span></h5>
+    <p class="header2"><span ng-click="toList()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</span> | <span ng-click="toLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span></p>
+	<hr>
+	<form name="editDevice" ng-cloak autocomplete="off" class="edit-form">
+        <div class="display-info">
+            <label for="licence">SN: {{device.sn}}</label>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Device Type</label>
+            <select class="form-control select-item" id="device_type" ng-model="editdevice.device_type" ng-options="type for type in deviceTypes"></select>
+        </div>
+        <div class="form-group" ng-if="editdevice.device_type!=='Basic Terminal'&&editdevice.device_type!=='Video Terminal'">
+            <label for="licence">Photo Cam No.</label>
+            <select class="form-control select-item" id="photocam_no" ng-model="editdevice.photocam_no" ng-options="photocam for photocam in photocams"></select>
+        </div>
+        <div class="form-group" ng-if="editdevice.device_type!=='Basic Terminal'">
+            <label for="licence">Video Cam No.</label>
+            <select class="form-control select-item" id="videocam_no" ng-model="editdevice.videocam_no" ng-options="videocam for videocam in videocams"></select>
+        </div>
+        <div class="form-group">
+            <label for="licence">Video Cam Type</label>
+            <div class="check-option">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" ng-model="editdevice.BSD_CAM1" ng-true-value="'Y'" ng-false-value="'N'">BSD
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" ng-model="editdevice.DMS_CAM2" ng-true-value="'Y'" ng-false-value="'N'">DMS
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" ng-model="editdevice.ADAS_CAM3" ng-true-value="'Y'" ng-false-value="'N'">ADAS
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="licence">Watch Video By Flameout</label>
+            <div class="radio-option">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="flameout_mode" ng-model="editdevice.flameout_mode" ng-value="'Yes'">Yes
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="flameout_mode" ng-model="editdevice.flameout_mode" ng-value="'No'">No
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+        	<button type="button" ng-click="editDevice.$valid&&submit()" class="btn">
+				<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Submit
+			</button>
+		</div>
+	</form>
+</div>

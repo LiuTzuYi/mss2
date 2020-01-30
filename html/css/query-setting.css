@@ -1,0 +1,370 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-06-19 12:26:05
+*/
+
+/* query-setting.css
+ * This file provides css styles in query-setting page.
+ */
+
+.query-setting-wrap{
+    height: 100%;
+}
+
+.query-wrap{
+	border: 1px solid #cecece;
+    margin: 5px 5px 18px 5px;
+    border-radius: 5px 5px 5px 5px;
+    cursor: default;
+}
+
+.query-wrap .table-content-header{
+	float: unset;
+}
+
+.query-wrap .query-part{
+	margin: 5px;
+}
+
+.query-wrap .warn-date-range-pick{
+    margin-top: 10px;
+}
+
+.query-wrap .input-group{
+    display: inline-block;
+}
+
+.query-wrap .input-group-btn{
+	width: 100%;
+}
+
+.query-wrap .warn-date-range-pick-btn{
+    border-radius: .25rem !important;
+    background-color: #ddd;
+    font-size: 16px;
+    padding: 0 .75rem;
+    margin-left: 0 !important;
+    width: 100%;
+    text-align: left !important;
+}
+
+.query-wrap .warn-date-range-pick-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.query-wrap .warn-date-range-pick-btn.before{
+	border-left: 5px solid green;
+}
+
+.query-wrap .warn-date-range-pick-btn.after{
+	border-left: 5px solid orange;
+}
+
+.query-wrap .warn-date-range-pick .dropdown-menu{
+	bottom: unset !important;
+    top: 90% !important;
+    transform: scale(.98);
+    z-index: 20;
+}
+
+.map-wrap .warn-date-range-pick .dropdown-menu:focus{
+	outline: none;
+}
+
+.query-wrap .warn-date-range-pick .input-group .dropdown-menu{
+    left: -3px !important;
+}
+
+.query-wrap .warn-date-range-pick .uib-datepicker .selected-range>button {
+    background-color: #4e4e4e;
+    border-color: #4e4e4e;
+    color: #ffffff;
+    box-shadow: none;
+    outline: none;
+}
+
+.query-wrap .warn-date-range-pick .uib-datepicker .selected-range-before>button,
+.query-wrap .warn-date-range-pick .uib-datepicker .selected-range-after>button {
+    background-color: #4e4e4e;
+    border-color: #4e4e4e;
+    box-shadow: none;
+    outline: none;
+    color: #ffffff !important;
+}
+
+.query-wrap .warn-date-range-pick .uib-datepicker .selected-range-after>button.btn-info {
+    background-color: orange;
+    border-color: orange;
+    color: #ffffff !important;
+}
+
+.query-wrap .warn-date-range-pick .uib-datepicker .selected-range-before>button.btn-info {
+    background-color: green;
+    border-color: green;
+    color: #ffffff !important;
+}
+
+.query-wrap .warn-date-range-pick .uib-datepicker .btn-info .text-info,
+.query-wrap .warn-date-range-pick .uib-datepicker .btn-info.active .text-info {
+    color: #ffffff !important;
+}
+
+.query-wrap .row{
+    margin-bottom: 8px;
+}
+
+.query-wrap .row.no-margin{
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.query-wrap .row.no-margin>label{
+	padding-top: 0;
+    padding-bottom: 0;
+}
+
+.query-wrap .row.no-margin>label,
+.query-wrap .row.no-margin>div{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.query-wrap .row.no-margin>label>sup>i{
+    margin-left: 5px;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.query-wrap .row.no-margin>label>sup:focus,
+.query-wrap .row.no-margin>label>sup>i:focus{
+    outline: none;
+}
+
+.query-wrap .query-listdata>div,
+.query-wrap .query-listdata>div>div{
+	width: 100%
+}
+
+.query-wrap .query-listdata>div>div>.query-list-select:focus,
+.query-wrap .warn-date-range-pick .dropdown-menu li:focus,
+.query-wrap .warn-date-range-pick .dropdown-menu li div:focus{
+    outline: none;
+}
+
+.query-wrap .warn-date-range-pick .dropdown-menu .uib-datepicker .uib-yearpicker table,
+.query-wrap .warn-date-range-pick .dropdown-menu .uib-datepicker .uib-monthpicker table {
+    min-width: 252px;
+}
+
+.query-wrap .warn-date-range-pick .dropdown-menu button:focus{
+	box-shadow: none;
+    outline: none;
+}
+
+.query-wrap .warn-date-range-pick .uib-datepicker .btn-info.active,
+.query-wrap .warn-date-range-pick .uib-datepicker .btn-info {
+    background-color: #4e4e4e;
+    border-color: #4e4e4e;
+    color: #ffffff;
+    box-shadow: none;
+    outline: none;
+}
+
+.query-wrap .query-listdata>div>div>.query-list-select{
+	width: 100%;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    padding: 0 0.75rem;
+    height: 26px !important;
+    cursor: pointer;
+    text-align: left;
+    background: #ddd url(../images/arrow-down.png) no-repeat 100% 50%;
+}
+
+.query-wrap .query-listdata>div>div>.query-list-select::after,
+.query-wrap .query-listdata>div>div>.query-list-select>span {
+    display: none;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu {
+    max-height: 350px;
+    width: 100%;
+    padding-bottom: 4px;
+    min-width: 266px;
+    right: 0;
+    left: auto;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>li.divider {
+    background-color: #e5e5e5;
+    height: 1px;
+    margin-bottom: 4px;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>li>.dropdown-header {
+    padding: 0 8px 4px 8px;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>div.option-list {
+    padding: 0 8px;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>div.option-list li:hover {
+    background-color: #3597ff;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>div.option-list li:hover>a {
+    color: #fff;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>div.option-list > .vertical-container {
+    height: 300px;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>div.option-list > .vertical-container .md-virtual-repeat-sizer {
+    height: 10px;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>div.option-list .vertical-container li {
+    height: 21px;
+    box-sizing: border-box;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>li>.dropdown-header>input {
+    height: 26px;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>li>.dropdown-header>input:focus {
+    border-color: #ced4da;
+    outline: none;
+    box-shadow: none;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>div.option-list li>a {
+    display: block;
+    padding: 0 4px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.428571429;
+    color: #333;
+    white-space: nowrap;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.query-wrap .query-listdata>div>.dropdown-menu>div.option-list li>a>span.glyphicon {
+    display: none;
+}
+
+.query-wrap .additional-info-box>i{
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 6px;
+    color: #007bff;
+}
+
+.query-wrap .additional-info-box>i:focus{
+    outline: none;
+}
+
+.query-wrap .additional-info-box>div{
+    background-color: #cce5ff;
+    border-left: 6px solid #b8daff;
+    border-radius: .25rem;
+    padding: 4px 16px;
+    cursor: default;
+    width: calc( 100% - 25px );
+    display: inline-block;
+}
+
+.query-wrap .additional-info-box>div>p{
+    margin-bottom: 0;
+    word-break: break-word;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+}
+
+.query-wrap .query-submit{
+    margin: 12px 0 6px 0;
+}
+
+.query-wrap .query-submit:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.query-setting-wrap .ng-table-content th {
+    cursor: pointer;
+}
+
+.query-setting-wrap .ng-table-content table td.edit-item,
+.query-setting-wrap .ng-table-content table td.right{
+    text-align: right;
+}
+
+.query-setting-wrap .ng-table-content table td.edit-item>div{
+    display: inline-block;
+    white-space: nowrap;
+    width: calc( 100% - 30px );
+    text-align: left;
+}
+
+.query-setting-wrap .ng-table-content table td.edit-item>.edit-point{
+    cursor: pointer;
+    padding-top: 2px;
+    padding-left: 16px;
+    display: inline-block;
+}
+
+.query-setting-wrap .ng-table-content table td.edit-item>.edit-point:focus{
+    outline: none;
+}
+
+.query-setting-wrap .ng-table-content tbody td:last-child{
+    width: auto;
+    text-align: left;
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    -o-user-select: auto;
+    user-select: auto;
+    -webkit-touch-callout: auto;
+    -khtml-user-select: auto;
+}
+
+.query-setting-wrap .ng-table-content th:last-child{
+    width: auto;
+    text-align: left;
+}
+
+.query-setting-wrap .load-data{
+    text-align: center;
+}
+
+.query-setting-wrap .load-data>p{
+    margin-top: .5rem;
+    margin-bottom: 0;
+}
+
+@media screen and (-ms-high-contrast:none){
+    .query-wrap .table-content-header{
+        float: none;
+    }
+}

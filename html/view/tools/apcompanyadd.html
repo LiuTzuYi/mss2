@@ -1,0 +1,29 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-08-26 11:48:04
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-08-28 14:36:34
+*/ -->
+<div class="adminpanel-wrap add">
+	<h3 class="header"><span class="navigate" ng-click="toNav()">Admin Panel</span></h3>
+	<h5 class="header sub"><span class="navigate" ng-click="toList()">Company Management</span></h5>
+	<p class="header2"><span ng-click="toList()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</span> | <span ng-click="toLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span></p>
+	<hr>
+	<form name="addCompany" ng-cloak autocomplete="off" class="add-form">
+		<div class="form-group">
+			<label for="licence">Company Code</label>
+        	<input type="text" class="form-control" name="company_code" required ng-model="company_code" ng-maxlength="20" pattern="[a-zA-Z0-9]+">
+        	<div class="invalid-feedback-custom" ng-if="(attempt||addCompany.company_code.$dirty||addCompany.company_code.$touched) && !addCompany.company_code.$valid">Company Code can contains &lt;A-Z&gt;, &lt;a-z&gt;, &lt;0-9&gt;. And within 20 characters length.</div>
+        </div>
+        <div class="form-group">
+			<label for="licence">Company Name</label>
+        	<input type="text" class="form-control" name="company_name" required ng-model="company_name" ng-maxlength="50" pattern="[a-zA-Z0-9 ]+">
+        	<div class="invalid-feedback-custom" ng-if="(attempt||addCompany.company_name.$dirty||addCompany.company_name.$touched) && !addCompany.company_name.$valid">Company Name can contains &lt;A-Z&gt;, &lt;a-z&gt;, &lt;0-9&gt;, space. And within 50 characters length.</div>
+        </div>
+        <div class="submit">
+        	<button type="button" ng-click="attempt=true;addCompany.$valid&&submit()" class="btn">
+				<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Submit
+			</button>
+		</div>
+	</form>
+</div>

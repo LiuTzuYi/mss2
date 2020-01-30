@@ -1,0 +1,75 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-07-11 17:55:09
+*/
+
+/* alert.css
+ * This file provides css styles in alert box.
+ */
+
+.swal2-popup .swal2-title,
+.swal2-popup #swal2-content{
+	cursor: default;
+}
+
+body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+	overflow-y: visible !important;
+}
+
+.swal2-popup .swal2-close{
+	font-size: 25px;
+    width: auto;
+    height: auto;
+    line-height: 30px;
+}
+
+.swal2-popup .swal2-close:focus{
+	outline: none;
+}
+
+.alert-server-error{
+	text-align: left;
+/* 	color: #595959; */
+}
+
+.alert-server-error .return-list{
+	max-height: 100px;
+    overflow: auto;
+}
+
+.prelogin-banner .swal2-header{
+	display: none;
+}
+
+.prelogin-banner .alert-banner,
+.support-alert .alert-banner{
+	text-align: left;
+	max-height: 400px;
+    overflow: auto;
+/* 	color: #595959; */
+}
+
+.prelogin-banner .alert-banner>div,
+.support-alert .alert-banner>div{
+	font-size: 16px;
+	white-space: pre-wrap
+}
+
+.support-alert .alert-banner>div .contact1{
+	margin-bottom: 1rem;
+
+}
+
+.support-alert .alert-banner>div .contact1>div:first-child,
+.support-alert .alert-banner>div .contact2>div:first-child{
+	margin-bottom: 5px;
+}
+
+.support-alert .alert-banner>div .contact1>div>i,
+.support-alert .alert-banner>div .contact2>div>i{
+	width: 16px;
+	text-align: center;
+	margin-right: 0.5rem;
+}

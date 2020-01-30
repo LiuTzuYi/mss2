@@ -1,0 +1,38 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:20:48
+*/ -->
+<div class="multiselect-parent btn-group dropdown-multiselect" ng-class="{open: open}">
+	<div ng-transclude=toggleDropdown ng-click=toggleDropdown()>
+		<button ng-disabled=disabled type=button class=dropdown-toggle ng-class=settings.buttonClasses>
+			{{getButtonText()}}&nbsp;<span class=caret></span>
+		</button>
+	</div>
+	<ul class="dropdown-menu dropdown-menu-form" ng-if=open ng-style="{display: open ? 'block' : 'none', height : settings.scrollable ? settings.scrollableHeight : 'auto', overflow: 'auto' }">
+		<li ng-if=settings.enableSearch>
+			<div class=dropdown-header>
+				<input type=text class="form-control searchField" ng-style="{width: '100%'}" ng-model=input.searchFilter placeholder={{texts.searchPlaceholder}} autocomplete="off">
+			</div>
+		</li>
+		<li ng-if=settings.enableSearch class="search-bottom divider"></li>
+		<div class="option-list" ng-if=!settings.groupBy>
+			<md-virtual-repeat-container id="vertical-container" class="vertical-container" md-auto-shrink>
+				<li ng-class="{'active': isChecked(option) && settings.styleActive}" role="presentation" md-virtual-repeat="option in options | filter:getFilter(input.searchFilter)" flex>
+					<a ng-keydown="option.disabled || keyDownLink($event)" role=menuitem class=option tabindex=-1 ng-click="option.disabled || setSelectedItem(option, false, true)" ng-disabled=option.disabled>
+						<div ng-if=settings.checkBoxes class=checkbox>
+							<label>
+								<input class=checkboxInput type=checkbox ng-click="checkboxClick($event, option)" ng-checked=isChecked(option)> <span dm-dropdown-static-include={{settings.template}}></span>
+							</label>
+						</div><span ng-if=!settings.checkBoxes data-ng-class="{'glyphicon glyphicon-ok': isChecked(option)}"></span> <span ng-if=!settings.checkBoxes dm-dropdown-static-include={{settings.template}}></span>
+					</a>
+				</li>
+			</md-virtual-repeat-container>
+		</div>
+		<li class=divider ng-show="settings.selectionLimit > 1"></li>
+		<li role=presentation ng-show="settings.selectionLimit > 1">
+			<a role=menuitem>{{selectedModel.length}} {{texts.selectionOf}} {{settings.selectionLimit}} {{texts.selectionCount}}</a>
+		</li>
+	</ul>
+</div>

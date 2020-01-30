@@ -1,0 +1,42 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:31:40
+*/ -->
+<div class="forgetpwd-wrapper">
+  <div class="forgetpwd-formContent">
+    <div class="forgetpwd-header">
+      <img src="../images/logo-header.png" id="forgetPwd-logo" alt="Logo" ng-click="toLogin()" />
+    </div>
+    <!--Forgetpwd Form-->
+    <form class="forgetpwd-form" name="forgetpwd">
+      <div class="forgetpwd-title">
+        <h4>{{'forgetPwd'|translate}} ?</h4>
+        <p>{{'forgetPwdMessage'|translate}}</p>
+      </div>
+      <div class="forgetpwd-field-title">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <label>{{'username'|translate}}:</label>
+      </div>
+      <div>
+        <input name="forgetpwduser" type="text" class="forgetpwd-input" required ng-model="username" ng-class="(attempt||forgetpwd.forgetpwduser.$dirty||forgetpwd.forgetpwduser.$touched) && forgetpwd.forgetpwduser.$error.required?'invalid-input':''" autocomplete="off">
+      </div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||forgetpwd.forgetpwduser.$dirty||forgetpwd.forgetpwduser.$touched) && forgetpwd.forgetpwduser.$error.required" translate="required" translate-value-column="{{'username'|translate}}"></div>
+      <div class="forgetpwd-field-title">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+        <label>{{'email'|translate}}:</label>
+      </div>
+      <div>
+        <input name="forgetpwdemail" type="text" class="forgetpwd-input" required ng-model="email" ng-class="((attempt||forgetpwd.forgetpwdemail.$dirty||forgetpwd.forgetpwdemail.$touched) && forgetpwd.forgetpwdemail.$error.required)||(!forgetpwd.forgetpwdemail.$error.required && forgetpwd.forgetpwdemail.$error.pattern)?'invalid-input':''" ng-pattern="emailregex" autocomplete="off">
+      </div>
+      <div class="invalid-feedback-custom" ng-show="((attempt||forgetpwd.forgetpwdemail.$dirty||forgetpwd.forgetpwdemail.$touched) && forgetpwd.forgetpwdemail.$error.required)||(!forgetpwd.forgetpwdemail.$error.required && forgetpwd.forgetpwdemail.$error.pattern)" translate="required" translate-value-column="{{'email'|translate}}"></div>
+      <br>
+      <div align="center" style="overflow: auto;">
+        <div class="forgetpwd-submit">
+          <button type="submit" class="btn btn-primary btn-block" ng-click="attempt=true;forgetpwd.$valid&&requestLink()">{{'continue'|translate}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

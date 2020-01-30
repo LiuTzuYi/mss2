@@ -1,0 +1,1337 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-20 12:13:19
+*/ -->
+<div class="help-wrap">
+    <section id="helpTop">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3 class="menu-title">目錄</h3>
+                            <sub>更新: V {{dataCoVer.version}}</sub>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('general')">&bull;&#09;功能列</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('liveLocation')">&bull;&#09;實時位置</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('warning')">&bull;&#09;行駛警報</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('profile')">&bull;&#09;安全評分</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('setting')">&bull;&#09;設定</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('abbr&symbol')">&bull;&#09;警報簡稱與圖示解釋</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('appendix')">&bull;&#09;附錄</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link dl-link" target="_blank" href="../assets/user_manual_zh-tw.pdf">&bull;&#09;下載用戶指南
+                    (更新: 2019-07-05)</a>
+            </li>
+        </ul>
+    </section>
+
+    <section id="general">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>功能列</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="container-fluid">
+                    <img src="../images/help-zhtw/general-1-1.png">
+                    <br>
+                    <ol class="explanation">
+                        <li>用戶指南</li>
+                        <li>聯絡技術支援</li>
+                        <li>切換語言</li>
+                        <li>帳戶資訊</li>
+                        <li>登出</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#accountInfo"
+                                aria-expanded="true" aria-controls="accountInfo">
+                                帳戶資訊
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="accountInfo" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <img src="../images/help-zhtw/general-1-2.png">
+                            <ol class="explanation">
+                                <li>用戶名稱</li>
+                                <li>部門名稱</li>
+                                <li>公司名稱</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#changePassword"
+                                aria-expanded="true" aria-controls="changePassword">
+                                更改密碼
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="changePassword" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>按 <i class="fa fa-user-circle-o fa-lg"></i> &gt; 更改密碼展開更改密碼列。<br><img
+                                        src="../images/help-zhtw/general-2-1.png"></li>
+                                <li>填寫並提交新密碼。<br><img src="../images/help-zhtw/general-2-2.png"></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#language"
+                                aria-expanded="true" aria-controls="language">
+                                切換語言
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="language" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>按此檢視可選語言。<br><img src="../images/help-zhtw/general-3-1.png"></li>
+                                <li>選擇所需語言。</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="liveLocation">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>實時位置</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <ol>
+                    <li>按下上方功能表的「實時位置」，進入主畫面。
+                        <br><img src="../images/help-zhtw/liveLocation-1-1.png">
+                    </li>
+                    <li>在左方的「篩選」中，看見運行狀態下方出現 3 個車輛的圖示，按 <i class="fa fa-info-circle"></i> 查看圖示意思。
+                        <br><img src="../images/help-zhtw/liveLocation-1-2.png"> <img
+                            src="../images/help-zhtw/liveLocation-1-3.png">
+                    </li>
+                    <li>
+                        選項括號內標示了每種運行狀態的車輛總數。
+                        <br><img src="../images/help-zhtw/liveLocation-1-4.png">
+                        <br><img src="../images/help-zhtw/liveLocation-1-5.png">
+                    </li>
+                    <li>如需篩選運行狀態為在線的車輛，需要選取 <i class="fa fa-car online"></i> ；硬件設備狀態選取為「使用中」。
+                        <br><img src="../images/help-zhtw/liveLocation-1-6.png">
+                    </li>
+                    <li>指向地圖上的圖標可檢視詳情。
+                        <br><img src="../images/help-zhtw/liveLocation-1-7.png">
+                    </li>
+                    <li>在左下方的車輛列表中，選擇車輛便可查看在線車輛之實時位置。貴客亦可輸入車牌號碼搜尋車輛。
+                        <br><img src="../images/help-zhtw/liveLocation-1-8.png">
+                    </li>
+                    <li>在車輛列表中，右方的 <i class="fa fa-sitemap"></i> 就是車隊所屬的部門。車輛圖示可參考<a href=""
+                            ng-click="gotoAnchor('vehicleTypeHeader')">車輛類別</a>。
+                        <br><img src="../images/help-zhtw/liveLocation-1-9.png">
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section id="warning">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>行駛警報</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="card">
+                    <div class="card-header" id="tripDetailHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#tripDetail"
+                                aria-expanded="true" aria-controls="tripDetail">
+                                行程記錄 (選取行程及瀏覽警報)
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="tripDetail" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>按上方功能表的行駛警報，選擇行程記錄。
+                                    <br><img src="../images/help-zhtw/warning-1-1.png">
+                                </li>
+                                <li>選擇查詢對象，例如「車輛」。
+                                    <br><img src="../images/help-zhtw/warning-1-2.png">
+                                </li>
+                                <li>選擇車輛及日期範圍，可單選、多選車輛或全選所有車輛，然後按提交。
+                                    <br>注意：日期範圍最長允許選擇1年的範圍。
+                                    <br><img src="../images/help-zhtw/warning-1-3.png">
+                                </li>
+                                <li>你可以按里數查詢，按 <i class="fa fa-info-circle"></i> 查看更多。
+                                    <br><img src="../images/help-zhtw/warning-1-4.png">
+                                </li>
+                                <li>按提交，以檢視相關行程列表。
+                                    <br><img src="../images/help-zhtw/warning-1-5.png">
+                                </li>
+                                <li>選擇想查詢的行程，查看行駛路線和警報信息。查看中的行程會以粉紅色圖示、灰色背景標示。相關警報及圖示解釋可以參照<a href=""
+                                        ng-click="gotoAnchor('warningHeader')">警報類別</a>、<a href=""
+                                        ng-click="gotoAnchor('driverActionHeader')">司機行為</a>及<a href=""
+                                        ng-click="gotoAnchor('vehicleTypeHeader')">車輛類別</a>。
+                                    <br><img src="../images/help-zhtw/warning-1-6.png">
+                                </li>
+                                <li>客戶可以同時選取最多4筆行程，查看中的行程會以4種顏色圖示、灰色背景標示。該4條路線亦會同時出現在地圖中，各自以不同顏色標示。
+                                    <br><img src="../images/help-zhtw/warning-1-7.png"><br><img
+                                        src="../images/help-zhtw/warning-1-8.png">
+                                </li>
+                                <li>按 <img class="inline" src="../images/help-zhtw/tags.png"> 分頁，即可查看個別路線行駛警報資料。
+                                </li>
+                                <li>
+                                    如選取多於4筆行程，系統會出現以下錯誤訊息，這時候需要取消選擇個別行程。
+                                    <br><img src="../images/help-zhtw/warning-1-9.png">
+                                </li>
+                                <li>查看警報信息發生的位置，例如地圖中的 <img class="inline" src="../images/help-zhtw/LDW_L2.png">
+                                    標示了當時警報的位置，對應發生行車警報的地點。
+                                    <br><img src="../images/help-zhtw/warning-1-10.png">
+                                </li>
+                                <li>按地圖中的標示能查看詳細資料。
+                                    <br><img src="../images/help-zhtw/warning-2-1.png">
+                                </li>
+                                <li>右下方的列表就是警報信息資料，按 <img class="inline" src="../images/help-zhtw/toggle.png">
+                                    查看警報信息發生位置。
+                                    <br><img src="../images/help-zhtw/warning-2-2.png">
+                                </li>
+                                <li>
+                                    用戶能從簡易模式 <img class="inline" src="../images/help-zhtw/basic-zh-hk.png"> ，切換至進階模式
+                                    <img class="inline" src="../images/help-zhtw/advance-zh-hk.png"> ，以查看更詳細的行車狀況資料。
+                                    <br><img src="../images/help-zhtw/warning-2-3.png"><br><img
+                                        src="../images/help-zhtw/warning-2-4.png">
+                                </li>
+                                <li>各欄目之內容可參考下表。
+                                    <table class="table table-hover" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">項目</th>
+                                                <th scope="col">內容</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">視頻</td>
+                                                <td>按此播放相關警報的視頻</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">開始時間</td>
+                                                <td>相關警報的開始時間</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">持續時間 (s)</td>
+                                                <td>警報持續時間</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">開始速度 (kph)</td>
+                                                <td>發出警報時的車速</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">結束速度 (kph)</td>
+                                                <td>結束警報時的車速</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">最高速度 (kph)</td>
+                                                <td>警報期間的最高車速</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">道路限速 (kph)</td>
+                                                <td>警報觸發所在道路的車速限制</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">前車距離 (s)</td>
+                                                <td>發出警報時的前車距離</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">最近前車距離 (s)</td>
+                                                <td>警報期間的最近前車距離</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">司機行為</td>
+                                                <td>警報期間司機的跟進動作 (例如剎車或打開方向指示燈等)。詳請可參考<a href=""
+                                                        ng-click="gotoAnchor('driverActionHeader')">司機行為</a>。</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>用戶能根據警告類別，篩選不相關的車輛警報，有助集中查看個別車輛警告信息。篩選出來的警報類別按鈕為灰色。
+                                    <br><img src="../images/help-zhtw/warning-2-5.png">
+                                </li>
+                                <li>可以按 <i class="fa fa-play-circle"></i> 圖示以篩選出有影片的記錄。
+                                    <br><img src="../images/help-zhtw/warning-2-6.png">
+                                </li>
+                                <li>如在行程警報信息中看見 <i class="fa fa-play-circle"></i> 圖示 ，即載有影片，按 <i
+                                        class="fa fa-play-circle"></i>
+                                    即可查看行車警報影片。如看見 <i class="fa fa-pause-circle disable"></i> 圖示，代表影片仍在上傳中。
+                                    <br><img src="../images/help-zhtw/warning-2-7.png">
+                                </li>
+                                <li>如需下載影片，請按右下角的 <img class="inline" src="../images/help-zhtw/more.png">
+                                    ，然後按Download下載影片。
+                                    <br><img src="../images/help-zhtw/warning-2-8.png">
+                                </li>
+                                <li>如有需要，可按右方的 <i class="fa fa-download"></i> 下載整個行車警報信息記錄CSV檔案作參考。
+                                    <br><img src="../images/help-zhtw/warning-2-9.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#tripMaintenance"
+                                aria-expanded="true" aria-controls="inputDriver">
+                                行程維護
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="tripMaintenance" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>在行駛警報中按行程維護。
+                                    <br><img src="../images/help-zhtw/warning-3-1.png">
+                                </li>
+                                <li>在行程維護中選擇開始日期、結束日期。
+                                    <br>注意：日期範圍最長允許選擇1年的範圍。
+                                    <br><img src="../images/help-zhtw/warning-3-2.png">
+                                    <br><img src="../images/help-zhtw/warning-3-3.png">
+                                </li>
+                                <li>選擇車牌、部門及司機名稱。按 <i class="fa fa-info-circle"></i> 查看選項解釋。
+                                    <br>注意：每次只能輸入1項，如多於1項，建議選擇N/A。
+                                    <br>查看未輸入司機的行程，選「EMPTY」。
+                                    <br><img src="../images/help-zhtw/warning-3-4.png">
+                                </li>
+                                <li>按查詢。
+                                    <br><img src="../images/help-zhtw/warning-3-5.png">
+                                </li>
+                                <li>按 <i class="fa fa-pencil"></i> 新增司機名稱。
+                                    <br><img src="../images/help-zhtw/warning-3-6.png">
+                                </li>
+                                <li>成功提交後畫面會顯示相關訊息。
+                                    <br><img src="../images/help-zhtw/warning-3-7.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#inputDriver"
+                                aria-expanded="true" aria-controls="inputDriver">
+                                行程匯入 (大批量輸入司機名稱)
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="inputDriver" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>當看見下方的行程列表更新後，請按右上方的 <i class="fa fa-download"></i> 下載CSV檔案。
+                                    <br><img src="../images/help-zhtw/warning-4-1.png">
+                                </li>
+                                <li>開啟CSV檔案。
+                                    <br><img src="../images/help-zhtw/warning-4-2.png">
+                                </li>
+                                <li>在G欄輸入相對應的司機編號。
+                                    <br><img src="../images/help-zhtw/warning-4-3.png">
+                                </li>
+                                <li>在對應行程ID的L欄中，以L2方格為例子，輸入=A2&","&G2函數。
+                                    <br><img src="../images/help-zhtw/warning-4-4.png">
+                                </li>
+                                <li>這時會在L2方格出現一組代碼，複製L2格子的格式至所需的行程列，如此類推。
+                                    <br><img src="../images/help-zhtw/warning-4-5.png">
+                                </li>
+                                <li>在平台按行駛警報，再選擇行程匯入(司機)。
+                                    <br><img src="../images/help-zhtw/warning-4-6.png">
+                                </li>
+                                <li>
+                                    在頁面下方的空白位置貼上代碼，按提交。
+                                    注意：每行只能有一組行程ID及司機姓名，如出現多個數據時需要開新行輸入 。
+                                    <br><img src="../images/help-zhtw/warning-4-7.png"> <img
+                                        src="../images/help-zhtw/warning-4-8.png">
+                                </li>
+                                <li>
+                                    成功提交後會顯示成功匯入的訊息。
+                                    <br><img src="../images/help-zhtw/warning-4-9.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="exportWarningDataHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#exportWarningData"
+                                aria-expanded="true" aria-controls="exportWarningData">
+                                導出警報數據
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="exportWarningData" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>在行駛警報中按導出警報數據。
+                                    <br><img src="../images/help-zhtw/warning-6-1.png">
+                                </li>
+                                <li>如有需要，可輸入即將下載的檔案名稱。
+                                    <br>下載檔案名格式為: 「&lt; 檔案名稱 &gt;.csv」
+                                    <br>如留空，將會使用預設檔案名: 「WarningData_&lt; 當前日期 &gt;.csv」
+                                    <br><img src="../images/help-zhtw/warning-6-2.png">
+                                </li>
+                                <li>按 <i class="fa fa-info-circle"></i> 查看篩選功能使用說明。
+                                    <br><img src="../images/help-zhtw/warning-6-3.png">
+                                </li>
+                                <li>選擇要下載的警告的日期範圍。
+                                    <br>注意：警報日期最長允許選擇1年的範圍。
+                                    <br><img src="../images/help-zhtw/warning-6-4.png">
+                                </li>
+                                <li>勾選要應用的篩選項目。
+                                    <br>注意：如果不應用篩選項目，則將下載日期範圍內的所有數據。
+                                    <br><img src="../images/help-zhtw/warning-6-5.png">
+                                </li>
+                                <li>如果要應用多個有關連的篩選項目，請按順序應用。
+                                    <br>(1) 司機部門 <i class="fa fa-arrow-right"></i> 司機分組 <i
+                                        class="fa fa-arrow-right"></i>
+                                    司機
+                                    <br>(2) 車輛部門 <i class="fa fa-arrow-right"></i> 車輛分組 <i
+                                        class="fa fa-arrow-right"></i>
+                                    車輛品牌 <i class="fa fa-arrow-right"></i> 車輛型號 <i class="fa fa-arrow-right"></i>
+                                    車輛類型 <i class="fa fa-arrow-right"></i> 車輛
+                                    <br>注意：序列中最後一個篩選項目的選項將受關連的篩選項目的影響。
+                                </li>
+                                <li>輸入或選擇每個已勾選的篩選項目的條件。
+                                    <br><img src="../images/help-zhtw/warning-6-6.png">
+                                    <br><img src="../images/help-zhtw/warning-6-7.png">
+                                </li>
+                                <li>按下載。打開檔案後便可瀏覽警報數據。
+                                    <br><img src="../images/help-zhtw/warning-6-8.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#batchDownloadVideo"
+                                aria-expanded="true" aria-controls="batchDownloadVideo">
+                                警報視頻下載
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="batchDownloadVideo" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>先下載行程記錄或警報數據之CSV，然後複製欲下載的視頻ID。下載行程記錄CSV之步驟可參考<a href=""
+                                        ng-click="gotoAnchor('tripDetailHeader')">行程紀錄</a>，而下載警報數據CSV之步驟可參考<a href=""
+                                        ng-click="gotoAnchor('exportWarningDataHeader')">導出警報數據</a>。
+                                    <br><img src="../images/help-zhtw/warning-5-1.png">
+                                    <br><img src="../images/help-zhtw/warning-5-1_2.png">
+                                </li>
+                                <li>在行駛警報中按警報視頻下載。
+                                    <br><img src="../images/help-zhtw/warning-5-2.png">
+                                </li>
+                                <li>如有需要，可輸入即將下載的ZIP檔案名稱及視頻檔案名前綴。
+                                    <br>下載檔案名格式為: 「&lt; ZIP檔案名稱 &gt;.zip」 and 「&lt; 視頻檔案名前綴 &gt;_&lt; 視頻ID &gt;.mp4」
+                                    <br>如留空，將會使用預設檔案名: 「VideoArchive_&lt; 當前日期 &gt;.zip」 and 「&lt; 視頻ID &gt;.mp4」
+                                    <br><img src="../images/help-zhtw/warning-5-3.png">
+                                </li>
+                                <li>在下方空白處輸入欲下載之視頻的ID。如有多於一個ID，請開新行。按下載。
+                                    <br>注意：最大可接受50個視頻ID。
+                                    <br><img src="../images/help-zhtw/warning-5-4.png">
+                                </li>
+                                <li>解壓縮已下載的檔案後便可瀏覽視頻。
+                                    <br>注意：如部分視頻ID有錯誤，系統將會在ZIP文件夾中生成一個文件「ERROR_ID.txt」，該文件夾將包含錯誤的視頻ID。
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>安全評分</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <ol>
+                    <li>按下安全評分按鈕， 在列表中選擇欲查看之評分。
+                        <br><img src="../images/help-zhtw/grading-1-1.png">
+                    </li>
+                    <li>如欲查看公司評分，請選擇以日、週、月或年來查閱個別日期的公司評分資料，然後按提交。
+                        <br><img src="../images/help-zhtw/grading-2-1.png">
+                        <br>如欲查看其他類別的評分，請選擇欲查看之車輛的車牌、車輛群組、司機或司機群組。
+                        <br><img src="../images/help-zhtw/grading-2-2.png">
+                    </li>
+                    <li>瀏覽等級與評分
+                        <ol type="A">
+                            <li>基本信息及評級
+                                <br><b><u>基本信息</u></b>
+                                <br>此部分展示查詢對象的基本資料。
+                                <br>有時，由於行走里數小於20KM，因此沒有所選擇日期的記錄。 在這種情況下，將顯示最近記錄。 “截至日期”表示當前顯示的記錄日期。
+                                <br><img src="../images/help-zhtw/grading-3-1.png">
+                                <br><b><u>評級</u></b>
+                                <br>此部分展示查詢對象的評級。有關評級與分數範圍，請參照<a href=""
+                                    ng-click="gotoAnchor('gradingHeading')">評級準則</a>。
+                                <br><img src="../images/help-zhtw/grading-3-2a.png">
+                                <br>在其他評分頁面查看之評級分外圈及內圏。外圈為公司之評分，具體數字寫於右下角，括號內為評級。內圏為查詢對象之數值，具體數字寫於圏內。
+                                <br><img src="../images/help-zhtw/grading-3-2b.png">
+                            </li>
+                            <li>綜合表現<br>
+                                此部份綜合了查詢對象在各項警報方面的表現。指向每個細項的點可查看相關評分，按下可查看相關警報之詳細列表。相關警報解釋可以參照<a href=""
+                                    ng-click="gotoAnchor('warningHeader')">警報簡稱</a>。
+                                <br><img src="../images/help-zhtw/grading-3-3.png">
+                                <br>相關警報之詳細列表。按 <i class="fa fa-play-circle"></i> 可篩選帶影片的資料。按 <i class="fa fa-map-marker"></i> 可篩選帶GPS位置的資料。按 <i class="fa fa-download"></i> 可下載資料至CSV。按 <i class="fa fa-refresh"></i>
+                                可重新整理。按 <i class="fa fa-times"></i> 退出。
+                                <br><img src="../images/help-zhtw/grading-3-4.png">
+                                <br><img src="../images/help-zhtw/grading-3-4-1.png">
+                                <br>按 <i class="fa fa-play-circle"></i>可播放相關影片。如看見 <i
+                                    class="fa fa-pause-circle disable"></i>
+                                圖示，代表影片仍在上傳中。
+                                <br><img src="../images/help-zhtw/grading-3-4-2.png">
+                                <br>按 <i class="fa fa-map-marker"></i> 查看GPS位置。
+                                <br><img src="../images/help-zhtw/grading-3-4-3.png">
+                            </li>
+                            <li>細項棒形圖<br>
+                                你可以在此查看各項警報之圖表。公司等級評分為普通棒形圖，數字為最近之數值。
+                                <br><img src="../images/help-zhtw/grading-3-5.png">
+                                <br>其他評分頁面會帶有折線，折線之數值為公司表現，而棒形則為查詢對象之表現。
+                                <br><img src="../images/help-zhtw/grading-3-6.png">
+                                <br>按下可以查看放大圖表。
+                                <br><img src="../images/help-zhtw/grading-3-7.png">
+                            </li>
+                            <li>建議<br>
+                                系統會就查詢對象在各警報方面的表現而作出建議。若有項目之得分低於30，將會有相關行駛建議以改善駕駛安全。如想查看所有行車建議，可參考<a href=""
+                                    ng-click="gotoAnchor('allRecommendationHeader')">所有行車建議</a>。
+                                <br><img src="../images/help-zhtw/grading-3-8.png">
+                            </li>
+                        </ol>
+                    </li>
+                    <li>向下滾動頁面可查看更多資料。點開可查看相關詳細紀錄。
+                        <br><img src="../images/help-zhtw/grading-4-1.png">
+                        <ol type="A">
+                            <li>點「危險駕駛行為影片」可查看危險駕駛行為之詳細紀錄。按 <i class="fa fa-download"></i> 即可下載所有紀錄。
+                                <br>按 <i class="fa fa-play-circle"></i>可播放相關影片。如看見 <i
+                                    class="fa fa-pause-circle disable"></i>
+                                圖示，代表影片仍在上傳中。如需下載影片，請按 <img class="inline" src="../images/help-zhtw/more.png">
+                                ，再按Download下載影片。
+                                <br><img src="../images/help-zhtw/grading-4-2.png">
+                            </li>
+                            <li>在公司等級評分頁面，實際警報次數/ 每百公里之警報次數/ 安全評分可按不同組別查看，分組包括公司、車輛群組、車輛、司機群組、司機。
+                                其他評分頁面只能查看查詢對象的相關記錄。點開可查看詳細紀錄。下圖以實際警報次數 - 車輛為例。按 <i class="fa fa-download"></i>
+                                即可下載至CSV。相關警報解釋可以參照<a href="" ng-click="gotoAnchor('warningHeader')">警報簡稱</a>。
+                                <br><img src="../images/help-zhtw/grading-4-3.png">
+                            </li>
+                            <li>在其他評分頁面可點開「安全評分排名」查看相關安全評分排名。
+                            </li>
+                            <li>亦可查看安全評分、碰撞風險、不良駕駛行為及舒適度之折線圖。指向每個點可查看相關評分。
+                                <br><img src="../images/help-zhtw/grading-4-4.png">
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section id="setting">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>設定</h3>
+                        </li>
+                    </ol>
+                </nav>
+                <ol>
+                    <li>在設定列表中選擇欲更改之項目。
+                        <br><img src="../images/help-zhtw/settings-1-1.png">
+                    </li>
+                    <li>清單會展示出相關資料及操作。以下以車輛群組設定為例。
+                        <br><img src="../images/help-zhtw/settings-1-2.png">
+                    </li>
+                    <li>以下為功能表按鈕之解釋。
+                        <br><img src="../images/help-zhtw/settings-1-3.png">
+                        <ol class="explanation">
+                            <li>搜尋</li>
+                            <li>增加單項</li>
+                            <li>增加多項資料
+                                <span class="notes"> **硬件設備、用戶、用戶角色、組織架構圖、電子郵件通知設定及排班表設定並無此功能</span></li>
+                            <li>下載檔案 <span class="notes"> **排班表設定並無此功能</span></li>
+                            <li>重新整理</li>
+                        </ol>
+                    </li>
+                </ol>
+
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#search"
+                                aria-expanded="true" aria-controls="search">
+                                搜尋
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="search" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            以下示範以車輛設定為例。其他設定頁面的搜尋功能使用方法一致。
+                            <ol>
+                                <li>在此輸入關鍵字。
+                                    <br><img src="../images/help-zhtw/settings-2-1.png">
+                                </li>
+                                <li>列表會自動篩選出帶關鍵字的資料。此搜尋功能並無指定任何一欄，資料中任何一欄帶關鍵字即會被篩選出。
+                                    <br><img src="../images/help-zhtw/settings-2-2.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#addSingle"
+                                aria-expanded="true" aria-controls="addSingle">
+                                增加單項
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="addSingle" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            如想增加單項資料，先按「增加單項」按鈕。
+                            <ol>
+                                <li>填寫表格內容然後按確認。表格內容按不同類別的資料而有所不同。下圖為車輛之表格。
+                                    <br><img src="../images/help-zhtw/settings-3-1.png">
+                                </li>
+                                <li>成功加入資料後，頁面會顯示相關確認訊息。
+                                    <br><img src="../images/help-zhtw/settings-3-2.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#uploadCSV"
+                                aria-expanded="true" aria-controls="uploadCSV">
+                                增加多項資料
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="uploadCSV" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            你可以選擇上傳單個CSV檔案以增加多項資料。此功能僅限於車輛、車輛群組、司機及司機群組之設定。每個設定都有特定格式及欄目。一行只能有一項資料，下一項資料必須開新行。
+                            <ol>
+                                <li>車輛設定
+                                    <br>格式：&lt; 車牌*^ &gt;,&lt; 車輛識別編號*^ &gt;,&lt; 品牌* &gt;,&lt; 型號* &gt;,&lt; 車輛類別編號
+                                    &gt;,&lt; 年份*
+                                    &gt;,&lt; 狀態* &gt;,&lt; 部門* &gt;
+                                    <br>狀態只可輸入'A'或'I'。
+                                    <br>車輛識別編號可參照<a href="" ng-click="gotoAnchor('vehicleTypeHeader')">車輛類別</a>。預設值為7
+                                    (其他)。
+                                    <br>例子：<span class="example">GS123,123,Honda,Freed,80,2010,I,GS</span>
+                                </li>
+                                <li>車輛群組設定
+                                    <br>格式：1,&lt; 群組名稱*^ &gt;,&lt; 群組說明* &gt;,&lt; 部門* &gt; 或; 2,&lt; 群組名稱* &gt;,&lt;
+                                    車牌* &gt;
+                                    <br>CSV檔案應按數字排序，新增群組列(1)先行，然後新增車牌至群組列(2)。
+                                    <br>例子：<span class="example">1,GroupA,Testing,GS</span>
+                                </li>
+                                <li>司機設定
+                                    <br>格式：&lt; 姓名* &gt;,&lt; 司機編號*^ &gt;,&lt; 家居電話 &gt;,&lt; 手機電話
+                                    &gt;,&lt; 公司電話 &gt;,&lt; 出生日期 &gt;,&lt; 部門* &gt;
+                                    <br>出生日期格式為'YYYY-mm-dd'。
+                                    <br>例子：<span class="example">28,11155,,,,,,GS</span>
+                                </li>
+                                <li>司機群組設定
+                                    <br>格式：1,&lt; 群組名稱*^ &gt;,&lt; 群組說明* &gt;,&lt; 部門* &gt; 或; 2,&lt; 群組名稱* &gt;,&lt;
+                                    司機名稱* &gt;
+                                    <br>如果存在具有相同名稱的司機，則只會將第一個添加到組中。
+                                    <br>例子：<span class="example">2,GroupA,28</span>
+                                </li>
+                            </ol>
+                            按「上傳CSV檔案」按鈕後選擇你的CSV檔案，按「開啟」。
+                            <br>
+                            <div>* 為必填欄目</div>
+                            <div>^ 為唯一性欄目</div>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#downloadCSV"
+                                aria-expanded="true" aria-controls="downloadCSV">
+                                下載檔案
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="downloadCSV" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            你可以選擇下載記錄至CSV檔案。按「下載檔案」按鈕，瀏覽器會自動開始下載檔案。
+                            <br>在組織架構圖設定中，架構圖會下載至PNG檔案。
+                            <br>下圖以車輛為例。
+                            <br><img src="../images/help-zhtw/settings-5-1.png">
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="orgChartHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#orgChart"
+                                aria-expanded="true" aria-controls="orgChart">
+                                組織架構圖設定
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="orgChart" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>在設定列表中選擇「組織架構圖」。
+                                    <br><img src="../images/help-zhtw/settings-8-1.png">
+                                </li>
+                                <li>指向部門方塊查看可展開或隱藏之方向。
+                                    <br>注意：每個部門只能查看/添加/編輯屬於它的數據或屬於它下面的部門的數據。
+                                    <br><img src="../images/help-zhtw/settings-8-2.png">
+                                </li>
+                                <li>按下部門方塊可以查看詳細資料。
+                                    <br><img src="../images/help-zhtw/settings-8-3.png">
+                                </li>
+                                <li>按 <img class="inline" src="../images/help-zhtw/deptFunc.png"> 以新增/修改/刪除所屬部門。
+                                    <br>當前用戶的部門不可刪除。
+                                    <br><img src="../images/help-zhtw/settings-8-4.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#emailNoti"
+                                aria-expanded="true" aria-controls="emailNoti">
+                                電子郵件通知設定
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="emailNoti" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>在設定列表中選擇「電子郵件通知」。
+                                    <br><img src="../images/help-zhtw/settings-7-1.png">
+                                </li>
+                                <li>按 <img class="inline" src="../images/help-zhtw/toggle.png"> 可以開啟相關報告的電子郵件通知。
+                                    <br><img src="../images/help-zhtw/settings-7-2.png">
+                                </li>
+                                <li>按 <img class="inline" src="../images/help-zhtw/edit.png"> 可以修改電子郵件訂閱名單。
+                                    <br><img src="../images/help-zhtw/settings-7-3.png">
+                                </li>
+                                <li>按 <img class="inline" src="../images/help-zhtw/remove.png"> 可以移除不需要的電子郵件地址。
+                                    <br>如果想新增電子郵件地址至訂閱名單，在空白欄輸入新的電子郵件地址，按 <img class="inline"
+                                        src="../images/help-zhtw/add.png">
+                                    ，再按確認。
+                                    <br><img src="../images/help-zhtw/settings-7-4.png">
+                                </li>
+                                <li>如果想收取其他的報告，請與我們聯絡。
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="rosterHeading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#roster"
+                                aria-expanded="true" aria-controls="roster">
+                                排班表
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="roster" class="collapse" aria-labelledby="rosterHeading">
+                        <div class="card-body">
+                            <ol>
+                                <li>在設定列表中選擇「排班表」。
+                                    <br><img src="../images/help-zhtw/settings-6-1.png">
+                                </li>
+                                <li>複製排班內容至空白位置，按提交。
+                                    <br><img src="../images/help-zhtw/settings-6-2.png">
+                                </li>
+                                <li>成功新增後畫面會出現成功增加的訊息。
+                                    <br><img src="../images/help-zhtw/settings-6-3.png">
+                                </li>
+                                <li>在車輛警報中查看車輛司機名字是否已新增。
+                                    <br><img src="../images/help-zhtw/settings-6-4.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="abbr&symbol">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>警報簡稱與圖示解釋</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="card">
+                    <div class="card-header" id="warningHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#warningType"
+                                aria-expanded="true" aria-controls="warningType">
+                                警報類別
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="warningType" class="collapse show" aria-labelledby="warningsInShortHeading">
+                        <div class="card-body">
+                            <table class="table table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">警報</th>
+                                        <th scope="col">按鈕</th>
+                                        <th scope="col">符號</th>
+                                        <th scope="col">全寫</th>
+                                        <th scope="col">解釋</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr>
+                                        <th scope="row">FCW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-FCW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/FCW_L1.png"></td>
+                                        <td>Forward Collision Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">前向碰撞</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-FCW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/FCW_L2.png"></td>
+                                        <td>前向碰撞</td>
+                                        <td>當車輛與行人／前車／障礙物前向碰撞的風險過高，提示司機作出反應以避免碰撞。</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">LDW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-LDW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/LDW_L1.png"></td>
+                                        <td>Lane Departure Warning</td>
+                                        <td>alerts driver when the car begins to swerve from the driving lane over 20cm
+                                        </td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">車道偏離</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-LDW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/LDW_L2.png"></td>
+                                        <td>車道偏離</td>
+                                        <td>當車輛越過行車線而未有打開正確的方向指示燈時，提示司機車道偏離。</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">HMW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-HMW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/HMW_L1.png"></td>
+                                        <td>Headway Monitoring Warning</td>
+                                        <td>alerts driver when the headway is less than or equal to 0.6 seconds</td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">跟車太貼</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-HMW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/HMW_L2.png"></td>
+                                        <td>跟車太貼</td>
+                                        <td>當車輛與前車距離少於預設距離秒數閥值時，提示司機跟車太近。</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">AAW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-AAW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/AAW_L1.png"></td>
+                                        <td>Abrupt Acceleration Warning</td>
+                                        <td>counted when vehicle speed accelerated over 14km/h within a second</td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">急加速</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-AAW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/AAW_L2.png"></td>
+                                        <td>急加速</td>
+                                        <td>當車輛於一秒內加速速度多於車速變化預設值時，便定義為急加速。</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">ABW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-ABW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/ABW_L1.png"></td>
+                                        <td>Abrupt Braking Warning</td>
+                                        <td>counted when vehicle speed decelerated over 14km/h within a second</td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">急減速</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-ABW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/ABW_L2.png"></td>
+                                        <td>急減速</td>
+                                        <td>當車輛於一秒內減速速度多於車速變化預設值時，便定義為急減速。</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">ATW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-ATW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/ATW_L1.png"></td>
+                                        <td>Abrupt Turn Warning</td>
+                                        <td>counted when the turning angle is greater than 40 degrees and vehicle speed
+                                            reduces less than 70% within 2 seconds when speed over 40km/h</td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">急轉彎</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-ATW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/ATW_L2.png"></td>
+                                        <td>急轉彎</td>
+                                        <td>當車輛於兩秒內轉彎造成的向心加速度高於預設值時，便定義為急轉彎。</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">FDW [1]</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-FDW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/FDW_L1.png"></td>
+                                        <td>Drowsing Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">閉上眼睛</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-FDW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/FDW_L2.png"></td>
+                                        <td>閉上眼睛</td>
+                                        <td>當司機維持閉上眼睛的狀態超過預設時間，提示司機集中精神駕駛。</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">接打電話</th>
+                                        <td><img src="../images/help-en/icon-bar-CLW_L2.png"></td>
+                                        <td><img src="../images/help-en/CLW_L2.png"></td>
+                                        <td>接打電話</td>
+                                        <td>當司機在駕駛期間手持電話進行通話，並維持狀態超過預設時間，提示司機集中精神駕駛。</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">左顧右盼</th>
+                                        <td><img src="../images/help-en/icon-bar-DTW_L2.png"></td>
+                                        <td><img src="../images/help-en/DTW_L2.png"></td>
+                                        <td>左顧右盼</td>
+                                        <td>當司機在駕駛期間左顧右盼，並維持狀態超過預設時間，提示司機集中精神駕駛。</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">沒有司機</th>
+                                        <td><img src="../images/help-en/icon-bar-NDW.png"></td>
+                                        <td><img src="../images/help-en/NDW.png"></td>
+                                        <td>沒有司機</td>
+                                        <td>當攝像頭被遮擋或其他原因導致系統無法準確偵測司機面部時發出警報，提示司機該系統功能可能正受到影響。</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">打呵欠</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-YW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/YW_L2.png"></td>
+                                        <td>打呵欠</td>
+                                        <td>當司機維持打呵欠的狀態超過預設時間，提示司機集中精神駕駛。</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">CLW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-CLW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/CLW_L1.png"></td>
+                                        <td>Calling Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!--  <tr>
+                                        <th scope="row">接打電話</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-CLW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/CLW_L1.png"></td>
+                                        <td>接打電話</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">SMW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-SMW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/SMW_L1.png"></td>
+                                        <td>Smoking Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">抽煙</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-SMW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/SMW_L2.png"></td>
+                                        <td>抽煙</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">DTW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-DTW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/DTW_L1.png"></td>
+                                        <td>Distraction Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">分神駕駛</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-DTW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/DTW_L2.png"></td>
+                                        <td>分神駕駛</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">DAW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-DAW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/DAW_L1.png"></td>
+                                        <td>Driver Abnormality Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">司機異常</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-DAW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/DAW_L2.png"></td>
+                                        <td>司機異常</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">BCW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-LRAW.png"></td>
+                                        <td><img src="../images/help-zhtw/LRAW.png"></td>
+                                        <td>Left Rear Approaching Warning</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">SPW</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-SPW_L1.png"></td>
+                                        <td><img src="../images/help-zhtw/SPW_L1.png"></td>
+                                        <td>Speeding Warning</td>
+                                        <td>a visual alert to driver when host vehicle speed over the road sign speed
+                                        </td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">超速</th>
+                                        <td><img src="../images/help-zhtw/icon-bar-SPW_L2.png"></td>
+                                        <td><img src="../images/help-zhtw/SPW_L2.png"></td>
+                                        <td>超速</td>
+                                        <td>當車輛行駛速度超出路面限定速度時，提示司機超速。</td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="driverActionHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#driverAction"
+                                aria-expanded="true" aria-controls="driverAction">
+                                司機行為
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="driverAction" class="collapse show" aria-labelledby="warningsInShortHeading">
+                        <div class="card-body">
+                            <table class="table table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">符號</th>
+                                        <th scope="col">解釋</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td><img src="../images/help-zhtw/left_turn.png"></td>
+                                        <td>亮起左轉指示燈</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../images/help-zhtw/right_turn.png"></td>
+                                        <td>亮起右轉指示燈</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../images/help-zhtw/breaks.png"></td>
+                                        <td>剎車</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="vehicleTypeHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#vehicleType"
+                                aria-expanded="true" aria-controls="vehicleType">
+                                車輛類別
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="vehicleType" class="collapse show" aria-labelledby="vehicleTypeHeading">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">車輛類別</th>
+                                        <th scope="col">車輛圖示</th>
+                                        <th scope="col">車輛類別編號 (批量輸入資料用) </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{{"_CAR" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/Car.svg#Car" />
+                                            </svg></td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"_VAN" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/Van.svg#Van" />
+                                            </svg></td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"MINIBUS" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/Mini-Bus.svg#Mini-Bus" />
+                                            </svg></td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"_BUS" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/Bus.svg#Bus" />
+                                            </svg></td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"_TRUCK" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/Truck.svg#Truck" />
+                                            </svg></td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"CONCRETE_TRUCK" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/Concrete Truck.svg#Concrete Truck" />
+                                            </svg></td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"OTHERS_DEFAULT" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/Others.svg#Others" />
+                                            </svg></td>
+                                        <td>7</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="appendix">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>附錄</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="card">
+
+                    <div class="card-header" id="gradingHeading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#grading"
+                                aria-expanded="true" aria-controls="grading">
+                                評級準則
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="grading" class="collapse show" aria-labelledby="gradingHeading">
+                        <div class="card-body">
+                            <table class="table table-striped" style="width: 20% !important;" id="gradeTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">評分範圍</th>
+                                        <th scope="col">等級</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">90.00 - 100</th>
+                                        <td>A+</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">80.00 - 89.99</th>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">70.00 - 79.99</th>
+                                        <td>A-</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">60.00 - 69.99</th>
+                                        <td>B+</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">50.00 - 59.99</th>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">40.00 - 49.99</th>
+                                        <td>B-</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">30.00 - 39.99</th>
+                                        <td>C</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">20.00 - 29.99</th>
+                                        <td>D</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">10.00 - 19.99</th>
+                                        <td>E</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">00.00 - 09.99</th>
+                                        <td>F</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-header" id="allRecommendationHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#allRecommendation"
+                                aria-expanded="true" aria-controls="allRecommendation">
+                                所有行車建議
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="allRecommendation" class="collapse show" aria-labelledby="warningsInShortHeading">
+                        <div class="card-body">
+                            <table class="table table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">警報</th>
+                                        <th scope="col">相關建議</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>前向碰撞</td>
+                                        <td>請留意車輛前方行人 / 車輛 / 障礙物，需要時減低車速，避免太高速駛向行人 / 車輛 / 障礙物。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>車道偏離</td>
+                                        <td>請留意車輛有否偏離行車線及轉換行車線要打方向燈。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>跟車太貼</td>
+                                        <td>請保持行車安全距離，避免與前車距離太近。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>急加速</td>
+                                        <td>請避免急劇加速行駛。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>急減速</td>
+                                        <td>請避免急速煞車，如見交通燈開始轉變，應及早減速。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>急轉彎</td>
+                                        <td>請避免以高速轉彎，轉彎時應按路況需要減低車速。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>閉上眼睛</td>
+                                        <td>請確保在駕駛時能時刻觀察路況，切勿疲勞駕駛。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>接打電話</td>
+                                        <td>請避免在駕駛時接打電話，雙手應緊握軚盤。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>左顧右盼</td>
+                                        <td>請留意正前方路況，切勿駕駛時分神。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>沒有司機</td>
+                                        <td>請確保系統攝像頭能正常運作。</td>
+                                    </tr>
+                                    <tr>
+                                        <td>打呵欠</td>
+                                        <td>請確保駕駛前有充足睡眠，切勿疲勞駕駛。</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <button ng-click="topFunction()" id="goToTopBtn" title="Go to top">^ 返回目錄</button>
+</div>

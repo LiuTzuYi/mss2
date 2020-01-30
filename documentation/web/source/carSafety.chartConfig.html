@@ -1,0 +1,898 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="../">
+    <title>JSDoc: source : chartConfig.js</title>
+    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
+    <link href="css/site.css" type="text/css" rel="stylesheet">
+    <link href="css/custom.css" type="text/css" rel="stylesheet">
+  </head>
+  <body ng-app>
+    <nav id="toc">
+      <div class="sidenav-search">
+      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">
+      </div>
+      <div class="nav-wrapper">
+      <h2><a href="index.html">Home</a></h2>
+      <ul class="module">
+        <!-- undefined -->
+        <li id="undefined" ng-hide="moduleundefined">
+          <ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="undefinedModule = !undefinedModule">
+                Module
+              </a>
+              <i ng-cloak ng-show="undefinedModule">+</i>
+            </h2>
+            <ul ng-hide="undefinedModule">
+              <li>
+                <a href="carSafety.html">carSafety</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- car_afety -->
+        <h2 class="module">
+          <a chref ng-click="modulecar_afety = !modulecar_afety">
+            module: carSafety
+          </a>
+          <i ng-cloak ng-show="modulecar_afety">+</i>
+        </h2>
+        <li id="carSafety" ng-hide="modulecar_afety">
+          <ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyController = !car_afetyController">
+                Controller
+              </a>
+              <i ng-cloak ng-show="car_afetyController">+</i>
+            </h2>
+            <ul ng-hide="car_afetyController">
+              <li>
+                <a href="carSafety.adminpanelloginCtrl.html">adminpanelloginCtrl</a>
+              </li><li>
+                <a href="carSafety.adminpanelnavCtrl.html">adminpanelnavCtrl</a>
+              </li><li>
+                <a href="carSafety.apcompanyaddCtrl.html">apcompanyaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apcompanyeditCtrl.html">apcompanyeditCtrl</a>
+              </li><li>
+                <a href="carSafety.apcompanylistCtrl.html">apcompanylistCtrl</a>
+              </li><li>
+                <a href="carSafety.apdeviceaddCtrl.html">apdeviceaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apdeviceeditCtrl.html">apdeviceeditCtrl</a>
+              </li><li>
+                <a href="carSafety.apdevicelistCtrl.html">apdevicelistCtrl</a>
+              </li><li>
+                <a href="carSafety.apdrvcardaddCtrl.html">apdrvcardaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apdrvcardlogCtrl.html">apdrvcardlogCtrl</a>
+              </li><li>
+                <a href="carSafety.apmailnotifyaddCtrl.html">apmailnotifyaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apmailnotifyeditCtrl.html">apmailnotifyeditCtrl</a>
+              </li><li>
+                <a href="carSafety.apmailnotifylistCtrl.html">apmailnotifylistCtrl</a>
+              </li><li>
+                <a href="carSafety.autologinCtrl.html">autologinCtrl</a>
+              </li><li>
+                <a href="carSafety.companyProfileCtrl.html">companyProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.404Ctrl.html">404Ctrl</a>
+              </li><li>
+                <a href="carSafety.dashCtrl.html">dashCtrl</a>
+              </li><li>
+                <a href="carSafety.deviceSetCtrl.html">deviceSetCtrl</a>
+              </li><li>
+                <a href="carSafety.drivergrpProfileCtrl.html">drivergrpProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.drivergrpSetCtrl.html">drivergrpSetCtrl</a>
+              </li><li>
+                <a href="carSafety.driverProfileCtrl.html">driverProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.driverSetCtrl.html">driverSetCtrl</a>
+              </li><li>
+                <a href="carSafety.forgetPwdCtrl.html">forgetPwdCtrl</a>
+              </li><li>
+                <a href="carSafety.helpCtrl.html">helpCtrl</a>
+              </li><li>
+                <a href="carSafety.liveLocationCtrl.html">liveLocationCtrl</a>
+              </li><li>
+                <a href="carSafety.liveMonitorCtrl.html">liveMonitorCtrl</a>
+              </li><li>
+                <a href="carSafety.loginCtrl.html">loginCtrl</a>
+              </li><li>
+                <a href="carSafety.mailNotifySetCtrl.html">mailNotifySetCtrl</a>
+              </li><li>
+                <a href="carSafety.orgchartSetCtrl.html">orgchartSetCtrl</a>
+              </li><li>
+                <a href="carSafety.resetPwdCtrl.html">resetPwdCtrl</a>
+              </li><li>
+                <a href="carSafety.rosterSetCtrl.html">rosterSetCtrl</a>
+              </li><li>
+                <a href="carSafety.tripDetailCtrl.html">tripDetailCtrl</a>
+              </li><li>
+                <a href="carSafety.tripDrvImportCtrl.html">tripDrvImportCtrl</a>
+              </li><li>
+                <a href="carSafety.tripSetCtrl.html">tripSetCtrl</a>
+              </li><li>
+                <a href="carSafety.updatePwdCtrl.html">updatePwdCtrl</a>
+              </li><li>
+                <a href="carSafety.userroleSetCtrl.html">userroleSetCtrl</a>
+              </li><li>
+                <a href="carSafety.userSetCtrl.html">userSetCtrl</a>
+              </li><li>
+                <a href="carSafety.vehiclegrpProfileCtrl.html">vehiclegrpProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.vehiclegrpSetCtrl.html">vehiclegrpSetCtrl</a>
+              </li><li>
+                <a href="carSafety.vehicleProfileCtrl.html">vehicleProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.vehicleSetCtrl.html">vehicleSetCtrl</a>
+              </li><li>
+                <a href="carSafety.warnExportCtrl.html">warnExportCtrl</a>
+              </li><li>
+                <a href="carSafety.warnvideoDownloadCtrl.html">warnvideoDownloadCtrl</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyService = !car_afetyService">
+                Service
+              </a>
+              <i ng-cloak ng-show="car_afetyService">+</i>
+            </h2>
+            <ul ng-hide="car_afetyService">
+              <li>
+                <a href="carSafety.alertBox.html">alertBox</a>
+              </li><li>
+                <a href="carSafety.formValidService.html">formValidService</a>
+              </li><li>
+                <a href="carSafety.httpSuccessCheck.html">httpSuccessCheck</a>
+              </li><li>
+                <a href="carSafety.langService.html">langService</a>
+              </li><li>
+                <a href="carSafety.profileService.html">profileService</a>
+              </li><li>
+                <a href="carSafety.refetchMapService.html">refetchMapService</a>
+              </li><li>
+                <a href="carSafety.responsiveCheck.html">responsiveCheck</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyConfig = !car_afetyConfig">
+                Config
+              </a>
+              <i ng-cloak ng-show="car_afetyConfig">+</i>
+            </h2>
+            <ul ng-hide="car_afetyConfig">
+              <li>
+                <a href="carSafety.angular-chart-js.html">angular-chart-js</a>
+              </li><li>
+                <a href="carSafety.angular-dynamic-locale.html">angular-dynamic-locale</a>
+              </li><li>
+                <a href="carSafety.angular-translate.html">angular-translate</a>
+              </li><li>
+                <a href="carSafety.angularjs.html">angularjs</a>
+              </li><li>
+                <a href="carSafety.angularjs-material.html">angularjs-material</a>
+              </li><li>
+                <a href="carSafety.block-ui.html">block-ui</a>
+              </li><li>
+                <a href="carSafety.ng-idle.html">ng-idle</a>
+              </li><li>
+                <a href="carSafety.state-transition.html">state-transition</a>
+              </li><li>
+                <a href="carSafety.ui-router.html">ui-router</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyConstant = !car_afetyConstant">
+                Constant
+              </a>
+              <i ng-cloak ng-show="car_afetyConstant">+</i>
+            </h2>
+            <ul ng-hide="car_afetyConstant">
+              <li>
+                <a href="carSafety.appConfig.html">appConfig</a>
+              </li><li>
+                <a href="carSafety.chartConfig.html">chartConfig</a>
+              </li><li>
+                <a href="carSafety.errorCodeConfig.html">errorCodeConfig</a>
+              </li><li>
+                <a href="carSafety.exportConfig.html">exportConfig</a>
+              </li><li>
+                <a href="carSafety.mapConfig.html">mapConfig</a>
+              </li><li>
+                <a href="carSafety.regexConfig.html">regexConfig</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyDirective = !car_afetyDirective">
+                Directive
+              </a>
+              <i ng-cloak ng-show="car_afetyDirective">+</i>
+            </h2>
+            <ul ng-hide="car_afetyDirective">
+              <li>
+                <a href="carSafety.bInfoWindow.html">bInfoWindow</a>
+              </li><li>
+                <a href="carSafety.bMarker.html">bMarker</a>
+              </li><li>
+                <a href="carSafety.bPolyline.html">bPolyline</a>
+              </li><li>
+                <a href="carSafety.bTrafficLayer.html">bTrafficLayer</a>
+              </li><li>
+                <a href="carSafety.convertToNumber.html">convertToNumber</a>
+              </li><li>
+                <a href="carSafety.customOnChange.html">customOnChange</a>
+              </li><li>
+                <a href="carSafety.fileInputImg.html">fileInputImg</a>
+              </li><li>
+                <a href="carSafety.multicheckListbox.html">multicheckListbox</a>
+              </li><li>
+                <a href="carSafety.navbar.html">navbar</a>
+              </li><li>
+                <a href="carSafety.pageSelect.html">pageSelect</a>
+              </li><li>
+                <a href="carSafety.showTooltipOnTextOverflow.html">showTooltipOnTextOverflow</a>
+              </li><li>
+                <a href="carSafety.stFiltered.html">stFiltered</a>
+              </li><li>
+                <a href="carSafety.stPersist.html">stPersist</a>
+              </li><li>
+                <a href="carSafety.stSelectDistinct.html">stSelectDistinct</a>
+              </li><li>
+                <a href="carSafety.virtualResize.html">virtualResize</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyFilter = !car_afetyFilter">
+                Filter
+              </a>
+              <i ng-cloak ng-show="car_afetyFilter">+</i>
+            </h2>
+            <ul ng-hide="car_afetyFilter">
+              <li>
+                <a href="carSafety.fixNum.html">fixNum</a>
+              </li><li>
+                <a href="carSafety.optionalFilter.html">optionalFilter</a>
+              </li><li>
+                <a href="carSafety.tableCustomFilter.html">tableCustomFilter</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyRun = !car_afetyRun">
+                Run
+              </a>
+              <i ng-cloak ng-show="car_afetyRun">+</i>
+            </h2>
+            <ul ng-hide="car_afetyRun">
+              <li>
+                <a href="carSafety.state-transition-init.html">state-transition-init</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+    <div id="content" class="page-wrap">
+      <h1 class="title">
+        source : chartConfig.js
+      </h1>
+      <div id="main" class="big-container">
+        <!-- source code html -->
+        <article>
+          <pre class="prettyprint source linenums"><code>/*
+ * @Author: Zilvia Kam
+ * @Date:   2019-04-04 17:39:29
+ * @Last Modified by:   Zilvia Kam
+ * @Last Modified time: 2019-10-08 11:04:40
+ */
+'use strict';
+/**
+ * @memberof carSafety
+ * @ngdoc Constant
+ * @name chartConfig
+ * @description
+ *   Setup chart constant variables and configurations.
+ *
+ * @property {Object} gaugeColor Grade chart color scale
+ *
+ * @property {Object} spiderAsix Overall chart (spider) scale and asix
+ * @property {Object} spiderAsix Overall chart (spider) scale and asix
+ * @property {String[]} spiderLabel Overall chart (spider) label
+ * @property {Object[]} spiderColor Overall chart (spider) color
+ *
+ * @property {Object[]} scoreTagColorTotal Inline chart color (total score)
+ * @property {Object[]} scoreTagColor Inline chart color (warning type)
+ * @property {Object} scoreTagOptsTotal Inline chart option (total score), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ * @property {Object} scoreTagOpts Inline chart option (warning type), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ *
+ * @property {Object[]} chartSetOverride Inline mixed chart type
+ * @property {Object[]} scoreTagColorTotalMix Inline mixed chart color (total score)
+ * @property {Object[]} scoreTagColorMix Inline mixed chart color (warning type)
+ * @property {Object} scoreTagOptsTotal2 Inline mixed chart option (total score), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ * @property {Object} scoreTagOpts2 Inline mixed chart option (warning type), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ *
+ * @property {Object} scoreTagOptsTotalFull Inline chart fullscreen option (total score), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ * @property {Object} scoreTagOptsFull Inline chart fullscreen option (warning type), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ *
+ * @property {Object[]} chartSetOverrideFull Inline mixed chart fullscreen type
+ * @property {String[]} scoreChartSeriesFullGrp Inline mixed chart fullscreen label (group)
+ * @property {String[]} scoreChartSeriesFullVeh Inline mixed chart fullscreen label (vehicle)
+ * @property {String[]} scoreChartSeriesFullDrv Inline mixed chart fullscreen label (driver)
+ * @property {Object} scoreTagOptsTotalFullMix Inline mixed chart fullscreen option (total score), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ * @property {Object} scoreTagOptsFullMix Inline mixed chart fullscreen option (warning type), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ *
+ * @property {String[]} scoreChartSeriesCollision Chart label (collision)
+ * @property {String[]} scoreChartSeriesBDB Chart label (bad driving behavior)
+ * @property {String[]} scoreChartSeriesComfort Chart label (comfortability)
+ * @property {Object[]} scoreChartTotalFix Chart type (total score)
+ * @property {Object} scoreChartOptsTotal Chart option (total score), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ * @property {Object} scoreChartOpts Chart option (warning type), [any ChartJS options](https://www.chartjs.org/docs/latest/configuration/)
+ *
+ * @property {String[]} KMB_spiderLabel Overall chart (spider) label for KMB
+ * @property {Object[]} KMB_spiderColor Overall chart (spider) color for KMB
+ */
+angular.module('carSafety').constant('chartConfig', {
+    gaugeColor: {
+        "0": {
+            "color": "transparent"
+        },
+        "0.01": {
+            "color": "red"
+        },
+        "20.01": {
+            "color": "orange"
+        },
+        "40.01": {
+            "color": "yellow"
+        },
+        "60.01": {
+            "color": "greenyellow"
+        },
+        "80.01": {
+            "color": "lime"
+        }
+    },
+    spiderFieldSet: [
+        ['FCW', 'LDW', 'HMW'],
+        ['FDW', 'CLW', 'DTW', 'NDW', 'YW'],
+        ['AAW', 'ABW', 'ATW']
+    ],
+    scoreTagFieldSet: ['FCW', 'LDW', 'HMW', 'FDW', 'CLW', 'DTW', 'NDW', 'YW', 'AAW', 'ABW', 'ATW'],
+    dataFieldSet: [
+        ['FCW', 'LDW', 'HMW'],
+        ['FDW', 'CLW', 'DTW', 'NDW', 'YW'],
+        ['AAW', 'ABW', 'ATW']
+    ],
+    videotypeSelect: ['FCW_L2', 'HMW_L2', 'FDW_L2', 'ABW_L2', 'ATW_L2'],
+    spiderAsix: {
+        0: "",
+        10: "F",
+        20: "E",
+        30: "D",
+        40: "C",
+        50: "B-",
+        60: "B",
+        70: "B+",
+        80: "A-",
+        90: "A",
+        100: "A+"
+    },
+    spiderColor: [{
+            backgroundColor: "rgba(255, 120, 120, 0.5)",
+            pointBackgroundColor: "#ff2323",
+            pointHoverBackgroundColor: "#ff7878",
+            borderColor: "#ff2323",
+            pointBorderColor: '#fff',
+            pointHoverBorderColor: "#ff7878"
+        },
+        {
+            backgroundColor: "rgba(255, 252, 101, 0.5)",
+            pointBackgroundColor: "#e6da00",
+            pointHoverBackgroundColor: "#fffc65",
+            borderColor: "#e6da00",
+            pointBorderColor: '#fff',
+            pointHoverBorderColor: "#fffc65"
+        },
+        {
+            backgroundColor: "rgba(100, 255, 103, 0.5)",
+            pointBackgroundColor: "#38e000",
+            pointHoverBackgroundColor: "#64ff67",
+            borderColor: "#38e000",
+            pointBorderColor: '#fff',
+            pointHoverBorderColor: "#64ff67"
+        }
+    ],
+    scoreTagColor: [{
+            borderColor: "rgba(48, 25, 255, 0)",
+            backgroundColor: "rgba(48, 25, 255, 0.3)",
+            hoverBackgroundColor: "rgb(185, 178, 248)",
+            hoverBorderColor: "rgb(185, 178, 248)"
+        },
+        {
+            backgroundColor: "rgb(255, 0, 4)",
+            borderColor: "rgb(255, 0, 4)",
+            pointBackgroundColor: "rgb(255, 0, 4)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "rgb(255, 0, 4)",
+            pointHoverBorderColor: "rgb(255, 0, 4)"
+        }
+    ],
+    scoreTagColorTotal: [{
+            borderColor: "rgba(13, 157, 246, 0)",
+            backgroundColor: "rgba(13, 157, 246, 0.3)",
+            hoverBackgroundColor: "rgb(174, 218, 245)",
+            hoverBorderColor: "rgb(174, 218, 245)"
+        },
+        {
+            backgroundColor: "rgb(0, 91, 18)",
+            borderColor: "rgb(0, 91, 18)",
+            pointBackgroundColor: "rgb(0, 91, 18)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "rgb(0, 91, 18)",
+            pointHoverBorderColor: "rgb(0, 91, 18)"
+        }
+    ],
+    scoreTagColorMix: [{
+            backgroundColor: "rgb(255, 0, 4)",
+            borderColor: "rgb(255, 0, 4)",
+            pointBackgroundColor: "rgb(255, 0, 4)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "rgb(255, 0, 4)",
+            pointHoverBorderColor: "rgb(255, 0, 4)"
+        },
+        {
+            borderColor: "rgba(48, 25, 255, 0)",
+            backgroundColor: "rgba(48, 25, 255, 0.3)",
+            hoverBackgroundColor: "rgb(185, 178, 248)",
+            hoverBorderColor: "rgb(185, 178, 248)"
+        }
+    ],
+    scoreTagColorTotalMix: [{
+            backgroundColor: "rgb(0, 91, 18)",
+            borderColor: "rgb(0, 91, 18)",
+            pointBackgroundColor: "rgb(0, 91, 18)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "rgb(0, 91, 18)",
+            pointHoverBorderColor: "rgb(0, 91, 18)"
+        },
+        {
+            borderColor: "rgba(13, 157, 246, 0)",
+            backgroundColor: "rgba(13, 157, 246, 0.3)",
+            hoverBackgroundColor: "rgb(174, 218, 245)",
+            hoverBorderColor: "rgb(174, 218, 245)"
+        }
+    ],
+    scoreTagOpts: {
+        responsive: false,
+        legend: false,
+        scales: {
+            yAxes: [{
+                display: false,
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            xAxes: [{
+                display: false
+            }]
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.yLabel == null) {
+                        return
+                    } else if (tooltipItem.yLabel == 0) {
+                        return '0'
+                    } else {
+                        return tooltipItem.yLabel;
+                    }
+                },
+                title: function (tooltipItem, data) {
+                    return;
+                }
+            }
+        }
+    },
+    scoreTagOptsTotal: {
+        responsive: false,
+        legend: false,
+        scales: {
+            yAxes: [{
+                display: false,
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100,
+                    stepSize: 10
+                }
+            }],
+            xAxes: [{
+                display: false
+            }]
+        },
+        tooltips: {
+            filter: function (tooltipItem, data) {
+                if (tooltipItem.yLabel == null) {
+                    return
+                } else if (tooltipItem.yLabel == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.yLabel == 0) {
+                        return '0'
+                    } else {
+                        return tooltipItem.yLabel;
+                    }
+                },
+                title: function (tooltipItem, data) {
+                    return;
+                }
+            }
+        }
+    },
+    scoreChartOpts: {
+        legend: {
+            display: true,
+            labels: {
+                boxWidth: 10
+            },
+            onHover: function (e) {
+                e.target.style.cursor = 'pointer';
+            }
+        },
+        hover: {
+            onHover: function () {
+                var target = document.querySelectorAll("canvas#line.chart.chart-line")
+                for (var i = 0; i &lt; target.length; i++) {
+                    target[i].style.cursor = 'default';
+                }
+            }
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        tooltips: {
+            filter: function (tooltipItem, data) {
+                if (tooltipItem.yLabel == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.yLabel == 0) {
+                        return data.datasets[tooltipItem.datasetIndex].label + ': 0'
+                    } else {
+                        return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel;
+                    }
+                }
+            }
+        }
+    },
+    scoreChartOptsTotal: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100,
+                    stepSize: 10
+                }
+            }]
+        },
+        tooltips: {
+            filter: function (tooltipItem, data) {
+                if (tooltipItem.yLabel == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.datasetIndex == 0) {
+                        if (tooltipItem.yLabel == 0) {
+                            return '0'
+                        } else {
+                            return tooltipItem.yLabel;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    scoreChartTotalFix: [{},
+        {
+            showLine: false,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }
+    ],
+    chartSetOverride: [{
+            type: 'line',
+            fill: false
+        },
+        {
+            type: 'bar'
+        }
+    ],
+    scoreTagOpts2: {
+        responsive: false,
+        legend: false,
+        scales: {
+            yAxes: [{
+                display: false,
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            xAxes: [{
+                display: false
+            }]
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.yLabel == null || tooltipItem.datasetIndex == 0) {
+                        return
+                    } else if (tooltipItem.yLabel == 0) {
+                        return '0'
+                    } else {
+                        return tooltipItem.yLabel;
+                    }
+                },
+                title: function (tooltipItem, data) {
+                    return;
+                }
+            }
+        }
+    },
+    scoreTagOptsTotal2: {
+        responsive: false,
+        legend: false,
+        scales: {
+            yAxes: [{
+                display: false,
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100,
+                    stepSize: 10
+                }
+            }],
+            xAxes: [{
+                display: false
+            }]
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.yLabel == null || tooltipItem.datasetIndex == 0) {
+                        return
+                    } else if (tooltipItem.yLabel == 0) {
+                        return '0'
+                    } else {
+                        return tooltipItem.yLabel;
+                    }
+                },
+                title: function (tooltipItem, data) {
+                    return;
+                }
+            }
+        }
+    },
+    scoreTagOptsTotalFull: {
+        scales: {
+            xAxes: [{
+                stacked: true
+            }],
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100,
+                    stepSize: 10
+                },
+                stacked: true
+            }]
+        },
+        tooltips: {
+            filter: function (tooltipItem, data) {
+                if (tooltipItem.yLabel == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.datasetIndex == 0) {
+                        if (tooltipItem.yLabel == 0) {
+                            return '0'
+                        } else {
+                            return tooltipItem.yLabel;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    scoreTagOptsFull: {
+        scales: {
+            yAxes: [{
+                stacked: true,
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            xAxes: [{
+                stacked: true
+            }]
+        },
+        tooltips: {
+            filter: function (tooltipItem, data) {
+                if (tooltipItem.yLabel == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.datasetIndex == 0) {
+                        if (tooltipItem.yLabel == 0) {
+                            return '0'
+                        } else {
+                            return tooltipItem.yLabel;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    scoreTagOptsTotalFullMix: {
+        legend: {
+            display: true,
+            labels: {
+                boxWidth: 10
+            },
+            onHover: function (e) {
+                e.target.style.cursor = 'pointer';
+            }
+        },
+        hover: {
+            onHover: function () {
+                var target = document.querySelectorAll("canvas#barline.chart.chart-bar")
+                for (var i = 0; i &lt; target.length; i++) {
+                    target[i].style.cursor = 'default';
+                }
+            }
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100,
+                    stepSize: 10
+                }
+            }]
+        },
+        tooltips: {
+            filter: function (tooltipItem, data) {
+                if (tooltipItem.yLabel == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.yLabel == 0) {
+                        return data.datasets[tooltipItem.datasetIndex].label + ': 0'
+                    } else {
+                        return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel;
+                    }
+                }
+            }
+        }
+    },
+    scoreTagOptsFullMix: {
+        legend: {
+            display: true,
+            labels: {
+                boxWidth: 10
+            },
+            onHover: function (e) {
+                e.target.style.cursor = 'pointer';
+            }
+        },
+        hover: {
+            onHover: function () {
+                var target = document.querySelectorAll("canvas#barline.chart.chart-bar")
+                for (var i = 0; i &lt; target.length; i++) {
+                    target[i].style.cursor = 'default';
+                }
+            }
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        tooltips: {
+            filter: function (tooltipItem, data) {
+                if (tooltipItem.yLabel == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    if (tooltipItem.yLabel == 0) {
+                        return data.datasets[tooltipItem.datasetIndex].label + ': 0'
+                    } else {
+                        return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel;
+                    }
+                }
+            }
+        }
+    },
+    chartSetOverrideFull: [{
+            type: 'line',
+            fill: false
+        },
+        {
+            type: 'bar'
+        }
+    ],
+    scoreChartSeriesFullGrp: ['company', 'group'],
+    scoreChartSeriesFullVeh: ['company', 'vehicle'],
+    scoreChartSeriesFullDrv: ['company', 'driver']
+})</code></pre>
+        </article>
+        <!-- index.html -->
+        <!-- class files -->
+      </div>
+      <footer style="clear:both">
+        Documentation generated by
+        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
+        using
+        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>
+      </footer>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/site.js"></script>
+    <!--%= prettyJson %-->
+    <script>
+      prettyPrint();
+      var lineNo = window.location.hash.match(/#line([0-9]+)$/);
+      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();
+    </script>
+  </body>
+</html>

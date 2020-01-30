@@ -1,0 +1,56 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:31:59
+*/ -->
+<div class="resetpwd-wrapper">
+  <div class="resetpwd-formContent">
+    <div class="resetpwd-header">
+      <img src="../images/logo-header.png" id="resetpwd-logo" alt="Logo" ng-click="toLogin()" />
+    </div>
+    <!--resetpwd Form-->
+    <form class="resetpwd-form" name="resetpwd">
+      <div class="resetpwd-title">
+        <h4>{{'resetPwd'|translate}}</h4>
+        <p>{{'resetPwdMessage'|translate}}</p>
+      </div>
+      <div class="resetpwd-field-title">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <label style="margin-left: 8px;">{{'username'|translate}}: {{username}}</label>
+      </div>
+      <div class="resetpwd-field-title">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <label>{{"password"|translate}}:</label>
+      </div>
+      <div>
+        <input type="{{typePwd}}" class="resetpwd-password" name="password" required ng-model="password" ng-model-options="{allowInvalid: true}" ng-maxlength="40" ng-class="(attempt||resetpwd.password.$dirty||resetpwd.password.$touched) && !resetpwd.password.$valid?'invalid-password':''" ng-trim="false" ng-minlength="passwordmin" ng-pattern="passwordregex" ng-change="newconfirmregex(password)" autocomplete="off">
+        <div class="resetpwd-password-show-button" ng-click="typePwd=='password'?typePwd='text':typePwd='password'">
+          <i class="fa fa-eye-slash" aria-hidden="true" ng-if="typePwd=='password'"></i>
+          <i class="fa fa-eye" aria-hidden="true" ng-if="typePwd=='text'"></i>
+        </div>
+      </div>
+      <div class="invalid-feedback-custom" ng-show="resetpwd.password.$error.maxlength" translate="tooLong" translate-value-column="{{'password'|translate}}"></div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||resetpwd.password.$dirty||resetpwd.password.$touched) && (resetpwd.password.$error.required||resetpwd.password.$error.minlength||(!resetpwd.password.$error.required && resetpwd.password.$error.pattern && !resetpwd.password.$error.maxlength))" style="white-space: pre-wrap;">{{'passwordRegex'|translate:pwdSetting}}</div>
+      <div class="resetpwd-field-title">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <label>{{"confirmPwd"|translate}}:</label>
+      </div>
+      <div>
+        <input type="{{typeConPwd}}" class="resetpwd-password" name="passwordConfirm" required ng-model="confirmPwd" ng-model-options="{allowInvalid: true}" ng-class="(attempt||resetpwd.passwordConfirm.$dirty||resetpwd.passwordConfirm.$touched) && !resetpwd.passwordConfirm.$valid?'invalid-password':''" ng-pattern="confirmpwregex" ng-trim="false" autocomplete="off">
+        <div class="resetpwd-password-show-button" ng-click="typePwdConfirm=='password'?typePwdConfirm='text':typePwdConfirm='password'">
+          <i class="fa fa-eye-slash" aria-hidden="true" ng-if="typePwdConfirm=='password'"></i>
+          <i class="fa fa-eye" aria-hidden="true" ng-if="typePwdConfirm=='text'"></i>
+        </div>
+      </div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||resetpwd.passwordConfirm.$dirty||resetpwd.passwordConfirm.$touched) && resetpwd.passwordConfirm.$error.required">{{"confirmPwdRequired"|translate}}</div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||resetpwd.passwordConfirm.$dirty||resetpwd.passwordConfirm.$touched) && !resetpwd.passwordConfirm.$error.required && resetpwd.passwordConfirm.$error.pattern">{{"confirmPwdError"|translate}}</div>
+      <br>
+      <div align="center" style="overflow: auto;">
+        <div class="resetpwd-submit">
+          <button type="submit" class="btn btn-primary btn-block" ng-click="attempt=true;resetpwd.$valid&&resetPW()">{{'reset'|translate}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

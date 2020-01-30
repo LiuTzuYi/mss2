@@ -1,0 +1,1434 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-20 12:13:03
+*/ -->
+<div class="help-wrap">
+    <section id="helpTop">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3 class="menu-title">Table of Contents</h3>
+                            <sub>Updated: V {{dataCoVer.version}}</sub>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('general')">&bull;&#09;User Menu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('liveLocation')">&bull;&#09;Live Location</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('warning')">&bull;&#09;Warning</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('profile')">&bull;&#09;Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('setting')">&bull;&#09;Setting</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('abbr&symbol')">&bull;&#09;Abbreviations and Symbols</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-click="gotoAnchor('appendix')">&bull;&#09;Appendix</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link dl-link" target="_blank" href="../assets/user_manual_en.pdf">&bull;&#09;Download
+                    User Manual (Updated: 2019-07-05)</a>
+            </li>
+        </ul>
+    </section>
+
+    <section id="general">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>User Menu</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="container-fluid">
+                    <img src="../images/help-en/general-1-1.png">
+                    <br>
+                    <ol class="explanation">
+                        <li>User Guide</li>
+                        <li>Contact Us</li>
+                        <li>Change Language</li>
+                        <li>Account Information</li>
+                        <li>Logout</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#accountInfo"
+                                aria-expanded="true" aria-controls="accountInfo">
+                                Account Information
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="accountInfo" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <img src="../images/help-en/general-1-2.png">
+                            <ol class="explanation">
+                                <li>User name</li>
+                                <li>Department name</li>
+                                <li>Company name</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#changePassword"
+                                aria-expanded="true" aria-controls="changePassword">
+                                Change Password
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="changePassword" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>Click on "Change Password" under <i class="fa fa-user-circle-o fa-lg"></i>.<br><img
+                                        src="../images/help-en/general-2-1.png"></li>
+                                <li>Fill in the form and submit your new password.<br><img
+                                        src="../images/help-en/general-2-2.png"></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#language"
+                                aria-expanded="true" aria-controls="language">
+                                Change Language
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="language" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>Click here to view available translations.<br><img
+                                        src="../images/help-en/general-3-1.png"></li>
+                                <li>Select the desired language.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="liveLocation">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>Live Location</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <ol>
+                    <li>Click on "Live Location".
+                        <br><img src="../images/help-en/liveLocation-1-1.png">
+                    </li>
+                    <li>In the filter section on the left, three car icons are shown under Running Status (GPS). Click
+                        <i class="fa fa-info-circle"></i> to check for their descriptions.
+                        <br><img src="../images/help-en/liveLocation-1-2.png"> <img
+                            src="../images/help-en/liveLocation-1-3.png">
+                    </li>
+                    <li>Next to each status, the number of count is displayed.
+                        <br><img src="../images/help-en/liveLocation-1-4.png">
+                        <br><img src="../images/help-en/liveLocation-1-5.png">
+                    </li>
+                    <li>If you want to filter for vehicles that are online, please choose <i
+                            class="fa fa-car online"></i>
+                        as running status and "Active" for device status.
+                        <br><img src="../images/help-en/liveLocation-1-6.png">
+                    </li>
+                    <li>Hover on the marker, an info-window with detail will poped up.
+                        <br><img src="../images/help-en/liveLocation-1-7.png">
+                    </li>
+                    <li>Select a vehicle from the vehicle list and view its live location and detail. You may also
+                        input the
+                        licence plate to search.
+                        <br><img src="../images/help-en/liveLocation-1-8.png">
+                    </li>
+                    <li>In the vehicle list, <i class="fa fa-sitemap"></i> indicates which department the vehicle
+                        belongs to. Check out <a href="" ng-click="gotoAnchor('vehicleTypeHeader')">Vehicle Type</a>
+                        for explanation of vehicle icons。
+                        <br><img src="../images/help-en/liveLocation-1-9.png">
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section id="warning">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>Warning</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="card">
+                    <div class="card-header" id="tripDetailHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#selectRoutes"
+                                aria-expanded="true" aria-controls="selectRoutes">
+                                Trip Detail (Select Trips and View Warnings)
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="selectRoutes" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>Click on "Trip Details" under "Warning" on menu bar.
+                                    <br><img src="../images/help-en/warning-1-1.png">
+                                </li>
+                                <li>Select a query type. e.g "Vehicle".
+                                    <br><img src="../images/help-en/warning-1-2.png">
+                                </li>
+                                <li>Select a vehicle and the date range. You may select more than one vehicle.
+                                    <br>Note: Date range is allowed to select a maximum range of 1 year.
+                                    <br><img src="../images/help-en/warning-1-3.png">
+                                </li>
+                                <li>You can query with mileage if needed. Click <i class="fa fa-info-circle"></i> to
+                                    check for the description.
+                                    <br><img src="../images/help-en/warning-1-4.png">
+                                </li>
+                                <li>Click "Submit". You will get a trip list.
+                                    <br><img src="../images/help-en/warning-1-5.png">
+                                </li>
+                                <li>After selecting a trip, you may check its route on map and warnings below
+                                    map. Check out <a href="" ng-click="gotoAnchor('warningHeader')">Warning Type</a>
+                                    , <a href="" ng-click="gotoAnchor('driverActionHeader')">Driver Action</a> and <a
+                                        href="" ng-click="gotoAnchor('vehicleTypeHeader')">Vehicle Type</a>
+                                    for more
+                                    information.
+                                    <br><img src="../images/help-en/warning-1-6.png">
+                                </li>
+                                <li>You may view at most 4 trips at the same time. The trips will be shown with 4
+                                    colors on map.
+                                    <br><img src="../images/help-en/warning-1-7.png"><br><img
+                                        src="../images/help-en/warning-1-8.png">
+                                </li>
+                                <li>Click on the tabs <img class="inline" src="../images/help-en/tags.png"> and the
+                                    corresponding warnings will be shown.
+                                </li>
+                                <li>If you choose more than 4 trips, an error message box will be shown. You will have
+                                    to close one tab to view other trips.
+                                    <br><img src="../images/help-en/warning-1-9.png">
+                                </li>
+                                <li>You can check where the warnings happened. For example, <img class="inline"
+                                        src="../images/help-en/LDW_L2.png">
+                                    marked where the warning happened.
+                                    <br><img src="../images/help-en/warning-1-10.png">
+                                </li>
+                                <li>Click on the warning marker or the row in the table. An info-window with detail
+                                    will be poped up.
+                                    <br><img src="../images/help-en/warning-2-1.png">
+                                </li>
+                                <li>The list on the bottom will show the warning information. Toggle on <img
+                                        class="inline" src="../images/help-en/toggle.png"> to the warning marker on the
+                                    map.
+                                    <br><img src="../images/help-en/warning-2-2.png">
+                                </li>
+                                <li>Users can switch from basic mode <img class="inline"
+                                        src="../images/help-en/basic.png">,
+                                    to advanced mode <img class="inline" src="../images/help-en/advance.png"> for more
+                                    details of the trip.
+                                    <br><img src="../images/help-en/warning-2-3.png"><br><img
+                                        src="../images/help-en/warning-2-4.png">
+                                </li>
+                                <li>The content of each column are the following.
+                                    <table class="table table-hover" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Items</th>
+                                                <th scope="col">Desciption</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">Video</td>
+                                                <td>A play button show when the warning pre-defined to be captured the
+                                                    video during the warning occurred</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Start Time</td>
+                                                <td>The warning starting time</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Duration (s)</td>
+                                                <td>The warning start to end duration</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Start Speed (kph)</td>
+                                                <td>The speed when the warning was started</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td scope="row">End Speed (kph)</td>
+                                                <td>The speed when the warning was ended</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Top Speed (kph)</td>
+                                                <td>The top speed during the warning was occurred</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Road Speed Limit (kph)</td>
+                                                <td>The speed limit on the road section where the warning triggered</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">HW (s)</td>
+                                                <td>Headway distance to vehicle ahead (unit second)</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Nearest HW (s)</td>
+                                                <td>The nearest headway distance to vehicle ahead (unit second)</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">Driver Action</td>
+                                                <td>The driver follow up action was taken during the warning (Turning
+                                                    signal/brake, etc). Check out <a href=""
+                                                        ng-click="gotoAnchor('driverActionHeader')">Driver
+                                                        Action</a> for more information.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>Users can filter the warnings by clicking on the warning names. Each warning's
+                                    count is next to the name.
+                                    <br><img src="../images/help-en/warning-2-5.png">
+                                </li>
+                                <li>You can select <i class="fa fa-play-circle"></i> to view records with videos.
+                                    <br><img src="../images/help-en/warning-2-6.png">
+                                </li>
+                                <li>If <i class="fa fa-play-circle"></i> is shown in warning details, video is
+                                    attached. You may click on <i class="fa fa-play-circle"></i> to watch the video. If
+                                    <i class="fa fa-pause-circle disable"></i> is shown, an video is pending for
+                                    upload.
+                                    <br><img src="../images/help-en/warning-2-7.png">
+                                </li>
+                                <li>If you want to download the video, please click "Download" under <img class="inline"
+                                        src="../images/help-en/more.png"> to start downloading the video.
+                                    <br><img src="../images/help-en/warning-2-8.png">
+                                </li>
+                                <li>You may also click <i class="fa fa-download"></i> to download all warning records
+                                    as a CSV file.
+                                    <br><img src="../images/help-en/warning-2-9.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#tripMaintenance"
+                                aria-expanded="true" aria-controls="inputDriver">
+                                Trip Maintenance
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="tripMaintenance" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>Select "Trip Maintenance" under "Warning" on menu bar.
+                                    <br><img src="../images/help-en/warning-3-1.png">
+                                </li>
+                                <li>Select the start date, end date.
+                                    <br>Note: Date range is allowed to select a maximum range of 1 year.
+                                    <br><img src="../images/help-en/warning-3-2.png">
+                                    <br><img src="../images/help-en/warning-3-3.png">
+                                </li>
+                                <li>Select licence plate, driver department and driver name. Click <i
+                                        class="fa fa-info-circle"></i>
+                                    to check
+                                    for the description of option.
+                                    <br>Please note that you can only select one option for each field. If you want to
+                                    view more, please select
+                                    N/A.
+                                    <br>To query trips which without driver, please select "EMPTY" for driver name.
+                                    <br><img src="../images/help-en/warning-3-4.png">
+                                </li>
+                                <li>Click "Query".
+                                    <br><img src="../images/help-en/warning-3-5.png">
+                                </li>
+                                <li>Click on <i class="fa fa-pencil"></i> to input driver name.
+                                    <br><img src="../images/help-en/warning-3-6.png">
+                                </li>
+                                <li>Confirmation message will be prompted upon successful submission.
+                                    <br><img src="../images/help-en/warning-3-7.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#inputDriver"
+                                aria-expanded="true" aria-controls="inputDriver">
+                                Trip Driver Import (Input Driver Names at Once)
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="inputDriver" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>Download the queried trip list in "Trip Maintenance". Click <i
+                                        class="fa fa-download"></i>
+                                    to
+                                    download as a CSV file.
+                                    <br><img src="../images/help-en/warning-4-1.png">
+                                </li>
+                                <li>Open the CSV you have just downloaded.
+                                    <br><img src="../images/help-en/warning-4-2.png">
+                                </li>
+                                <li>Key in the corresponding driver name in column G.
+                                    <br><img src="../images/help-en/warning-4-3.png">
+                                </li>
+                                <li>Enter the formula =A2&","&G2 to column L. The example below input the formula in
+                                    cell L2.
+                                    <br><img src="../images/help-en/warning-4-4.png">
+                                </li>
+                                <li>You may copy the formula to all rows that you want to update. Copy the code in
+                                    column L.
+                                    <br><img src="../images/help-en/warning-4-5.png">
+                                </li>
+                                <li>Select "Trip Driver Import" under "Warning" on menu bar.
+                                    <br><img src="../images/help-en/warning-4-6.png">
+                                </li>
+                                <li>Paste the copied code in the textarea below. Click "Submit". Please note that you
+                                    can only put one code for a line. New a line for another record.
+                                    <br><img src="../images/help-en/warning-4-7.png"> <img
+                                        src="../images/help-en/warning-4-8.png">
+                                </li>
+                                <li>Confirmation message will be prompted upon successful submission.
+                                    <br><img src="../images/help-en/warning-4-9.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="exportWarningDataHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#exportWarningData"
+                                aria-expanded="true" aria-controls="exportWarningData">
+                                Export Warning Data
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="exportWarningData" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>Select "Export Warning Data" under "Warning".
+                                    <br><img src="../images/help-en/warning-6-1.png">
+                                </li>
+                                <li>Enter the filename when necessary.
+                                    <br>Downloaded Format will be: "&lt; Warning Data Filename &gt;.csv"
+                                    <br>If nothing input, default values: "WarningData_&lt; Current Date &gt;.csv" will
+                                    be
+                                    used.
+                                    <br><img src="../images/help-en/warning-6-2.png">
+                                </li>
+                                <li>Click <i class="fa fa-info-circle"></i> to check for the instructions for using the
+                                    filter.
+                                    <br><img src="../images/help-en/warning-6-3.png">
+                                </li>
+                                <li>Select the date range of warnings that you want to download.
+                                    <br>Note: Warning date is allowed to select a maximum range of 1 year.
+                                    <br><img src="../images/help-en/warning-6-4.png">
+                                </li>
+                                <li>Select the filter(s) that you want to apply.
+                                    <br>Note: If not apply the filter, all data within date range will be downloaded.
+                                    <br><img src="../images/help-en/warning-6-5.png">
+                                </li>
+                                <li>If you want to apply multiple related filters, please apply it according to the
+                                    sequence.
+                                    <br>(1) Driver Department <i class="fa fa-arrow-right"></i> Driver Group <i
+                                        class="fa fa-arrow-right"></i>
+                                    Driver
+                                    <br>(2) Vehicle Department <i class="fa fa-arrow-right"></i> Vehicle Group <i
+                                        class="fa fa-arrow-right"></i>
+                                    Vehicle Brand <i class="fa fa-arrow-right"></i>
+                                    Vehicle Model <i class="fa fa-arrow-right"></i>
+                                    Vehicle Type <i class="fa fa-arrow-right"></i> Vehicle
+                                    <br>Note: The options of the last filter in the sequence will be affected by the
+                                    related filter(s).
+                                </li>
+                                <li>Input / Select the criteria of each selected filter(s) respectively.
+                                    <br><img src="../images/help-en/warning-6-6.png">
+                                    <br><img src="../images/help-en/warning-6-7.png">
+                                </li>
+                                <li>Click download. You can browse the warning data after opening the file.
+                                    <br><img src="../images/help-en/warning-6-8.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#batchDownloadVideo"
+                                aria-expanded="true" aria-controls="batchDownloadVideo">
+                                Warning Video Download
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="batchDownloadVideo" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>You have to get the CSV of trip warnings or warning data first. Copy the video ID in the CSV. You can check out <a href="" ng-click="gotoAnchor('tripDetailHeader')">Trip Detail</a> / <a href="" ng-click="gotoAnchor('exportWarningDataHeader')">Export Warning Data</a> for more details.
+                                    <br><img src="../images/help-en/warning-5-1.png">
+                                    <br><img src="../images/help-en/warning-5-1_2.png">
+                                </li>
+                                <li>Select "Warning Video Download" under "Warning".
+                                    <br><img src="../images/help-en/warning-5-2.png">
+                                </li>
+                                <li>Enter the filename and prefix of video filename when necessary.
+                                    <br>Downloaded Format will be: "&lt; ZIP Folder Filename &gt;.zip" and "&lt; Video
+                                    Filename
+                                    Prefix &gt;_&lt; Video ID &gt;.mp4"
+                                    <br>If nothing input, default values: "VideoArchive_&lt; Current Date &gt;.zip"
+                                    and "&lt; Video_ID &gt;.mp4", will be used.
+                                    <br><img src="../images/help-en/warning-5-3.png">
+                                </li>
+                                <li>Enter the video ID of the videos that you wanted to download. If there is more than
+                                    one ID, please put them line by line. Click download.
+                                    <br>Note: Maximum accept 50 Video ID(s).
+                                    <br><img src="../images/help-en/warning-5-4.png">
+                                </li>
+                                <li>Unzip the downloaded file.
+                                    <br>Note: If there is an error in some of the video ID, a file "ERROR_ID.txt" will
+                                    be generate in the ZIP folder, which will contains the wrong video ID.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>Profile</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <ol>
+                    <li>Select the profile you want to view under "Profile".
+                        <br><img src="../images/help-en/grading-1-1.png">
+                    </li>
+                    <li>If you want to check out the company profile, please decide whether to view the
+                        company
+                        profile by date, week, month or year and click "submit".
+                        <br><img src="../images/help-en/grading-2-1.png">
+                        <br>If you are looking at other profiles, please choose your target's licence
+                        plate, vehicle group, driver or driver group.
+                        <br><img src="../images/help-en/grading-2-2.png">
+                    </li>
+                    <li>View Your Grade and Score
+                        <ol type="A">
+                            <li>Basic Information and Grade
+                                <br><b><u>Basic Information</u></b>
+                                <br>This part would show the basic information of the target.
+                                <br>Sometimes, there is no record of the date you selected since the running distance
+                                is less than 20KM. In that case, lastest record will be displayed. "As At Date"
+                                indicates the date of the record that currently displayed.
+                                <br><img src="../images/help-en/grading-3-1.png">
+                                <br><b><u>Grade</u></b>
+                                <br>This part would show the target's grade. Please look at <a href=""
+                                    ng-click="gotoAnchor('gradingHeading')">Grading
+                                    and Score</a> for details.
+                                <br><img src="../images/help-en/grading-3-2a.png">
+                                <br>The grades in other profiles contains an outer circle and an inner
+                                circle. The outer circle refers the company's score with the actual
+                                number and grade in brackets at the right bottom. The inner circle refers
+                                to
+                                the target's value with actual number in the circle.
+                                <br><img src="../images/help-en/grading-3-2b.png">
+                            </li>
+                            <li>Overall Performance<br>
+                                This part integrates target's performance in different warning aspects.
+                                Hover the point can view the corresponding marks. Click on the point can
+                                view the detailed list of the warnings. Check out <a href=""
+                                    ng-click="gotoAnchor('warningHeader')">Warning
+                                    Type</a> for more information.
+                                <br><img src="../images/help-en/grading-3-3.png">
+                                <br>Detail list of the warnings. Click on <i class="fa fa-play-circle"></i> can filter records with video. Click on <i class="fa fa-map-marker"></i> can filter records with GPS location. Click <i class="fa fa-download"></i> can download records as a CSV file. Click on <i class="fa fa-refresh"></i> can refresh the records. Click on <i class="fa fa-times"></i> can exit.
+                                <br><img src="../images/help-en/grading-3-4.png">
+                                <br><img src="../images/help-en/grading-3-4-1.png">
+                                <br>Click on <i class="fa fa-play-circle"></i> to play the video. If <i class="fa fa-pause-circle disable"></i> is shown, an video is pending for upload.
+                                <br><img src="../images/help-en/grading-3-4-2.png">
+                                <br>Click on <i class="fa fa-map-marker"></i> check the GPS location.
+                                <br><img src="../images/help-en/grading-3-4-3.png">
+                            </li>
+                            <li>Bar charts<br>
+                                You may check out bar charts for each warning. In company profile, basic
+                                bar charts are used with the numbers as the latest values.
+                                <br><img src="../images/help-en/grading-3-5.png">
+                                <br>Other profiles would show a line together with the bar chart. The line
+                                shows performance of the company and the bar shows performance of the
+                                target.
+                                <br><img src="../images/help-en/grading-3-6.png">
+                                <br>You may click to view enlarged chart.
+                                <br><img src="../images/help-en/grading-3-7.png">
+                            </li>
+                        </ol>
+                    </li>
+                    <li>You may scroll down to view more information. Click to see corresponding detail
+                        records.
+                        <br><img src="../images/help-en/grading-4-1.png">
+                        <ol type="A">
+                            <li>Click "Dangerous Video" to view details of the dangerous driving records.
+                                Click <i class="fa fa-download"></i> to download all records.
+                                <br>Click <i class="fa fa-play-circle"></i> to play videos. If <i
+                                    class="fa fa-pause-circle disable"></i>
+                                is
+                                shown, an video is pending for upload. If you want to
+                                download videos, please click "Download" under <img class="inline"
+                                    src="../images/help-en/more.png">
+                                to start download.
+                                <br><img src="../images/help-en/grading-4-2.png">
+                            </li>
+                            <li>On the page of company profile, you may view actual warning count, warning
+                                count/ 100KM and safety score by different roles, including company,
+                                vehicle group, vehicle, driver group, driver. On other profile page, you can only view
+                                the records related to the target. Click to see record details.
+                                The example below uses actual warning count as an example. Click <i
+                                    class="fa fa-download"></i>
+                                to download as a CSV file. Check out <a href=""
+                                    ng-click="gotoAnchor('warningHeader')">Warning
+                                    Type</a> for more
+                                information.
+                                <br><img src="../images/help-en/grading-4-3.png">
+                            </li>
+                            <li>In profiles other than company profile, you may expand "Score Ranking" to
+                                check out the ranking.
+                            </li>
+                            <li>You may also view the line chart of the safety score, collision warning
+                                count/100 KM, bad driving behaviour warning count/100 KM and comfortability
+                                warning count/100 KM. Hover the points to check out corresponding score.
+                                <br><img src="../images/help-en/grading-4-4.png">
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section id="setting">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>Setting</h3>
+                        </li>
+                    </ol>
+                </nav>
+                <ol>
+                    <li>Select a category in the drop-down menu of settings.
+                        <br><img src="../images/help-en/settings-1-1.png">
+                    </li>
+                    <li>Corresponding information and operations would be displayed. The following uses vehicle as an
+                        example.
+                        <br><img src="../images/help-en/settings-1-2.png">
+                    </li>
+                    <li>The following are explanations to the menu buttons.
+                        <br><img src="../images/help-en/settings-1-3.png">
+                        <ol class="explanation">
+                            <li>Search</li>
+                            <li>Add single item</li>
+                            <li>Add multiple items
+                                <span class="notes">**Not supported in Device, User, User Role,
+                                    Organization Chart, Email Notification and
+                                    Roster</span>
+                            </li>
+                            <li>Download as CSV <span class="notes">**Not supported in Roster</span></li>
+                            <li>Refresh</li>
+                        </ol>
+                    </li>
+                </ol>
+
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#search"
+                                aria-expanded="true" aria-controls="search">
+                                Search
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="search" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            The following uses vehicle settings as an example. Search function in other settings pages
+                            follows.
+                            <ol>
+                                <li>Enter keywords here.
+                                    <br><img src="../images/help-en/settings-2-1.png">
+                                </li>
+                                <li>Information that contain the keyword would be filtered and shown. This function
+                                    searches information globally without targeting any particlar column. Keyword
+                                    contained in any column would be displayed.
+                                    <br><img src="../images/help-en/settings-2-2.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#addSingle"
+                                aria-expanded="true" aria-controls="addSingle">
+                                Add Single Item
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="addSingle" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            If you want to add a single item, please click on the "add single item" button.
+                            <ol>
+                                <li>Fill in the form and click "OK". The form content differs in different settings.
+                                    The following is the form of vehicle detail as an example.
+                                    <br><img src="../images/help-en/settings-3-1.png">
+                                </li>
+                                <li>Confirmation messages will be prompted upon successful submission.
+                                    <br><img src="../images/help-en/settings-3-2.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#uploadCSV"
+                                aria-expanded="true" aria-controls="uploadCSV">
+                                Add Multiple Items
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="uploadCSV" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            You may upload a single CSV file to insert multiple items. This function is limited for
+                            vehicle detail, vehicle, vehicle group, driver
+                            and driver group maintenance. Different settings has its
+                            own format and columns. Please put the data line by line. A line should contain only one
+                            item.
+                            <ol>
+                                <li>Vehicle
+                                    <br>Format: &lt; licence plate*^ &gt;,&lt; vin^* &gt;,&lt; brand* &gt;,&lt; model*
+                                    &gt;,&lt; type* &gt;,&lt; year* &gt;&lt; status* &gt;,&lt;
+                                    department* &gt;
+                                    <br>Status value only accept 'A' or 'I'.
+                                    <br>For vehicle type code, please
+                                    check out<a href="" ng-click="gotoAnchor('vehicleTypeHeader')"> Vehicle
+                                        Type Code</a> for more details. Default value of
+                                    vehicle type code is 7 (Others).
+                                    <br>Example: <span class="example">GS123,123,Honda,Freed,80,2010,I,GS</span>
+                                </li>
+                                <li>Vehicle Group
+                                    <br>Format: 1,&lt; group name*^ &gt;,&lt; group descpt* &gt;,&lt; department* &gt;
+                                    or; 2,&lt; group name* &gt;,&lt;
+                                    licence plate* &gt;
+                                    <br>All addind group rows (those start with 1) should go before
+                                    add vehicle rows (those start with 2).
+                                    <br>Example：<span class="example">1,GroupA,Testing,GS</span>
+                                </li>
+                                <li>Driver
+                                    <br>Format: &lt; name* &gt;,&lt; driver code*^ &gt;,&lt;
+                                    phone home &gt;,&lt; phone mobile &gt;,&lt;
+                                    phone office &gt;,&lt; date of birth &gt;,&lt; department* &gt;
+                                    <br>Please input date of birth in the format of
+                                    'YYYY-mm-dd'.
+                                    <br>Example: <span class="example">28,11155,,,,,,GS</span>
+                                </li>
+                                <li>Driver Group
+                                    <br>Format: 1,&lt; group name*^ &gt;,&lt; group descpt* &gt;,&lt; department* &gt;
+                                    or; 2,&lt; group name* &gt;,&lt;
+                                    driver name* &gt;
+                                    <br>All adding group rows (those start with 1) should go before
+                                    adding driver rows (those start with 2).
+                                    <br>If there are drivers with same name, only the first one
+                                    will be added to group.
+                                    <br>Example：<span class="example">2,GroupA,28</span>
+                                </li>
+                            </ol>
+                            Click on the upload icon, select your file and click "open".
+                            <br>
+                            <div>* required fields</div>
+                            <div>^ unique fields</div>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#downloadCSV"
+                                aria-expanded="true" aria-controls="downloadCSV">
+                                Download as a File
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="downloadCSV" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            You can download all data as a CSV file. Click the download icon and download will start.
+                            <br>In Organization Chart settings, a PNG image file will be downloaded.
+                            <br>The following is an downloaded example of vehicle.
+                            <br><img src="../images/help-en/settings-5-1.png">
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="orgChartHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#orgChart"
+                                aria-expanded="true" aria-controls="orgChart">
+                                Organization Chart Maintenance
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="orgChart" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>Select "Organization Chart" under "Settings".
+                                    <br><img src="../images/help-en/settings-8-1.png">
+                                </li>
+                                <li>Hover to each department block can view the possible expand or collapse directions.
+                                    <br>Note: Each department can only view/add/edit the data belongs to it or belongs
+                                    to the departments under it.
+                                    <br><img src="../images/help-en/settings-8-2.png">
+                                </li>
+                                <li>Click to view department details.
+                                    <br><img src="../images/help-en/settings-8-3.png">
+                                </li>
+                                <li>Click <img class="inline" src="../images/help-en/deptFunc.png"> to add/edit/delete
+                                    new
+                                    department.
+                                    <br>The department of the current user is not deletable.
+                                    <br><img src="../images/help-en/settings-8-4.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#emailNoti"
+                                aria-expanded="true" aria-controls="emailNoti">
+                                Email Notification Maintenance
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="emailNoti" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <ol>
+                                <li>Select "Email Notification" under settings.
+                                    <br><img src="../images/help-en/settings-7-1.png">
+                                </li>
+                                <li>Toggle <img class="inline" src="../images/help-en/toggle.png"> can switch on email
+                                    subscription of the corresponding report.
+                                    <br><img src="../images/help-en/settings-7-2.png">
+                                </li>
+                                <li>Click <img class="inline" src="../images/help-en/edit.png"> can edit the recipient
+                                    list.
+                                    <br><img src="../images/help-en/settings-7-3.png">
+                                </li>
+                                <li>Click <img class="inline" src="../images/help-en/remove.png"> to remove the email
+                                    address from the subscription list.
+                                    <br>If you want to add a new email address to the list, fill the new email address
+                                    in the
+                                    input box and click <img class="inline" src="../images/help-en/add.png">. Click
+                                    OK.
+                                    <br><img src="../images/help-en/settings-7-4.png">
+                                </li>
+                                <li>If you want to receive reports that are not shown, please contact us.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="rosterHeading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#roster"
+                                aria-expanded="true" aria-controls="roster">
+                                Roster
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="roster" class="collapse" aria-labelledby="rosterHeading">
+                        <div class="card-body">
+                            <ol>
+                                <li>Select "Roster" under "Setting".
+                                    <br><img src="../images/help-en/settings-6-1.png">
+                                </li>
+                                <li>Copy the prepared roster to the textarea. Click "submit".
+                                    <br><img src="../images/help-en/settings-6-2.png">
+                                </li>
+                                <li>Confirmation message will be prompted upon successful submission.
+                                    <br><img src="../images/help-en/settings-6-3.png">
+                                </li>
+                                <li>Check if the driver name is added under live warning.
+                                    <br><img src="../images/help-en/settings-6-4.png">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="abbr&symbol">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>Abbreviations and Symbols</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="card">
+                    <div class="card-header" id="warningHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#warningType"
+                                aria-expanded="true" aria-controls="warningType">
+                                Warning Type
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="warningType" class="collapse show" aria-labelledby="warningsInShortHeading">
+                        <div class="card-body">
+                            <table class="table table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Warning Type</th>
+                                        <th scope="col">Button</th>
+                                        <th scope="col">Marker</th>
+                                        <th scope="col">Fullname</th>
+                                        <th scope="col">Description</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <!-- <tr>
+                                        <th scope="row">FCW</th>
+                                        <td><img src="../images/help-en/icon-bar-FCW_L1.png"></td>
+                                        <td><img src="../images/help-en/FCW_L1.png"></td>
+                                        <td>Forward Collision Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">FCW</th>
+                                        <td><img src="../images/help-en/icon-bar-FCW_L2.png"></td>
+                                        <td><img src="../images/help-en/FCW_L2.png"></td>
+                                        <td>Forward Collision Warning</td>
+                                        <td>Alerts driver to react and avoid collision when the risk of an impending forward collision with vehicle/pedestrian/obstacles is too high.</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">LDW</th>
+                                        <td><img src="../images/help-en/icon-bar-LDW_L1.png"></td>
+                                        <td><img src="../images/help-en/LDW_L1.png"></td>
+                                        <td>Lane Departure Warning</td>
+                                        <td>alerts driver when the car begins to swerve from the driving lane over 20cm
+                                        </td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">LDW</th>
+                                        <td><img src="../images/help-en/icon-bar-LDW_L2.png"></td>
+                                        <td><img src="../images/help-en/LDW_L2.png"></td>
+                                        <td>Lane Departure Warning</td>
+                                        <td>Alerts driver when the car begins to swerve from the driving lane without giving correct direction indicator signal.</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">HMW</th>
+                                        <td><img src="../images/help-en/icon-bar-HMW_L1.png"></td>
+                                        <td><img src="../images/help-en/HMW_L1.png"></td>
+                                        <td>Headway Monitoring Warning</td>
+                                        <td>alerts driver when the headway is less than or equal to 0.6 seconds</td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">HMW</th>
+                                        <td><img src="../images/help-en/icon-bar-HMW_L2.png"></td>
+                                        <td><img src="../images/help-en/HMW_L2.png"></td>
+                                        <td>Headway Monitoring Warning</td>
+                                        <td>Alerts driver when the headway is less than predefined distance (in seconds) value.</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">AAW</th>
+                                        <td><img src="../images/help-en/icon-bar-AAW_L1.png"></td>
+                                        <td><img src="../images/help-en/AAW_L1.png"></td>
+                                        <td>Abrupt Acceleration Warning</td>
+                                        <td>counted when vehicle speed accelerated over 14km/h within a second</td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">AAW</th>
+                                        <td><img src="../images/help-en/icon-bar-AAW_L2.png"></td>
+                                        <td><img src="../images/help-en/AAW_L2.png"></td>
+                                        <td>Abrupt Acceleration Warning</td>
+                                        <td>Vehicle speed accelerated over predefined speed change value within a second.</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">ABW</th>
+                                        <td><img src="../images/help-en/icon-bar-ABW_L1.png"></td>
+                                        <td><img src="../images/help-en/ABW_L1.png"></td>
+                                        <td>Abrupt Braking Warning</td>
+                                        <td>counted when vehicle speed decelerated over 14km/h within a second</td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">ABW</th>
+                                        <td><img src="../images/help-en/icon-bar-ABW_L2.png"></td>
+                                        <td><img src="../images/help-en/ABW_L2.png"></td>
+                                        <td>Abrupt Braking Warning</td>
+                                        <td>Vehicle speed decelerated over predefined speed change value within a second.</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">ATW</th>
+                                        <td><img src="../images/help-en/icon-bar-ATW_L1.png"></td>
+                                        <td><img src="../images/help-en/ATW_L1.png"></td>
+                                        <td>Abrupt Turn Warning</td>
+                                        <td>counted when the turning angle is greater than 40 degrees and vehicle speed
+                                            reduces less than 70% within 2 seconds when speed over 40km/h</td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">ATW</th>
+                                        <td><img src="../images/help-en/icon-bar-ATW_L2.png"></td>
+                                        <td><img src="../images/help-en/ATW_L2.png"></td>
+                                        <td>Abrupt Turning Warning</td>
+                                        <td>The centripetal acceleration over predefined value within two seconds.</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">FDW [1]</th>
+                                        <td><img src="../images/help-en/icon-bar-FDW_L1.png"></td>
+                                        <td><img src="../images/help-en/FDW_L1.png"></td>
+                                        <td>Drowsing Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <tr>
+                                        <th scope="row">DWW</th>
+                                        <td><img src="../images/help-en/icon-bar-FDW_L2.png"></td>
+                                        <td><img src="../images/help-en/FDW_L2.png"></td>
+                                        <td>Drowsing Warning</td>
+                                        <td>Alerts driver when the driver is drowsy lasting longer than predefined duration value.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">CLW</th>
+                                        <td><img src="../images/help-en/icon-bar-CLW_L2.png"></td>
+                                        <td><img src="../images/help-en/CLW_L2.png"></td>
+                                        <td>Calling On Phone Warning</td>
+                                        <td>Alerts driver when the driver is calling on phone lasting longer than predefined duration value.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">DTW</th>
+                                        <td><img src="../images/help-en/icon-bar-DTW_L2.png"></td>
+                                        <td><img src="../images/help-en/DTW_L2.png"></td>
+                                        <td>Distraction Warning</td>
+                                        <td>Alerts driver when the driver is distracted and inattentive lasting longer than predefined duration value.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">NDW</th>
+                                        <td><img src="../images/help-en/icon-bar-NDW.png"></td>
+                                        <td><img src="../images/help-en/NDW.png"></td>
+                                        <td>No Driver's Portrait Warning</td>
+                                        <td>Alerts driver when DMS visual sensor failed to detect driver's portrait lasting longer than predefined duration value.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">YW</th>
+                                        <td><img src="../images/help-en/icon-bar-YW_L2.png"></td>
+                                        <td><img src="../images/help-en/YW_L2.png"></td>
+                                        <td>Yawning Warning</td>
+                                        <td>Alerts driver when the driver is yawning lasting longer than predefined duration value.</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">CLW</th>
+                                        <td><img src="../images/help-en/icon-bar-CLW_L1.png"></td>
+                                        <td><img src="../images/help-en/CLW_L1.png"></td>
+                                        <td>Calling Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!--  <tr>
+                                        <th scope="row">接打電話</th>
+                                        <td><img src="../images/help-en/icon-bar-CLW_L1.png"></td>
+                                        <td><img src="../images/help-en/CLW_L1.png"></td>
+                                        <td>接打電話</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">SMW</th>
+                                        <td><img src="../images/help-en/icon-bar-SMW_L1.png"></td>
+                                        <td><img src="../images/help-en/SMW_L1.png"></td>
+                                        <td>Smoking Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">抽煙</th>
+                                        <td><img src="../images/help-en/icon-bar-SMW_L2.png"></td>
+                                        <td><img src="../images/help-en/SMW_L2.png"></td>
+                                        <td>抽煙</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">DTW</th>
+                                        <td><img src="../images/help-en/icon-bar-DTW_L1.png"></td>
+                                        <td><img src="../images/help-en/DTW_L1.png"></td>
+                                        <td>Distraction Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">分神駕駛</th>
+                                        <td><img src="../images/help-en/icon-bar-DTW_L2.png"></td>
+                                        <td><img src="../images/help-en/DTW_L2.png"></td>
+                                        <td>分神駕駛</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">DAW</th>
+                                        <td><img src="../images/help-en/icon-bar-DAW_L1.png"></td>
+                                        <td><img src="../images/help-en/DAW_L1.png"></td>
+                                        <td>Driver Abnormality Warning</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">司機異常</th>
+                                        <td><img src="../images/help-en/icon-bar-DAW_L2.png"></td>
+                                        <td><img src="../images/help-en/DAW_L2.png"></td>
+                                        <td>司機異常</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">BCW</th>
+                                        <td><img src="../images/help-en/icon-bar-LRAW.png"></td>
+                                        <td><img src="../images/help-en/LRAW.png"></td>
+                                        <td>Left Rear Approaching Warning</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">SPW</th>
+                                        <td><img src="../images/help-en/icon-bar-SPW_L1.png"></td>
+                                        <td><img src="../images/help-en/SPW_L1.png"></td>
+                                        <td>Speeding Warning</td>
+                                        <td>a visual alert to driver when host vehicle speed over the road sign speed
+                                        </td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <th scope="row">超速</th>
+                                        <td><img src="../images/help-en/icon-bar-SPW_L2.png"></td>
+                                        <td><img src="../images/help-en/SPW_L2.png"></td>
+                                        <td>超速</td>
+                                        <td>當車輛行駛速度超出路面限定速度時，提示司機超速。</td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="driverActionHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#driverAction"
+                                aria-expanded="true" aria-controls="driverAction">
+                                Driver Action
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="driverAction" class="collapse show" aria-labelledby="warningsInShortHeading">
+                        <div class="card-body">
+                            <table class="table table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Symbols</th>
+                                        <th scope="col">Description</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td><img src="../images/help-en/left_turn.png"></td>
+                                        <td>Turn on left indicator</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../images/help-en/right_turn.png"></td>
+                                        <td>Turn on right indicator</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../images/help-en/breaks.png"></td>
+                                        <td>Brakes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="card-header" id="vehicleTypeHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse show" data-target="#vehicleType"
+                                aria-expanded="true" aria-controls="vehicleType">
+                                Vehicle Type
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="vehicleType" class="collapse show" aria-labelledby="vehicleTypeHeading">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Vehicle Type</th>
+                                        <th scope="col">Vehicle Icon</th>
+                                        <th scope="col">Vehicle Type Code (For Importing multiple items) </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{{"_CAR" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/_CAR.svg#_CAR" />
+                                            </svg></td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"_VAN" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/_VAN.svg#_VAN" />
+                                            </svg></td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"MINIBUS" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/MINIBUS.svg#MINIBUS" />
+                                            </svg></td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"_BUS" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/_BUS.svg#_BUS" />
+                                            </svg></td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"_TRUCK" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/_TRUCK.svg#_TRUCK" />
+                                            </svg></td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"CONCRETE_TRUCK" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/CONCRETE_TRUCK.svg#CONCRETE_TRUCK" />
+                                            </svg></td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">{{"OTHERS_DEFAULT" | translate}}</th>
+                                        <td><svg class="vehtype">
+                                                <use href="../images/veh_type/OTHERS_DEFAULT.svg#OTHERS_DEFAULT" />
+                                            </svg></td>
+                                        <td>7</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="appendix">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active text-dark" aria-current="page">
+                            <h3>Appendix</h3>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="card">
+
+                    <div class="card-header" id="gradingHeading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#grading"
+                                aria-expanded="true" aria-controls="grading">
+                                Grading and Score
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="grading" class="collapse show" aria-labelledby="gradingHeading">
+                        <div class="card-body">
+                            <table class="table table-striped" style="width: 20% !important;" id="gradeTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Score range</th>
+                                        <th scope="col">Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">90.00 - 100</th>
+                                        <td>A+</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">80.00 - 89.99</th>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">70.00 - 79.99</th>
+                                        <td>A-</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">60.00 - 69.99</th>
+                                        <td>B+</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">50.00 - 59.99</th>
+                                        <td>B</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">40.00 - 49.99</th>
+                                        <td>B-</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">30.00 - 39.99</th>
+                                        <td>C</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">20.00 - 29.99</th>
+                                        <td>D</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">10.00 - 19.99</th>
+                                        <td>E</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">00.00 - 09.99</th>
+                                        <td>F</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card-header" id="allRecommendationHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#allRecommendation"
+                                aria-expanded="true" aria-controls="allRecommendation">
+                                All Recommendations
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="allRecommendation" class="collapse show" aria-labelledby="warningsInShortHeading">
+                        <div class="card-body">
+                            <table class="table table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Warnings</th>
+                                        <th scope="col">Recommendations</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>FCW</td>
+                                        <td>Please pay attention to the pedestrians / vehicles / obstacles in front and slow down when necessary. Avoid driving towards the pedestrians / vehicles / obstacles with high speed.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LDW</td>
+                                        <td>Please avoid swerving from driving lane. Give a direction indicator signal before switching lanes.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>HMW</td>
+                                        <td>Please leave a long enough headway between your vehicle and the front vehicle. Avoid staying too close.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AAW</td>
+                                        <td>Please avoid sudden acceleration when driving.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ABW</td>
+                                        <td>Please avoid sudden braking. When there is a changing traffic light, save plenty of time for slowing down.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ATW</td>
+                                        <td>Please avoid cornering with high speed, slow down during cornering when needed.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DWW</td>
+                                        <td>Please pay attention to road situation during driving, avoid fatigue driving.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CLW</td>
+                                        <td>Please keep your hands on the steering wheel, avoid calling on phone during driving.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DTW</td>
+                                        <td>Please pay attention to the front road situation during driving, avoid distracted driving.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NDW</td>
+                                        <td>Please ensure the normal operation of DMS visual sensor.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>YW</td>
+                                        <td>Please get sufficient sleep before driving, avoid fatigue driving.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button ng-click="topFunction()" id="goToTopBtn" title="Go to top">^ Top</button>
+</div>

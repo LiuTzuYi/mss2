@@ -1,0 +1,66 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:31:48
+*/ -->
+<div class="login-wrapper">
+  <div class="login-formContent">
+    <!--Company-->
+    <div class="login-align">
+      <h1 class="login-comp-active"></h1>
+      <div>
+        <img src="../images/logo.png" id="login-logo" alt="Logo" />
+      </div>
+    </div>
+    <!--Login Form-->
+    <form class="login-form" name="login">
+      <br>
+      <div class="login-text-title">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <label>{{'username'|translate}}:</label>
+      </div>
+      <div class="login-align">
+        <input name="loginname" type="text" required class="login-name" ng-model="username" ng-class="(attempt||login.loginname.$dirty||login.loginname.$touched) && login.loginname.$error.required?'invalid-login-name':''" autocomplete="off">
+      </div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||login.loginname.$dirty||login.loginname.$touched) && login.loginname.$error.required" translate="required" translate-value-column="{{'username'|translate}}"></div>
+      <div class="login-text-title">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <label>{{'password'|translate}}:</label>
+      </div>
+      <div class="login-align">
+        <input name="loginpassword" type="{{typeLoginPwd}}" class="login-password" required ng-model="password" ng-class="(attempt||login.loginpassword.$dirty||login.loginpassword.$touched) && login.loginpassword.$error.required?'invalid-login-password':''" autocomplete="off">
+        <div class="login-password-show-button" ng-click="typeLoginPwd=='password'?typeLoginPwd='text':typeLoginPwd='password'">
+          <i class="fa fa-eye-slash" aria-hidden="true" ng-if="typeLoginPwd=='password'"></i>
+          <i class="fa fa-eye" aria-hidden="true" ng-if="typeLoginPwd=='text'"></i>
+        </div>
+      </div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||login.loginpassword.$dirty||login.loginpassword.$touched) && login.loginpassword.$error.required" translate="required" translate-value-column="{{'password'|translate}}"></div>
+      <div class="login-text-title">
+        <i class="fa fa-language" aria-hidden="true"></i>
+        <label>{{'language'|translate}}:</label>
+      </div>
+      <div align="center">
+        <div class="login-select">
+          <select ng-model="lang" ng-change="updatelang()">
+            <option value="en">English</option>
+            <option value="zh-tw">繁體中文</option>
+            <option value="zh-cn">简体中文</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div align="center">
+        <div class="login-submit">
+          <button type="submit" class="btn btn-primary btn-block" ng-click="attempt=true;login.$valid&&toLogin()">{{'login'|translate}}</button>
+          <p ng-click="toForgetPwd()">( {{'forgetPwd'|translate}}? )</p>
+        </div>
+      </div>
+    </form>
+    <!--Footer-->
+    <div class="login-formFooter">
+      <p>{{'copyRight'|translate:dataCoVer}} | {{'version'|translate:dataCoVer}}</p>
+      <p><a class="login-underlineHover" href="https://greensafety.com.hk/" target="_blank">{{'GST'|translate}}</a> | {{'allRR'|translate}}</p>
+    </div>
+  </div>
+</div>

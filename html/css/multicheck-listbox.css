@@ -1,0 +1,183 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:47:16
+*/
+
+/* multicheck-listbox.css
+ * This file provides css styles in for multicheck-listbox component.
+ */
+
+div[multicheck-listbox]{
+	height: 200px;
+	background-color: #ddd;
+	margin-bottom: 12px;
+	border-bottom-left-radius: .25rem;
+	border-bottom-right-radius: .25rem;
+}
+
+div[multicheck-listbox] .checkmenu-list{
+	padding: 4px 0 .5rem 0;
+	min-width: 10rem;
+	float: left;
+	font-size: 1rem;
+	color: #212529;
+	background-color: transparent;
+	margin: 0 !important;
+	overflow: hidden;
+	display: block;
+	width: 100%;
+	height: inherit;
+}
+
+div[multicheck-listbox] .checkmenu-list>li{
+	display: block;
+}
+
+div[multicheck-listbox] .checkmenu-list .checkmenu-list-header{
+	display: block;
+	padding: 4px 8px;
+	margin-bottom: 0;
+	font-size: .875rem;
+	color: #868e96;
+	white-space: nowrap;
+}
+
+div[multicheck-listbox] .checkmenu-list .checkmenu-list-header>input{
+	line-height: 12px !important;
+	font-size: 12px !important;
+}
+
+div[multicheck-listbox] .checkmenu-list .checkmenu-list-header>input:focus{
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da;
+}
+
+div[multicheck-listbox] .checkmenu-list .search-top.divider{
+    margin: 3px 0 0 0;
+}
+
+div[multicheck-listbox] .checkmenu-list .search-bottom.divider{
+    margin: 0;
+}
+
+div[multicheck-listbox] .checkmenu-list .divider{
+    height: 1px;
+    margin: 5px 0;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+div[multicheck-listbox] .checkmenu-list li > a{
+    display: block;
+    padding: 3px 10px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.428571429;
+    color: #333;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+div[multicheck-listbox] .checkmenu-list > .all-check{
+	white-space: nowrap;
+	font-size: 14px;
+}
+
+div[multicheck-listbox] .checkmenu-list > .all-check > a{
+    display: inline-block;
+    width: 50%;
+    cursor: pointer;
+    text-align: center;
+    padding: 0 10px;
+}
+
+div[multicheck-listbox] .checkmenu-list > .all-check > a .fa-times{
+	margin-left: -16px;
+}
+
+div[multicheck-listbox] .checkmenu-list > .all-check > a:hover{
+	color: #5e78ff;
+}
+
+div[multicheck-listbox] .checkmenu-list > .all-check > a > i{
+	margin-right: 8px;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap li md-checkbox{
+	margin-bottom: 0;
+	transform: scale(.8);
+	transform-origin: top left;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap li md-checkbox>.md-label{
+	-webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    -o-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap li{
+	display: block;
+	margin-bottom: 0;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap li.single-row{
+	height: 28.86px;
+    box-sizing: border-box;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap{
+	overflow-y: auto;
+	height: 134px;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap .vertical-container{
+	height: 134px;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap > .no-options > p{
+	margin-bottom: 0;
+    cursor: default;
+    padding: 5px 12px;
+    height: 52px;
+    vertical-align: middle;
+    display: table-cell;
+    width: 270px;
+    text-align: center;
+    font-size: 14px;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap > .no-options > p > i{
+	margin-right: 8px;
+    width: 16px;
+    text-align: center;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap li>a>i{
+	float: right;
+	transform: scale(.8);
+	transform-origin: top right;
+	padding: 2.5px 10px;
+	cursor: pointer;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap li>a>i:focus{
+	outline: none;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap li>ul{
+	padding-left: 25px;
+}
+
+div[multicheck-listbox] .checkmenu-list .checklist-content-wrap li.single-row md-checkbox>.md-label{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 229px;
+}

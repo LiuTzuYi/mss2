@@ -1,0 +1,170 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-08-26 11:48:20
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-05 18:44:52
+*/ -->
+
+<div class="adminpanel-wrap edit">
+	<h3 class="header"><span class="navigate" ng-click="toNav()">Admin Panel</span></h3>
+	<h5 class="header sub"><span class="navigate" ng-click="toList()">Company Management</span></h5>
+	<p class="header2"><span ng-click="toList()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</span> | <span ng-click="toLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span></p>
+	<hr>
+	<form name="editCompany" ng-cloak autocomplete="off" class="edit-form">
+        <div class="display-info">
+            <label for="licence">Company Code: {{company.company_code}}</label>
+            <label for="licence">Company Name: {{company.company_name}}</label>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Timezone</label>
+    		<input type="text" class="form-control" name="timezone" required ng-model="editcompany.timezone" pattern="([+|-])([0-9]|1[0-9]|2[0-3])(:)([0-5][0-9])">
+    		<div class="invalid-feedback-custom" ng-if="(attempt||editCompany.timezone.$dirty||editCompany.timezone.$touched) && !editCompany.timezone.$valid">Timezone should in pattern likes "+8:00".</div>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Acc. Lock Times
+    			<p class="description">* Disable user account after # of incorrect login attempt(s).</p>
+    		</label>
+    		<input type="text" class="form-control" name="pwd_lockout_cnt" required ng-model="editcompany.pwd_lockout_cnt" pattern="([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])">
+    		<div class="invalid-feedback-custom" ng-if="(attempt||editCompany.pwd_lockout_cnt.$dirty||editCompany.pwd_lockout_cnt.$touched) && !editCompany.pwd_lockout_cnt.$valid">Acc. Lock Times only allow number, and maximun value is 255.</div>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Password Req. Length
+    			<p class="description">* Minimun password length for password of user account.</p>
+    		</label>
+    		<input type="text" class="form-control" name="pwd_length" required ng-model="editcompany.pwd_length" pattern="([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])">
+    		<div class="invalid-feedback-custom" ng-if="(attempt||editCompany.pwd_length.$dirty||editCompany.pwd_length.$touched) && !editCompany.pwd_length.$valid">Password Req. Length only allow number, and maximun value is 255.</div>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Password Req. Rule
+    			<p class="description">* Minimun types of charaters for password of user account. Types: &lt;A-Z&gt;, &lt;a-z&gt;, &lt;0-9&gt;, special charaters.</p>
+    		</label>
+            <select class="form-control select-item" id="pwd_rule" ng-model="editcompany.pwd_rule" ng-options="rule for rule in pwdRules"></select>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Password Change Limit
+    			<p class="description">* Only allow user to change password once within 24 hours.</p>
+    		</label>
+            <div class="radio-option">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="pwd_change_limit" ng-model="editcompany.pwd_change_limit" ng-value="'Yes'">Enable
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="pwd_change_limit" ng-model="editcompany.pwd_change_limit" ng-value="'No'">Disable
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Password History Records
+    			<p class="description">* Changed password must be different with the history records.</p>
+    		</label>
+    		<input type="text" class="form-control" name="pwd_history" required ng-model="editcompany.pwd_history" pattern="([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])">
+    		<div class="invalid-feedback-custom" ng-if="(attempt||editCompany.pwd_history.$dirty||editCompany.pwd_history.$touched) && !editCompany.pwd_history.$valid">Password History Records only allow number, and maximun value is 255.</div>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Password Renewal Days
+    			<p class="description">* Force user to change password after # of day(s).</p>
+    		</label>
+    		<div class="check-option">
+	    		<div class="form-check-inline">
+	              <label class="form-check-label">
+	                <input type="checkbox" class="form-check-input" ng-model="pwd_renewal_day_enable" ng-true-value="'Y'" ng-false-value="'N'" ng-change="enablePwdRenew()">Enabled
+	              </label>
+	            </div>
+	        </div>
+			<input type="text" class="form-control" name="pwd_renewal_day_display" ng-model="pwd_renewal_day_display" readonly ng-if="pwd_renewal_day_enable=='N'">
+			<input type="text" class="form-control" name="pwd_renewal_day" required ng-model="editcompany.pwd_renewal_day" ng-if="pwd_renewal_day_enable=='Y'" pattern="([0-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-2][0-9][0-9][0-9][0-9]|30000)">
+			<div class="invalid-feedback-custom" ng-if="pwd_renewal_day_enable=='Y' && (attempt||editCompany.pwd_renewal_day.$dirty||editCompany.pwd_renewal_day.$touched) && !editCompany.pwd_renewal_day.$valid">Password Renewal Days only allow number, and maximun value is 30000.</div>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Status</label>
+            <div class="radio-option">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="status" ng-model="editcompany.status" ng-value="'Active'">Active
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="status" ng-model="editcompany.status" ng-value="'Inactive'">Inactive
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="licence">Disclaimer (.html)
+                <p class="description">* Alert disclaimer before login.</p>
+            </label>
+            <div class="check-option">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" ng-model="editcompany.banner" ng-true-value="'Y'" ng-false-value="'N'" ng-change="enableDisclaimer()">Enabled
+                  </label>
+                </div>
+            </div>
+            <p class="uploadfile" ng-if="editcompany.banner=='Y'">File (default): {{file_default.name||editcompany.banner_default}}</p>
+            <label class="custom-file w-100 uploadfile-button" ng-if="editcompany.banner=='Y'">
+                <input type="file" name="selectedfile_default" class="custom-file-input" accept=".html,text/html" custom-on-change="uploadFile">
+                <span class="custom-file-control form-control"><i class="fa fa-file"></i>&nbsp;&nbsp;&nbsp;&nbsp;Browse</span>
+            </label>
+            <div class="invalid-feedback-custom" ng-if="editcompany.banner=='Y' && (attempt||addDrvCard.selectedfile.$dirty||addDrvCard.selectedfile.$touched) && (!file_default && !editcompany.banner_default)">Must select a file.</div>
+            <div class="check-option" ng-show="editcompany.banner=='Y'">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" ng-model="disclaimer_en" ng-true-value="'Y'" ng-false-value="'N'">EN
+                  </label>
+                </div>
+            </div>
+            <p class="uploadfile" ng-if="editcompany.banner=='Y' && disclaimer_en=='Y'">File (en): {{file_en.name||editcompany.banner_en}}</p>
+            <label class="custom-file w-100 uploadfile-button" ng-if="editcompany.banner=='Y' && disclaimer_en=='Y'">
+                <input type="file" name="selectedfile_en" class="custom-file-input" accept=".html,text/html" custom-on-change="uploadFile">
+                <span class="custom-file-control form-control"><i class="fa fa-file"></i>&nbsp;&nbsp;&nbsp;&nbsp;Browse</span>
+            </label>
+            <div class="invalid-feedback-custom" ng-if="editcompany.banner=='Y' && disclaimer_en=='Y' && (attempt||addDrvCard.selectedfile.$dirty||addDrvCard.selectedfile.$touched) && (!file_en && !editcompany.banner_en)">Must select a file.</div>
+            <div class="check-option" ng-show="editcompany.banner=='Y'">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" ng-model="disclaimer_zhtw" ng-true-value="'Y'" ng-false-value="'N'">ZH-TW
+                  </label>
+                </div>
+            </div>
+            <p class="uploadfile" ng-if="editcompany.banner=='Y' && disclaimer_zhtw=='Y'">File (zh-tw): {{file_zhtw.name||editcompany.banner_zhtw}}</p>
+            <label class="custom-file w-100 uploadfile-button" ng-if="editcompany.banner=='Y' && disclaimer_zhtw=='Y'">
+                <input type="file" name="selectedfile_zhtw" class="custom-file-input" accept=".html,text/html" custom-on-change="uploadFile">
+                <span class="custom-file-control form-control"><i class="fa fa-file"></i>&nbsp;&nbsp;&nbsp;&nbsp;Browse</span>
+            </label>
+            <div class="invalid-feedback-custom" ng-if="editcompany.banner=='Y' && disclaimer_zhtw=='Y' && (attempt||addDrvCard.selectedfile.$dirty||addDrvCard.selectedfile.$touched) && (!file_zhtw && !editcompany.banner_zhtw)">Must select a file.</div>
+            <div class="check-option" ng-show="editcompany.banner=='Y'">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" ng-model="disclaimer_zhcn" ng-true-value="'Y'" ng-false-value="'N'">ZH-CN
+                  </label>
+                </div>
+            </div>
+            <p class="uploadfile" ng-if="editcompany.banner=='Y' && disclaimer_zhcn=='Y'">File (zh-cn): {{file_zhcn.name||editcompany.banner_zhcn}}</p>
+            <label class="custom-file w-100 uploadfile-button" ng-if="editcompany.banner=='Y' && disclaimer_zhcn=='Y'">
+                <input type="file" name="selectedfile_zhcn" class="custom-file-input" accept=".html,text/html" custom-on-change="uploadFile">
+                <span class="custom-file-control form-control"><i class="fa fa-file"></i>&nbsp;&nbsp;&nbsp;&nbsp;Browse</span>
+            </label>
+            <div class="invalid-feedback-custom" ng-if="editcompany.banner=='Y' && disclaimer_zhcn=='Y' && (attempt||addDrvCard.selectedfile.$dirty||addDrvCard.selectedfile.$touched) && (!file_zhcn && !editcompany.banner_zhcn)">Must select a file.</div>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Subscribed Functions</label>
+            <div class="check-option">
+                <div class="form-check-inline" ng-repeat="func in funcs">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="{{func}}" ng-checked="editcompany.func.indexOf(func) > -1" ng-click="toggleSelection(func)">{{func|translate}}
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+        	<button type="button" ng-click="attempt=true;editCompany.$valid&&disclaimerCheck()&&submit()" class="btn">
+				<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Submit
+			</button>
+		</div>
+	</form>
+</div>

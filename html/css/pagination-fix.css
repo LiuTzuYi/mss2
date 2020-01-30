@@ -1,0 +1,29 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:47:45
+*/
+
+/* bootstrap-fix.css
+ * This file provides smart-table pagination styles.
+ */
+
+.page-link{
+	-webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    -o-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    cursor: pointer;
+}
+
+.page-link.page-input{
+	cursor: default;
+}
+
+.page-item.active .page-link:hover{
+	color: #fff !important;
+}

@@ -1,0 +1,70 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:32:15
+*/ -->
+<div class="updatepwd-wrapper">
+  <div class="updatepwd-formContent">
+    <div class="updatepwd-header">
+      <img src="../images/logo-header.png" id="updatepwd-logo" alt="Logo" ng-click="toLogin()" />
+    </div>
+    <!--resetpwd Form-->
+    <form class="updatepwd-form" name="updatepwd">
+      <div class="updatepwd-title">
+        <h4>{{'updatePwd'|translate}}</h4>
+        <p ng-if="type=='expired'">{{'updatePwdMessageExpired'|translate}}</p>
+        <p ng-if="type=='first-log'">{{'updatePwdMessageFirst'|translate}}</p>
+      </div>
+      <div class="updatepwd-field-title">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <label style="margin-left: 8px;">{{'username'|translate}}: {{username}}</label>
+      </div>
+      <div class="updatepwd-field-title">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <label>{{'oldPwd'|translate}}:</label>
+      </div>
+      <div>
+        <input type="{{typeoldPwd}}" class="updatepwd-password" name="oldpassword" required ng-model="oldpassword" ng-model-options="{allowInvalid: true}" ng-class="(attempt||updatepwd.oldpassword.$dirty||updatepwd.oldpassword.$touched) && updatepwd.oldpassword.$error.required?'invalid-password':''" ng-trim="false" autocomplete="off">
+        <div class="updatepwd-password-show-button" ng-click="typeoldPwd=='password'?typeoldPwd='text':typeoldPwd='password'">
+          <i class="fa fa-eye-slash" aria-hidden="true" ng-if="typeoldPwd=='password'"></i>
+          <i class="fa fa-eye" aria-hidden="true" ng-if="typeoldPwd=='text'"></i>
+        </div>
+      </div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||updatepwd.oldpassword.$dirty||updatepwd.oldpassword.$touched) && updatepwd.oldpassword.$error.required" translate="required" translate-value-column="{{'password'|translate}}"></div>
+      <div class="updatepwd-field-title">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <label>{{'newPwd'|translate}}:</label>
+      </div>
+      <div>
+        <input type="{{typePwd}}" class="updatepwd-password" name="password" required ng-model="password" ng-model-options="{allowInvalid: true}" ng-maxlength="40" ng-minlength="passwordmin" ng-pattern="passwordregex" ng-class="((attempt||updatepwd.password.$dirty||updatepwd.password.$touched) && !updatepwd.password.$valid)||(!updatepwd.oldpassword.$error.required && oldpassword==password) ?'invalid-password':''" ng-trim="false" ng-change="newconfirmregex(password)" autocomplete="off">
+        <div class="updatepwd-password-show-button" ng-click="typePwd=='password'?typePwd='text':typePwd='password'">
+          <i class="fa fa-eye-slash" aria-hidden="true" ng-if="typePwd=='password'"></i>
+          <i class="fa fa-eye" aria-hidden="true" ng-if="typePwd=='text'"></i>
+        </div>
+      </div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||updatepwd.password.$dirty||updatepwd.password.$touched) && !updatepwd.oldpassword.$error.required && !updatepwd.password.$error.required && oldpassword==password">{{"differentPwdRequired"|translate}}</div>
+      <div class="invalid-feedback-custom" ng-show="updatepwd.password.$error.maxlength && oldpassword!==password" translate="tooLong" translate-value-column="{{'password'|translate}}"></div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||updatepwd.password.$dirty||updatepwd.password.$touched) && (updatepwd.password.$error.required||(!updatepwd.password.$error.required && updatepwd.password.$error.pattern && oldpassword!==password && !updatepwd.password.$error.maxlength)||updatepwd.password.$error.minlength)" style="white-space: pre-wrap;">{{'passwordRegex'|translate:pwdSetting}}</div>
+      <div class="updatepwd-field-title">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        <label>{{'confirmNewPwd'|translate}}:</label>
+      </div>
+      <div>
+        <input type="{{typePwdConfirm}}" class="updatepwd-password" name="passwordConfirm" required ng-model="confirmPwd" ng-model-options="{allowInvalid: true}" ng-class="(attempt||updatepwd.passwordConfirm.$dirty||updatepwd.passwordConfirm.$touched) && !updatepwd.passwordConfirm.$valid?'invalid-password':''" ng-pattern="confirmpwregex" ng-trim="false" autocomplete="off">
+        <div class="updatepwd-password-show-button" ng-click="typePwdConfirm=='password'?typePwdConfirm='text':typePwdConfirm='password'">
+          <i class="fa fa-eye-slash" aria-hidden="true" ng-if="typePwdConfirm=='password'"></i>
+          <i class="fa fa-eye" aria-hidden="true" ng-if="typePwdConfirm=='text'"></i>
+        </div>
+      </div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||updatepwd.passwordConfirm.$dirty||updatepwd.passwordConfirm.$touched) && updatepwd.passwordConfirm.$error.required">{{"confirmPwdRequired"|translate}}</div>
+      <div class="invalid-feedback-custom" ng-show="(attempt||updatepwd.passwordConfirm.$dirty||updatepwd.passwordConfirm.$touched) && !updatepwd.passwordConfirm.$error.required && updatepwd.passwordConfirm.$error.pattern">{{"confirmPwdError"|translate}}</div>
+      <br>
+      <div align="center" style="overflow: auto;">
+        <div class="updatepwd-submit">
+          <button type="submit" class="btn btn-primary btn-block" ng-click="attempt=true;oldpassword!==password&&updatepwd.$valid&&updatePW()">{{'update'|translate}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

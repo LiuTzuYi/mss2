@@ -1,0 +1,52 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:49:38
+*/
+
+/* style.css
+ * This file provides common css styles.
+ */
+
+body,html {
+	background-color: #ffffff;
+	width : 100%;
+	height: 100%;
+  	position: relative;
+	margin: 0 auto;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", "Times New Roman", "宋体", "SimSun", "STXihei", -apple-system, "BlinkMacSystemFont", "Segoe UI", Roboto, "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+	color: #000000;
+}
+
+.main-view {
+	width : 100%;
+	height: 100%;
+	min-width: 300px;
+	margin: 0 auto;
+}
+
+input::-ms-clear, input::-ms-reveal {
+    display: none;
+}
+
+input:invalid{
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.ng-leave {
+    display:none !important;
+}
+
+select{
+	cursor: pointer !important;
+}
+
+b{
+	font-weight: bold !important;
+}
+
+md-switch .md-container{
+	margin-right: 0 !important;
+}

@@ -1,0 +1,160 @@
+{
+	"src": {
+		"cleanPackage": [
+			"./dist/**/*",
+			"!./dist/html",
+			"!./dist/html/images",
+			"!./dist/html/images/**/*"
+		],
+		"copyPackage": [
+			"./html/**/*",
+			"!./html/index.html",
+			"!./html/js",
+			"!./html/js/**/*",
+			"!./html/view/**/*",
+			"!./html/css",
+			"!./html/css/**/*",
+			"!./html/fonts",
+			"!./html/fonts/**/*",
+			"!./html/images",
+			"!./html/images/**/*",
+			"!./html/scripts",
+			"!./html/scripts/**/*",
+			"!./html/test",
+			"!./html/test/**/*",
+			"!./html/api/config/banner_templates/**/!(test*)",
+			"./package.json",
+			"./vendor/**/*"
+		],
+		"copyLang": {
+			"base": "./html/js/lang",
+			"path": "./html/js/lang/**/*"
+		},
+		"copyi18n": {
+			"base": "./node_modules/angular-i18n",
+			"path": "./node_modules/angular-i18n/**/*"
+		},
+		"copyfonts": {
+			"base": "./html/fonts",
+			"path": "./html/fonts/**/*"
+		},
+		"copyfafonts": {
+			"base": "./node_modules/font-awesome/fonts",
+			"path": "./node_modules/font-awesome/fonts/**/*"
+		},
+		"index": "./html/index.html",
+		"html": {
+			"base": "./html/view",
+			"path": "./html/view/**/*"
+		},
+		"js": {
+			"polyfilljs": [
+				"./html/js/scripts_customize/espolyfill_core.js",
+				"./node_modules/es6-promise/dist/es6-promise.js",
+				"./node_modules/es6-promise/dist/es6-promise.auto.js"
+			],
+			"npmjs": [
+				"./node_modules/angular/angular.min.js",
+				"./node_modules/popper.js/dist/umd/popper.min.js",
+				"./node_modules/jquery/dist/jquery.min.js",
+				"./node_modules/bootstrap/dist/js/bootstrap.min.js",
+				"./node_modules/angular-aria/angular-aria.min.js",
+				"./node_modules/angular-messages/angular-messages.min.js",
+				"./node_modules/angular-animate/angular-animate.min.js",
+				"./node_modules/angular-material/angular-material.min.js",
+				"./node_modules/angular-sanitize/angular-sanitize.min.js",
+				"./node_modules/@uirouter/angularjs/release/angular-ui-router.min.js",
+				"./node_modules/angular-translate/dist/angular-translate.min.js",
+				"./node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
+				"./node_modules/angular-filter/dist/angular-filter.min.js",
+				"./node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js",
+				"./node_modules/ng-idle/angular-idle.min.js",
+				"./node_modules/sweetalert2/dist/sweetalert2.all.min.js",
+				"./node_modules/ng-error/ng-error.js",
+				"./node_modules/angular-smart-table/dist/smart-table.min.js",
+				"./node_modules/lr-sticky-header/lrStickyHeader.js",
+				"./node_modules/smart-table-sticky-header/stStickyHeader.js",
+				"./node_modules/ng-csv/build/ng-csv.min.js",
+				"./node_modules/chart.js/dist/Chart.min.js",
+				"./node_modules/angular-chart.js/dist/angular-chart.min.js",
+				"./node_modules/angularjs-gauge/dist/angularjs-gauge.min.js",
+				"./node_modules/orgchart/dist/js/jquery.orgchart.min.js",
+				"./node_modules/orgchart/demo/js/jspdf.min.js",
+				"./node_modules/orgchart/demo/js/html2canvas.min.js",
+				"./node_modules/video.js/dist/video.min.js",
+				"./node_modules/videojs-flash/dist/videojs-flash.min.js",
+				"./node_modules/video.js/dist/lang/en.js",
+				"./node_modules/video.js/dist/lang/zh-CN.js",
+				"./node_modules/video.js/dist/lang/zh-TW.js"
+			],
+			"customjs": [
+				"./html/js/scripts_customize/angular-block-ui-master/dist/angular-block-ui.min.js",
+				"./html/js/scripts_customize/ui-bootstrap-tpls.js",
+				"./html/js/scripts_customize/svg4everybody.min.js",
+				"./html/js/scripts_customize/angularjs-dropdown-multiselect.js",
+				"./html/js/scripts_customize/angular-baidu-map.js",
+				"./html/js/scripts_customize/ng-map.min.js"
+			],
+			"modulejs": [
+				"./html/js/config/initial.js",
+				"./html/js/config/setting.js",
+				"./html/js/config/material.js",
+				"./html/js/config/ui-route.js",
+				"./html/js/config/stateChange.js",
+				"./html/js/config/blockUI.js",
+				"./html/js/config/translate.js",
+				"./html/js/config/locale.js",
+				"./html/js/config/idle.js",
+				"./html/js/config/chart.js",
+				"./html/js/config/constant/*",
+				"./html/js/service/*",
+				"./html/js/filter/*",
+				"./html/js/directive/*"
+			],
+			"concatjs": "./dist/html/src/car-safety.min.js",
+			"controllerjs": "./html/js/controller/**/*"
+		},
+		"css":  {
+			"base": "./html/css",
+			"path": [
+				"./html/js/scripts_customize/angular-block-ui-master/dist/angular-block-ui.min.css",
+				"./node_modules/bootstrap/dist/css/bootstrap.min.css",
+				"./node_modules/font-awesome/css/font-awesome.min.css",
+				"./node_modules/angular-material/angular-material.min.css",
+				"./node_modules/orgchart/dist/css/jquery.orgchart.min.css",
+				"./node_modules/video.js/dist/video-js.min.css",
+				"./html/css/*"
+			]
+		},
+		"image": {
+			"base": "./html/images",
+			"path": "./html/images/**/*"
+		},
+		"api": "./html/api/**/*"
+	},
+	"dest": {
+		"package": "./dist/",
+		"lang": "./dist/html/src/lang",
+		"i18n": "./dist/html/src/i18n",
+		"fonts": "./dist/html/fonts",
+		"html": "./dist/html/view/",
+		"js": {
+			"file": {
+				"js": "car-safety.min.js",
+				"controllerjs": "car-safety.controller.min.js"
+			},
+			"path": "./dist/html/src/"
+		},
+		"css": {
+			"file": "car-safety.min.css",
+			"path": "./dist/html/src/"
+		},
+		"image": "./dist/html/images/",
+		"doc": {
+			"api": {
+				"file": "apidoc.js",
+				"path": "./documentation/api/"
+			}
+		}
+	}
+}

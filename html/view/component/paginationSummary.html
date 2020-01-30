@@ -1,0 +1,9 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:21:00
+*/ -->
+<p ng-if="currentPage*stItemsByPage<=totalItemCount" class="table-page-footer table-footer-text">{{(currentPage-1)*stItemsByPage+1}} - {{currentPage*stItemsByPage}}{{"recordBypage"|translate: { totalrecord: totalItemCount } }}</p>
+<p ng-if="totalItemCount==0" class="table-page-footer table-footer-text">0 - {{totalItemCount}}{{"recordBypage"|translate: { totalrecord: totalItemCount } }}</p>
+<p ng-if="currentPage*stItemsByPage>totalItemCount&&totalItemCount!==0" class="table-page-footer table-footer-text">{{(currentPage-1)*stItemsByPage+1}} - {{totalItemCount}}{{"recordBypage"|translate: { totalrecord: totalItemCount } }}</p>

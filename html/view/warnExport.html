@@ -1,0 +1,370 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-06-11 10:13:15
+*/ -->
+<div class="warn-export-wrap">
+	<navbar></navbar>
+	<div class="warn-export-table-wrap">
+		<form name="warnConfig">
+			<div class="warn-export-content-header">
+				<div class="warn-export-content-header-content1">
+					<p><b>{{"warnExport"|translate}}</b></p>
+				</div>
+				<div class="warn-export-content-header-func">
+					<div class="warn-export-content-header-content2">
+						<button type="button" ng-click="warnConfig.$valid&&submit()" class="btn btn-md btn-setting-table">
+							<i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp;{{"download"|translate}}
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="warn-export-input-box">
+				<div class="form-group">
+					<label for="licence">{{"warndataFilename"|translate}}</label>
+					<input type="text" class="form-control filename" name="dataFilename" ng-model="dataFilename" ng-model-options="{allowInvalid: true}"
+					 ng-pattern='filenameregex' ng-change="validate('dataFilename')" ng-blur="validate('dataFilename')" ng-maxlength="100">
+					<div class="invalid-feedback" ng-show="warnConfig.dataFilename.$error.pattern && !warnConfig.dataFilename.$error.maxlength"
+					 style="white-space: pre-wrap;">{{'filenameRegex'|translate}}</div>
+					<div class="invalid-feedback" ng-show="warnConfig.dataFilename.$error.maxlength" style="white-space: pre-wrap;">{{'filenameLength'|translate}}</div>
+				</div>
+				<label for="licence" class="filter-label" ng-class="{'with-explain':showExplain}">{{"filter"|translate}}<sup
+					 ng-click="showExplain=!showExplain"><i class="fa fa-info-circle" aria-hidden="true" role="button" tabindex="0"></i></sup></label>
+				<div class="additional-info-box" ng-if="showExplain">
+					<div>
+						<!-- edit this content-->
+						<p>{{ "warnexport-def-1"|translate}}</p>
+						<p>{{ "warnexport-def-2"|translate}}</p>
+						<p>{{ "warnexport-def-3"|translate}}</p>
+						<p>{{ "warnexport-def-4"|translate}}</p>
+						<p>{{ "warnexport-def-5"|translate}}</p>
+					</div>
+				</div>
+				<div class="warn-export-filter-item d-flex flex-wrap">
+					<div class="filter-item">
+						<label class="warn-export-check-container disable">
+							<input type="checkbox" checked="checked" disabled>
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportDate"|translate}}</label>
+						</div>
+
+						<div class="warn-date-range-pick">
+							<div class="input-group">
+								<input type="hidden" ng-model="beforeDate" uib-datepicker-popup close-on-date-selection="true" show-button-bar="false"
+								 is-open="beforedate.opened" on-open-focus="false" datepicker-options="bfdateOptions" ng-change="changeRange('before',beforeDate)"
+								 popup-placement="auto top-left" />
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default warn-date-range-pick-btn before" ng-click="openPicker('before')">
+										{{beforeDate|date:'yyyy/MM/dd'}}
+									</button>
+								</span>
+							</div>
+							<div class="datebetween-icon">-</div>
+							<div class="input-group after">
+								<input type="hidden" ng-model="afterDate" uib-datepicker-popup close-on-date-selection="true" show-button-bar="false"
+								 is-open="afterdate.opened" on-open-focus="false" datepicker-options="afdateOptions" ng-change="changeRange('after',afterDate)"
+								 popup-placement="auto top-left" />
+								<span class="input-group-btn pull-right">
+									<button type="button" class="btn btn-default warn-date-range-pick-btn after" ng-click="openPicker('after')">
+										{{afterDate|date:'yyyy/MM/dd'}}
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="warningChecked" ng-click="filterboxCheck('warning')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"warnType"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!warningChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'warning')">
+							<span translate="dialogSelect" translate-value-item="{{'warnType'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="driverDeptChecked" ng-click="filterboxCheck('driverDept')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"drvDept"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!driverDeptChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'driverDept')">
+							<span translate="dialogSelect" translate-value-item="{{'drvDept'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="driverGrpChecked" ng-click="filterboxCheck('driverGrp')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"driverGrp" | translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!driverGrpChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'driverGrp')">
+							<span translate="dialogSelect" translate-value-item="{{'driverGrp'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="driverChecked" ng-click="filterboxCheck('driver')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"driver"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!driverChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'driver')">
+							<span translate="dialogSelect" translate-value-item="{{'driver'|translate}}"></span></button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="vehicleDeptChecked" ng-click="filterboxCheck('vehicleDept')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"vehDept"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!vehicleDeptChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'vehicleDept')">
+							<span translate="dialogSelect" translate-value-item="{{'vehDept'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="vehicleGrpChecked" ng-click="filterboxCheck('vehicleGrp')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"vehicleGrp"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!vehicleGrpChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'vehicleGrp')">
+							<span translate="dialogSelect" translate-value-item="{{'vehicleGrp'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="vehicleBrandChecked" ng-click="filterboxCheck('vehicleBrand')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportBrand"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!vehicleBrandChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'vehicleBrand')">
+							<span translate="dialogSelect" translate-value-item="{{'exportBrand'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="vehicleModelChecked" ng-click="filterboxCheck('vehicleModel')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportModel"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!vehicleModelChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'vehicleModel')">
+							<span translate="dialogSelect" translate-value-item="{{'exportModel'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="vehicleTypeChecked" ng-click="filterboxCheck('vehicleType')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportType"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!vehicleTypeChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'vehicleType')">
+							<span translate="dialogSelect" translate-value-item="{{'exportType'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="vehicleChecked" ng-click="filterboxCheck('vehicle')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"vehicle"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!vehicleChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'vehicle')">
+							<span translate="dialogSelect" translate-value-item="{{'vehicle'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="vehRunDistanceRangeChecked" ng-click="filterboxCheck('vehRunDistanceRange')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"vehRunDistanceRange"|translate}}</label>
+						</div>
+						<input type="text" ng-readonly="!vehRunDistanceRangeChecked" class="form-control" name="vehRunDistanceRange" ng-model="vehRunDistanceRange"
+						 ng-keydown="checkEntry($event)" placeholder="{{'input'|translate}} {{'vehRunDistanceRange'|translate}}" autocomplete="off"
+						 min="0" step="0.1">
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="vehRunDistanceChecked" ng-click="filterboxCheck('vehRunDistance')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"vehRunDistance"|translate}}</label>
+						</div>
+						<input type="text" ng-readonly="!vehRunDistanceChecked" class="form-control" name="vehRunDistance" ng-model="vehRunDistance"
+						 ng-keydown="checkEntry($event)" placeholder="{{'input'|translate}} {{'vehRunDistance'|translate}}" autocomplete="off"
+						 min="0" step="0.1">
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="durationChecked" ng-click="filterboxCheck('duration')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportduration"|translate}}</label>
+						</div>
+						<input type="text" ng-readonly="!durationChecked" class="form-control" name="duration" ng-model="duration"
+						 ng-keydown="checkEntry($event)" placeholder="{{'input'|translate}} {{'exportduration'|translate}}" autocomplete="off"
+						 min="0" step="0.1">
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="startspdChecked" ng-click="filterboxCheck('startspd')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportstartSpeed"|translate}}</label>
+						</div>
+						<input type="text" ng-readonly="!startspdChecked" class="form-control" name="startspd" ng-model="startspd"
+						 ng-keydown="checkEntry($event)" placeholder="{{'input'|translate}} {{'exportstartSpeed'|translate}}"
+						 autocomplete="off" min="0" step="0.1">
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="endspdChecked" ng-click="filterboxCheck('endspd')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportendSpeed"|translate}}</label>
+						</div>
+						<input type="text" ng-readonly="!endspdChecked" class="form-control" name="endspd" ng-model="endspd" ng-keydown="checkEntry($event)"
+						 placeholder="{{'input'|translate}} {{'exportendSpeed'|translate}}" autocomplete="off" min="0" step="0.1">
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="topspdChecked" ng-click="filterboxCheck('topspd')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exporttopSpeed"|translate}}</label>
+						</div>
+						<input type="text" ng-readonly="!topspdChecked" class="form-control" name="topspd" ng-model="topspd" ng-keydown="checkEntry($event)"
+						 placeholder="{{'input'|translate}} {{'exporttopSpeed'|translate}}" autocomplete="off" min="0" step="0.1">
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="hwChecked" ng-click="filterboxCheck('hw')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportHW"|translate}}</label>
+						</div>
+						<input type="text" ng-readonly="!hwChecked" class="form-control" name="hw" ng-model="hw" ng-keydown="checkEntry($event)"
+						 placeholder="{{'input'|translate}} {{'exportHW'|translate}}" autocomplete="off" min="0" step="0.1">
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="nearhwChecked" ng-click="filterboxCheck('nearhw')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportnearHW"|translate}}</label>
+						</div>
+						<input type="text" ng-readonly="!nearhwChecked" class="form-control" name="nearhw" ng-model="nearhw" ng-keydown="checkEntry($event)"
+						 placeholder="{{'input'|translate}} {{'exportnearHW'|translate}}" autocomplete="off" min="0" step="0.1">
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="exportVideoChecked" ng-click="filterboxCheck('video')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportVideo"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!exportVideoChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'video')">
+							<span translate="dialogSelect" translate-value-item="{{'exportVideo'|translate}}"></span>
+						</button>
+					</div>
+
+					<div class="filter-item">
+						<label class="warn-export-check-container">
+							<input type="checkbox" ng-model="driverActionChecked" ng-click="filterboxCheck('driverAction')">
+							<span class="checkmark"></span>
+						</label>
+
+						<div class="item">
+							<label>{{"exportDriverAction"|translate}}</label>
+						</div>
+						<button class="form-control selectButton" type="button" ng-disabled="!driverActionChecked" class="btn btn-secondary"
+						 ng-click="selectPrompt($event, 'driverAction')">
+							<span translate="dialogSelect" translate-value-item="{{'exportDriverAction'|translate}}"></span>
+						</button>
+					</div>
+
+				</div>
+		</form>
+	</div>
+</div>

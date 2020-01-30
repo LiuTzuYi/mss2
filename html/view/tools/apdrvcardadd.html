@@ -1,0 +1,36 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-08-29 17:04:00
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-02 10:41:17
+*/ -->
+<div class="adminpanel-wrap add">
+	<h3 class="header"><span class="navigate" ng-click="toNav()">Admin Panel</span></h3>
+	<h5 class="header sub"><span class="navigate" ng-click="toList()">Driver Card Import</span></h5>
+	<p class="header2"><span ng-click="toList()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</span> | <span ng-click="toLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span></p>
+	<hr>
+	<form name="addDrvCard" ng-cloak autocomplete="off" class="add-form">
+		<div class="form-group">
+			<label for="licence">Company Code</label>
+        	<select class="form-control select-item" id="selectedcomp" name="selectedcomp" ng-model="selectedcomp" ng-options="comp.company_code for comp in companylist" required></select>
+        	<div class="invalid-feedback-custom" ng-if="(attempt||addDrvCard.selectedcomp.$dirty||addDrvCard.selectedcomp.$touched) && !addDrvCard.selectedcomp.$valid">Must select a company.</div>
+        </div>
+        <div class="form-group">
+			<label for="licence" class="infobox">Data File (.csv)
+				<p class="description">* CSV Sample:<br><span>Driver Code,Card ID</span><br><span>ABC000,0AF5548A641</span>
+				</p>
+			</label>
+			<p class="uploadfile">Filename: {{file.name}}</p>
+			<label class="custom-file w-100 uploadfile-button">
+	            <input type="file" name="selectedfile" class="custom-file-input" accept=".csv,text/csv" custom-on-change="uploadFile">
+	            <span class="custom-file-control form-control"><i class="fa fa-file"></i>&nbsp;&nbsp;&nbsp;&nbsp;Browse</span>
+	        </label>
+	        <div class="invalid-feedback-custom" ng-if="(attempt||addDrvCard.selectedfile.$dirty||addDrvCard.selectedfile.$touched) && !file">Must select a file.</div>
+        </div>
+        <div class="submit">
+        	<button type="button" ng-click="attempt=true;addDrvCard.$valid&&file&&submit()" class="btn">
+				<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Submit
+			</button>
+		</div>
+	</form>
+</div>

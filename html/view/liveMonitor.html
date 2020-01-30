@@ -1,0 +1,30 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-08-14 16:45:30
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-19 17:25:58
+*/ -->
+<div class="monitor-wrap">
+	<navbar></navbar>
+	<div class="monitor-header-sm">{{'liveMonitor'|translate}}</div>
+	<div class="monitor-header">
+		<div class="form-group row">
+			<label class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-form-label">{{'licence'|translate}}</label>
+			<div class="col-7 col-sm-9 col-md-10 col-lg-10 col-xl-10">
+				<div ng-dropdown-multiselect="" options="dataLabels" selected-model="dataSelected" extra-settings="listDataSelect"
+						 translation-texts="listDataSelectTexts" events="listDataSelectEvent" class="profile-listdata" ng-if="listDataSelectTexts"
+						 template-url="/view/component/dropdown-multiselect-profile.html" custom="true">
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-form-label">{{'camera'|translate}}</label>
+			<div class="col-7 col-sm-9 col-md-10 col-lg-10 col-xl-10">
+				<md-checkbox md-no-ink ng-repeat="cam in camList" ng-model="selectedCam[cam]" ng-true-value="'Y'" ng-false-value="'N'" ng-checked="selectedCam[cam]=='Y'" class="md-primary checkbox-custom" aria-label="check" ng-if="camList" ng-change="updateURL()">{{cam.split('_')[0]|translate}}
+				</md-checkbox>
+			</div>
+		</div>
+	</div>
+	<iframe ng-src="{{monitorURL}}" sandbox="allow-scripts allow-same-origin" class="monitor" ng-if="monitorURL&&supportBrowser"></iframe>
+	<div class="monitor-not-support" ng-if="!supportBrowser">Your browser do not support live streaming. Please consider using another browser.</div>
+</div>

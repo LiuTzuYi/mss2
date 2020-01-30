@@ -1,0 +1,334 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-05-16 18:46:40
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-05 11:27:03
+*/
+
+/* adminpanel.css
+ * This file provides css styles for admin panel.
+ */
+
+.adminpanel-wrap .user_card {
+	height: 350px;
+	width: 350px;
+	margin-top: auto;
+	margin-bottom: auto;
+	background: #ffffff;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 5px;
+}
+
+.adminpanel-wrap .brand_logo_container {
+	position: absolute;
+	height: 170px;
+	width: 170px;
+	top: -75px;
+	border-radius: 50%;
+	background: #f3f3f3;
+	padding: 10px;
+	text-align: center;
+}
+
+.adminpanel-wrap .brand_logo {
+	height: 135px;
+	width: 135px;
+	margin-top: 5px;
+}
+
+.adminpanel-wrap .form_container {
+	margin-top: 100px;
+}
+
+.adminpanel-wrap .login_btn {
+	width: 100%;
+	background: #3d89da !important;
+	color: white !important;
+}
+
+.adminpanel-wrap .login_btn:focus {
+	box-shadow: none !important;
+	outline: 0px !important;
+}
+
+.adminpanel-wrap .login_container {
+	padding: 0 2rem;
+}
+
+.adminpanel-wrap .input-group-append{
+	display: flex;
+    margin-left: -1px;
+}
+
+.adminpanel-wrap .input-group-text {
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .375rem .75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #ffffff;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+.adminpanel-wrap .input-group-text > i {
+	width: 16px;
+    height: 16px;
+}
+
+.adminpanel-wrap .input_user,
+.adminpanel-wrap .input_pass:focus {
+	box-shadow: none !important;
+	outline: 0px !important;
+}
+
+.adminpanel-wrap .form-control:focus{
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da;
+}
+
+.adminpanel-wrap .header{
+	text-align: center;
+	padding-top: 1rem;
+	cursor: default;
+}
+
+.adminpanel-wrap .header>.navigate{
+	cursor: pointer;
+}
+
+.adminpanel-wrap .header>.navigate:focus{
+	outline: none;
+	box-shadow: none;
+}
+
+.adminpanel-wrap .header.sub{
+	padding-top: 0;
+}
+
+.adminpanel-wrap .header2{
+	text-align: center;
+	margin-bottom: 0;
+	color: #828282;
+	cursor: default;
+}
+
+.adminpanel-wrap .header2>span{
+	cursor: pointer;
+}
+
+.adminpanel-wrap .header2:focus,
+.adminpanel-wrap .header2>span{
+	outline: none;
+	box-shadow: none;
+}
+
+.adminpanel-wrap.list{
+	margin: 5px;
+}
+
+.adminpanel-wrap.list .action{
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.adminpanel-wrap.list .action:not(.half) button{
+	width: calc( 100% / 3 - 3px );
+}
+
+.adminpanel-wrap.list .action.half button{
+	width: calc( 100% / 2 - 3px );
+}
+
+.adminpanel-wrap.list .action button:focus{
+	outline: none;
+	box-shadow: none;
+}
+
+.adminpanel-wrap.list .select-predicate{
+	width: calc( 50% - 5px );
+	float: left;
+}
+
+.adminpanel-wrap.list .search{
+	box-sizing: border-box;
+	margin-bottom: 1rem;
+	width: calc( 50% - 5px );
+	float: right;
+}
+
+.adminpanel-wrap.list .select-predicate:focus,
+.adminpanel-wrap.list .search:focus{
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da;
+}
+
+.adminpanel-wrap.list .table-content{
+	overflow-x: auto;
+    width: 100%;
+}
+
+.adminpanel-wrap.list .table-content th{
+	cursor: pointer;
+}
+
+.adminpanel-wrap.list .table-content:not(.company) th{
+	white-space: nowrap;
+}
+
+.adminpanel-wrap.list .table-content th.no-sort{
+	cursor: default !important;
+}
+
+.adminpanel-wrap.list .table-content td{
+	white-space: nowrap;
+	border-top: 0.5px solid #ced4da;
+    border-bottom: 0.5px solid #ced4da;
+    vertical-align: middle;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    cursor: default;
+}
+
+.adminpanel-wrap.list .table-content td .select-row{
+	cursor: pointer;
+}
+
+.adminpanel-wrap.list .table-content td .text-wrap{
+    display: inline-block;
+    white-space: normal;
+    min-width: 175px;
+}
+
+.adminpanel-wrap.list .table-content td .text-wrap.path{
+	word-break: break-word;
+}
+
+.adminpanel-wrap.list .table-content td .array-wrap{
+    display: inline-block;
+    white-space: normal;
+    min-width: 500px;
+}
+
+.adminpanel-wrap.list .table-content tr.no-record td{
+	text-align: center;
+}
+
+.adminpanel-wrap.list .table-content tfoot td{
+	border: 0;
+}
+
+.adminpanel-wrap.list .table-content tfoot tr:last-child td{
+	text-align: center;
+}
+
+.adminpanel-wrap.list .table-content tfoot tr:nth-last-child(2) td:last-child{
+	text-align: right;
+}
+
+.adminpanel-wrap .submit{
+	text-align: center;
+}
+
+.adminpanel-wrap .submit button{
+	width: 50%;
+}
+
+.adminpanel-wrap .submit button:focus{
+	outline: none;
+	box-shadow: none;
+}
+
+.adminpanel-wrap .submit button i{
+    margin-right: 10px;
+}
+
+.adminpanel-wrap.add .add-form{
+	margin-left: 20px;
+    margin-right: 20px;
+}
+
+.adminpanel-wrap.edit .edit-form{
+	margin-left: 20px;
+    margin-right: 20px;
+}
+
+.adminpanel-wrap.edit .edit-form .display-info{
+	border-bottom: 1px dashed;
+	margin-bottom: 1rem;
+}
+
+.adminpanel-wrap.edit .edit-form .display-info label{
+	display: block;
+}
+
+.adminpanel-wrap.edit .edit-form .select-item:focus{
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da;
+}
+
+.adminpanel-wrap.edit .form-check-label{
+	cursor: pointer;
+}
+
+.adminpanel-wrap.add .add-form label>p.description,
+.adminpanel-wrap.edit .edit-form label>p.description{
+	margin-bottom: 0;
+	font-size: smaller;
+}
+
+.adminpanel-wrap.add .add-form label.infobox{
+	width: 100%;
+}
+
+.adminpanel-wrap.add .add-form label.infobox>p.description{
+	background-color: #cce5ff;
+    border-left: 6px solid #b8daff;
+    margin-bottom: .5rem;
+    border-radius: .25rem;
+    padding: 4px 16px;
+}
+
+.adminpanel-wrap.add .add-form label.infobox>p.description>span{
+	margin-left: 9px;
+}
+
+.adminpanel-wrap .uploadfile{
+	margin-bottom: 0;
+	font-size: 14px;
+}
+
+.adminpanel-wrap .uploadfile-button,
+.adminpanel-wrap .uploadfile-button>input,
+.adminpanel-wrap .uploadfile-button>span{
+	cursor: pointer;
+}
+
+.adminpanel-wrap .uploadfile-button>span{
+	text-align: center;
+}
+
+.adminpanel-wrap .uploadfile-button:focus,
+.adminpanel-wrap .uploadfile-button>input:focus,
+.adminpanel-wrap .uploadfile-button>input:focus~span,
+.adminpanel-wrap .uploadfile-button>span:focus{
+	outline: none;
+	box-shadow: none;
+}

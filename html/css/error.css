@@ -1,0 +1,310 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:46:06
+*/
+
+/* error.css
+ * This file provides css styles in error page.
+ */
+
+.error-content-wrap{
+	text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  width: 100%;
+}
+
+.error-header{
+  text-align: left;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 2.5%
+}
+
+.error-content{
+	text-align: left;
+	margin-left: 20px;
+  margin-right: 20px;
+	display: inline-block;
+}
+
+.error-content > a{
+  margin: 1.5rem 0;
+  display: inherit;
+  text-decoration: none !important;
+  border-bottom: solid 2px #89efff;
+  transition: border-bottom .1s;
+}
+
+.error-content > a > font{
+  color: black;
+}
+
+.error-content > a:hover {
+  border-bottom: solid 2px #56baed;
+}
+
+.error-content > a:hover > font{
+  color: #56baed;
+}
+
+.error-content > p{
+  white-space: pre-wrap;
+}
+
+.error-image{
+	display: inline-block;
+}
+
+.error-footer{
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.error-footer a:hover{
+  color: black;
+}
+
+@media screen and (max-width: 280px){
+  .error-content-wrap {
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-height: 850px) and (min-width: 400px) and (max-width: 1055px){
+  .error-content-wrap {
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+  }
+}
+
+@media screen and (min-height: 850px) and (min-width: 400px) and (max-width: 1055px){
+  .error-content-wrap {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+}
+
+@media screen and (max-height: 650px) and (min-width: 1055px){
+  .error-content-wrap {
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+  }
+}
+
+@media screen and (min-height: 650px) and (min-width: 1055px){
+  .error-content-wrap {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+}
+
+@media screen and (max-width: 400px) and (-ms-high-contrast:none){
+  .error-content-wrap {
+    right: 50%;
+    left: auto;
+    transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+    -moz-transform: translateX(50%);
+    -o-transform: translateX(50%);
+    -ms-transform: translateX(50%) !important;
+  }
+}
+
+@media screen and (max-height: 850px) and (min-width: 400px) and (max-width: 1055px) and (-ms-high-contrast:none){
+  .error-content-wrap {
+    right: 50%;
+    left: auto;
+    transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+    -moz-transform: translateX(50%);
+    -o-transform: translateX(50%);
+    -ms-transform: translateX(50%) !important;
+  }
+}
+
+@media screen and (min-height: 850px) and (min-width: 400px) and (max-width: 1055px) and (-ms-high-contrast:none){
+  .error-content-wrap {
+    bottom: 50%;
+    right: 50%;
+    top: auto;
+    left: auto;
+    transform: translate(50%, 50%);
+    -webkit-transform: translate(50%, 50%);
+    -moz-transform: translate(50%, 50%);
+    -o-transform: translate(50%, 50%);
+    -ms-transform: translate(50%, 50%) !important;
+  }
+}
+
+@media screen and (max-height: 650px) and (min-width: 1055px) and (-ms-high-contrast:none){
+  .error-content-wrap {
+    right: 50%;
+    left: auto;
+    transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+    -moz-transform: translateX(50%);
+    -o-transform: translateX(50%);
+    -ms-transform: translateX(50%) !important;
+  }
+}
+
+@media screen and (min-height: 650px) and (min-width: 1055px) and (-ms-high-contrast:none){
+  .error-content-wrap {
+    bottom: 50%;
+    right: 50%;
+    top: auto;
+    left: auto;
+    transform: translate(50%, 50%);
+    -webkit-transform: translate(50%, 50%);
+    -moz-transform: translate(50%, 50%);
+    -o-transform: translate(50%, 50%);
+    -ms-transform: translate(50%, 50%) !important;
+  }
+}
+
+@supports (-ms-ime-align:auto){
+  @media screen and (max-width: 400px){
+    .error-content-wrap {
+      right: 50%;
+      left: auto;
+      transform: translateX(50%);
+      -webkit-transform: translateX(50%);
+      -moz-transform: translateX(50%);
+      -o-transform: translateX(50%);
+      -ms-transform: translateX(50%) !important;
+    }
+  }
+
+  @media screen and (max-height: 850px) and (min-width: 400px) and (max-width: 1055px){
+    .error-content-wrap {
+      right: 50%;
+      left: auto;
+      transform: translateX(50%);
+      -webkit-transform: translateX(50%);
+      -moz-transform: translateX(50%);
+      -o-transform: translateX(50%);
+      -ms-transform: translateX(50%) !important;
+    }
+  }
+
+  @media screen and (min-height: 850px) and (min-width: 400px) and (max-width: 1055px){
+    .error-content-wrap {
+      bottom: 50%;
+      right: 50%;
+      top: auto;
+      left: auto;
+      transform: translate(50%, 50%);
+      -webkit-transform: translate(50%, 50%);
+      -moz-transform: translate(50%, 50%);
+      -o-transform: translate(50%, 50%);
+      -ms-transform: translate(50%, 50%) !important;
+    }
+  }
+
+  @media screen and (max-height: 650px) and (min-width: 1055px){
+    .error-content-wrap {
+      right: 50%;
+      left: auto;
+      transform: translateX(50%);
+      -webkit-transform: translateX(50%);
+      -moz-transform: translateX(50%);
+      -o-transform: translateX(50%);
+      -ms-transform: translateX(50%) !important;
+    }
+  }
+
+  @media screen and (min-height: 650px) and (min-width: 1055px){
+    .error-content-wrap {
+      bottom: 50%;
+      right: 50%;
+      top: auto;
+      left: auto;
+      transform: translate(50%, 50%);
+      -webkit-transform: translate(50%, 50%);
+      -moz-transform: translate(50%, 50%);
+      -o-transform: translate(50%, 50%);
+      -ms-transform: translate(50%, 50%) !important;
+    }
+  }
+}
+
+@media screen and (max-width: 1055px) {
+  .error-content-wrap {
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 1055px) {
+  .error-header {
+    margin-left: 0%;
+  }
+}
+
+@media screen and (min-width: 1155px) {
+  .error-header {
+    margin-left: 2.5%;
+  }
+}
+
+@media screen and (min-width: 1255px) {
+  .error-header {
+    margin-left: 5%;
+  }
+}
+
+@media screen and (min-width: 1355px) {
+  .error-header {
+    margin-left: 7.5%;
+  }
+}
+
+@media screen and (min-width: 1455px) {
+  .error-header {
+    margin-left: 10%;
+  }
+}
+
+@media screen and (min-width: 1555px) {
+  .error-header {
+    margin-left: 12.5%;
+  }
+}
+
+@media screen and (min-width: 1655px) {
+  .error-header {
+    margin-left: 15%;
+  }
+}
+
+@media screen and (min-width: 1755px) {
+  .error-header {
+    margin-left: 17.5%;
+  }
+}

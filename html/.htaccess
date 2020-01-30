@@ -1,0 +1,62 @@
+RewriteEngine On
+
+#RewriteCond %{REQUEST_URI} !^/503/M$
+#RewriteCond %{REQUEST_URI} !^/islive$
+#RewriteCond %{REMOTE_ADDR} !^10\.33\.6\.[0-9]{1,3}$
+#RewriteCond %{REMOTE_ADDR} !^223\.197\.178\.21$
+#RewriteCond %{HTTP:X-FORWARDED-FOR} !^10\.33\.6\.[0-9]{1,3}$
+#RewriteCond %{HTTP:X-FORWARDED-FOR} !^223\.197\.178\.21$
+#RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
+#RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+#RewriteCond %{DOCUMENT_ROOT}/view/static/503_M.html -f
+#RewriteCond %{SCRIPT_FILENAME} !view/static/503_M.html
+#RewriteRule ^ /503/M [L,R=301,E=nocache:true]
+
+#RewriteCond %{REQUEST_URI} ^/islive$
+#RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
+#RewriteCond %{REMOTE_ADDR} !^10\.33\.6\.[0-9]{1,3}$
+#RewriteCond %{REMOTE_ADDR} !^223\.197\.178\.21$
+#RewriteCond %{HTTP:X-FORWARDED-FOR} !^10\.33\.6\.[0-9]{1,3}$
+#RewriteCond %{HTTP:X-FORWARDED-FOR} !^223\.197\.178\.21$
+#RewriteRule ^islive$ /maintenance.enable [L,R=400,E=nocache:true]
+
+#RewriteCond %{REQUEST_URI} ^/islive$
+#RewriteRule ^islive$ /view/static/app.run [L,E=nocache:true]
+
+#RewriteCond %{REQUEST_URI} ^/403$
+#RewriteCond %{DOCUMENT_ROOT}/view/static/403.html -f
+#RewriteCond %{SCRIPT_FILENAME} !view/static/403.html
+#RewriteRule ^403$ /view/static/403.html [L,R=403,E=nocache:true]
+
+#RewriteCond %{REQUEST_URI} ^/503/E$
+#RewriteCond %{DOCUMENT_ROOT}/view/static/503_E.html -f
+#RewriteCond %{SCRIPT_FILENAME} !view/static/503_E.html
+#RewriteRule ^503/E$ /view/static/503_E.html [L,R=501,E=nocache:true]
+
+#RewriteCond %{REQUEST_URI} ^/503/M$
+#RewriteCond %{REMOTE_ADDR} !^10\.33\.6\.[0-9]{1,3}$
+#RewriteCond %{REMOTE_ADDR} !^223\.197\.178\.21$
+#RewriteCond %{HTTP:X-FORWARDED-FOR} !^10\.33\.6\.[0-9]{1,3}$
+#RewriteCond %{HTTP:X-FORWARDED-FOR} !^223\.197\.178\.21$
+#RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
+#RewriteCond %{DOCUMENT_ROOT}/view/static/503_M.html -f
+#RewriteCond %{SCRIPT_FILENAME} !view/static/503_M.html
+#RewriteRule ^503/M$ /view/static/503_M.html [L,R=503,E=nocache:true]
+
+RewriteRule ^reset\/password\/([^\/]+)\/([^\/]+)$ /api/preresetpwd/$1/$2 [L,R]
+
+RewriteRule ^liveMonitor\/play(\/.*)?$ /api/liveMonitor/play$1 [L,R]
+
+#RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+#RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+#RewriteRule ^ /404 [L,R]
+
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+RewriteRule ^ /index.html [L]
+
+ErrorDocument 403 /view/static/403.html
+ErrorDocument 501 /view/static/503_E.html
+ErrorDocument 503 /view/static/503_M.html
+
+# Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate" env=nocache

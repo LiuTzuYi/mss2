@@ -1,0 +1,22 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-07-18 18:05:55
+*/
+
+/* tooltip.css
+ * This file provides css styles in for tooltip.
+ */
+
+.tooltip.trip-dv-tooltip-li{
+	opacity: 1 !important;
+	left: 30px !important;
+}
+
+.tooltip.trip-dv-tooltip-na,
+.tooltip.trip-date-tooltip-na,
+.tooltip.trip-licence-tooltip-na,
+.tooltip.tagchartHeader{
+	opacity: 1 !important;
+}

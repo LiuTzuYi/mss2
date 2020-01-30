@@ -1,0 +1,42 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 12:04:45
+*/ -->
+<div class="tripdrvi-wrap">
+	<navbar></navbar>
+	<div class="tripdrvi-table-wrap">
+		<div class="tripdrvi-content-header">
+			<div class="tripdrvi-content-header-content1">
+				<p><b>{{"tripDrvImport"|translate}}</b></p>
+			</div>
+			<div class="tripdrvi-content-header-func">
+				<div class="tripdrvi-content-header-content2">
+					<button type="button" ng-click="submit()" class="btn btn-md btn-setting-table">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;{{"submit"|translate}}
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="tripdrvi-input-box">
+			<div class="tripdrvi-input-hint">
+				<label for="licence"><b>{{"inputTripDrv"|translate}}</b></label>
+				<label>
+					<i class="fa fa-keyboard-o" aria-hidden="true"></i>&nbsp;&nbsp;{{"column"|translate}} ( <i class="fa fa-info-circle tripdrvi-hint-toggle" aria-hidden="true"  ng-click="examplestateChange()"></i><span class="tripdrvi-hint-toggle2" translate="exampleaction" translate-value-action="{{showexample|translate}}" ng-click="examplestateChange()"></span> ) :
+				</label>
+				<label class="col-group">
+					<span class="column">{{"tripID"|translate}},</span>
+					<span class="column">{{"driverCode"|translate}}</span>
+				</label>
+				<label ng-show="showexample=='hide'">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;{{"example"|translate}} :
+					<label>11940174,98YXY5</label>
+	        		<label>119392344,XXYX2</label>
+	        		<label>93923543,XYXX_2</label>
+				</label>
+	        </div>
+			<textarea class="form-control" ng-model="csv" ng-list="&#10;" ng-trim="false" ng-attr-placeholder="{{'tripdrvImportTextarea'|translate}}&nbsp;&#13;&#10;e.g. 11940174,98YXY5" autocomplete="off"></textarea>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,921 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="../">
+    <title>JSDoc: source : alertBox.js</title>
+    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">
+    <link href="css/site.css" type="text/css" rel="stylesheet">
+    <link href="css/custom.css" type="text/css" rel="stylesheet">
+  </head>
+  <body ng-app>
+    <nav id="toc">
+      <div class="sidenav-search">
+      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">
+      </div>
+      <div class="nav-wrapper">
+      <h2><a href="index.html">Home</a></h2>
+      <ul class="module">
+        <!-- undefined -->
+        <li id="undefined" ng-hide="moduleundefined">
+          <ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="undefinedModule = !undefinedModule">
+                Module
+              </a>
+              <i ng-cloak ng-show="undefinedModule">+</i>
+            </h2>
+            <ul ng-hide="undefinedModule">
+              <li>
+                <a href="carSafety.html">carSafety</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul><ul class="module">
+        <!-- car_afety -->
+        <h2 class="module">
+          <a chref ng-click="modulecar_afety = !modulecar_afety">
+            module: carSafety
+          </a>
+          <i ng-cloak ng-show="modulecar_afety">+</i>
+        </h2>
+        <li id="carSafety" ng-hide="modulecar_afety">
+          <ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyController = !car_afetyController">
+                Controller
+              </a>
+              <i ng-cloak ng-show="car_afetyController">+</i>
+            </h2>
+            <ul ng-hide="car_afetyController">
+              <li>
+                <a href="carSafety.adminpanelloginCtrl.html">adminpanelloginCtrl</a>
+              </li><li>
+                <a href="carSafety.adminpanelnavCtrl.html">adminpanelnavCtrl</a>
+              </li><li>
+                <a href="carSafety.apcompanyaddCtrl.html">apcompanyaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apcompanyeditCtrl.html">apcompanyeditCtrl</a>
+              </li><li>
+                <a href="carSafety.apcompanylistCtrl.html">apcompanylistCtrl</a>
+              </li><li>
+                <a href="carSafety.apdeviceaddCtrl.html">apdeviceaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apdeviceeditCtrl.html">apdeviceeditCtrl</a>
+              </li><li>
+                <a href="carSafety.apdevicelistCtrl.html">apdevicelistCtrl</a>
+              </li><li>
+                <a href="carSafety.apdrvcardaddCtrl.html">apdrvcardaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apdrvcardlogCtrl.html">apdrvcardlogCtrl</a>
+              </li><li>
+                <a href="carSafety.apmailnotifyaddCtrl.html">apmailnotifyaddCtrl</a>
+              </li><li>
+                <a href="carSafety.apmailnotifyeditCtrl.html">apmailnotifyeditCtrl</a>
+              </li><li>
+                <a href="carSafety.apmailnotifylistCtrl.html">apmailnotifylistCtrl</a>
+              </li><li>
+                <a href="carSafety.autologinCtrl.html">autologinCtrl</a>
+              </li><li>
+                <a href="carSafety.companyProfileCtrl.html">companyProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.404Ctrl.html">404Ctrl</a>
+              </li><li>
+                <a href="carSafety.dashCtrl.html">dashCtrl</a>
+              </li><li>
+                <a href="carSafety.deviceSetCtrl.html">deviceSetCtrl</a>
+              </li><li>
+                <a href="carSafety.drivergrpProfileCtrl.html">drivergrpProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.drivergrpSetCtrl.html">drivergrpSetCtrl</a>
+              </li><li>
+                <a href="carSafety.driverProfileCtrl.html">driverProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.driverSetCtrl.html">driverSetCtrl</a>
+              </li><li>
+                <a href="carSafety.forgetPwdCtrl.html">forgetPwdCtrl</a>
+              </li><li>
+                <a href="carSafety.helpCtrl.html">helpCtrl</a>
+              </li><li>
+                <a href="carSafety.liveLocationCtrl.html">liveLocationCtrl</a>
+              </li><li>
+                <a href="carSafety.liveMonitorCtrl.html">liveMonitorCtrl</a>
+              </li><li>
+                <a href="carSafety.loginCtrl.html">loginCtrl</a>
+              </li><li>
+                <a href="carSafety.mailNotifySetCtrl.html">mailNotifySetCtrl</a>
+              </li><li>
+                <a href="carSafety.orgchartSetCtrl.html">orgchartSetCtrl</a>
+              </li><li>
+                <a href="carSafety.resetPwdCtrl.html">resetPwdCtrl</a>
+              </li><li>
+                <a href="carSafety.rosterSetCtrl.html">rosterSetCtrl</a>
+              </li><li>
+                <a href="carSafety.tripDetailCtrl.html">tripDetailCtrl</a>
+              </li><li>
+                <a href="carSafety.tripDrvImportCtrl.html">tripDrvImportCtrl</a>
+              </li><li>
+                <a href="carSafety.tripSetCtrl.html">tripSetCtrl</a>
+              </li><li>
+                <a href="carSafety.updatePwdCtrl.html">updatePwdCtrl</a>
+              </li><li>
+                <a href="carSafety.userroleSetCtrl.html">userroleSetCtrl</a>
+              </li><li>
+                <a href="carSafety.userSetCtrl.html">userSetCtrl</a>
+              </li><li>
+                <a href="carSafety.vehiclegrpProfileCtrl.html">vehiclegrpProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.vehiclegrpSetCtrl.html">vehiclegrpSetCtrl</a>
+              </li><li>
+                <a href="carSafety.vehicleProfileCtrl.html">vehicleProfileCtrl</a>
+              </li><li>
+                <a href="carSafety.vehicleSetCtrl.html">vehicleSetCtrl</a>
+              </li><li>
+                <a href="carSafety.warnExportCtrl.html">warnExportCtrl</a>
+              </li><li>
+                <a href="carSafety.warnvideoDownloadCtrl.html">warnvideoDownloadCtrl</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyService = !car_afetyService">
+                Service
+              </a>
+              <i ng-cloak ng-show="car_afetyService">+</i>
+            </h2>
+            <ul ng-hide="car_afetyService">
+              <li>
+                <a href="carSafety.alertBox.html">alertBox</a>
+              </li><li>
+                <a href="carSafety.formValidService.html">formValidService</a>
+              </li><li>
+                <a href="carSafety.httpSuccessCheck.html">httpSuccessCheck</a>
+              </li><li>
+                <a href="carSafety.langService.html">langService</a>
+              </li><li>
+                <a href="carSafety.profileService.html">profileService</a>
+              </li><li>
+                <a href="carSafety.refetchMapService.html">refetchMapService</a>
+              </li><li>
+                <a href="carSafety.responsiveCheck.html">responsiveCheck</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyConfig = !car_afetyConfig">
+                Config
+              </a>
+              <i ng-cloak ng-show="car_afetyConfig">+</i>
+            </h2>
+            <ul ng-hide="car_afetyConfig">
+              <li>
+                <a href="carSafety.angular-chart-js.html">angular-chart-js</a>
+              </li><li>
+                <a href="carSafety.angular-dynamic-locale.html">angular-dynamic-locale</a>
+              </li><li>
+                <a href="carSafety.angular-translate.html">angular-translate</a>
+              </li><li>
+                <a href="carSafety.angularjs.html">angularjs</a>
+              </li><li>
+                <a href="carSafety.angularjs-material.html">angularjs-material</a>
+              </li><li>
+                <a href="carSafety.block-ui.html">block-ui</a>
+              </li><li>
+                <a href="carSafety.ng-idle.html">ng-idle</a>
+              </li><li>
+                <a href="carSafety.state-transition.html">state-transition</a>
+              </li><li>
+                <a href="carSafety.ui-router.html">ui-router</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyConstant = !car_afetyConstant">
+                Constant
+              </a>
+              <i ng-cloak ng-show="car_afetyConstant">+</i>
+            </h2>
+            <ul ng-hide="car_afetyConstant">
+              <li>
+                <a href="carSafety.appConfig.html">appConfig</a>
+              </li><li>
+                <a href="carSafety.chartConfig.html">chartConfig</a>
+              </li><li>
+                <a href="carSafety.errorCodeConfig.html">errorCodeConfig</a>
+              </li><li>
+                <a href="carSafety.exportConfig.html">exportConfig</a>
+              </li><li>
+                <a href="carSafety.mapConfig.html">mapConfig</a>
+              </li><li>
+                <a href="carSafety.regexConfig.html">regexConfig</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyDirective = !car_afetyDirective">
+                Directive
+              </a>
+              <i ng-cloak ng-show="car_afetyDirective">+</i>
+            </h2>
+            <ul ng-hide="car_afetyDirective">
+              <li>
+                <a href="carSafety.bInfoWindow.html">bInfoWindow</a>
+              </li><li>
+                <a href="carSafety.bMarker.html">bMarker</a>
+              </li><li>
+                <a href="carSafety.bPolyline.html">bPolyline</a>
+              </li><li>
+                <a href="carSafety.bTrafficLayer.html">bTrafficLayer</a>
+              </li><li>
+                <a href="carSafety.convertToNumber.html">convertToNumber</a>
+              </li><li>
+                <a href="carSafety.customOnChange.html">customOnChange</a>
+              </li><li>
+                <a href="carSafety.fileInputImg.html">fileInputImg</a>
+              </li><li>
+                <a href="carSafety.multicheckListbox.html">multicheckListbox</a>
+              </li><li>
+                <a href="carSafety.navbar.html">navbar</a>
+              </li><li>
+                <a href="carSafety.pageSelect.html">pageSelect</a>
+              </li><li>
+                <a href="carSafety.showTooltipOnTextOverflow.html">showTooltipOnTextOverflow</a>
+              </li><li>
+                <a href="carSafety.stFiltered.html">stFiltered</a>
+              </li><li>
+                <a href="carSafety.stPersist.html">stPersist</a>
+              </li><li>
+                <a href="carSafety.stSelectDistinct.html">stSelectDistinct</a>
+              </li><li>
+                <a href="carSafety.virtualResize.html">virtualResize</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyFilter = !car_afetyFilter">
+                Filter
+              </a>
+              <i ng-cloak ng-show="car_afetyFilter">+</i>
+            </h2>
+            <ul ng-hide="car_afetyFilter">
+              <li>
+                <a href="carSafety.fixNum.html">fixNum</a>
+              </li><li>
+                <a href="carSafety.optionalFilter.html">optionalFilter</a>
+              </li><li>
+                <a href="carSafety.tableCustomFilter.html">tableCustomFilter</a>
+              </li>
+            </ul>
+          </ul><ul class="group">
+            <h2 class="nav-group">
+              <a href ng-click="car_afetyRun = !car_afetyRun">
+                Run
+              </a>
+              <i ng-cloak ng-show="car_afetyRun">+</i>
+            </h2>
+            <ul ng-hide="car_afetyRun">
+              <li>
+                <a href="carSafety.state-transition-init.html">state-transition-init</a>
+              </li>
+            </ul>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+    <div id="content" class="page-wrap">
+      <h1 class="title">
+        source : alertBox.js
+      </h1>
+      <div id="main" class="big-container">
+        <!-- source code html -->
+        <article>
+          <pre class="prettyprint source linenums"><code>/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-10-08 11:30:26
+*/
+'use strict';
+/**
+ * @memberof carSafety
+ * @ngdoc Service
+ * @name alertBox
+ * @description
+ *   Service for alert box handling
+ *
+ * @example
+ * alertBox.errorAlert('90001_01');
+ */
+angular.module('carSafety').service('alertBox', ['$translate', 'errorCodeConfig', function ($translate, errorCodeConfig) {
+	this.errorAlert = function (errcode, func) {
+		var title
+		var text
+		if (errorCodeConfig.InternalErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('internalErr_title')
+			text = $translate.instant('internalErr_text')
+		} else if (errorCodeConfig.ParameterErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('parameterErr_title')
+			text = $translate.instant('parameterErr_text')
+		} else if (errorCodeConfig.RequestErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('requestErr_title')
+			text = $translate.instant('requestErr_text')
+		} else if (errorCodeConfig.UpdateFailureCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('updateFailure_title')
+			text = $translate.instant('updateFailure_text')
+		} else if (errorCodeConfig.InvalidReqErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('invalidRequest_title')
+			text = $translate.instant('invalidRequest_text')
+		} else if (errorCodeConfig.DuplicateErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('duplicate_title')
+			text = $translate.instant('duplicate_text')
+		} else if (errorCodeConfig.DeleteInUseErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('deleteinuse_title')
+			text = $translate.instant('deleteinuse_text')
+		} else if (errorCodeConfig.ImportFailureCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importFailure_title')
+			text = $translate.instant('importFailure_text')
+		} else if (errorCodeConfig.ImportDuplicateErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('import_duplicate_title')
+			text = $translate.instant('import_duplicate_text')
+		} else if (errorCodeConfig.ImportEmptyCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importEmpty_title')
+			text = $translate.instant('importEmpty_text')
+		} else if (errorCodeConfig.ImportEncodeErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importEncodeErr_title')
+			text = $translate.instant('importEncodeErr_text')
+		} else if (errorCodeConfig.ImportNoEffectCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importNoEffect_title')
+			text = $translate.instant('importNoEffect_text')
+		} else {
+			title = $translate.instant(errcode + '_title')
+			text = $translate.instant(errcode + '_text')
+		}
+		if (func) {
+			swal({
+					title: title + ' (' + errcode + ')',
+					text: text,
+					type: 'error',
+					target: document.getElementsByTagName('BODY')[0],
+					confirmButtonText: $translate.instant('ok'),
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					allowEnterKey: false
+				})
+				.then(func);
+		} else {
+			swal({
+				title: title + ' (' + errcode + ')',
+				text: text,
+				type: 'error',
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			});
+		}
+	}
+	this.permissionAlert = function (func) {
+		swal({
+				title: $translate.instant('permission_title'),
+				text: $translate.instant('permission_text'),
+				type: 'warning',
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+			.then(func);
+	}
+	this.profileIndVisibilityAlert = function (profile) {
+		swal({
+			title: $translate.instant('visibility_title'),
+			text: $translate.instant('visibility_text_' + profile),
+			type: 'warning',
+			target: document.getElementsByTagName('BODY')[0],
+			confirmButtonText: $translate.instant('ok'),
+			allowOutsideClick: false,
+			allowEscapeKey: false,
+			allowEnterKey: false
+		})
+	}
+	this.idleAlert = function () {
+		swal({
+			title: $translate.instant('idle_title'),
+			html: "&lt;div>&lt;h6>" + $translate.instant('idle_text') + " ( &lt;span>&lt;/span> )&lt;/h6>&lt;/div>",
+			type: 'warning',
+			target: document.getElementsByTagName('BODY')[0],
+			showConfirmButton: false,
+			allowOutsideClick: false,
+			allowEscapeKey: false,
+			allowEnterKey: false,
+			onOpen: function () {
+				var countdown = 900
+				var date = new Date(null);
+				date.setSeconds(countdown);
+				var timestr = date.toISOString().substr(14, 5);
+				swal.getContent().querySelector('span').textContent = timestr;
+				countdown--;
+				timerInterval = setInterval(function () {
+					var date = new Date(null);
+					date.setSeconds(countdown);
+					timestr = date.toISOString().substr(14, 5);
+					swal.getContent().querySelector('span').textContent = timestr;
+					countdown--;
+				}, 1000)
+			}
+		});
+	}
+	this.timeoutAlert = function (func) {
+		swal({
+				title: $translate.instant('timeout_title'),
+				text: $translate.instant('timeout_text'),
+				type: 'info',
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+			.then(func);
+	}
+	this.titleAlert = function (type, title, func) {
+		if (func) {
+			swal({
+					title: $translate.instant(title),
+					type: type,
+					target: document.getElementsByTagName('BODY')[0],
+					confirmButtonText: $translate.instant('ok'),
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					allowEnterKey: false
+				})
+				.then(func);
+		} else {
+			swal({
+				title: $translate.instant(title),
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			});
+		}
+	}
+	this.titleAlertDirect = function (type, title, func) {
+		if (func) {
+			swal({
+					title: title,
+					type: type,
+					target: document.getElementsByTagName('BODY')[0],
+					confirmButtonText: $translate.instant('ok'),
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					allowEnterKey: false
+				})
+				.then(func);
+		} else {
+			swal({
+				title: title,
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			});
+		}
+	}
+	this.rosterAlert = function (title, html, type, func) {
+		if (func) {
+			swal({
+					title: $translate.instant(title),
+					html: html,
+					type: type,
+					target: document.getElementsByTagName('BODY')[0],
+					confirmButtonText: $translate.instant('ok'),
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					allowEnterKey: false
+				})
+				.then(func);
+		} else {
+			swal({
+				title: $translate.instant(title),
+				html: html,
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+		}
+	}
+	this.setImportAlert = function (title, html, type, errcode, func) {
+		if (func) {
+			swal({
+					title: $translate.instant(title) + ' (' + errcode + ')',
+					html: html,
+					type: type,
+					target: document.getElementsByTagName('BODY')[0],
+					confirmButtonText: $translate.instant('ok'),
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					allowEnterKey: false
+				})
+				.then(func);
+		} else {
+			swal({
+				title: $translate.instant(title) + ' (' + errcode + ')',
+				html: html,
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+		}
+	}
+	this.setImportErrAlert = function (title, html, type, func) {
+		if (func) {
+			swal({
+					title: $translate.instant(title),
+					html: html,
+					type: type,
+					target: document.getElementsByTagName('BODY')[0],
+					confirmButtonText: $translate.instant('ok'),
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					allowEnterKey: false
+				})
+				.then(func);
+		} else {
+			swal({
+				title: $translate.instant(title),
+				html: html,
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+		}
+	}
+	this.setImportSuccessAlert = function (type, title, func) {
+		if (func) {
+			swal({
+					title: title,
+					type: type,
+					target: document.getElementsByTagName('BODY')[0],
+					confirmButtonText: $translate.instant('ok'),
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					allowEnterKey: false
+				})
+				.then(func);
+		} else {
+			swal({
+				title: title,
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+		}
+	}
+	this.liveAlertFlag = false;
+	this.liveAlert = function (errcode) {
+		this.liveAlertFlag = false;
+		var title
+		var text
+		if (errorCodeConfig.InternalErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('internalErr_title')
+			text = $translate.instant('internalErr_text')
+		} else if (errorCodeConfig.ParameterErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('parameterErr_title')
+			text = $translate.instant('parameterErr_text')
+		} else if (errorCodeConfig.RequestErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('requestErr_title')
+			text = $translate.instant('requestErr_text')
+		} else if (errorCodeConfig.UpdateFailureCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('updateFailure_title')
+			text = $translate.instant('updateFailure_text')
+		} else if (errorCodeConfig.InvalidReqErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('invalidRequest_title')
+			text = $translate.instant('invalidRequest_text')
+		} else if (errorCodeConfig.DuplicateErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('duplicate_title')
+			text = $translate.instant('duplicate_text')
+		} else if (errorCodeConfig.DeleteInUseErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('deleteinuse_title')
+			text = $translate.instant('deleteinuse_text')
+		} else if (errorCodeConfig.ImportFailureCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importFailure_title')
+			text = $translate.instant('importFailure_text')
+		} else if (errorCodeConfig.ImportDuplicateErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('import_duplicate_title')
+			text = $translate.instant('import_duplicate_text')
+		} else if (errorCodeConfig.ImportEmptyCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importEmpty_title')
+			text = $translate.instant('importEmpty_text')
+		} else if (errorCodeConfig.ImportImportEncodeErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importEncodeErr_title')
+			text = $translate.instant('importEncodeErr_text')
+		} else {
+			title = $translate.instant(errcode + '_title')
+			text = $translate.instant(errcode + '_text')
+		}
+		swal({
+				title: title + ' (' + errcode + ')',
+				text: text,
+				type: 'error',
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+			.then(function () {
+				this.liveAlertFlag = true;
+			});
+	}
+	this.updatepwAlert = function (errcode) {
+		var title
+		var text
+		if (errorCodeConfig.InternalErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('internalErr_title')
+			text = $translate.instant('internalErr_text')
+		} else if (errorCodeConfig.ParameterErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('parameterErr_title')
+			text = $translate.instant('parameterErr_text')
+		} else if (errorCodeConfig.RequestErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('requestErr_title')
+			text = $translate.instant('requestErr_text')
+		} else if (errorCodeConfig.UpdateFailureCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('updateFailure_title')
+			text = $translate.instant('updateFailure_text')
+		} else if (errorCodeConfig.InvalidReqErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('invalidRequest_title')
+			text = $translate.instant('invalidRequest_text')
+		} else if (errorCodeConfig.DuplicateErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('duplicate_title')
+			text = $translate.instant('duplicate_text')
+		} else if (errorCodeConfig.DeleteInUseErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('deleteinuse_title')
+			text = $translate.instant('deleteinuse_text')
+		} else if (errorCodeConfig.ImportFailureCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importFailure_title')
+			text = $translate.instant('importFailure_text')
+		} else if (errorCodeConfig.ImportDuplicateErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('import_duplicate_title')
+			text = $translate.instant('import_duplicate_text')
+		} else if (errorCodeConfig.ImportEmptyCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importEmpty_title')
+			text = $translate.instant('importEmpty_text')
+		} else if (errorCodeConfig.ImportImportEncodeErrCode.indexOf(errcode) !== -1) {
+			title = $translate.instant('importEncodeErr_title')
+			text = $translate.instant('importEncodeErr_text')
+		} else {
+			title = $translate.instant(errcode + '_title')
+			text = $translate.instant(errcode + '_text')
+		}
+		swal({
+			title: title + ' (' + errcode + ')',
+			text: text,
+			type: 'error',
+			target: document.getElementsByTagName('BODY')[0],
+			confirmButtonText: $translate.instant('ok'),
+			allowOutsideClick: false,
+			allowEscapeKey: false,
+			allowEnterKey: false,
+			confirmButtonClass: 'updatepw-alert'
+		})
+	}
+	this.bannerAlert = function (html) {
+		swal({
+			html: "&lt;div class='alert-banner'>&lt;div>" + html + "&lt;/div>&lt;/div>",
+			target: document.getElementsByTagName('BODY')[0],
+			confirmButtonText: $translate.instant('ok'),
+			allowOutsideClick: true,
+			allowEscapeKey: false,
+			allowEnterKey: false,
+			customClass: 'prelogin-banner'
+		})
+	}
+	this.supportAlert = function (support) {
+		swal({
+			html: "&lt;div class='alert-banner'>&lt;div>&lt;p>" + $translate.instant('techSupport') + ":&lt;/p>&lt;div class='contact1'>&lt;div>&lt;i class='fa fa-envelope-o' aria-hidden='true'>&lt;/i>" + $translate.instant('email') + ":    &lt;/div>&lt;div>&lt;a href='mailto:"+support.email+"'>"+support.email+"&lt;/a>&lt;/div>&lt;/div>&lt;div class='contact2'>&lt;div>&lt;i class='fa fa-phone' aria-hidden='true'>&lt;/i>" + $translate.instant('hotline') + ":    &lt;/div>&lt;div>"+support.tel+"&lt;/div>&lt;div>"+support.time+" (" + $translate.instant('supportDay') + ")&lt;/div>&lt;/div>&lt;/div>&lt;/div>",
+			type: 'info',
+			target: document.getElementsByTagName('BODY')[0],
+			confirmButtonText: $translate.instant('ok'),
+			allowOutsideClick: false,
+			allowEscapeKey: false,
+			allowEnterKey: false,
+			customClass: 'support-alert'
+		})
+	}
+	this.contentAlert = function (type, title, text, func) {
+		if (func) {
+			swal({
+					title: $translate.instant(title),
+					text: $translate.instant(text),
+					type: type,
+					target: document.getElementsByTagName('BODY')[0],
+					confirmButtonText: $translate.instant('ok'),
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					allowEnterKey: false
+				})
+				.then(func);
+		} else {
+			swal({
+				title: $translate.instant(title),
+				text: $translate.instant(text),
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+		}
+	}
+	this.asAtDateAlert = function (profile, distance, selected, recent, period, submit, tmp, func) {
+		var profile = $translate.instant(profile)
+		var selected = selected + ', ' + $translate.instant(period)
+		var recent = recent + ', ' + $translate.instant(period)
+		if (func) {
+			swal({
+				title: $translate.instant('asAtDateAlert_title'),
+				text: $translate.instant('asAtDateAlert_text', {
+					profile: profile,
+					distance: distance,
+					selected: selected,
+					recent: recent
+				}),
+				type: 'info',
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+			.then(func(submit, tmp));
+		} else {
+			swal({
+				title: $translate.instant('asAtDateAlert_title'),
+				text: $translate.instant('asAtDateAlert_text', {
+					profile: profile,
+					distance: distance,
+					selected: selected,
+					recent: recent
+				}),
+				type: 'info',
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+		}
+	}
+	this.noProfileRecordAlert = function (profile, distance, start, end, period, submit, date, func) {
+		var profile = $translate.instant(profile)
+		var start = start + ', ' + $translate.instant(period)
+		var end = end + ', ' + $translate.instant(period)
+		if (func) {
+			swal({
+					title: $translate.instant('noProfileRecordAlert_title'),
+					text: $translate.instant('noProfileRecordAlert_text', {
+						profile: profile,
+						distance: distance,
+						start: start,
+						end: end
+					}),
+					type: 'info',
+					target: document.getElementsByTagName('BODY')[0],
+					confirmButtonText: $translate.instant('ok'),
+					allowOutsideClick: false,
+					allowEscapeKey: false,
+					allowEnterKey: false
+				})
+				.then(func(submit, date));
+		} else {
+			swal({
+				title: $translate.instant('noProfileRecordAlert_title'),
+				text: $translate.instant('noProfileRecordAlert_text', {
+					profile: profile,
+					distance: distance,
+					start: start,
+					end: end
+				}),
+				type: 'info',
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+		}
+	}
+	this.notranslationAlert = function(title,text,type,func){
+		if (func) {
+			swal({
+				title: title,
+				text: text,
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+			.then(func);
+		}
+		else{
+			swal({
+				title: title,
+				text: text,
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			});
+		}
+	}
+	this.notranslationAlertHTML = function(title,html,type,func){
+		if (func) {
+			swal({
+				title: title,
+				html: html,
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			})
+			.then(func);
+		}
+		else{
+			swal({
+				title: title,
+				html: html,
+				type: type,
+				target: document.getElementsByTagName('BODY')[0],
+				confirmButtonText: $translate.instant('ok'),
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			});
+		}
+	}
+	this.GPSLocationAlert = function(link, text){
+		swal({
+		  html: "&lt;div style='font-size:14px;'>"+text+"&lt;/div>",
+		  target: document.getElementsByTagName('BODY')[0],
+		  imageUrl: link,
+		  imageWidth: 600,
+		  imageHeight: 250,
+		  imageAlt: 'GPS Location',
+		  allowOutsideClick: false,
+		  allowEscapeKey: false,
+		  allowEnterKey: false,
+		  showConfirmButton: false,
+		  showCloseButton: true
+		})
+	}
+}]);</code></pre>
+        </article>
+        <!-- index.html -->
+        <!-- class files -->
+      </div>
+      <footer style="clear:both">
+        Documentation generated by
+        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
+        using
+        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>
+      </footer>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/site.js"></script>
+    <!--%= prettyJson %-->
+    <script>
+      prettyPrint();
+      var lineNo = window.location.hash.match(/#line([0-9]+)$/);
+      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:20:00
+*/ -->
+<md-dialog aria-label="tripEdit" class="set-dialog-wrap">
+  <form name="tripEdit" ng-cloak autocomplete="off">
+    <md-toolbar class="set-dialog-toolbar">
+      <div class="md-toolbar-tools">
+        <h2><b translate="dialogEdit" translate-value-item="{{'tripDriver'|translate}}"></b></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="cancel">
+          <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content class="set-dialog-content">
+      <div class="md-dialog-content">
+        <div class="form-group">
+          <label for="licence">{{"tripID"|translate}}</label>
+          <input type="text" class="form-control" name="tripId" ng-model="row.tripId" disabled readonly>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"startTime"|translate}}</label>
+          <input type="text" class="form-control" name="startTime" ng-model="row.start_time" disabled readonly>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"endTime"|translate}}</label>
+          <input type="text" class="form-control" name="endTime" ng-model="row.end_time" disabled readonly>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"vehicle"|translate}}</label>
+          <input type="text" class="form-control" name="vehicle" ng-model="row.vehicle" disabled readonly>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"department"|translate}} ({{"vehicle"|translate}})</label>
+          <input type="text" class="form-control" name="vehDepart" ng-model="row.vehDepart" disabled readonly>
+        </div>
+        <div class="form-group typeahead-demo">
+          <label for="sel1">{{"driver"|translate}}</label>
+          <input id="typeahead#1" class="form-control" type="text" ng-model="row.driverpick" uib-typeahead="item as item.name for item in drivers | filter:{name:$viewValue}" typeahead-editable="false" typeahead-select-on-exact="true" typeahead-popup-template-url="/view/component/typeahead/typeaheadInput_driver.html" typeahead-show-hint="true" typeahead-min-length="0" name="driverpickTAH" typeahead-no-results="noResultsdriverpickTAH" ng-keypress="validate('driverpickTAH')" ng-keydown="typeaheadscroll();validate('driverpickTAH')" typeahead-on-select="validateSelect('driverpickTAH')" ng-blur="validate('driverpickTAH')" ng-trim="false">
+          <div class="invalid-feedback-custom" ng-show="noResultsdriverpickTAH && tripEdit.driverpickTAH.$invalid">
+            {{"noDriverInList"|translate}}
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" class="set-dialog-content-button">
+      <span flex></span>
+      <md-button ng-click="cancel()">
+        {{"cancel"|translate}}
+      </md-button>
+      <md-button ng-click="validateForm();tripEdit.$valid&&submit(row)">
+        {{"ok"|translate}}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -1,0 +1,88 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-09-24 13:19:58
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-26 16:04:28
+*/
+
+body{
+	padding: unset !important;
+	margin: 0 !important;
+}
+
+nav {
+    margin-top: unset !important;
+    padding-bottom: unset !important;
+    width: unset !important;
+    padding-left: unset !important;
+    position: unset !important;
+    top: unset !important;
+    right: unset !important;
+}
+
+footer{
+	color: #b0b0b0;
+    border-top: 1px solid #ebebeb;
+    padding: 10px 0;
+    text-align: unset !important;
+}
+
+.sidenav-search{
+	width: 228px;
+    left: 0px;
+    position: fixed;
+    padding: 16px 20px 10px 20px;
+    background-color: #F5F5F5;
+    z-index: 11;
+}
+
+.sidenav-search>input{
+	display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.nav-wrapper{
+	width: 228px;
+    margin: 0;
+    padding: 0 20px 20px 20px;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    z-index: 10;
+}
+
+.nav-wrapper .nav-group{
+    margin-bottom: 8px !important;
+}
+
+.page-wrap {
+    margin-bottom: 0rem;
+    width: unset !important;
+    margin-right: 40px;
+    padding: 16px 0 0 0 !important;
+    z-Index: -1;
+    margin-left: 270px;
+}
+
+.big-container {
+	margin-bottom: unset !important;
+	padding: 0 0 30px 0 !important;
+}

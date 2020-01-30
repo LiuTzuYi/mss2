@@ -1,0 +1,307 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:20
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-17 17:40:55
+*/ -->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<!--HTML Settings-->
+	<title>GreenSafety</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en,zh-TW,zh-cn">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<meta http-equiv="Cache-Control" content="must-revalidate" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+	<base href="/">
+	<!--[if IE]>
+		<script>
+			window.location.href = "/403";
+		</script>
+	<![endif]-->
+
+	<!--[if !IE]>
+		-->
+		<script>
+			if (/*@cc_on!@*/false) {
+				window.location.href = "/403";
+			}
+			else if(navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1){
+				if(parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf("Version")+8)) < 12 ){
+					window.location.href = "/403";
+				}
+			}
+			else if(navigator.userAgent.indexOf('Chrome') != -1){
+				if(parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf("Chrome")+7)) < 62 ){
+					window.location.href = "/403";
+				}
+			}
+			else if(navigator.userAgent.indexOf('Firefox') != -1){
+				if(parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")+8)) < 51 ){
+					window.location.href = "/403";
+				}
+			}
+		</script>
+		<!--
+	<![endif]-->
+	<!--JS Paackages-->
+	<!-- build:js -->
+
+	<!--ES6 Promise polyfill-->
+	<script src="/js/scripts_customize/espolyfill_core.js"></script>
+	<script src="/scripts/es6-promise/dist/es6-promise.js"></script>
+	<script src="/scripts/es6-promise/dist/es6-promise.auto.js"></script>
+
+	<!--AngularJS-->
+	<script src="/scripts/angular/angular.min.js"></script>
+	<!--Popperjs-->
+	<script src="/scripts/popper.js/dist/umd/popper.min.js"></script>
+	<!--Jquery-->
+	<script src="/scripts/jquery/dist/jquery.min.js"></script>
+	<!--Bootstrap-->
+	<script src="/scripts/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Angular Material Requirement-->
+	<script src="/scripts/angular-aria/angular-aria.min.js"></script>
+	<script src="/scripts/angular-messages/angular-messages.min.js"></script>
+	<script src="/scripts/angular-animate/angular-animate.min.js"></script>
+	<!-- Angular Material-->
+	<script src="/scripts/angular-material/angular-material.min.js"></script>
+	<!-- Angular Sanitize-->
+	<script src="/scripts/angular-sanitize/angular-sanitize.min.js"></script>
+	<!--Angular-ui-router-->
+	<script src="/scripts/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+	<!-- Angular Translate-->
+	<script src="/scripts/angular-translate/dist/angular-translate.min.js"></script>
+	<script src="/scripts/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+	<!-- Angular Filter-->
+	<script src="/scripts/angular-filter/dist/angular-filter.min.js"></script>
+	<!--Dynamic locales for date/currency-->
+	<script src="/scripts/angular-dynamic-locale/tmhDynamicLocale.min.js"></script>
+	<!--Ng-idle-->
+	<script src="/scripts/ng-idle/angular-idle.min.js"></script>
+	<!--Sweet alert-->
+	<script src="/scripts/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<!--Ng-error-->
+	<script src="/scripts/ng-error/ng-error.js"></script>
+	<!--Smart Table-->
+	<script src="/scripts/angular-smart-table/dist/smart-table.min.js"></script>
+	<!--Sticky Header ST-Table-->
+	<script src="/scripts/lr-sticky-header/lrStickyHeader.js"></script>
+	<script src="/scripts/smart-table-sticky-header/stStickyHeader.js"></script>
+	<!--Ng-Map (Google)-->
+	<!-- <script src="/scripts/ngmap/build/scripts/ng-map.min.js"></script> -->
+	<!--Ng-csv-->
+	<script src="/scripts/ng-csv/build/ng-csv.min.js"></script>
+	<!--Angularjs Chart-->
+	<script src="/scripts/chart.js/dist/Chart.min.js"></script>
+	<script src="/scripts/angular-chart.js/dist/angular-chart.min.js"></script>
+	<!--Angularjs Gauge-->
+	<script src="/scripts/angularjs-gauge/dist/angularjs-gauge.min.js"></script>
+	<!--Org-Chart-->
+	<script src="/scripts/orgchart/dist/js/jquery.orgchart.min.js"></script>
+	<script src="/scripts/orgchart/demo/js/jspdf.min.js"></script>
+	<script src="/scripts/orgchart/demo/js/html2canvas.min.js"></script>
+	<!--VideoJS-->
+	<script src="/scripts/video.js/dist/video.min.js"></script>
+	<script src="/scripts/videojs-flash/dist/videojs-flash.min.js"></script>
+	<script src="/scripts/video.js/dist/lang/en.js"></script>
+	<script src="/scripts/video.js/dist/lang/zh-CN.js"></script>
+	<script src="/scripts/video.js/dist/lang/zh-TW.js"></script>
+
+	<!--Angular-block-ui-->
+	<script src="/js/scripts_customize/angular-block-ui-master/dist/angular-block-ui.min.js"></script>
+	<!--Angular-ui-bootstrap-template-->
+	<script src="/js/scripts_customize/ui-bootstrap-tpls.js"></script>
+	<!--SVG support-->
+	<script src="/js/scripts_customize/svg4everybody.min.js"></script>
+	<!--drowdown-multiselect-->
+	<script src="/js/scripts_customize/angularjs-dropdown-multiselect.js"></script>
+	<!--Ng-Map (Baidu)-->
+	<script src="/js/scripts_customize/angular-baidu-map.js"></script>
+	<!--Ng-Map (Google) fix: google api v3.36 infowindow-->
+	<script src="/js/scripts_customize/ng-map.min.js"></script>
+
+	<!--Angular Settings-->
+	<script src="/js/config/initial.js"></script>
+	<script src="/js/config/setting.js"></script>
+	<script src="/js/config/material.js"></script>
+	<script src="/js/config/ui-route.js"></script>
+	<script src="/js/config/stateChange.js"></script>
+	<script src="/js/config/blockUI.js"></script>
+	<script src="/js/config/translate.js"></script>
+	<script src="/js/config/locale.js"></script>
+	<script src="/js/config/idle.js"></script>
+	<script src="/js/config/chart.js"></script>
+
+	<!--Angular global constant variables-->
+	<script src="/js/config/constant/appConfig.js"></script>
+	<script src="/js/config/constant/mapConfig.js"></script>
+	<script src="/js/config/constant/errorCode.js"></script>
+	<script src="/js/config/constant/exportConfig.js"></script>
+	<script src="/js/config/constant/chartConfig.js"></script>
+	<script src="/js/config/constant/regexConfig.js"></script>
+
+	<!--Angular Service-->
+	<script src="/js/service/langService.js"></script>
+	<script src="/js/service/formValidService.js"></script>
+	<script src="/js/service/responsiveCheck.js"></script>
+	<script src="/js/service/httpSuccessCheck.js"></script>
+	<script src="/js/service/alertBox.js"></script>
+	<script src="/js/service/profileService.js"></script>
+	<script src="/js/service/refetchMap.js"></script>
+
+	<!--Angular Filter-->
+	<script src="/js/filter/tableCustomFilter.js"></script>
+	<script src="/js/filter/fixNum.js"></script>
+	<script src="/js/filter/optionalFilter.js"></script>
+
+	<!--Angular Directives-->
+	<script src="/js/directive/navbar.js"></script>
+	<script src="/js/directive/selectConvertNum.js"></script>
+	<script src="/js/directive/fileInputImg.js"></script>
+	<script src="/js/directive/bMarker.js"></script>
+	<script src="/js/directive/bTrafficLayer.js"></script>
+	<script src="/js/directive/bPolyline.js"></script>
+	<script src="/js/directive/bInfoWindow.js"></script>
+	<script src="/js/directive/multicheckListbox.js"></script>
+	<script src="/js/directive/tooltipOnOverflow.js"></script>
+	<script src="/js/directive/pageSelect.js"></script>
+	<script src="/js/directive/stPersist.js"></script>
+	<script src="/js/directive/stSelectDistinct.js"></script>
+	<script src="/js/directive/customOnChange.js"></script>
+	<script src="/js/directive/stFiltered.js"></script>
+	<script src="/js/directive/virtualResize.js"></script>
+
+	<!-- endbuild -->
+
+	<!--CSS Links-->
+	<!-- build:css -->
+
+	<!--Angular-block-ui-->
+	<link rel="stylesheet" type="text/css" href="/js/scripts_customize/angular-block-ui-master/dist/angular-block-ui.min.css" />
+
+	<!--Bootstrap-->
+	<link rel="stylesheet" type="text/css" href="/scripts/bootstrap/dist/css/bootstrap.min.css" />
+	<!--Font-awesome -->
+	<link rel="stylesheet" type="text/css" href="/scripts/font-awesome/css/font-awesome.min.css" />
+	<!--Angular Material-->
+	<link rel="stylesheet" type="text/css" href="/scripts/angular-material/angular-material.min.css" />
+	<!--Org-Chart-->
+	<link rel="stylesheet" type="text/css" href="/scripts/orgchart/dist/css/jquery.orgchart.min.css" />
+	<!--Google-->
+	<link rel="stylesheet" type="text/css" href="/css/google_font.css" />
+	<!--VideoJS-->
+	<link rel="stylesheet" type="text/css" href="/scripts/video.js/dist/video-js.min.css" />
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="/css/angular-material-ie-fix.css" />
+	<link rel="stylesheet" type="text/css" href="/css/alert.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/css/glyicon-replace.css" />
+	<link rel="stylesheet" type="text/css" href="/css/roster.css" />
+	<link rel="stylesheet" type="text/css" href="/css/login.css" />
+	<link rel="stylesheet" type="text/css" href="/css/error.css" />
+	<link rel="stylesheet" type="text/css" href="/css/navbar.css" />
+	<link rel="stylesheet" type="text/css" href="/css/table.css" />
+	<link rel="stylesheet" type="text/css" href="/css/map.css" />
+	<link rel="stylesheet" type="text/css" href="/css/setDialog.css" />
+	<link rel="stylesheet" type="text/css" href="/css/googlemap-fix.css" />
+	<link rel="stylesheet" type="text/css" href="/css/faicon-fix.css" />
+	<link rel="stylesheet" type="text/css" href="/css/material-icon-fix.css" />
+	<link rel="stylesheet" type="text/css" href="/css/multicheck-listbox.css" />
+	<link rel="stylesheet" type="text/css" href="/css/tooltip.css" />
+	<link rel="stylesheet" type="text/css" href="/css/profile.css" />
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-fix.css" />
+	<link rel="stylesheet" type="text/css" href="/css/forgetpwd.css" />
+	<link rel="stylesheet" type="text/css" href="/css/resetpwd.css" />
+	<link rel="stylesheet" type="text/css" href="/css/updatepwd.css" />
+	<link rel="stylesheet" type="text/css" href="/css/pagination-fix.css" />
+	<link rel="stylesheet" type="text/css" href="/css/orgchart.css" />
+	<link rel="stylesheet" type="text/css" href="/css/dialog-fix.css" />
+	<link rel="stylesheet" type="text/css" href="/css/help.css" />
+	<link rel="stylesheet" type="text/css" href="/css/dash.css" />
+	<link rel="stylesheet" type="text/css" href="/css/setting.css" />
+	<link rel="stylesheet" type="text/css" href="/css/query-setting.css" />
+	<link rel="stylesheet" type="text/css" href="/css/tripdrvimport.css" />
+	<link rel="stylesheet" type="text/css" href="/css/warnvideoDownload.css" />
+	<link rel="stylesheet" type="text/css" href="/css/warnExport.css" />
+	<link rel="stylesheet" type="text/css" href="/css/adminpanel.css" />
+	<link rel="stylesheet" type="text/css" href="/css/videojs-fix.css" />
+	<link rel="stylesheet" type="text/css" href="/css/google_material_icon.css" />
+	<link rel="stylesheet" type="text/css" href="/css/monitor.css" />
+
+	<!-- endbuild -->
+
+	<!--External Google CSS-->
+	<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+	<!--Enable SVG support-->
+	<script>svg4everybody();</script>
+
+	<!-- build:controllerjs -->
+
+	<script type="text/javascript" src="/js/controller/loginCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/dashCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/404Ctrl.js"></script>
+	<script type="text/javascript" src="/js/controller/vehicleSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/driverSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/deviceSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/userSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/userroleSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/vehiclegrpSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/drivergrpSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/rosterSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/liveMonitorCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/liveLocationCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tripDetailCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/companyProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/CLP-companyProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/drivergrpProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/CLP-drivergrpProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/vehiclegrpProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/CLP-vehiclegrpProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/driverProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/CLP-driverProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/vehicleProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/CLP-vehicleProfileCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/forgetPwdCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/resetPwdCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/updatePwdCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/orgchartSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/helpCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tripSetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tripDrvImportCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/mailNotifySetCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/warnVideoDownloadCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/warnExportCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/autologinCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/adminpanelloginCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/adminpanelnavCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apcompanylistCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apcompanyaddCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apcompanyeditCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apdevicelistCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apdeviceaddCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apdeviceeditCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apmailnotifylistCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apmailnotifyaddCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apmailnotifyeditCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apdrvcardlogCtrl.js"></script>
+	<script type="text/javascript" src="/js/controller/tools/apdrvcardaddCtrl.js"></script>
+
+	<!-- endbuild -->
+
+</head>
+
+<body ng-app="carSafety">
+	<div class='main-view' ui-view block-ui></div>
+</body>
+
+</html>

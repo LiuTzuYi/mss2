@@ -1,0 +1,615 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:49:29
+*/
+
+/* setDialog.css
+ * This file provides css styles in setting table dialog.
+ */
+
+.set-dialog-wrap {
+    width: 100%;
+    max-width: 50%;
+    max-height: 60%;
+    overflow: hidden;
+}
+
+.set-dialog-wrap .uib-datepicker-popup.dropdown-menu:focus {
+    outline: none;
+}
+
+@supports (-ms-ime-align: auto) {
+    .set-dialog-wrap {
+        position: fixed;
+    }
+
+    @media screen and (max-width: 959px) {
+        .set-dialog-wrap {
+            position: relative;
+        }
+    }
+}
+
+@media screen and (max-width: 959px) {
+    .set-dialog-wrap {
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (-ms-high-contrast:none) {
+    .set-dialog-wrap {
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+
+    .set-dialog-wrap>form {
+        display: -ms-flexbox;
+        -ms-flex-direction: column;
+        -ms-flex: 0 1 auto;
+        max-height: 60vh;
+    }
+
+    .set-dialog-wrap>form>md-toolbar {
+        -ms-flex-direction: column;
+        display: -ms-flexbox;
+        -ms-flex: 0 1 auto;
+    }
+
+    .set-dialog-wrap>form>md-dialog-content {
+        -ms-flex-direction: column;
+        -ms-flex-order: 1;
+        -ms-flex: 0 1 auto;
+    }
+
+    .set-dialog-wrap>form>md-dialog-actions {
+        display: -ms-flexbox;
+        -ms-flex-order: 2;
+        -ms-flex-align: center;
+        -ms-flex-pack: end;
+        -ms-flex: 0 1 auto;
+    }
+}
+
+@media screen and (max-width: 959px) and (-ms-high-contrast:none) {
+    .set-dialog-wrap>form {
+        max-height: 100vh;
+    }
+}
+
+.set-dialog-wrap .dual-select-wrapper {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    width: 100%;
+}
+
+.set-dialog-wrap .dual-select-wrapper .non-selected-wrapper {
+    background-color: #fcfcfc;
+    border-right: 1px solid #b6bfc8;
+}
+
+.set-dialog-wrap .dual-select-wrapper .selected-wrapper {
+    background-color: #fff;
+    border-left: 1px solid #b6bfc8;
+}
+
+.set-dialog-wrap .dual-select-wrapper .non-selected-wrapper>.checkbox-select,
+.set-dialog-wrap .dual-select-wrapper .selected-wrapper>.checkbox-select {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    background-color: #efefef;
+    text-align: center;
+    margin-bottom: 2.5px;
+    border-radius: .25rem;
+}
+
+.set-dialog-wrap .dual-select-wrapper .option-header-wrap {
+    background-color: #ddd;
+}
+
+.set-dialog-wrap .dual-select-wrapper .option-header-wrap>.left-head-divider {
+    border-right: 1px solid #b6bfc8;
+}
+
+.set-dialog-wrap .dual-select-wrapper .option-header-wrap>.right-head-divider {
+    border-left: 1px solid #b6bfc8;
+}
+
+.set-dialog-wrap .dual-select-wrapper .option-header-wrap>.option-header {
+    color: #4f4f4f;
+    cursor: default;
+    font-weight: 700;
+    padding: 5px 10px;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 50%;
+    display: inline-block;
+    border-bottom: 1px solid #ced4da;
+}
+
+.set-dialog-wrap .dual-select-wrapper:not(.no-hover) .non-selected-wrapper>.checkbox-select:hover,
+.set-dialog-wrap .dual-select-wrapper:not(.no-hover) .selected-wrapper>.checkbox-select:hover {
+    background-color: #bbbbbb;
+}
+
+.set-dialog-wrap .dual-select-wrapper .non-selected-wrapper>.checked,
+.set-dialog-wrap .dual-select-wrapper .selected-wrapper>.checked,
+.set-dialog-wrap .dual-select-wrapper .non-selected-wrapper>.checked:hover,
+.set-dialog-wrap .dual-select-wrapper .selected-wrapper>.checked:hover {
+    background-color: #8a8a8a !important;
+    color: white !important;
+}
+
+.set-dialog-wrap .dual-select-wrapper .non-selected-wrapper>.checkbox-select input[type=checkbox],
+.set-dialog-wrap .dual-select-wrapper .selected-wrapper>.checkbox-select input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.set-dialog-wrap .dual-select-wrapper .non-selected-wrapper,
+.set-dialog-wrap .dual-select-wrapper .selected-wrapper {
+    box-sizing: border-box;
+    display: inline-block;
+    height: 250px;
+    overflow-y: auto;
+    width: 50%;
+    padding: 5px;
+    vertical-align: top;
+    -webkit-user-select: none;
+    /* Chrome/Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+ */
+    -o-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+}
+
+.set-dialog-wrap .dual-select-wrapper .dual-select-input-bar .dual-select-search-icon {
+    background-color: #dddddd;
+    border-color: #ced4da;
+    border: 0;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+}
+
+.set-dialog-wrap .dual-select-wrapper .dual-select-button-bar button {
+    width: 25%;
+    border-radius: 0;
+}
+
+.set-dialog-wrap .dual-select-wrapper .dual-select-button-bar>.left-group,
+.set-dialog-wrap .dual-select-wrapper .dual-select-button-bar>.right-group {
+    border-right-color: #ced4da;
+}
+
+.set-dialog-wrap .dual-select-wrapper .dual-select-button-bar>.left-divider {
+    border-right-color: #b6bfc8;
+}
+
+.set-dialog-wrap .dual-select-wrapper .dual-select-button-bar>.right-divider {
+    border-left-color: #b6bfc8;
+}
+
+.set-dialog-wrap .dual-select-wrapper .dual-select-input-bar .dual-select-reset,
+.set-dialog-wrap .dual-select-wrapper .dual-select-input-bar .dual-select-clearfilter {
+    border-radius: 0;
+    background-color: #dddddd;
+    border: 0;
+    border-bottom: 1px solid #ced4da;
+    outline: none;
+    cursor: pointer;
+    border-left: 1px solid #ced4da;
+}
+
+.set-dialog-wrap .dual-select-wrapper .dual-select-input-bar .dual-select-clearfilter {
+    border-left: 0 !important;
+}
+
+.set-dialog-wrap .dual-select-wrapper .dual-select-input-bar .dual-select-search {
+    border-radius: 0;
+    border-left: 0;
+    border-top: 0;
+    background-color: #dddddd;
+    border-color: #ced4da;
+    border-right: 0;
+}
+
+.set-dialog-wrap .multiselect-custom>textarea {
+    resize: none;
+    width: 100%;
+    height: 250px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.set-dialog-wrap .multiselect-custom>textarea.invalid-textarea {
+    border-color: red;
+    border-top-color: #ced4da;
+}
+
+.set-dialog-wrap .multiselect-custom>textarea.valid-textarea {
+    border-color: #28a745;
+    border-top-color: #ced4da;
+}
+
+.set-dialog-wrap .multiselect-custom .dropdown-menu {
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+}
+
+.set-dialog-wrap .multiselect-custom .multiselect-parent,
+.set-dialog-wrap .multiselect-custom .multiselect-parent>div,
+.set-dialog-wrap .multiselect-custom .multiselect-parent>div>button {
+    width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.set-dialog-wrap .multiselect-custom .multiselect-parent>div>button.invalid-multiselect {
+    border-color: red;
+    border-bottom-color: #ced4da;
+}
+
+.set-dialog-wrap .multiselect-custom .multiselect-parent>div>button.valid-multiselect {
+    border-color: #28a745;
+    border-bottom-color: #ced4da;
+}
+
+.set-dialog-wrap .multiselect-custom .dropdown-menu li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.428571429;
+    color: #333;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.set-dialog-wrap .multiselect-custom .dropdown-menu li.active>a {
+    background-color: #3597ff;
+    color: white;
+}
+
+.set-dialog-wrap .multiselect-custom .dropdown-menu li:not(.all-check)>a>span.glyphicon {
+    display: none;
+}
+
+.set-dialog-wrap .multiselect-custom .dropdown-menu>.all-check>a {
+    display: inline-block;
+    width: 50%;
+}
+
+.set-dialog-wrap .multiselect-custom.user-role .dropdown-menu {
+    overflow: hidden !important;
+}
+
+.set-dialog-wrap .multiselect-custom .dropdown-menu>.option-list {
+    height: 150px;
+    overflow: auto;
+    text-align: left;
+}
+
+.set-dialog-wrap .multiselect-custom .dropdown-menu .search-top.divider {
+    margin-bottom: 0;
+}
+
+.set-dialog-wrap .multiselect-custom .dropdown-menu .search-bottom.divider {
+    margin: 0;
+}
+
+.set-dialog-wrap .multiselect-custom .dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+
+.set-dialog-wrap .password-input {
+    border-right: 0px;
+    outline: none;
+    border: none;
+}
+
+.set-dialog-wrap .password-input:focus {
+    border: 1px solid #80bdff;
+    border-right: 0px;
+}
+
+.set-dialog-wrap .password-input:focus~.password-show-button {
+    border: 1px solid #80bdff;
+    border-left: 0px;
+}
+
+.set-dialog-wrap .is-invalid-custom .password-input:focus,
+.set-dialog-wrap .was-validated-custom .password-input:focus,
+.set-dialog-wrap .was-validated-custom .password-input:focus~.password-show-button,
+.set-dialog-wrap .is-invalid-custom .password-input:focus~.password-show-button {
+    border: none;
+}
+
+
+.set-dialog-wrap .password-show-button {
+    color: black;
+    background-color: #fff;
+    outline: none;
+    border: none;
+}
+
+.set-dialog-wrap .password-show-button-disable {
+    color: black;
+    background-color: #e9ecef;
+    outline: none;
+    opacity: 1;
+    border: none;
+}
+
+.set-dialog-wrap select {
+    background: transparent url("../images/arrow-down.png") no-repeat 100% 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -o-appearance: none;
+}
+
+.set-dialog-wrap select::-ms-expand {
+    display: none;
+}
+
+.set-dialog-wrap select:focus::-ms-value {
+    background: none;
+}
+
+.set-dialog-wrap .select-avatar-wrap {
+    margin-bottom: 10px;
+}
+
+.set-dialog-wrap .select-avatar {
+    display: inline-flex;
+    width: 100%;
+}
+
+.set-dialog-wrap .select-avatar .avatarimg {
+    width: 120px;
+    height: 160px;
+}
+
+.set-dialog-wrap .select-avatar-wrap .custom-file {
+    width: 120px;
+}
+
+.set-dialog-wrap .select-avatar-wrap .custom-file input[type=file] {
+    cursor: pointer;
+    font-size: 0;
+}
+
+.set-dialog-wrap .select-avatar-wrap .custom-file-input {
+    width: 120px;
+    max-width: unset;
+    min-width: unset;
+    padding-top: 15px;
+}
+
+.set-dialog-wrap .select-avatar-wrap .custom-file .custom-file-control {
+    color: #000000;
+    background-color: #ddd;
+    text-align: center;
+    overflow: hidden;
+}
+
+.set-dialog-wrap .select-avatar-wrap .custom-file .custom-file-control::before{
+    content: unset !important;
+}
+
+.set-dialog-wrap .select-avatar-wrap .custom-file-input:focus~.custom-file-control {
+    box-shadow: none;
+}
+
+.set-dialog-datepicker .uib-datepicker .btn-info .text-info,
+.set-dialog-datepicker .uib-datepicker .btn-info.active .text-info {
+    color: #ffffff !important;
+}
+
+.set-dialog-datepicker {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.set-dialog-datepicker .dropdown-menu li:focus,
+.set-dialog-datepicker .dropdown-menu li div:focus {
+    outline: none;
+}
+
+.set-dialog-datepicker .date-input {
+    border-color: transparent;
+}
+
+.set-dialog-datepicker .date-input:focus {
+    border-color: #80bdff;
+}
+
+.is-invalid-custom .date-input:focus,
+.was-validated-custom .date-input:focus {
+    border-color: transparent !important;
+}
+
+.set-dialog-datepicker .date-input:focus~.set-dialog-datepicker {
+    border: 1px solid #80bdff;
+}
+
+.set-dialog-datepicker .uib-datepicker .uib-button-bar .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+}
+
+.set-dialog-datepicker .uib-datepicker .btn-info.active,
+.set-dialog-datepicker .uib-datepicker .btn-info {
+    background-color: #4e4e4e;
+    border-color: #4e4e4e;
+    color: #ffffff;
+}
+
+.set-dialog-datepicker .uib-button-bar .btn-success {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+}
+
+.set-dialog-wrap .form-control:focus,
+.set-dialog-wrap .btn,
+.set-dialog-wrap .btn:focus {
+    box-shadow: none !important;
+}
+
+.set-dialog-wrap .input-group-wrap-custom {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.is-invalid-custom {
+    border: 1px solid #dc3545 !important;
+}
+
+.was-validated-custom {
+    border: 1px solid #28a745 !important;
+}
+
+.invalid-feedback-custom {
+    display: block;
+    margin-top: .25rem;
+    font-size: .875rem;
+    color: #dc3545;
+}
+
+.set-dialog-toolbar {
+    min-width: 300px;
+    min-height: 45px;
+    max-height: 45px;
+    background-color: #000000 !important;
+}
+
+.set-dialog-content {
+    min-width: 300px;
+    overflow-x: hidden;
+}
+
+.set-dialog-content-button {
+    min-width: 300px;
+    overflow-x: hidden;
+}
+
+.typeahead-demo .custom-popup-wrapper {
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+    max-height: 125px;
+    overflow: auto;
+}
+
+.typeahead-demo .custom-popup-wrapper>.message {
+    padding: 2.5px 20px;
+    border-bottom: 1px solid #ddd;
+    color: #868686;
+    cursor: default;
+}
+
+.typeahead-demo .custom-popup-wrapper>.dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    min-width: 160px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: -20px;
+    cursor: pointer;
+}
+
+.typeahead-demo .custom-popup-wrapper .vertical-container {
+    height: 80px !important;
+}
+
+.typeahead-demo .custom-popup-wrapper>.dropdown-menu li {
+    height: 24px;
+    box-sizing: border-box;
+}
+
+.typeahead-demo .custom-popup-wrapper>.dropdown-menu li.active {
+    background-color: #0050bb;
+    width: 100%;
+}
+
+.typeahead-demo .custom-popup-wrapper>.dropdown-menu li a,
+.typeahead-demo .custom-popup-wrapper>.dropdown-menu li a:hover {
+    background-color: transparent;
+    color: black;
+    text-decoration: none;
+}
+
+.typeahead-demo .custom-popup-wrapper>.dropdown-menu li.active a,
+.typeahead-demo .custom-popup-wrapper>.dropdown-menu li.active a:hover {
+    /* margin-left: 20px; */
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+}
+
+.typeahead-demo .custom-popup-wrapper:not(.with-img)>.dropdown-menu li a,
+.typeahead-demo .custom-popup-wrapper:not(.with-img)>.dropdown-menu li a:hover {
+    margin-left: 20px;
+}
+
+.typeahead-demo .custom-popup-wrapper.with-img>.dropdown-menu li a,
+.typeahead-demo .custom-popup-wrapper.with-img>.dropdown-menu li a:hover {
+    margin-left: 2.5px;
+}
+
+.typeahead-demo .custom-popup-wrapper.with-img>.dropdown-menu li img {
+    width: 20px;
+    margin-left: 20px;
+}
+
+.typeahead-demo .custom-popup-wrapper.with-img>.dropdown-menu li svg {
+    width: 20px;
+    height: 17px;
+    margin-left: 20px;
+    vertical-align: sub;
+}
+
+.typeahead-demo .custom-popup-wrapper>.dropdown-menu li.active svg {
+    fill: white !important;
+}
+
+.set-dialog-wrap .set-dialog-content .dynamic-email-form .input-repeater {
+    margin-bottom: 6px;
+}
+
+.set-dialog-wrap .set-dialog-content .dynamic-email-form input {
+    display: inline-block;
+    width: calc(100% - 45px);
+}
+
+.set-dialog-wrap .set-dialog-content .dynamic-email-form button {
+    display: inline-block;
+    float: right;
+}
+
+.set-dialog-wrap .set-dialog-content .dynamic-email-form .was-validated.add-field .form-control:valid {
+    border-color: #ced4da;
+}

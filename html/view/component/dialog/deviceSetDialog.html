@@ -1,0 +1,71 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:19:29
+*/ -->
+<md-dialog aria-label="addEdit" class="set-dialog-wrap">
+  <form name="addEdit" ng-cloak autocomplete="off">
+    <md-toolbar class="set-dialog-toolbar">
+      <div class="md-toolbar-tools">
+        <h2 ng-if="action=='add'"><b translate="dialogAdd" translate-value-item="{{'device'|translate}}"></b></h2>
+        <h2 ng-if="action=='edit'"><b translate="dialogEdit" translate-value-item="{{'device'|translate}}"></b></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="cancel">
+          <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content class="set-dialog-content">
+      <div class="md-dialog-content">
+        <div class="form-group">
+          <label for="licence">{{"deviceSN"|translate}}</label>
+          <input type="text" class="form-control" name="deviceSn" required="action=='add'" ng-model="row.deviceSn" ng-model-options="{allowInvalid: true}" ng-maxlength="45" ng-change="validate('deviceSn')" ng-blur="validate('deviceSn')" ng-disabled="action!=='add'" ng-readonly="action=='edit'">
+          <div class="invalid-feedback" ng-show="addEdit.deviceSn.$error.maxlength" translate="tooLong" translate-value-column="{{'deviceSN'|translate}}"></div>
+          <div class="invalid-feedback" ng-show="(attempt||addEdit.deviceSn.$dirty||addEdit.deviceSn.$touched) && addEdit.deviceSn.$error.required" translate="required" translate-value-column="{{'deviceSN'|translate}}"></div>
+        </div>
+        <div class="form-group typeahead-demo">
+          <label for="sel1">{{"licence"|translate}}</label>
+          <input id="typeahead#1" class="form-control" type="text" ng-model="row.licence" uib-typeahead="item as item.licence for item in licences | filter:{licence:$viewValue}" typeahead-editable="false" typeahead-select-on-exact="true" typeahead-popup-template-url="/view/component/typeahead/typeaheadInput_licence.html" typeahead-show-hint="true" typeahead-min-length="0" required name="licenceTAH" typeahead-no-results="noResultslicenceTAH" ng-keypress="validate('licenceTAH')" ng-keydown="typeaheadscroll();validate('licenceTAH')" typeahead-on-select="validateSelect('licenceTAH')" ng-blur="validate('licenceTAH')" ng-trim="false">
+          <div class="invalid-feedback-custom" ng-show="noResultslicenceTAH && !addEdit.licenceTAH.$error.required">
+            {{"noLicenceInList"|translate}}
+          </div>
+          <div class="invalid-feedback-custom" ng-show="((attempt||addEdit.licenceTAH.$dirty||addEdit.licenceTAH.$touched) && addEdit.licenceTAH.$error.required) || (action=='edit'&&row.licence.vrm_id==null&&addEdit.licenceTAH.$error.required)">
+            {{"licenceRequired"|translate}}
+          </div>
+        </div>
+        <div class="form-group was-validated">
+          <label for="sel1">{{"status"|translate}}</label>
+          <select class="form-control" id="sel1" ng-model="row.status" name="status" ng-change="validate('status')" required>
+            <option value="A">{{"A"|translate}}</option>
+            <option value="I">{{"I"|translate}}</option>
+          </select>
+          <div class="invalid-feedback" ng-show="(attempt||addEdit.status.$dirty||addEdit.status.$touched) && addEdit.status.$error.required">
+            {{"statusRequired"|translate}}
+          </div>
+        </div>
+        <div class="form-group" ng-if="action=='edit'">
+          <label for="licence">{{"lat"|translate}}</label>
+          <input type="text" class="form-control" name="lat" ng-value="row.lat| number:7" disabled readonly>
+        </div>
+        <div class="form-group" ng-if="action=='edit'">
+          <label for="licence">{{"lng"|translate}}</label>
+          <input type="text" class="form-control" name="lng" ng-value="row.lng| number:7" disabled readonly>
+        </div>
+        <div class="form-group" ng-if="action=='edit'">
+          <label for="licence">{{"lastLocUpdate"|translate}}</label>
+          <input type="text" class="form-control" name="lastLocUpdate" ng-value="row.lastLocUpdate|date:'yyyy-MM-dd HH:mm:ss'" disabled readonly>
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" class="set-dialog-content-button">
+      <span flex></span>
+      <md-button ng-click="cancel()">
+        {{"cancel"|translate}}
+      </md-button>
+      <md-button ng-click="validateForm();addEdit.$valid&&submit(row)">
+        {{"ok"|translate}}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -1,0 +1,571 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-03-07 12:03:54
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-07-30 18:15:25
+*/ -->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!--HTML Settings-->
+    <title>GreenSafety</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en,zh-TW,zh-cn">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="must-revalidate" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="icon" href="../../images/favicon.ico" type="image/x-icon">
+    <base href="/">
+    <script>
+        window.onload = function () {
+            var vyear = new Date().getFullYear();
+            var userlang = navigator.language || navigator.userLanguage;
+            var enlangpatt = new RegExp(/^en-\w+$/)
+            if (enlangpatt.test(userlang)) {
+                document.body.className = "en";
+                document.getElementsByClassName('footer lang-en')[0].querySelector('#vyear').innerHTML += vyear;
+            } else if (userlang == "zh-CN") {
+                document.body.className = "zh-cn";
+                document.getElementsByClassName('footer lang-zh-cn')[0].querySelector('#vyear').innerHTML += vyear;
+            } else if (userlang == "zh-HK" || userlang == "zh-TW") {
+                document.body.className = "zh-tw";
+                document.getElementsByClassName('footer lang-zh-tw')[0].querySelector('#vyear').innerHTML += vyear;
+            } else {
+                document.body.className = "en";
+                document.getElementsByClassName('footer lang-en')[0].querySelector('#vyear').innerHTML += vyear;
+            }
+
+
+        }
+    </script>
+    <style>
+        body,
+        html {
+            background-color: #ffffff;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            margin: 0 auto;
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", "Times New Roman", "宋体", "SimSun", "STXihei", -apple-system, "BlinkMacSystemFont", "Segoe UI", Roboto, "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            color: #000000;
+        }
+
+        body {
+            min-width: 300px;
+        }
+
+        body.en .lang-zh-cn,
+        body.en .lang-zh-tw,
+        body.zh-cn .lang-en,
+        body.zh-cn .lang-zh-tw,
+        body.zh-tw .lang-en,
+        body.zh-tw .lang-zh-cn {
+            display: none;
+        }
+
+        .wrapper {
+            text-align: center;
+            vertical-align: middle;
+            position: absolute;
+            width: 100%;
+        }
+
+        .header {
+            text-align: left;
+            margin-top: 20px;
+            margin-right: 20px;
+            margin-bottom: 2.5%
+        }
+
+        .content {
+            text-align: left;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .warningMessage {
+            text-align: center;
+        }
+
+        .icon {
+            max-width: 150px;
+        }
+
+        .row {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .suggestion {
+            color: grey;
+            font-family: 'Lucida Console';
+            font-size: 13px;
+        }
+
+        .warningMessage>a {
+            margin: 1.5rem 0;
+            display: inline-block;
+            text-decoration: none !important;
+            border-bottom: solid 2px #89efff;
+            transition: border-bottom .1s;
+        }
+
+        .warningMessage>a>font {
+            color: black;
+        }
+
+        .warningMessage>a:hover {
+            border-bottom: solid 2px #56baed;
+        }
+
+        .warningMessage>a:hover>font {
+            color: #56baed;
+        }
+
+        @media screen and (max-width: 280px) {
+            .wrapper {
+                left: 50%;
+                transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+            }
+        }
+
+        @media screen and (max-height: 1400px) and (min-width: 280px) and (max-width: 768px) {
+            .wrapper {
+                left: 50%;
+                transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+            }
+        }
+
+        @media screen and (min-height: 1400px) and (min-width: 280px) and (max-width: 768px) {
+            .wrapper {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+                -o-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+            }
+        }
+
+        @media screen and (max-height: 700px) and (min-width: 768px) {
+            .wrapper {
+                left: 50%;
+                transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+            }
+        }
+
+        @media screen and (min-height: 700px) and (min-width: 768px) {
+            .wrapper {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+                -o-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            .wrapper {
+                text-align: left;
+            }
+
+            /*.icon {
+                width: 70%;
+                width: 20vw;
+                margin: 20px 0px 20px 0px;
+            }*/
+
+            .warningMessage {
+                text-align: left;
+            }
+
+            .warningMessage .container {
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .icon {
+                margin: 20px;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .col-half-offset{
+                margin-left:4.166666667%
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            .icon {
+                width: 50vw;
+                max-width: 115px;
+            }
+        }
+
+        @media screen and (max-width: 1055px) {
+            .wrapper {
+                text-align: left;
+            }
+        }
+
+        @media screen and (min-width: 1055px) {
+            .header {
+                margin-left: 0%;
+            }
+        }
+
+        @media screen and (min-width: 1155px) {
+            .header {
+                margin-left: 2.5%;
+            }
+        }
+
+        @media screen and (min-width: 1255px) {
+            .header {
+                margin-left: 5%;
+            }
+        }
+
+        @media screen and (min-width: 1355px) {
+            .header {
+                margin-left: 7.5%;
+            }
+        }
+
+        @media screen and (min-width: 1455px) {
+            .header {
+                margin-left: 10%;
+            }
+        }
+
+        @media screen and (min-width: 1555px) {
+            .header {
+                margin-left: 12.5%;
+            }
+        }
+
+        @media screen and (min-width: 1655px) {
+            .header {
+                margin-left: 15%;
+            }
+        }
+
+        @media screen and (min-width: 1755px) {
+            .header {
+                margin-left: 17.5%;
+            }
+        }
+
+        @media screen and (max-width: 280px) and (-ms-high-contrast:none) {
+            .wrapper {
+                right: 50%;
+                left: auto;
+                transform: translateX(50%);
+                -webkit-transform: translateX(50%);
+                -moz-transform: translateX(50%);
+                -o-transform: translateX(50%);
+                -ms-transform: translateX(50%) !important;
+            }
+        }
+
+        @media screen and (max-height: 1400px) and (min-width: 280px) and (max-width: 767px) and (-ms-high-contrast:none) {
+            .wrapper {
+                right: 50%;
+                left: auto;
+                transform: translateX(50%);
+                -webkit-transform: translateX(50%);
+                -moz-transform: translateX(50%);
+                -o-transform: translateX(50%);
+                -ms-transform: translateX(50%) !important;
+            }
+        }
+
+        @media screen and (min-height: 1400px) and (min-width: 280px) and (max-width: 767px) and (-ms-high-contrast:none) {
+            .wrapper {
+                bottom: 50%;
+                right: 50%;
+                top: auto;
+                left: auto;
+                transform: translate(50%, 50%);
+                -webkit-transform: translate(50%, 50%);
+                -moz-transform: translate(50%, 50%);
+                -o-transform: translate(50%, 50%);
+                -ms-transform: translate(50%, 50%) !important;
+            }
+        }
+
+        @media screen and (max-height: 700px) and (min-width: 767px) and (-ms-high-contrast:none) {
+            .wrapper {
+                right: 50%;
+                left: auto;
+                transform: translateX(50%);
+                -webkit-transform: translateX(50%);
+                -moz-transform: translateX(50%);
+                -o-transform: translateX(50%);
+                -ms-transform: translateX(50%) !important;
+            }
+        }
+
+        @media screen and (min-height: 700px) and (min-width: 767px) and (-ms-high-contrast:none) {
+            .wrapper {
+                bottom: 50%;
+                right: 50%;
+                top: auto;
+                left: auto;
+                transform: translate(50%, 50%);
+                -webkit-transform: translate(50%, 50%);
+                -moz-transform: translate(50%, 50%);
+                -o-transform: translate(50%, 50%);
+                -ms-transform: translate(50%, 50%) !important;
+            }
+        }
+
+        @supports (-ms-ime-align:auto) {
+            @media screen and (max-width: 280px) {
+                .wrapper {
+                    right: 50%;
+                    left: auto;
+                    transform: translateX(50%);
+                    -webkit-transform: translateX(50%);
+                    -moz-transform: translateX(50%);
+                    -o-transform: translateX(50%);
+                    -ms-transform: translateX(50%) !important;
+                }
+            }
+
+            @media screen and (max-height: 1400px) and (min-width: 280px) and (max-width: 767px) {
+                .wrapper {
+                    right: 50%;
+                    left: auto;
+                    transform: translateX(50%);
+                    -webkit-transform: translateX(50%);
+                    -moz-transform: translateX(50%);
+                    -o-transform: translateX(50%);
+                    -ms-transform: translateX(50%) !important;
+                }
+            }
+
+            @media screen and (min-height: 1400px) and (min-width: 280px) and (max-width: 767px) {
+                .wrapper {
+                    bottom: 50%;
+                    right: 50%;
+                    top: auto;
+                    left: auto;
+                    transform: translate(50%, 50%);
+                    -webkit-transform: translate(50%, 50%);
+                    -moz-transform: translate(50%, 50%);
+                    -o-transform: translate(50%, 50%);
+                    -ms-transform: translate(50%, 50%) !important;
+                }
+            }
+
+            @media screen and (max-height: 700px) and (min-width: 767px) {
+                .wrapper {
+                    right: 50%;
+                    left: auto;
+                    transform: translateX(50%);
+                    -webkit-transform: translateX(50%);
+                    -moz-transform: translateX(50%);
+                    -o-transform: translateX(50%);
+                    -ms-transform: translateX(50%) !important;
+                }
+            }
+
+            @media screen and (min-height: 700px) and (min-width: 767px) {
+                .wrapper {
+                    bottom: 50%;
+                    right: 50%;
+                    top: auto;
+                    left: auto;
+                    transform: translate(50%, 50%);
+                    -webkit-transform: translate(50%, 50%);
+                    -moz-transform: translate(50%, 50%);
+                    -o-transform: translate(50%, 50%);
+                    -ms-transform: translate(50%, 50%) !important;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class='header'>
+            <img src="../images/logo-header.png" width="300" height="50" alt="GREENSAFETY">
+        </div>
+
+        <div class="content">
+            <div class="lang-en warningMessage">
+                <h1>Improve your experience</h1>
+                <p>Your browser is not supported. To use this site, please try one of the following options.</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <a href="https://www.google.com/intl/en_hk/chrome/"><img class="icon"
+                                    src="../../images/chrome.png"></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a href="https://www.mozilla.org/en-US/firefox/"><img class="icon"
+                                    src="../../images/firefox.png"></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a
+                                href="https://www.apple.com/hk/en/safari/"><img
+                                    class="icon" src="../../images/safari.png">
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a href="https://www.microsoft.com/en-gb/windows/microsoft-edge"><img class="icon"
+                                    src="../../images/edge.png"></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a
+                                href="https://support.microsoft.com/en-hk/help/18520/download-internet-explorer-11-offline-installer"><img
+                                    class="icon" src="../../images/ie.png"></a>
+                        </div>
+                    </div>
+                </div>
+                <a class="homeLink" href="https://greensafety.com.hk/" target="_blank">
+                    <font>Visit Our Home Page</font>
+                </a>
+                <p>If you need immediate help, feel free to contact us. Service Hotline: (852) 2662 6460.</p>
+            </div>
+
+            <div class="lang-zh-cn warningMessage">
+                <h1>更好的浏览体验</h1>
+                <p>我们不支援目前您所用的浏览器。请使用下列浏览器版本。 </p>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <a href="https://www.google.com/intl/zh-CN/chrome/">
+                                <img class="icon" src="../../images/chrome.png">
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a href="https://www.mozilla.org/zh-CN/firefox/">
+                                <img class="icon" src="../../images/firefox.png">
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a
+                                href="https://www.apple.com/cn/"><img
+                                    class="icon" src="../../images/safari.png">
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a href="https://www.microsoft.com/zh-cn/windows/microsoft-edge"><img class="icon"
+                                    src="../../images/edge.png"></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a
+                                href="https://support.microsoft.com/zh-cn/help/18520/download-internet-explorer-11-offline-installer">
+                                <img class="icon" src="../../images/ie.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a class="homeLink" href="https://greensafety.com.hk/" target="_blank">
+                    <font>访问主页</font>
+                </a>
+                <p>如果您需要即时帮助，请随时与我们联系。服务热线: (852) 2662 6460。</p>
+            </div>
+
+            <div class="lang-zh-tw warningMessage">
+                <h1>更好的瀏覽體驗</h1>
+                <p>我們不支援目前您所用的瀏覽器。請使用下列瀏覽器版本。</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <a href="https://www.google.com/intl/zh-HK/chrome/"><img class="icon"
+                                    src="../../images/chrome.png"></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a href="https://www.mozilla.org/zh-TW/firefox/"><img class="icon"
+                                    src="../../images/firefox.png"></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a
+                                href="https://www.apple.com/hk/safari/"><img
+                                    class="icon" src="../../images/safari.png">
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a href="https://www.microsoft.com/zh-hk/windows/microsoft-edge"><img class="icon"
+                                    src="../../images/edge.png"></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-half-offset">
+                            <a
+                                href="https://support.microsoft.com/zh-hk/help/18520/download-internet-explorer-11-offline-installer"><img
+                                    class="icon" src="../../images/ie.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a class="homeLink" href="https://greensafety.com.hk/" target="_blank">
+                    <font>訪問主頁</font>
+                </a>
+                <p>如果你需要即時幫助，請隨時與我們聯繫。服務熱線: (852) 2662 6460。</p>
+            </div>
+            <!--
+                Improve your experience
+                Your browser is not supported.
+                To use this site, please try one of the following options.
+
+                <a href="https://greensafety.com.hk/" target="_blank"><font color='black'>Visit Our Home Page</font></a>
+                访问主页
+                訪問主頁
+                如果您需要即时帮助，请随时与我们联系。\n服务热线: (852) 2662 6460。
+                如果你需要即時幫助，請隨時與我們聯繫。\n服務熱線: (852) 2662 6460。
+                <p>If you need immediate help, feel free to contact us.\nService Hotline: (852) 2662 6460.</p>-->
+        </div>
+        <div class="footer lang-en">
+            <p>Copyright © <span id="vyear"></span> | <a href="https://greensafety.com.hk/" target="_blank">
+                    <font color='black'>GreenSafety Technology Limited</font>
+                </a> | All Rights Reserved</p>
+        </div>
+        <div class="footer lang-zh-cn">
+            <p>版权 © <span id="vyear"></span> | <a href="https://greensafety.com.hk/" target="_blank">
+                    <font color='black'>绿色安全科技有限公司</font>
+                </a> | 保留所有权利</p>
+        </div>
+        <div class="footer lang-zh-tw">
+            <p>版權 © <span id="vyear"></span> | <a href="https://greensafety.com.hk/" target="_blank">
+                    <font color='black'>綠色安全科技有限公司</font>
+                </a> | 保留所有權利</p>
+        </div>
+    </div>
+</body>
+
+</html>

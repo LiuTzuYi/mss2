@@ -1,0 +1,33 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:46:23
+*/
+
+/* glyicon-replace.css
+ * This file provides Glyphicons replacement styles.
+ */
+
+.glyphicon{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-chevron-left:before{
+    content:"\f053"
+}
+.glyphicon-chevron-right:before{
+    content:"\f054"
+}
+
+.glyphicon-remove:before{
+	content: "\f00d"
+}
+
+.glyphicon-ok:before{
+	content: "\f00c"
+}

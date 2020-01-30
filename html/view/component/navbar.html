@@ -1,0 +1,140 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:20:54
+*/ -->
+<div class="navbar-wrap">
+
+  <nav class="navbar navbar-expand-sm navbar-wrap-content navbar-light" id="NAVBAR">
+    <button type="button" class="btn navbar-custom-button-menu btn-outline-dark" ng-click="shNavsm()">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+
+    <!-- Brand -->
+    <a class="navbar-brand navbar-custom-brand" ng-click="toDash()">
+      <img src="../images/logo.png" alt="GREENSAFETY" class="d-inline-block align-top navbar-custom-img-logo">
+    </a>
+
+    <!-- Links -->
+    <ul class="navbar-nav navbar-custom-nav" ng-repeat='func in menu'>
+      <li class="nav-item" ng-if='!func.child && $parent.permission.indexOf(func.access)!==-1' ng-class="{'nav-current':current==func.path}">
+        <a class="nav-link navbar-custom-link" ng-click="current!==func.path&&toPage(func.path)">{{func.text|translate}}</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" ng-if='func.child && navchildaccess(func.childaccess)' id="navbardroptag{{$index}}" ng-class="{'nav-current-dropdown':hasCurrent(func.child)}">
+        <a class="nav-link dropdown-toggle navbar-custom-link" id="navbardrop{{$index}}" data-toggle="dropdown" ng-click="hideOthertab($index)">
+          {{func.text|translate}}
+        </a>
+        <div class="dropdown-menu" ng-show="func.show" aria-labelledby="navbardrop{{$index}}" id="navbardroplist{{$index}}">
+          <a class="dropdown-item navbar-custom-link-dropdown" ng-repeat='subfunc in func.child' ng-if="$parent.permission.indexOf(subfunc.access)!==-1" ng-click="current!==subfunc.path&&toPage(subfunc.path)"  ng-class="{'nav-current-sub':current==subfunc.path}"><i class="fa fa-link" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{subfunc.text|translate}}</a>
+        </div>
+      </li>
+    </ul>
+
+    <form class="form-inline navbar-select ml-auto">
+      <label class="help-icon" ng-click="toHelp()"><i class="fa fa-question-circle" aria-hidden="true"></i></label>
+      <label class="support-icon" ng-click="supportAlert()"><i class="fa fa-phone-square" aria-hidden="true"></i></label>
+      <select class="form-control" id="lang-select" ng-model="$parent.lang" ng-change="$parent.updatelang()">
+        <option value="en">English</option>
+        <option value="zh-tw">繁體中文</option>
+        <option value="zh-cn">简体中文</option>
+      </select>
+    </form>
+
+    <button type="button" class="btn navbar-custom-button-user" ng-click="shUser()">
+      <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
+    </button>
+
+    <button type="button" class="btn navbar-custom-button-logout" ng-click="toLogout()">
+      <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+    </button>
+  </nav>
+
+  <div class="navbar-custom-sm" ng-show="navbarSm">
+    <div class="card card-body navbar-wrap-content-sm">
+        <ul class="nav" ng-repeat='func in menu'>
+          <li class="nav-item navbar-sm-list" active ng-if='!func.child && $parent.permission.indexOf(func.access)!==-1'>
+            <a class="nav-link navbar-custom-link navbar-custom-link-sm" ng-click="current!==func.path&&toPage(func.path)" ng-class="{'nav-current-sm':current==func.path}">{{func.text|translate}}</a>
+          </li>
+          <li class="nav-item navbar-sm-list" active ng-if='func.child && navchildaccess(func.childaccess)'>
+            <a class="nav-link navbar-custom-link navbar-custom-link-sm" ng-click="shNavsmdrop($index)" ng-class="{'nav-current-dropdown-sm':hasCurrent(func.child)&&!func.show,'nav-current-dropdown-sm-show':hasCurrent(func.child)&&func.show}">
+              {{func.text|translate}}
+            </a>
+            <div ng-show="func.show" class="subnav-sm">
+              <ul class="nav" ng-repeat='subfunc in func.child' ng-if="$parent.permission.indexOf(subfunc.access)!==-1" ng-click="current!==subfunc.path&&toPage(subfunc.path)" ng-class="{'nav-current-sub-sm':current==subfunc.path}">
+                <li class="nav-item" active>
+                  <a class="nav-link navbar-custom-link">{{subfunc.text|translate}}</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li ng-show="func.show" ng-if="$last" class="navbar-custom-sm-divider"></li>
+        </ul>
+    </div>
+  </div>
+
+  <div class="navbar-custom-user" ng-if="navbarUser">
+    <div class="card card-body navbar-wrap-content-user">
+      <ul class="nav">
+        <li class="nav-item navbar-sm-list" active>
+          <a class="nav-link navbar-custom-info-link">{{$parent.userInfo.fullname}}</a>
+        </li>
+        <li class="nav-item navbar-sm-list" active>
+          <a class="nav-link navbar-custom-info-link1">{{userdepartment}}</a>
+        </li>
+        <li class="nav-item navbar-sm-list navbar-sm-list-info2" active>
+          <a class="nav-link navbar-custom-info-link2">{{$parent.userInfo.company_name}}</a>
+        </li>
+        <li class="nav-item navbar-sm-list" active>
+          <a class="nav-link navbar-custom-link navbar-custom-link-sm change-password" ng-click="shChangePwd()">
+            <i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;{{'changePwd'|translate}}
+          </a>
+          <div class="subnav-sm-user" ng-if="showChangePwd">
+            <ul class="nav">
+                <li class="nav-item navbar-sm-list" active>
+                  <form name="changePW" autocomplete="off">
+                    <label>{{'oldPwd'|translate}}:</label>
+                    <div class="input-group" ng-class="{'navbar-user-password-error':(!changePW.oldPW.$valid && (attempt||oldPWC)),'navbar-user-password-valid':oldPWC&&changePW.oldPW.$valid}">
+                      <input type="{{typeOldPwd}}" name="oldPW" ng-model="oldPW" class="form-control navbar-user-password-input" ng-change="inputPW('oldPW',oldPW)" required ng-model-options="{allowInvalid: true}" ng-trim="false" ng-blur="checkPW('oldPWC')">
+                      <div class="input-group-addon navbar-user-password-show-button" ng-click="typeOldPwd=='password'?typeOldPwd='text':typeOldPwd='password'">
+                        <i class="fa fa-eye-slash" aria-hidden="true" ng-if="typeOldPwd=='password'"></i>
+                        <i class="fa fa-eye" aria-hidden="true" ng-if="typeOldPwd=='text'"></i>
+                      </div>
+                    </div>
+                    <div class="invalid-feedback-custom" ng-show="(attempt||changePW.oldPW.$dirty||changePW.oldPW.$touched) && changePW.oldPW.$error.required" translate="required" translate-value-column="{{'password'|translate}}"></div>
+                    <label>{{'newPwd'|translate}}:</label>
+                    <div class="input-group" ng-class="{'navbar-user-password-error':((!changePW.newPW.$valid && (attempt||newPWC))||(!changePW.oldPW.$error.required && newPW==oldPW)),'navbar-user-password-valid':newPWC&&changePW.newPW.$valid&&newPW!==oldPW}">
+                      <input type="{{typeNewPwd}}" name="newPW" ng-model="newPW" class="form-control navbar-user-password-input" ng-change="inputPW('newPW',newPW)" required ng-model-options="{allowInvalid: true}" ng-blur="checkPW('newPWC')" ng-maxlength="40" ng-minlength="passwordmin" ng-trim="false" ng-pattern="passwordregex">
+                      <div class="input-group-addon navbar-user-password-show-button" ng-click="typeNewPwd=='password'?typeNewPwd='text':typeNewPwd='password'">
+                        <i class="fa fa-eye-slash" aria-hidden="true" ng-if="typeNewPwd=='password'"></i>
+                        <i class="fa fa-eye" aria-hidden="true" ng-if="typeNewPwd=='text'"></i>
+                      </div>
+                    </div>
+                    <div class="invalid-feedback-custom" ng-show="(attempt||changePW.newPW.$dirty||changePW.newPW.$touched) && !changePW.oldPW.$error.required && !changePW.newPW.$error.required && newPW==oldPW">{{"differentPwdRequired"|translate}}</div>
+                    <div class="invalid-feedback-custom" ng-show="changePW.newPW.$error.maxlength && newPW!==oldPW" translate="tooLong" translate-value-column="{{'password'|translate}}"></div>
+                    <div class="invalid-feedback-custom" ng-show="(attempt||changePW.newPW.$dirty||changePW.newPW.$touched) && (changePW.newPW.$error.required||(!changePW.newPW.$error.required && changePW.newPW.$error.pattern && newPW!==oldPW && !changePW.newPW.$error.maxlength)||changePW.newPW.$error.minlength)" style="white-space: pre-wrap;">{{'passwordRegex'|translate:pwdSetting}}</div>
+                    <label>{{'confirmNewPwd'|translate}}:</label>
+                    <div class="input-group" ng-class="{'navbar-user-password-error':(newPWC||conPWC)&&!changePW.conPW.$valid,'navbar-user-password-valid':(newPWC||conPWC)&&changePW.conPW.$valid}">
+                      <input type="{{typeConPwd}}" name="conPW" ng-model="conPW" class="form-control navbar-user-password-input" ng-change="inputPW('conPW',conPW)" required ng-model-options="{allowInvalid: true}" ng-pattern="confirmpwregex" ng-disabled="!newPW||newPW==oldPW" ng-trim="false" ng-blur="checkPW('conPWC')">
+                      <div class="input-group-addon navbar-user-password-show-button" ng-click="newPW&&typeConPwd=='password'?typeConPwd='text':typeConPwd='password'" ng-class="(newPW&&newPW!==oldPW)?'':'navbar-user-password-show-button-disable'">
+                        <i class="fa fa-eye-slash" aria-hidden="true" ng-if="typeConPwd=='password'"></i>
+                        <i class="fa fa-eye" aria-hidden="true" ng-if="typeConPwd=='text'"></i>
+                      </div>
+                    </div>
+                    <div class="invalid-feedback-custom" ng-show="!changePW.newPW.$error.required && changePW.conPW.$error.required && newPW!==oldPW">{{"confirmPwdRequired"|translate}}</div>
+                    <div class="invalid-feedback-custom" ng-show="!changePW.newPW.$error.required && !changePW.conPW.$error.required && changePW.conPW.$error.pattern && newPW!==oldPW">{{"confirmPwdError"|translate}}</div>
+                  </form>
+                  <button type="button" class="btn btn-primary btn-block nav-user-submit-button" ng-click="attempt=true;newPW!==oldPW&&changePW.$valid&&updatePw()">{{'update'|translate}}</button>
+                </li>
+            </ul>
+            <li ng-if="showChangePwd" class="navbar-custom-sm-divider"></li>
+            <div class="navbar-vrsion-footer">V {{dataCoVer.version}}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

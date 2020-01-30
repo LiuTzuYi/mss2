@@ -1,0 +1,2708 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-19 16:36:28
+*/ -->
+<div class="pro-wrap">
+	<navbar></navbar>
+	<div class="profile-header" ng-click="showOption()" ng-if="!optionList">
+		<p><i class="fa fa-search-plus" aria-hidden="true"></i>{{'comProfile'|translate}} ({{periodselected|translate}}) ( > {{distanceselected}}{{'km'|translate}} ) <span ng-if="periodselected=='d'">{{dateRange.after | date:'yyyy-MM-dd'}}</span><span
+				ng-if="periodselected=='w'">{{dateRange.after	| date:'yyyy-MM-dd'}} ~
+				{{dateRangeafter | date:'yyyy-MM-dd'}}</span><span ng-if="periodselected=='m'">{{dateRange.after
+				| date:'yyyy-MMM'}}</span><span ng-if="periodselected=='y'">{{dateRange.after | date:'yyyy'}}</span></p>
+	</div>
+	<div class="profile-header2" ng-if="optionList">
+		<p ng-click="showOption()"><i class="fa fa-search-minus" aria-hidden="true"></i>{{'comProfile'|translate}}<span
+				class="pull-right"><button class="btn" ng-click="submitOption($event)"><i class="fa fa-paper-plane"
+						aria-hidden="true"></i>&nbsp;&nbsp;{{"submit"|translate}}</button></span></p>
+		<div class="form-group row">
+			<label class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-form-label">{{'view'|translate}}</label>
+			<div class="col-7 col-sm-9 col-md-10 col-lg-10 col-xl-10">
+				<select class="form-control" id="period-select" ng-model="period" ng-change="changeDateOption(period)">
+					<option value="d">{{'d'|translate}}</option>
+					<option value="w">{{'w'|translate}}</option>
+					<option value="m">{{'m'|translate}}</option>
+					<option value="y">{{'y'|translate}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-form-label">{{'distance' | translate}} ({{'km'|translate}})</label>
+			<div class="col-7 col-sm-9 col-md-10 col-lg-10 col-xl-10">
+				<input type="text" class="form-control distance" name="drvDistance" ng-model="drvDistance" ng-keydown="checkDistance($event)" ng-change="changeDistance(drvDistance)" autocomplete="off" min="0" step="0.1">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-5 col-sm-3 col-md-2 col-lg-2 col-xl-2 col-form-label">{{'date'|translate}}</label>
+			<div class="col-7 col-sm-9 col-md-10 col-lg-10 col-xl-10 input-group pro-date-pick" ng-if="period=='d'">
+				<input type="hidden" ng-model="dateselected" uib-datepicker-popup close-on-date-selection="true"
+					show-button-bar="false" is-open="dateSelected.opened" on-open-focus="false"
+					datepicker-options="dateSelectOptions" ng-change="changeRange(dateselected)"
+					popup-placement="bottom-left" />
+				<span class="input-group-btn pro-date-pick-btn-wrap">
+					<button type="button" class="btn btn-default pro-date-pick-btn" ng-click="openPicker()">
+						{{dateselected|date:'yyyy/MM/dd'}}
+					</button>
+				</span>
+			</div>
+			<div class="col-7 col-sm-9 col-md-10 col-lg-10 col-xl-10 input-group pro-date-pick" ng-if="period=='w'">
+				<input type="hidden" ng-model="dateselected" uib-datepicker-popup close-on-date-selection="true"
+					show-button-bar="false" is-open="dateSelected.opened" on-open-focus="false"
+					datepicker-options="dateSelectOptions" ng-change="changeRange(dateselected)"
+					popup-placement="bottom-left" />
+				<span class="input-group-btn pro-date-pick-btn-wrap">
+					<button type="button" class="btn btn-default pro-date-pick-btn" ng-click="openPicker()">
+						{{dateselected|date:'yyyy/MM/dd'}} - {{dateselectedafter|date:'MM/dd'}}
+					</button>
+				</span>
+			</div>
+			<div class="col-7 col-sm-9 col-md-10 col-lg-10 col-xl-10 input-group pro-date-pick" ng-if="period=='m'">
+				<input type="hidden" ng-model="dateselected" uib-datepicker-popup close-on-date-selection="true"
+					show-button-bar="false" is-open="dateSelected.opened" on-open-focus="false"
+					datepicker-options="dateSelectOptions" ng-change="changeRange(dateselected)"
+					popup-placement="bottom-left" />
+				<span class="input-group-btn pro-date-pick-btn-wrap">
+					<button type="button" class="btn btn-default pro-date-pick-btn" ng-click="openPicker()">
+						{{dateselected|date:'yyyy MMM'}}
+					</button>
+				</span>
+			</div>
+			<div class="col-7 col-sm-9 col-md-10 col-lg-10 col-xl-10 input-group pro-date-pick" ng-if="period=='y'">
+				<input type="hidden" ng-model="dateselected" uib-datepicker-popup close-on-date-selection="true"
+					show-button-bar="false" is-open="dateSelected.opened" on-open-focus="false"
+					datepicker-options="dateSelectOptions" ng-change="changeRange(dateselected)"
+					popup-placement="bottom-left" />
+				<span class="input-group-btn pro-date-pick-btn-wrap">
+					<button type="button" class="btn btn-default pro-date-pick-btn" ng-click="openPicker()">
+						{{dateselected|date:'yyyy'}}
+					</button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="profile-body">
+		<div class="row">
+			<div class="row col-lg-4 col-sm-12 col-xl-4 col-md-12 sub-row-group">
+				<div class="col-lg-12 col-sm-12 col-xl-12">
+					<div class="panel-group">
+						<div class="panel-default panel">
+							<div class="panel-heading">
+								<h4 class="panel-title">{{'information'|translate}}</h4>
+							</div>
+							<div class="panel-body profile-static-content profile-info">
+								<p>{{'dataAsAt' | translate}}: {{recentRecord.dataAsAt || 'NA' | translate}}</p>
+								<hr>
+								{{'companyName' | translate}}: {{companyName || 'NA' | translate}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12 col-sm-12 col-xl-12">
+					<div class="panel-group">
+						<div class="panel-default panel">
+							<div class="panel-heading">
+								<h4 class="panel-title">{{'grade'|translate}}</h4>
+							</div>
+							<div class="panel-body profile-static-content profile-graph ng-gauge">
+								<ng-gauge size="150" type="full" thick="10" min="0" max="100"
+									value="recentRecord.total_score" cap="round"
+									label="{{recentRecord.grade}}" thresholds="gaugeColor" ng-if="recentRecord.total_score"></ng-gauge>
+								<ng-gauge size="150" type="full" thick="10" min="0" max="100"
+									value="recentRecord.total_score" cap="round"
+									label="{{recentRecord.grade}}" thresholds="gaugeColor" ng-if="!recentRecord.total_score"></ng-gauge>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8 col-sm-12 col-xl-8 col-md-12">
+				<div class="panel-group">
+					<div class="panel-default panel">
+						<div class="panel-heading">
+							<h4 class="panel-title">{{'overall'|translate}}</h4>
+						</div>
+						<div class="panel-body profile-static-content2 profile-graph profile-chart">
+							<canvas id="radar" class="chart chart-radar spider" chart-data="recentRecord.spiderset"
+								chart-options="spiderOption" chart-labels="spiderLabel" chart-colors="spiderColor"
+								chart-hover="spiderHover" chart-click="spiderClick" chart-dataset-override="spiderPoint">
+							</canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" ng-if="showRecommendation(recentRecord)">
+			<div class="col-lg-12 col-sm-12 col-xl-12 col-md-12">
+				<div class="panel-group">
+					<div class="panel-default panel">
+						<div class="panel-heading">
+							<h4 class="panel-title">{{'recommendation'|translate}}</h4>
+						</div>
+						<div class="panel-body">
+							<div ng-repeat="item in dataFieldSet[0]" ng-if="recentRecord[item+'_score'] < 30"><b>{{item|translate}}</b>: {{item+'_recommendation'|translate}}</div>
+							<div ng-repeat="item in dataFieldSet[1]" ng-if="recentRecord[item+'_score'] < 30"><b>{{item|translate}}</b>: {{item+'_recommendation'|translate}}</div>
+							<div ng-repeat="item in dataFieldSet[2]" ng-if="recentRecord[item+'_score'] < 30"><b>{{item|translate}}</b>: {{item+'_recommendation'|translate}}</div>
+							<!-- <div ng-if="recentRecord.pcw_score < 30"><b>{{'PCW'|translate}}</b>:
+								{{'pcw_recommendation'|translate}}</div>
+							<div ng-if="recentRecord.fcw_score < 30"><b>{{'FCW'|translate}}</b>:
+								{{'fcw_recommendation'|translate}}</div>
+							<div ng-if="recentRecord.ufcw_l_score < 30 || recentRecord.ufcw_h_score < 30">
+								<b>{{'UFCW'|translate}}</b>:
+								{{'ufcw_recommendation'|translate}}</div>
+							<div ng-if="recentRecord.spw_score < 30"><b>{{'SPW'|translate}}</b>:
+								{{'spw_recommendation'|translate}}</div>
+							<div
+								ng-if="recentRecord.hmw_h_score < 30 || recentRecord.hmw_m_score < 30 || recentRecord.hmw_l_score < 30">
+								<b>{{'HMW'|translate}}</b>:
+								{{'hmw_recommendation'|translate}}</div>
+							<div ng-if="recentRecord.lldw_score < 30 || recentRecord.rldw_score < 30">
+								<b>{{'LR_LDW'|translate}}</b>:
+								{{'ldw_recommendation'|translate}}</div>
+							<div ng-if="recentRecord.aaw_score < 30"><b>{{'AAW'|translate}}</b>:
+								{{'aaw_recommendation'|translate}}</div>
+							<div ng-if="recentRecord.abw_score < 30"><b>{{'ABW'|translate}}</b>:
+								{{'abw_recommendation'|translate}}</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row profile-tag-group">
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('safetyScore')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.total"
+										chart-labels="chartSet.labels" chart-options="scoreTagOptsTotal" height="40"
+										chart-colors="scoreTagColorTotal">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.total_score | fixNum: 2}}
+									</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'safetyScore' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4" ng-repeat="item in scoreTagFieldList">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart(item)">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet[item]"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord[item] | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{item | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('PCW')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.pcw"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.pcw | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'PCW' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('PCW_L')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.pcwl"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.pcw_l | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'PCW_L' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('FCW')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.fcw"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.fcw | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'FCW' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('UFCW_H')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.ufcwh"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.ufcw_h | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'UFCW_H' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('UFCW_L')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.ufcwl"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.ufcw_l | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'UFCW_L' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('HMW_H')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.hmwh"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.hmw_h | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'HMW_H' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('HMW_M')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.hmwm"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.hmw_m | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'HMW_M' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('HMW_L')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.hmwl"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.hmw_l | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'HMW_L' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('LLDW')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.lldw"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.lldw | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'LLDW' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('RLDW')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.rldw"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.rldw | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'RLDW' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('SPW')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.spw"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.spw | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'SPW' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('AAW')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.aaw"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.aaw | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'AAW' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-sm-12 col-xl-4">
+				<div class="panel panel-default">
+					<div class="panel-heading inline-chart-wrapper" ng-click="enlargeChart('ABW')">
+						<h4 class="panel-title">
+							<div class="row">
+								<div class="scoretag-chart">
+									<canvas id="bar" class="chart chart-bar" chart-data="chartSet.abw"
+										chart-labels="chartSet.labels" chart-options="scoreTagOpts" height="40"
+										chart-colors="scoreTagColor">
+									</canvas>
+								</div>
+								<div class="scoretag-label text-right">
+									<div ng-if="companyCollection.length!==0">{{recentRecord.abw | fixNum: 1}}</div>
+									<div ng-if="companyCollection.length==0">{{'NA' | translate}}</div>
+									<div class="scoretag-label-title">{{'ABW' | translate}}</div>
+								</div>
+							</div>
+						</h4>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default"
+						is-open="$parent.$parent.accordion.warnvideotableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'warningVideo'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': $parent.$parent.$parent.$parent.accordion.warnvideotableOpened, 'fa-chevron-right': !$parent.$parent.$parent.$parent.accordion.warnvideotableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-set-filter="tableCustomFilter" st-table="warnvideoCollectionDisplay"
+							st-safe-src="warnvideoCollection" ng-if="!loadingdata.video" class="ng-table-content"
+							st-filtered="warnvideoCollectionFiltered">
+							<div class="profile-table-func video">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('video')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="warnvideoCollectionFiltered.length<=0"
+									ng-csv="getcsvData(warnvideoCollectionFiltered,'video')" lazy-load="true"
+									csv-header="getcsvHeader('video')" csv-column-order="profileExcelOrderVideoDep"
+									filename="{{'warningVideo'|translate}}.csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+								<st-select-distinct collection="videotypeSelect" predicate="warningType">
+								</st-select-distinct>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-video-table">
+									<thead>
+										<tr>
+											<th>{{"video"|translate}}</th>
+											<th>{{"location"|translate}}</th>
+											<th st-sort="warningType" st-skip-natural="true">{{"warnType"|translate}}
+											</th>
+											<th st-sort="start_time" st-skip-natural="true">{{"startTime"|translate}}
+											</th>
+											<th st-sort="vehicle" st-skip-natural="true">{{"vehicle"|translate}}</th>
+											<th st-sort="vehDepart" st-skip-natural="true">{{"vehDept"|translate}}</th>
+											<th st-sort="driver" st-skip-natural="true">{{"driver"|translate}}</th>
+											<th st-sort="drvDepart" st-skip-natural="true">{{"drvDept"|translate}}</th>
+											<th st-sort="roc" st-skip-natural="true" st-sort-default="reverse">
+												{{"roc"|translate}}</th>
+											<th st-sort="duration" st-skip-natural="true">{{"duration"|translate}} (s)
+											</th>
+											<th st-sort="start_spd" st-skip-natural="true">{{"startSpeed"|translate}}
+												(kph)</th>
+											<th st-sort="end_spd" st-skip-natural="true">{{"endSpeed"|translate}} (kph)
+											</th>
+											<th st-sort="top_spd" st-skip-natural="true">{{"topSpeed"|translate}} (kph)
+											</th>
+											<th st-sort="hw" st-skip-natural="true">{{"HW"|translate}} (s)</th>
+											<th st-sort="near_hw" st-skip-natural="true">{{"nearHW"|translate}} (s)</th>
+											<th>{{"driverAction"|translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in warnvideoCollectionDisplay">
+											<td class="warn-video"><i class="fa fa-play-circle" aria-hidden="true"
+													ng-if="row.video&&row.videoReady=='Y'"
+													ng-click="playVideo($event,row.video,row.vehicle)"></i><i
+													class="fa fa-pause-circle disable" aria-hidden="true"
+													ng-if="row.video&&row.videoReady=='N'"></i></td>
+											<td class="warn-location"><i class="fa fa-map-marker" aria-hidden="true"
+													ng-if="verifyGPS(row.gps)"
+													ng-click="checkWarnLocation(row,row.warningType)"></i></td>
+											<td>{{row.warningType|translate}}</td>
+											<td>{{row.start_time}}</td>
+											<td class="left">{{row.vehicle}}</td>
+											<td class="left">{{row.vehDepart}}</td>
+											<td class="left">{{row.driver}}</td>
+											<td class="left">{{row.drvDepart}}</td>
+											<td class="right">{{row.roc | number:1}}</td>
+											<td class="right">{{row.duration | number:2}}</td>
+											<td class="right">{{row.start_spd}}</td>
+											<td class="right">{{row.end_spd}}</td>
+											<td class="right">{{row.top_spd}}</td>
+											<td class="right"><span ng-if="!isNull(row.hw)">{{row.hw | number:1}}</span><span ng-if="isNull(row.hw)">{{'NA' | translate}}</span></td>
+											<td class="right"><span ng-if="!isNull(row.near_hw)">{{row.near_hw | number:1}}</span><span ng-if="isNull(row.near_hw)">{{'NA' | translate}}</span></td>
+											<td class="state left">
+												<img ng-if="checkState(row.vehStatus,1)" src='/images/left_turn.png' alt="L" />
+												<img ng-if="checkState(row.vehStatus,2)" src='/images/right_turn.png' alt="R" />
+												<img ng-if="checkState(row.vehStatus,4)" src='/images/breaks.png' alt="B" />
+											</td>
+										</tr>
+										<tr ng-if="warnvideoCollectionDisplay.length<=0">
+											<td colspan="16">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="16">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="16">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.video" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-act" is-open="accordion.comwarnacttableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'actWarnCnt@Table'|translate}} - {{'company'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.comwarnacttableOpened, 'fa-chevron-right': !accordion.comwarnacttableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="companyActCollectionDisplay" st-safe-src="companyActCollection"
+							ng-if="!loadingdata.company" class="ng-table-content"
+							st-filtered="companyActCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('company')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="companyActCollectionFiltered.length<=0"
+									ng-csv="getcsvData(companyActCollectionFiltered,'companyAct')" lazy-load="true"
+									csv-header="getcsvHeader('companyAct')" csv-column-order="profileExcelOrderDateAct"
+									filename="{{'actWarnCnt@Table'|translate}} ({{'company'|translate}}).csv"
+									add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table act-warn-no-department">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="3"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="acc_date" st-skip-natural="true" st-sort-default="reverse">
+												{{'startDate' | translate}}</th>
+											<th st-sort="total_score" st-skip-natural="true">{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+											<!-- <th st-sort="pcw" st-skip-natural="true">{{'PCW' | translate}}</th>
+											<th st-sort="pcw_l" st-skip-natural="true">{{'PCW_L' | translate}}</th>
+											<th st-sort="fcw" st-skip-natural="true">{{'FCW' | translate}}</th>
+											<th st-sort="ufcw_h" st-skip-natural="true">{{'UFCW_H' | translate}}</th>
+											<th st-sort="ufcw_l" st-skip-natural="true">{{'UFCW_L' | translate}}</th>
+											<th st-sort="hmw_h" st-skip-natural="true">{{'HMW_H' | translate}}</th>
+											<th st-sort="hmw_m" st-skip-natural="true">{{'HMW_M' | translate}}</th>
+											<th st-sort="hmw_l" st-skip-natural="true">{{'HMW_L' | translate}}</th>
+											<th st-sort="lldw" st-skip-natural="true">{{'LLDW' | translate}}</th>
+											<th st-sort="rldw" st-skip-natural="true">{{'RLDW' | translate}}</th>
+											<th st-sort="spw" st-skip-natural="true">{{'SPW' | translate}}</th>
+											<th st-sort="aaw" st-skip-natural="true">{{'AAW' | translate}}</th>
+											<th st-sort="abw" st-skip-natural="true">{{'ABW' | translate}}</th>
+											<th st-sort="vb" st-skip-natural="true">{{'VB' | translate}}</th> -->
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in companyActCollectionDisplay">
+											<td>{{row.acc_date}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item]}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item]}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item]}}</td>
+											<!-- <td>{{row.pcw}}</td>
+											<td>{{row.pcw_l}}</td>
+											<td>{{row.fcw}}</td>
+											<td>{{row.ufcw_h}}</td>
+											<td>{{row.ufcw_l}}</td>
+											<td>{{row.hmw_h}}</td>
+											<td>{{row.hmw_m}}</td>
+											<td>{{row.hmw_l}}</td>
+											<td>{{row.lldw}}</td>
+											<td>{{row.rldw}}</td>
+											<td>{{row.spw}}</td>
+											<td>{{row.aaw}}</td>
+											<td>{{row.abw}}</td>
+											<td>{{row.vb}}</td> -->
+										</tr>
+										<tr ng-if="companyActCollectionDisplay.length<=0">
+											<td colspan="{{3+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{3+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{3+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.company" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-act" is-open="accordion.vehgrpwarnacttableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'actWarnCnt@Table'|translate}} - {{'vehicleGrp'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.vehgrpwarnacttableOpened, 'fa-chevron-right': !accordion.vehgrpwarnacttableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="vehgrpActCollectionDisplay" st-safe-src="vehgrpActCollection"
+							ng-if="!loadingdata.vehgrp" class="ng-table-content"
+							st-filtered="vehgrpActCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('vehgrp')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="vehgrpActCollectionFiltered.length<=0"
+									ng-csv="getcsvData(vehgrpActCollectionFiltered,'vehgrpAct')" lazy-load="true"
+									csv-header="getcsvHeader('vehgrpAct')" csv-column-order="profileExcelOrderNameAct"
+									filename="{{'actWarnCnt@Table'|translate}} ({{'vehicleGrp'|translate}}).csv"
+									add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table act-warn">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'group' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+											<!-- <th st-sort="pcw" st-skip-natural="true">{{'PCW' | translate}}</th>
+											<th st-sort="pcw_l" st-skip-natural="true">{{'PCW_L' | translate}}</th>
+											<th st-sort="fcw" st-skip-natural="true">{{'FCW' | translate}}</th>
+											<th st-sort="ufcw_h" st-skip-natural="true">{{'UFCW_H' | translate}}</th>
+											<th st-sort="ufcw_l" st-skip-natural="true">{{'UFCW_L' | translate}}</th>
+											<th st-sort="hmw_h" st-skip-natural="true">{{'HMW_H' | translate}}</th>
+											<th st-sort="hmw_m" st-skip-natural="true">{{'HMW_M' | translate}}</th>
+											<th st-sort="hmw_l" st-skip-natural="true">{{'HMW_L' | translate}}</th>
+											<th st-sort="lldw" st-skip-natural="true">{{'LLDW' | translate}}</th>
+											<th st-sort="rldw" st-skip-natural="true">{{'RLDW' | translate}}</th>
+											<th st-sort="spw" st-skip-natural="true">{{'SPW' | translate}}</th>
+											<th st-sort="aaw" st-skip-natural="true">{{'AAW' | translate}}</th>
+											<th st-sort="abw" st-skip-natural="true">{{'ABW' | translate}}</th>
+											<th st-sort="vb" st-skip-natural="true">{{'VB' | translate}}</th> -->
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in vehgrpActCollectionDisplay">
+											<td ng-click="hasAccess('VEHICLE_GRP_PROFILE')&&toPage('vehiclegrpProfile',row)" ng-class="hasAccess('VEHICLE_GRP_PROFILE')?'navigation':''">
+												{{row.name}}</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item]}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item]}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item]}}</td>
+											<!-- <td>{{row.pcw}}</td>
+											<td>{{row.pcw_l}}</td>
+											<td>{{row.fcw}}</td>
+											<td>{{row.ufcw_h}}</td>
+											<td>{{row.ufcw_l}}</td>
+											<td>{{row.hmw_h}}</td>
+											<td>{{row.hmw_m}}</td>
+											<td>{{row.hmw_l}}</td>
+											<td>{{row.lldw}}</td>
+											<td>{{row.rldw}}</td>
+											<td>{{row.spw}}</td>
+											<td>{{row.aaw}}</td>
+											<td>{{row.abw}}</td>
+											<td>{{row.vb}}</td> -->
+										</tr>
+										<tr ng-if="vehgrpActCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.vehgrp" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-act" is-open="accordion.vehwarnacttableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'actWarnCnt@Table'|translate}} - {{'vehicle'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.vehwarnacttableOpened, 'fa-chevron-right': !accordion.vehwarnacttableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="vehActCollectionDisplay" st-safe-src="vehActCollection" ng-if="!loadingdata.veh"
+							class="ng-table-content" st-filtered="vehActCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('vehicle')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="vehActCollectionFiltered.length<=0"
+									ng-csv="getcsvData(vehActCollectionFiltered,'vehicleAct')" lazy-load="true"
+									csv-header="getcsvHeader('vehicleAct')" csv-column-order="profileExcelOrderNameAct"
+									filename="{{'actWarnCnt@Table'|translate}} ({{'vehicle'|translate}}).csv"
+									add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table act-warn">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'licence' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+											<!-- <th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th st-sort="pcw" st-skip-natural="true">{{'PCW' | translate}}</th>
+											<th st-sort="pcw_l" st-skip-natural="true">{{'PCW_L' | translate}}</th>
+											<th st-sort="fcw" st-skip-natural="true">{{'FCW' | translate}}</th>
+											<th st-sort="ufcw_h" st-skip-natural="true">{{'UFCW_H' | translate}}</th>
+											<th st-sort="ufcw_l" st-skip-natural="true">{{'UFCW_L' | translate}}</th>
+											<th st-sort="hmw_h" st-skip-natural="true">{{'HMW_H' | translate}}</th>
+											<th st-sort="hmw_m" st-skip-natural="true">{{'HMW_M' | translate}}</th>
+											<th st-sort="hmw_l" st-skip-natural="true">{{'HMW_L' | translate}}</th>
+											<th st-sort="lldw" st-skip-natural="true">{{'LLDW' | translate}}</th>
+											<th st-sort="rldw" st-skip-natural="true">{{'RLDW' | translate}}</th>
+											<th st-sort="spw" st-skip-natural="true">{{'SPW' | translate}}</th>
+											<th st-sort="aaw" st-skip-natural="true">{{'AAW' | translate}}</th>
+											<th st-sort="abw" st-skip-natural="true">{{'ABW' | translate}}</th>
+											<th st-sort="vb" st-skip-natural="true">{{'VB' | translate}}</th> -->
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in vehActCollectionDisplay">
+											<td ng-click="hasAccess('VEHICLE_PROFILE')&&toPage('vehicleProfile',row)" ng-class="hasAccess('VEHICLE_PROFILE')?'navigation':''">{{row.name}}
+											</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item]}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item]}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item]}}</td>
+											<!-- <td>{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td>{{row.pcw}}</td>
+											<td>{{row.pcw_l}}</td>
+											<td>{{row.fcw}}</td>
+											<td>{{row.ufcw_h}}</td>
+											<td>{{row.ufcw_l}}</td>
+											<td>{{row.hmw_h}}</td>
+											<td>{{row.hmw_m}}</td>
+											<td>{{row.hmw_l}}</td>
+											<td>{{row.lldw}}</td>
+											<td>{{row.rldw}}</td>
+											<td>{{row.spw}}</td>
+											<td>{{row.aaw}}</td>
+											<td>{{row.abw}}</td>
+											<td>{{row.vb}}</td> -->
+										</tr>
+										<tr ng-if="vehActCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.veh" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-act" is-open="accordion.drvgrpwarnacttableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'actWarnCnt@Table'|translate}} - {{'driverGrp'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.drvgrpwarnacttableOpened, 'fa-chevron-right': !accordion.drvgrpwarnacttableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="drvgrpActCollectionDisplay" st-safe-src="drvgrpActCollection"
+							ng-if="!loadingdata.drvgrp" class="ng-table-content"
+							st-filtered="drvgrpActCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('drvgrp')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="drvgrpActCollectionFiltered.length<=0"
+									ng-csv="getcsvData(drvgrpActCollectionFiltered,'drvgrpAct')" lazy-load="true"
+									csv-header="getcsvHeader('drvgrpAct')" csv-column-order="profileExcelOrderNameAct"
+									filename="{{'actWarnCnt@Table'|translate}} ({{'driverGrp'|translate}}).csv"
+									add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table act-warn">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'group' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+											<!-- <th st-sort="pcw" st-skip-natural="true">{{'PCW' | translate}}</th>
+											<th st-sort="pcw_l" st-skip-natural="true">{{'PCW_L' | translate}}</th>
+											<th st-sort="fcw" st-skip-natural="true">{{'FCW' | translate}}</th>
+											<th st-sort="ufcw_h" st-skip-natural="true">{{'UFCW_H' | translate}}</th>
+											<th st-sort="ufcw_l" st-skip-natural="true">{{'UFCW_L' | translate}}</th>
+											<th st-sort="hmw_h" st-skip-natural="true">{{'HMW_H' | translate}}</th>
+											<th st-sort="hmw_m" st-skip-natural="true">{{'HMW_M' | translate}}</th>
+											<th st-sort="hmw_l" st-skip-natural="true">{{'HMW_L' | translate}}</th>
+											<th st-sort="lldw" st-skip-natural="true">{{'LLDW' | translate}}</th>
+											<th st-sort="rldw" st-skip-natural="true">{{'RLDW' | translate}}</th>
+											<th st-sort="spw" st-skip-natural="true">{{'SPW' | translate}}</th>
+											<th st-sort="aaw" st-skip-natural="true">{{'AAW' | translate}}</th>
+											<th st-sort="abw" st-skip-natural="true">{{'ABW' | translate}}</th>
+											<th st-sort="vb" st-skip-natural="true">{{'VB' | translate}}</th> -->
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in drvgrpActCollectionDisplay">
+											<td ng-click="hasAccess('DRIVER_GRP_PROFILE')&&toPage('drivergrpProfile',row)" ng-class="hasAccess('DRIVER_GRP_PROFILE')?'navigation':''">
+												{{row.name}}</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item]}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item]}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item]}}</td>
+											<!-- <td>{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td>{{row.pcw}}</td>
+											<td>{{row.pcw_l}}</td>
+											<td>{{row.fcw}}</td>
+											<td>{{row.ufcw_h}}</td>
+											<td>{{row.ufcw_l}}</td>
+											<td>{{row.hmw_h}}</td>
+											<td>{{row.hmw_m}}</td>
+											<td>{{row.hmw_l}}</td>
+											<td>{{row.lldw}}</td>
+											<td>{{row.rldw}}</td>
+											<td>{{row.spw}}</td>
+											<td>{{row.aaw}}</td>
+											<td>{{row.abw}}</td>
+											<td>{{row.vb}}</td> -->
+										</tr>
+										<tr ng-if="drvgrpActCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.drvgrp" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-act" is-open="accordion.drvwarnacttableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'actWarnCnt@Table'|translate}} - {{'driver'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.drvwarnacttableOpened, 'fa-chevron-right': !accordion.drvwarnacttableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="drvActCollectionDisplay" st-safe-src="drvActCollection" ng-if="!loadingdata.drv"
+							class="ng-table-content" st-filtered="drvActCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('driver')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="drvActCollectionFiltered.length<=0"
+									ng-csv="getcsvData(drvActCollectionFiltered,'driverAct')" lazy-load="true"
+									csv-header="getcsvHeader('driverAct')" csv-column-order="profileExcelOrderNameAct"
+									filename="{{'actWarnCnt@Table'|translate}} ({{'driver'|translate}}).csv"
+									add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table act-warn">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'name' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+											<!-- <th st-sort="pcw" st-skip-natural="true">{{'PCW' | translate}}</th>
+											<th st-sort="pcw_l" st-skip-natural="true">{{'PCW_L' | translate}}</th>
+											<th st-sort="fcw" st-skip-natural="true">{{'FCW' | translate}}</th>
+											<th st-sort="ufcw_h" st-skip-natural="true">{{'UFCW_H' | translate}}</th>
+											<th st-sort="ufcw_l" st-skip-natural="true">{{'UFCW_L' | translate}}</th>
+											<th st-sort="hmw_h" st-skip-natural="true">{{'HMW_H' | translate}}</th>
+											<th st-sort="hmw_m" st-skip-natural="true">{{'HMW_M' | translate}}</th>
+											<th st-sort="hmw_l" st-skip-natural="true">{{'HMW_L' | translate}}</th>
+											<th st-sort="lldw" st-skip-natural="true">{{'LLDW' | translate}}</th>
+											<th st-sort="rldw" st-skip-natural="true">{{'RLDW' | translate}}</th>
+											<th st-sort="spw" st-skip-natural="true">{{'SPW' | translate}}</th>
+											<th st-sort="aaw" st-skip-natural="true">{{'AAW' | translate}}</th>
+											<th st-sort="abw" st-skip-natural="true">{{'ABW' | translate}}</th>
+											<th st-sort="vb" st-skip-natural="true">{{'VB' | translate}}</th> -->
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in drvActCollectionDisplay">
+											<td ng-click="hasAccess('DRIVER_PROFILE')&&toPage('driverProfile',row)" ng-class="hasAccess('DRIVER_PROFILE')?'navigation':''">{{row.name}}
+											</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item]}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item]}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item]}}</td>
+											<!-- <td>{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td>{{row.pcw}}</td>
+											<td>{{row.pcw_l}}</td>
+											<td>{{row.fcw}}</td>
+											<td>{{row.ufcw_h}}</td>
+											<td>{{row.ufcw_l}}</td>
+											<td>{{row.hmw_h}}</td>
+											<td>{{row.hmw_m}}</td>
+											<td>{{row.hmw_l}}</td>
+											<td>{{row.lldw}}</td>
+											<td>{{row.rldw}}</td>
+											<td>{{row.spw}}</td>
+											<td>{{row.aaw}}</td>
+											<td>{{row.abw}}</td>
+											<td>{{row.vb}}</td> -->
+										</tr>
+										<tr ng-if="drvActCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.drvgrp" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-per100" is-open="accordion.comwarntableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'countRange@Table'|translate}} - {{'company'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.comwarntableOpened, 'fa-chevron-right': !accordion.comwarntableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="companyCollectionDisplay" st-safe-src="companyCollection"
+							ng-if="!loadingdata.company" class="ng-table-content"
+							st-filtered="companyCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('company')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="companyCollectionFiltered.length<=0"
+									ng-csv="getcsvData(companyCollectionFiltered,'company')" lazy-load="true"
+									csv-header="getcsvHeader('company')" csv-column-order="profileExcelOrderDate"
+									filename="{{'warnCount'|translate}} ({{'company'|translate}}).csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table no-department">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="3"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="acc_date" st-skip-natural="true" st-sort-default="reverse">
+												{{'startDate' | translate}}</th>
+											<th st-sort="total_score" st-skip-natural="true">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+											<!-- <th st-sort="pcw" st-skip-natural="true">{{'PCW' | translate}}</th>
+											<th st-sort="pcw_l" st-skip-natural="true">{{'PCW_L' | translate}}</th>
+											<th st-sort="fcw" st-skip-natural="true">{{'FCW' | translate}}</th>
+											<th st-sort="ufcw_h" st-skip-natural="true">{{'UFCW_H' | translate}}</th>
+											<th st-sort="ufcw_l" st-skip-natural="true">{{'UFCW_L' | translate}}</th>
+											<th st-sort="hmw_h" st-skip-natural="true">{{'HMW_H' | translate}}</th>
+											<th st-sort="hmw_m" st-skip-natural="true">{{'HMW_M' | translate}}</th>
+											<th st-sort="hmw_l" st-skip-natural="true">{{'HMW_L' | translate}}</th>
+											<th st-sort="lldw" st-skip-natural="true">{{'LLDW' | translate}}</th>
+											<th st-sort="rldw" st-skip-natural="true">{{'RLDW' | translate}}</th>
+											<th st-sort="spw" st-skip-natural="true">{{'SPW' | translate}}</th>
+											<th st-sort="aaw" st-skip-natural="true">{{'AAW' | translate}}</th>
+											<th st-sort="abw" st-skip-natural="true">{{'ABW' | translate}}</th>
+											<th st-sort="vb" st-skip-natural="true">{{'VB' | translate}}</th> -->
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in companyCollectionDisplay">
+											<td>{{row.acc_date}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in daktaFieldSet[1]" class="right">{{row[item] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item] | fixNum: 1}}</td>
+											<!-- <td>{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td>{{row.pcw | fixNum: 1}}</td>
+											<td>{{row.pcw_l | fixNum: 1}}</td>
+											<td>{{row.fcw | fixNum: 1}}</td>
+											<td>{{row.ufcw_h | fixNum: 1}}</td>
+											<td>{{row.ufcw_l | fixNum: 1}}</td>
+											<td>{{row.hmw_h | fixNum: 1}}</td>
+											<td>{{row.hmw_m | fixNum: 1}}</td>
+											<td>{{row.hmw_l | fixNum: 1}}</td>
+											<td>{{row.lldw | fixNum: 1}}</td>
+											<td>{{row.rldw | fixNum: 1}}</td>
+											<td>{{row.spw | fixNum: 1}}</td>
+											<td>{{row.aaw | fixNum: 1}}</td>
+											<td>{{row.abw | fixNum: 1}}</td>
+											<td>{{row.vb | fixNum: 1}}</td> -->
+										</tr>
+										<tr ng-if="companyCollectionDisplay.length<=0">
+											<td colspan="{{3+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{3+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{3+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.company" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-per100" is-open="accordion.vehgrpwarntableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'countRange@Table'|translate}} - {{'vehicleGrp'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.vehgrpwarntableOpened, 'fa-chevron-right': !accordion.vehgrpwarntableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="vehgrpCollectionDisplay" st-safe-src="vehgrpCollection"
+							ng-if="!loadingdata.vehgrp" class="ng-table-content" st-filtered="vehgrpCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('vehgrp')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="vehgrpCollectionFiltered.length<=0"
+									ng-csv="getcsvData(vehgrpCollectionFiltered,'vehgrp')" lazy-load="true"
+									csv-header="getcsvHeader('vehgrp')" csv-column-order="profileExcelOrderName"
+									filename="{{'warnCount'|translate}} ({{'vehicleGrp'|translate}}).csv"
+									add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'group' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in vehgrpCollectionDisplay">
+											<td ng-click="hasAccess('VEHICLE_GRP_PROFILE')&&toPage('vehiclegrpProfile',row)" ng-class="hasAccess('VEHICLE_GRP_PROFILE')?'navigation':''">
+												{{row.name}}</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item] | fixNum: 1}}</td>
+										</tr>
+										<tr ng-if="vehgrpCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.vehgrp" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-per100" is-open="accordion.vehwarntableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'countRange@Table'|translate}} - {{'vehicle'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.vehwarntableOpened, 'fa-chevron-right': !accordion.vehwarntableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="vehCollectionDisplay" st-safe-src="vehCollection" ng-if="!loadingdata.veh"
+							class="ng-table-content" st-filtered="vehCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('vehicle')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="vehCollectionFiltered.length<=0"
+									ng-csv="getcsvData(vehCollectionFiltered,'vehicle')" lazy-load="true"
+									csv-header="getcsvHeader('vehicle')" csv-column-order="profileExcelOrderName"
+									filename="{{'warnCount'|translate}} ({{'vehicle'|translate}}).csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'licence' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in vehCollectionDisplay">
+											<td ng-click="hasAccess('VEHICLE_PROFILE')&&toPage('vehicleProfile',row)" ng-class="hasAccess('VEHICLE_PROFILE')?'navigation':''">{{row.name}}
+											</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item] | fixNum: 1}}</td>
+										</tr>
+										<tr ng-if="vehCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.veh" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-per100" is-open="accordion.drvgrpwarntableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'countRange@Table'|translate}} - {{'driverGrp'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.drvgrpwarntableOpened, 'fa-chevron-right': !accordion.drvgrpwarntableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="drvgrpCollectionDisplay" st-safe-src="drvgrpCollection"
+							ng-if="!loadingdata.drvgrp" class="ng-table-content" st-filtered="drvgrpCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('drvgrp')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="drvgrpCollectionFiltered.length<=0"
+									ng-csv="getcsvData(drvgrpCollectionFiltered,'drvgrp')" lazy-load="true"
+									csv-header="getcsvHeader('drvgrp')" csv-column-order="profileExcelOrderName"
+									filename="{{'warnCount'|translate}} ({{'driverGrp'|translate}}).csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'group' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in drvgrpCollectionDisplay">
+											<td ng-click="hasAccess('DRIVER_GRP_PROFILE')&&toPage('drivergrpProfile',row)" ng-class="hasAccess('DRIVER_GRP_PROFILE')?'navigation':''">
+												{{row.name}}</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item] | fixNum: 1}}</td>
+										</tr>
+										<tr ng-if="drvgrpCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.drvgrp" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-per100" is-open="accordion.drvwarntableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'countRange@Table'|translate}} - {{'driver'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.drvwarntableOpened, 'fa-chevron-right': !accordion.drvwarntableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="drvCollectionDisplay" st-safe-src="drvCollection" ng-if="!loadingdata.drv"
+							class="ng-table-content" st-filtered="drvCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('driver')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="drvCollectionFiltered.length<=0"
+									ng-csv="getcsvData(drvCollectionFiltered,'driver')" lazy-load="true"
+									csv-header="getcsvHeader('driver')" csv-column-order="profileExcelOrderName"
+									filename="{{'warnCount'|translate}} ({{'driver'|translate}}).csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'name' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in drvCollectionDisplay">
+											<td ng-click="hasAccess('DRIVER_PROFILE')&&toPage('driverProfile',row)" ng-class="hasAccess('DRIVER_PROFILE')?'navigation':''">{{row.name}}
+											</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item] | fixNum: 1}}</td>
+										</tr>
+										<tr ng-if="drvCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.drvgrp" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-score" is-open="accordion.comscoretableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'safetyScore'|translate}} - {{'company'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.comscoretableOpened, 'fa-chevron-right': !accordion.comscoretableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="companyScoreCollectionDisplay" st-safe-src="companyCollection"
+							ng-if="!loadingdata.company" class="ng-table-content"
+							st-filtered="companyScoreCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('company')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="companyScoreCollectionFiltered.length<=0"
+									ng-csv="getcsvData(companyScoreCollectionFiltered,'company')" lazy-load="true"
+									csv-header="getcsvHeader('company')" csv-column-order="profileExcelOrderDateScore"
+									filename="{{'safetyScore'|translate}} ({{'company'|translate}}).csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table no-department">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="3"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="acc_date" st-skip-natural="true" st-sort-default="reverse">
+												{{'startDate' | translate}}</th>
+											<th st-sort="total_score" st-skip-natural="true">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in companyScoreCollectionDisplay">
+											<td>{{row.acc_date}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item+'_score'] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+										</tr>
+										<tr ng-if="companyScoreCollectionDisplay.length<=0">
+											<td colspan="{{3+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{3+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{3+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.company" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-score" is-open="accordion.vehgrpscoretableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'safetyScore'|translate}} - {{'vehicleGrp'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.vehgrpscoretableOpened, 'fa-chevron-right': !accordion.vehgrpscoretableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="vehgrpScoreCollectionDisplay" st-safe-src="vehgrpCollection"
+							ng-if="!loadingdata.vehgrp" class="ng-table-content"
+							st-filtered="vehgrpScoreCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('vehgrp')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="vehgrpScoreCollectionFiltered.length<=0"
+									ng-csv="getcsvData(vehgrpScoreCollectionFiltered,'vehgrp')" lazy-load="true"
+									csv-header="getcsvHeader('vehgrp')" csv-column-order="profileExcelOrderNameScore"
+									filename="{{'safetyScore'|translate}} ({{'vehicleGrp'|translate}}).csv"
+									add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'group' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in vehgrpScoreCollectionDisplay">
+											<td ng-click="hasAccess('VEHICLE_GRP_PROFILE')&&toPage('vehiclegrpProfile',row)" ng-class="hasAccess('VEHICLE_GRP_PROFILE')?'navigation':''">
+												{{row.name}}</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item+'_score'] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+										</tr>
+										<tr ng-if="vehgrpScoreCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.vehgrp" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-score" is-open="accordion.vehscoretableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'safetyScore'|translate}} - {{'vehicle'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.vehscoretableOpened, 'fa-chevron-right': !accordion.vehscoretableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="vehScoreCollectionDisplay" st-safe-src="vehCollection" ng-if="!loadingdata.veh"
+							class="ng-table-content" st-filtered="vehScoreCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('vehicle')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="vehScoreCollectionFiltered.length<=0"
+									ng-csv="getcsvData(vehScoreCollectionFiltered,'vehicle')" lazy-load="true"
+									csv-header="getcsvHeader('vehicle')" csv-column-order="profileExcelOrderNameScore"
+									filename="{{'safetyScore'|translate}} ({{'vehicle'|translate}}).csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'licence' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in vehScoreCollectionDisplay">
+											<td ng-click="hasAccess('VEHICLE_PROFILE')&&toPage('vehicleProfile',row)" ng-class="hasAccess('VEHICLE_PROFILE')?'navigation':''">{{row.name}}
+											</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item+'_score'] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+										</tr>
+										<tr ng-if="vehScoreCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.veh" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-score" is-open="accordion.drvgrpscoretableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'safetyScore'|translate}} - {{'driverGrp'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.drvgrpscoretableOpened, 'fa-chevron-right': !accordion.drvgrpscoretableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="drvgrpScoreCollectionDisplay" st-safe-src="drvgrpCollection"
+							ng-if="!loadingdata.drvgrp" class="ng-table-content"
+							st-filtered="drvgrpScoreCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('drvgrp')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="drvgrpScoreCollectionFiltered.length<=0"
+									ng-csv="getcsvData(drvgrpScoreCollectionFiltered,'drvgrp')" lazy-load="true"
+									csv-header="getcsvHeader('drvgrp')" csv-column-order="profileExcelOrderNameScore"
+									filename="{{'safetyScore'|translate}} ({{'driverGrp'|translate}}).csv"
+									add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'group' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in drvgrpScoreCollectionDisplay">
+											<td ng-click="hasAccess('DRIVER_GRP_PROFILE')&&toPage('drivergrpProfile',row)" ng-class="hasAccess('DRIVER_GRP_PROFILE')?'navigation':''">
+												{{row.name}}</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item+'_score'] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+										</tr>
+										<tr ng-if="drvgrpScoreCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.drvgrp" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-score" is-open="accordion.drvscoretableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'safetyScore'|translate}} - {{'driver'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.drvscoretableOpened, 'fa-chevron-right': !accordion.drvscoretableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="drvScoreCollectionDisplay" st-safe-src="drvCollection" ng-if="!loadingdata.drv"
+							class="ng-table-content" st-filtered="drvScoreCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('driver')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="drvScoreCollectionFiltered.length<=0"
+									ng-csv="getcsvData(drvScoreCollectionFiltered,'driver')" lazy-load="true"
+									csv-header="getcsvHeader('driver')" csv-column-order="profileExcelOrderNameScore"
+									filename="{{'safetyScore'|translate}} ({{'driver'|translate}}).csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-table">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'name' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_score" st-skip-natural="true" st-sort-default="reverse">
+												{{'totalScore' | translate}}</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item+'_score'}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in drvScoreCollectionDisplay">
+											<td ng-click="hasAccess('DRIVER_PROFILE')&&toPage('driverProfile',row)" ng-class="hasAccess('DRIVER_PROFILE')?'navigation':''">{{row.name}}
+											</td>
+											<td>{{row.department}}</td>
+											<td>{{row.total_score | fixNum: 2}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item+'_score'] | fixNum: 1}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item+'_score'] | fixNum: 1}}</td>
+										</tr>
+										<tr ng-if="drvScoreCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number>
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="loadingdata.drv" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-rank" is-open="accordion.vehRanktableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'safetyRank'|translate}} - {{'vehicle'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.vehRanktableOpened, 'fa-chevron-right': !accordion.vehRanktableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="vehRankCollectionDisplay" st-safe-src="vehRankCollection"
+							ng-if="vehRankCollection" class="ng-table-content" st-filtered="vehRankCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('rank')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="vehRankCollectionFiltered.length<=0"
+									ng-csv="getcsvData(vehRankCollectionFiltered,'vehRank')" lazy-load="true"
+									csv-header="getcsvHeader('vehRank')" csv-column-order="profileExcelOrderRank"
+									filename="{{'safetyRank'|translate}} ({{'vehicle'|translate}}).csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-rank-table no-department">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'licence' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_rank" st-skip-natural="true" st-sort-default="true">{{'totalRank' | translate}}
+											</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in vehRankCollectionDisplay">
+											<td ng-click="hasAccess('VEHICLE_PROFILE')&&toPage('vehicleProfile',row)" ng-class="hasAccess('VEHICLE_PROFILE')?'navigation':''">{{row.name}}
+											</td>
+											<td>{{row.department}}</td>
+											<td class="right">{{row.total_rank}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item]}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item]}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item]}}</td>
+										</tr>
+										<tr ng-if="vehRankCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number ng-change="setItemPer(itemsByPage)">
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="!vehRankCollection" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+
+			<div class="col-lg-12 col-sm-12 col-xl-12">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default bg-rank" is-open="accordion.drvRanktableOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'safetyRank'|translate}} - {{'driver'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.drvRanktableOpened, 'fa-chevron-right': !accordion.drvRanktableOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<div st-table="drvRankCollectionDisplay" st-safe-src="drvRankCollection"
+							ng-if="drvRankCollection" class="ng-table-content" st-filtered="drvRankCollectionFiltered">
+							<div class="profile-table-func">
+								<button class="btn btn-md scoretable-refresh" ng-click="refreshData('rank')">
+									<i class="fa fa-refresh" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-md scoretable-download"
+									ng-disabled="drvRankCollectionFiltered.length<=0"
+									ng-csv="getcsvData(drvRankCollectionFiltered,'drvRank')" lazy-load="true"
+									csv-header="getcsvHeader('drvRank')" csv-column-order="profileExcelOrderRank"
+									filename="{{'safetyRank'|translate}} ({{'driver'|translate}}).csv" add-bom="true">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="profile-table-wrap">
+								<table class="table table-striped profile-rank-table no-department">
+									<thead>
+										<tr class="top-lv-header">
+											<th colspan="4"></th>
+											<th colspan="{{dataFieldSet[0].length}}">{{'dangerDrvBehavior' | translate}}</th>
+											<!-- <th colspan="{{dataFieldSet[1].length}}">{{'badDrvBehavior' | translate}}</th> -->
+											<th colspan="{{dataFieldSet[2].length}}">{{'comfortability' | translate}}</th>
+										</tr>
+										<tr class="sub-header">
+											<th st-sort="name" st-skip-natural="true">{{'name' | translate}}</th>
+											<th st-sort="department" st-skip-natural="true">{{'department' | translate}}
+											</th>
+											<th st-sort="total_rank" st-skip-natural="true" st-sort-default="true">{{'totalRank' | translate}}
+											</th>
+											<th st-sort="drv_distance" st-skip-natural="true">{{'distance' | translate}}
+											</th>
+											<th ng-repeat="item in dataFieldSet[0]" st-sort="{{item}}" st-skip-natural="true" class="red">{{item | translate}}</th>
+											<!-- <th ng-repeat="item in dataFieldSet[1]" st-sort="{{item}}" st-skip-natural="true" class="yellow">{{item | translate}}</th> -->
+											<th ng-repeat="item in dataFieldSet[2]" st-sort="{{item}}" st-skip-natural="true" class="green">{{item | translate}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="row in drvRankCollectionDisplay">
+											<td ng-click="hasAccess('DRIVER_PROFILE')&&toPage('driverProfile',row)" ng-class="hasAccess('DRIVER_PROFILE')?'navigation':''">{{row.name}}
+											</td>
+											<td>{{row.department}}</td>
+											<td class="right">{{row.total_rank}}</td>
+											<td class="right">{{row.drv_distance | fixNum: 1}} {{'km' | translate}}</td>
+											<td ng-repeat="item in dataFieldSet[0]" class="right">{{row[item]}}</td>
+											<!-- <td ng-repeat="item in dataFieldSet[1]" class="right">{{row[item]}}</td> -->
+											<td ng-repeat="item in dataFieldSet[2]" class="right">{{row[item]}}</td>
+										</tr>
+										<tr ng-if="drvRankCollectionDisplay.length<=0">
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">{{"noRecord"|translate}}</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<form class="form-inline pull-left">
+													<p class="table-page-footer table-footer-text">
+														{{"showing"|translate}}</p>
+													<div class="table-pagination-select">
+														<select class="table-page-footer" ng-model="itemsByPage"
+															convert-to-number ng-change="setItemPer(itemsByPage)">
+															<option value='10'>10</option>
+															<option value='25'>25</option>
+															<option value='50'>50</option>
+															<option value='100'>100</option>
+														</select></div>
+													<p class="table-page-footer table-footer-text">
+														{{"recordperPage"|translate}}</p>
+												</form>
+												<div st-template="/view/component/paginationSummary.html"
+													st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="displayPage"></div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="{{4+dataFieldSet[0].length+dataFieldSet[1].length+dataFieldSet[2].length}}">
+												<div st-template="/view/component/pagination.html" st-pagination=""
+													st-items-by-page="itemsByPage" st-displayed-pages="displayPage">
+												</div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div ng-if="!drvRankCollection" class="load-data">
+							<img src="../images/loading.gif" width="56px" height="56px">
+							<p>{{'loadingData'|translate}}</p>
+						</div>
+					</div>
+				</uib-accordion>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-sm-12 col-xl-6">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default full-chart" is-open="accordion.scorechartOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'safetyScore'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.scorechartOpened, 'fa-chevron-right': !accordion.scorechartOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<canvas id="line" class="chart chart-line" chart-data="chartSet.total2"
+							chart-labels="chartSet.labels" chart-options="scoreChartOptsTotal"
+							chart-dataset-override="scoreChartTotalFix">
+						</canvas>
+					</div>
+				</uib-accordion>
+			</div>
+			<div class="col-lg-6 col-sm-12 col-xl-6">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default full-chart" is-open="accordion.ddbchartOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'dangerDrvBehavior'|translate}} {{'countRange'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.ddbchartOpened, 'fa-chevron-right': !accordion.ddbchartOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<canvas id="line" class="chart chart-line" chart-data="chartSet.dangerDrvBehavior"
+							chart-labels="chartSet.labels" chart-options="scoreChartOpts"
+							chart-series="scoreChartSeriesDDB">
+						</canvas>
+					</div>
+				</uib-accordion>
+			</div>
+			<!-- <div class="col-lg-6 col-sm-12 col-xl-6">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default full-chart" is-open="accordion.bdbchartOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'badDrvBehavior'|translate}} {{'countRange'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.bdbchartOpenedOpened, 'fa-chevron-right': !accordion.bdbchartOpenedOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<canvas id="line" class="chart chart-line" chart-data="chartSet.badDrvBehavior"
+							chart-labels="chartSet.labels" chart-options="scoreChartOpts"
+							chart-series="scoreChartSeriesBDB">
+						</canvas>
+					</div>
+				</uib-accordion>
+			</div> -->
+			<div class="col-lg-6 col-sm-12 col-xl-6">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default full-chart" is-open="accordion.comfortchartOpened"
+						template-url="/view/component/accordion-center.html">
+						<uib-accordion-heading>
+							{{'comfortability'|translate}} {{'countRange'|translate}}<i class="pull-right fa"
+								ng-class="{'fa-chevron-down': accordion.comfortchartOpened, 'fa-chevron-right': !accordion.comfortchartOpened}"
+								aria-hidden="true"></i>
+							<div style="clear: both;"></div>
+						</uib-accordion-heading>
+						<canvas id="line" class="chart chart-line" chart-data="chartSet.comfortability"
+							chart-labels="chartSet.labels" chart-options="scoreChartOpts"
+							chart-series="scoreChartSeriesComfort">
+						</canvas>
+					</div>
+				</uib-accordion>
+			</div>
+		</div>
+	</div>
+
+	<div class="tag-chart-fullscreen" ng-if="chartFullScreen">
+		<div class="tag-chart-header-fullscreen">
+			<div class="title" uib-tooltip="{{tagChartHeaderFullscreen}}" tooltip-placement="bottom-left" show-tooltip-on-text-overflow tooltip-enable="false" tooltip-class="tagchartHeader">{{tagChartHeaderFullscreen}}</div>
+			<div class="icon fclose" ng-click="closeChart()">
+				<i class="fa fa-times"></i>
+			</div>
+		</div>
+		<canvas id="bar" class="chart chart-bar" chart-data="chartDataFullscreen" chart-labels="chartSet.labels"
+			chart-options="tagChartFullOpt" chart-colors="tagChartFullColor">
+		</canvas>
+	</div>
+
+	<div class="spider-chart-fullscreen" ng-show="spiderChartFullScreen" st-table="displayedCollection"
+		st-safe-src="spiderChartData" st-filtered="filteredCollection">
+		<div class="spider-chart-header-fullscreen">
+			<div class="title">{{spiderChartTitle|translate}}</div>
+			<div class="icon fclose" ng-click="closeSpider()">
+				<i class="fa fa-times"></i>
+			</div>
+			<div class="icon refresh" ng-click="getWarnSpec(spiderChartTitle)">
+				<i class="fa fa-refresh" aria-hidden="true"></i>
+			</div>
+			<div class="icon download" ng-csv="getcsvData(filteredCollection,'warnSpec')" lazy-load="true"
+				csv-header="getcsvHeader('warnSpec')" csv-column-order="warnSpecExcelOrder"
+				filename="{{'alertInfo'|translate}} ({{spiderChartTitle|translate}}).csv"
+				ng-class="{'disabled':filteredCollection.length<=0}" add-bom="true">
+				<i class="fa fa-download" aria-hidden="true"></i>
+			</div>
+			<div class="icon locationfilter" ng-click="toggleWarnspecLocation()" ng-class="{'filterOn': warnspecLocationFilter}">
+				<i class="fa fa-map-marker" aria-hidden="true"></i>
+			</div>
+			<div class="icon videofilter" ng-click="toggleWarnspecVideo()" ng-class="{'filterOn': warnspecVideoFilter}">
+				<i class="fa fa-play-circle" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div class="warn-table-fullscreen ng-table-content" ng-if="!loadingdata.warnspec">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="videohead">{{"video"|translate}}</th>
+						<th class="locationhead">{{"location"|translate}}</th>
+						<th st-sort="start_time" st-skip-natural="true">{{"startTime"|translate}}</th>
+						<th st-sort="vehicle" st-skip-natural="true">{{"vehicle"|translate}}</th>
+						<th st-sort="vehDepart" st-skip-natural="true">{{"vehDept"|translate}}</th>
+						<th st-sort="driver" st-skip-natural="true">{{"driver"|translate}}</th>
+						<th st-sort="drvDepart" st-skip-natural="true">{{"drvDept"|translate}}</th>
+						<th st-sort="duration" st-skip-natural="true">{{"duration"|translate}} (s)</th>
+						<th st-sort="start_spd" st-skip-natural="true">{{"startSpeed"|translate}} (kph)</th>
+						<th st-sort="end_spd" st-skip-natural="true">{{"endSpeed"|translate}} (kph)</th>
+						<th st-sort="top_spd" st-skip-natural="true">{{"topSpeed"|translate}} (kph)</th>
+						<th st-sort="hw" st-skip-natural="true">{{"HW"|translate}} (s)</th>
+						<th st-sort="near_hw" st-skip-natural="true">{{"nearHW"|translate}} (s)</th>
+						<th>{{"driverAction"|translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="row in displayedCollection">
+						<td class="video"><i class="fa fa-play-circle" aria-hidden="true"
+								ng-if="row.video&&row.videoReady=='Y'"
+								ng-click="playVideo($event,row.video,row.vehicle)"></i><i
+								class="fa fa-pause-circle disable" aria-hidden="true"
+								ng-if="row.video&&row.videoReady=='N'"></i></td>
+						<td class="location"><i class="fa fa-map-marker" aria-hidden="true"
+													ng-if="verifyGPS(row.gps)"
+													ng-click="checkWarnLocation(row,row.warn_type)"></i></td>
+						<td>{{row.start_time}}</td>
+						<td>{{row.vehicle}}</td>
+						<td>{{row.vehDepart}}</td>
+						<td>{{row.driver}}</td>
+						<td>{{row.drvDepart}}</td>
+						<td>{{row.duration | number:2}}</td>
+						<td>{{row.start_spd}}</td>
+						<td>{{row.end_spd}}</td>
+						<td>{{row.top_spd}}</td>
+						<td><span ng-if="!isNull(row.hw)">{{row.hw | number:1}}</span><span ng-if="isNull(row.hw)">{{'NA' | translate}}</span></td>
+						<td><span ng-if="!isNull(row.near_hw)">{{row.near_hw | number:1}}</span><span ng-if="isNull(row.near_hw)">{{'NA' | translate}}</span></td>
+						<td class="status">
+							<img ng-if="checkState(row.vehStatus,1)" src='/images/left_turn.png' alt="L" />
+							<img ng-if="checkState(row.vehStatus,2)" src='/images/right_turn.png' alt="R" />
+							<img ng-if="checkState(row.vehStatus,4)" src='/images/breaks.png' alt="B" />
+						</td>
+					</tr>
+					<tr ng-if="displayedCollection.length<=0">
+						<td colspan="14" style="text-align: center;">{{"noRecord"|translate}}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="14">
+							<form class="form-inline pull-left">
+								<p class="table-page-footer table-footer-text">{{"showing"|translate}}</p>
+								<div class="table-pagination-select">
+									<select class="table-page-footer" ng-model="itemsByPageFull" convert-to-number
+										ng-change="setItemPer(itemsByPageFull)">
+										<option value='10'>10</option>
+										<option value='25'>25</option>
+										<option value='50'>50</option>
+										<option value='100'>100</option>
+									</select></div>
+								<p class="table-page-footer table-footer-text">{{"recordperPage"|translate}}</p>
+							</form>
+							<div st-template="/view/component/paginationSummary.html" st-pagination=""
+								st-items-by-page="itemsByPageFull" st-displayed-pages="displayPage"></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="14">
+							<div st-template="/view/component/pagination.html" st-pagination=""
+								st-items-by-page="itemsByPageFull" st-page-change="changePage(newPage)"
+								st-displayed-pages="displayPage"></div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div ng-if="loadingdata.warnspec" class="load-data">
+			<img src="../images/loading.gif" width="56px" height="56px">
+			<p>{{'loadingData'|translate}}</p>
+		</div>
+	</div>
+</div>

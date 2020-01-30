@@ -1,0 +1,119 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:34
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-08-08 18:23:17
+*/ -->
+<div class="dash-wrap">
+	<navbar></navbar>
+	<md-content class="md-padding card-container" layout-xs="column" layout-sm="column" layout="row" layout-align="start stretch"
+	 layout-wrap>
+		<div flex-xs flex-sm flex-gt-sm="33" layout="column" ng-if="permission.indexOf('COMPANY_PROFILE')!==-1">
+			<md-card flex="100">
+				<img ng-src="/images/dash_profile_comp.png" class="md-card-image" alt="Washed Out">
+				<md-card-title flex="nogrow">
+					<md-card-title-text>
+						<span class="md-headline">{{'comProfile'|translate}}</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content flex="auto">
+					<p>{{'comProfile_description'|translate}}</p>
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="start center">
+					<md-button class="nav-button" ng-click="toPage('companyProfile')">
+						<b>{{'startWith'|translate}}</b>
+					</md-button>
+				</md-card-actions>
+			</md-card>
+		</div>
+		<div flex-xs flex-sm flex-gt-sm="33" layout="column" ng-if="permission.indexOf('VEHICLE_PROFILE')!==-1">
+			<md-card flex="100">
+				<img ng-src="/images/dash_profile_veh.png" class="md-card-image" alt="Washed Out">
+				<md-card-title flex="nogrow">
+					<md-card-title-text>
+						<span class="md-headline">{{'vehicleProfile'|translate}}</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content flex="auto">
+					<p>{{'vehicleProfile_description'|translate}}</p>
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="start center">
+					<md-button class="nav-button" ng-click="toPage('vehicleProfile')">
+						<b>{{'startWith'|translate}}</b>
+					</md-button>
+				</md-card-actions>
+			</md-card>
+		</div>
+		<div flex-xs flex-sm flex-gt-sm="33" layout="column" ng-if="permission.indexOf('DRIVER_PROFILE')!==-1">
+			<md-card flex="100">
+				<img ng-src="/images/dash_profile_drv.png" class="md-card-image" alt="Washed Out">
+				<md-card-title flex="nogrow">
+					<md-card-title-text>
+						<span class="md-headline">{{'driverProfile'|translate}}</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content flex="auto">
+					<p>{{'driverProfile_description'|translate}}</p>
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="start center">
+					<md-button class="nav-button" ng-click="toPage('driverProfile')">
+						<b>{{'startWith'|translate}}</b>
+					</md-button>
+				</md-card-actions>
+			</md-card>
+		</div>
+		<div flex-xs flex-sm flex-gt-sm="33" layout="column" ng-if="permission.indexOf('LIVE_LOCATION')!==-1">
+			<md-card flex="100">
+				<img src="/images/dash_live.png" class="md-card-image" alt="liveLocation">
+				<md-card-title flex="nogrow">
+					<md-card-title-text>
+						<span class="md-headline">{{'liveLocation'|translate}}</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content flex="auto">
+					<p>{{'liveLocation_description'|translate}}</p>
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="start center">
+					<md-button class="nav-button" ng-click="toPage('liveLocation')">
+						<b>{{'startWith'|translate}}</b>
+					</md-button>
+				</md-card-actions>
+			</md-card>
+		</div>
+		<div flex-xs flex-sm flex-gt-sm="33" layout="column" ng-if="permission.indexOf('TRIP_DETAIL')!==-1">
+			<md-card flex="100">
+				<img ng-src="/images/dash_warn.png" class="md-card-image" alt="tripDetail">
+				<md-card-title flex="nogrow">
+					<md-card-title-text>
+						<span class="md-headline">{{'tripDetail'|translate}}</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content flex="auto">
+					<p>{{'warning_description'|translate}}</p>
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="start center">
+					<md-button class="nav-button" ng-click="toPage('tripDetail')">
+						<b>{{'startWith'|translate}}</b>
+					</md-button>
+				</md-card-actions>
+			</md-card>
+		</div>
+		<div flex-xs flex-sm flex-gt-sm="33" layout="column" class="tech-support">
+			<md-card flex="100">
+				<img ng-src="/images/dash_tech.png" class="md-card-image" alt="warning">
+				<md-card-title flex="nogrow">
+					<md-card-title-text>
+						<span class="md-headline">{{'techSupport'|translate}}</span>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<p><i class='fa fa-envelope-o' aria-hidden='true'></i>{{'email'|translate}}:</p>
+					<a ng-href="mailto:{{supportInfo.email}}">{{supportInfo.email}}</a>
+					<p class="hotline"><i class='fa fa-phone' aria-hidden='true'></i>{{'hotline'|translate}}:</p>
+					<p>{{supportInfo.tel}}</p>
+					<p>{{supportInfo.time}} ({{'supportDay'|translate}})</p>
+				</md-card-content>
+			</md-card>
+		</div>
+	</md-content>
+</div>

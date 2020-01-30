@@ -1,0 +1,18 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:49:34
+*/
+
+/* setting.css
+ * This file provides css styles in setting page.
+ */
+
+.setting-wrap{
+	height: 100%;
+}
+
+.setting-wrap .ng-table-content th:not(:last-child){
+	cursor: pointer;
+}

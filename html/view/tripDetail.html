@@ -1,0 +1,435 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-08-02 11:45:21
+*/ -->
+<div class="map-wrap">
+	<navbar></navbar>
+	<div class="map-header-sm">{{'tripDetail'|translate}}</div>
+	<div class="marker-info-content-fullscreen" st-persist="{{warnTable}}" st-table="displayedCollection" st-safe-src="rowCollection"
+	 st-filtered="filteredCollection" ng-show="tripinfoFullscreen">
+		<div class="marker-info-header trip-data">
+			<span class="data-tab" ng-repeat="trip in tripTags" ng-class="{'no-select':trip!==activeTrip}" ng-click="selectTag(trip)"><i
+				 class="fa fa-tags" aria-hidden="true" ng-class="checkTag(trip)"></i><i class="material-icons close-tab" ng-click="closeTag(trip,$event)">close</i></span>
+			<div class="marker-info-expand" ng-click="showDatainNorm()">
+				<i class="material-icons md-scale-fa">fullscreen_exit</i>
+			</div>
+			<div class="marker-info-func warn-refresh" ng-click="reloadWarn()">
+				<i class="fa fa-refresh" aria-hidden="true"></i>
+			</div>
+			<div class="marker-info-func warn-download" ng-csv="getcsvData(filteredCollection)" lazy-load="true" csv-header="getcsvHeader()"
+			 csv-column-order="warnExcelOrder" filename="{{'alertInfo'|translate}}.csv" ng-class="{'disabled':filteredCollection.length<=0}"
+			 add-bom="true">
+				<i class="fa fa-download" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div class="btn-group btn-group-sm flex-wrap custom-btn-wrap">
+			<button type="button" class="btn btn-secondary" ng-class="{'warn-selected':switchAllWarn}" ng-click="toggleAllWarn()">{{'all'|translate}}
+				({{warnCount.all}})</button>
+			<button type="button" class="btn btn-secondary" ng-repeat="warn in warnType" ng-class="{'warn-selected':checkWarn(warn)}"
+			 ng-click="toggleWarn(warn)">{{warn|translate}} ({{$parent.warnCount[warn]}})</button>
+			<div class="vertical-divider"></div>
+			<button type="button" class="btn btn-secondary" ng-class="{'video-selected':switchVideo}" ng-click="toggleVideoFilter()"><i
+				 class="fa fa-play-circle" aria-hidden="true"></i> ({{warnCount.video}})</button>
+			<div class="vertical-divider"></div>
+			<md-switch class="switch-custom md-primary" ng-model="showWarn.switch" aria-label="all" ng-change="toggleWarnMark()"></md-switch>
+			<div class="vertical-divider"></div>
+			<div class="toggle custom-toggle-btn" ng-class="{'expert':expert}" ng-click="changeMode()">
+				<div class="toggle-group"><label class="custom-toggle-btn toggle-on-pad btn-primary toggle-on">{{'simple'|translate}}</label><label
+					 class="custom-toggle-btn toggle-off-pad btn-default toggle-off">{{'expert'|translate}}</label><span class="custom-toggle-btn btn-default toggle-handle"></span></div>
+			</div>
+		</div>
+		<div class="marker-info-table warn-table-fullscreen ng-table-content" ng-if="!regenTableFull">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th class="videohead">{{"video"|translate}}</th>
+						<th st-sort="warningType">{{"warnType"|translate}}</th>
+						<th st-sort="start_time">{{"startTime"|translate}}</th>
+						<th st-sort="duration">{{"duration"|translate}} (s)</th>
+						<th st-sort="start_spd" ng-if="expert">{{"startSpeed"|translate}} (kph)</th>
+						<th st-sort="end_spd" ng-if="expert">{{"endSpeed"|translate}} (kph)</th>
+						<th st-sort="top_spd">{{"topSpeed"|translate}} (kph)</th>
+						<th st-sort="hw" ng-if="expert">{{"HW"|translate}} (s)</th>
+						<th st-sort="near_hw" ng-if="expert">{{"nearHW"|translate}} (s)</th>
+						<th>{{"driverAction"|translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr st-select-row="row" st-select-mode="single" ng-repeat="row in displayedCollection" ng-click="selectRow(row)">
+						<td>{{rowCollection.indexOf(row)+1}}</td>
+						<td class="warn-video"><i class="fa fa-play-circle" aria-hidden="true" ng-if="row.video&&row.videoReady=='Y'"
+							 ng-click="playVideo($event,activeTrip,row.video,rowCollection.indexOf(row))"></i><i class="fa fa-pause-circle disable"
+							 aria-hidden="true" ng-if="row.video&&row.videoReady=='N'"></i></td>
+						<td>{{row.warningType|translate}}</td>
+						<td>{{row.start_time}}</td>
+						<td>{{row.duration | number:2}}</td>
+						<td ng-if="expert">{{row.start_spd}}</td>
+						<td ng-if="expert">{{row.end_spd}}</td>
+						<td>{{row.top_spd}}</td>
+						<td ng-if="expert"><span ng-if="!isNull(row.hw)">{{row.hw | number:1}}</span><span ng-if="isNull(row.hw)">{{'NA' | translate}}</span></td>
+						<td ng-if="expert"><span ng-if="!isNull(row.near_hw)">{{row.near_hw | number:1}}</span><span ng-if="isNull(row.near_hw)">{{'NA' | translate}}</span></td>
+						<td class="status">
+							<img ng-if="checkState(row.vehStatus,1)" src='/images/left_turn.png' alt="L" />
+							<img ng-if="checkState(row.vehStatus,2)" src='/images/right_turn.png' alt="R" />
+							<img ng-if="checkState(row.vehStatus,4)" src='/images/breaks.png' alt="B" />
+						</td>
+					</tr>
+					<tr ng-if="displayedCollection.length<=0">
+						<td colspan="11" style="text-align: center;">{{"noRecord"|translate}}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="11">
+							<form class="form-inline pull-left">
+								<p class="table-page-footer table-footer-text">{{"showing"|translate}}</p>
+								<div class="table-pagination-select">
+									<select class="table-page-footer" ng-model="$parent.itemsByPage" convert-to-number ng-change="setItemPer($parent.itemsByPage)">
+										<option value='10'>10</option>
+										<option value='25'>25</option>
+										<option value='50'>50</option>
+										<option value='100'>100</option>
+									</select></div>
+								<p class="table-page-footer table-footer-text">{{"recordperPage"|translate}}</p>
+							</form>
+							<div st-template="/view/component/paginationSummary.html" st-pagination="" st-items-by-page="itemsByPage"
+							 st-displayed-pages="displayPage"></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="11">
+							<div st-template="/view/component/pagination.html" st-pagination="" st-items-by-page="itemsByPage"
+							 st-page-change="changePage(newPage)" st-displayed-pages="displayPage"></div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+	<div class="map-panel" ng-click="showListFunc()"></div>
+	<div class="map-select-panel-fake" ng-if="mapchoosen=='googleMap'" ng-class="{'map-en': lang=='en', 'map-cn': lang=='zh-cn', 'map-tw': lang=='zh-tw', 'map-g-mtc': isMobile}"><i
+		 class="fa fa-map-o"></i></div>
+	<div class="map-select-panel-fake-2" ng-if="mapchoosen=='baiduMap'"><i class="fa fa-map-o"></i></div>
+	<select class="form-control form-control-sm map-select-panel" id="map-select" ng-model="mapset.map" ng-change="updatemap(mapset.map)"
+	 ng-if="mapchoosen=='googleMap'" ng-class="{'map-en': lang=='en', 'map-cn': lang=='zh-cn', 'map-tw': lang=='zh-tw', 'map-g-mtc': isMobile}">
+		<option value="baiduMap">{{'baiduMap'|translate}}</option>
+		<option value="googleMap">{{'googleMap'|translate}}</option>
+	</select>
+	<select class="form-control form-control-sm map-select-panel-2" id="map-select" ng-model="mapset.map" ng-change="updatemap(mapset.map)"
+	 ng-if="mapchoosen=='baiduMap'">
+		<option value="baiduMap">{{'baiduMap'|translate}}</option>
+		<option value="googleMap">{{'googleMap'|translate}}</option>
+	</select>
+	<div class="map-list" ng-show="showList">
+		<div class="list-panel" ng-click="hideListFunc()"></div>
+		<div class="list-content-wrap">
+			<div class=" list-filter">
+				<div class="list-header">
+					<h5 ng-click="toggleFilter()">
+						<i class="fa fa-database" aria-hidden="true"></i>{{'query'|translate}}
+						<span>
+							<i class="fa fa-angle-down" aria-hidden="true" ng-show="hideFilter"></i>
+							<i class="fa fa-angle-up" aria-hidden="true" ng-show="!hideFilter"></i>
+						</span>
+					</h5>
+					<div class="list-detail" ng-show="!hideFilter">
+						<div class="multiselect-custom">
+							<div ng-dropdown-multiselect="" options="typeList" selected-model="tripBy" extra-settings="typeSelect" events="typeEvent"></div>
+						</div>
+						<div multicheck-listbox option-list="optionsByGrp" selected-model="pickList" extra-settings="multicheckSet"
+						 text-option="multicheckText"></div>
+						<div class="row warn-date-range-pick">
+							<div class="input-group">
+								<input type="hidden" ng-model="beforeDate" uib-datepicker-popup close-on-date-selection="true" show-button-bar="false"
+								 is-open="beforedate.opened" on-open-focus="false" datepicker-options="bfdateOptions" ng-change="changeRange('before',beforeDate)"
+								 popup-placement="auto top-left" />
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default warn-date-range-pick-btn before" ng-click="openPicker('before')">
+										{{beforeDate|date:'yyyy/MM/dd'}}
+									</button>
+								</span>
+							</div>
+							<div class="datebetween-icon">-</div>
+							<div class="input-group after">
+								<input type="hidden" ng-model="afterDate" uib-datepicker-popup close-on-date-selection="true" show-button-bar="false"
+								 is-open="afterdate.opened" on-open-focus="false" datepicker-options="afdateOptions" ng-change="changeRange('after',afterDate)"
+								 popup-placement="auto top-left" />
+								<span class="input-group-btn pull-right">
+									<button type="button" class="btn btn-default warn-date-range-pick-btn after" ng-click="openPicker('after')">
+										{{afterDate|date:'yyyy/MM/dd'}}
+									</button>
+								</span>
+							</div>
+						</div>
+						<div class="mileage-search">
+							<label for="licence" class="additional-info"><b>{{"mileage-optional"|translate}}</b><i class="fa fa-info-circle"
+								 aria-hidden="true" ng-click="showMileageAssist=!showMileageAssist" ng-class="showMileageAssist?'additional-info-show':'additional-info-hide'"></i></label>
+							<div ng-if="showMileageAssist" class="additional-info-content">
+								<p>{{'mileage-def-1'|translate}}</p>
+								<p>{{'mileage-def-2'|translate}}</p>
+							</div>
+							<input type="text" class="form-control" name="mileage" ng-model="tripMileage" ng-keydown="checkMileage($event)"
+							 placeholder="{{'mileage-placeholder'|translate}}" autocomplete="off" min="0" step="0.1">
+						</div>
+						<button type="button" class="btn btn-primary btn-block list-btn-custom" ng-click="submitQuery()">{{'submit'|translate}}</button>
+					</div>
+					<h5 ng-click="hideFilterlist=!hideFilterlist" class="bottom-header">
+						<i class="fa fa-car" aria-hidden="true"></i>{{'tripList'|translate}}
+						<span>
+							<i class="fa fa-paperclip toggle-infobox" aria-hidden="true" ng-class="{'infobox-on':infoboxOpen}" ng-click="toggleInfo($event)"></i>
+							<i class="fa fa-refresh reload-data" aria-hidden="true" ng-click="refreshList($event)"></i>
+							<i class="fa fa-angle-down" aria-hidden="true" ng-show="hideFilterlist"></i>
+							<i class="fa fa-angle-up" aria-hidden="true" ng-show="!hideFilterlist"></i>
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="list-filterlist">
+				<div class="list-header">
+					<div class="list-detail-list" ng-show="!hideFilterlist">
+						<md-virtual-repeat-container id="vertical-container" class="vertical-container" ng-if="tripList&&tripList.length>0"
+						 md-auto-shrink virtual-resize>
+							<div md-virtual-repeat="trip in tripList" class="marker-list trip-list" ng-class="$parent.isListSelected(trip,$index)"
+							 ng-click="selectTrips(trip)" flex>
+								<p><i class="fa fa-calendar" aria-hidden="true"></i>{{trip.startDate | date:'yyyy-MM-dd'}}<span class="right"><i
+										 class="fa fa-road" aria-hidden="true"></i>{{trip.distance}} {{'km'|translate}}</span></p>
+								<p><i class="fa fa-clock-o" aria-hidden="true"></i>{{trip.startDate | date:'HH:mm'}} - {{trip.endDate |
+									date:'HH:mm'}}<span ng-show="checkDateoverflow()"> ({{trip.endDate | date:'dd'}})</span><span class="right" ng-show="trip.duration.split(' ')[1]==undefined" uib-tooltip="{{trip.duration}}" tooltip-placement="bottom-right" show-tooltip-on-text-overflow tooltip-enable="false" tooltip-class="trip-date-tooltip-na"><i
+										 class="fa fa-hourglass-half" aria-hidden="true"></i>{{trip.duration}}</span><span class="right" ng-show="trip.duration.split(' ')[1]!==undefined" uib-tooltip="{{trip.duration.split(' ')[0]}}{{'day'|translate}}{{trip.duration.split(' ')[1]}}" tooltip-placement="bottom-right" show-tooltip-on-text-overflow
+										 tooltip-enable="false" tooltip-class="trip-date-tooltip-na"><i
+										 class="fa fa-hourglass-half" aria-hidden="true"></i>{{trip.duration.split(' ')[0]}}{{'day'|translate}}
+										{{trip.duration.split(' ')[1]}}</span></p>
+								<p><svg class="vehtype">
+										<use ng-attr-href="{{'../images/veh_type/'+trip.type+'.svg#'+trip.type}}" />
+										<!-- <use href="../images/veh_type/{{trip.type}}.svg#{{trip.type}}" /> -->
+									</svg><span class="trip-dv"><span class="trip-licence-option" uib-tooltip="{{trip.licence}}" tooltip-placement="bottom-left"
+										 show-tooltip-on-text-overflow tooltip-enable="false" tooltip-class="trip-dv-tooltip-li">{{trip.licence}}</span><span
+										 class="trip-name-option" uib-tooltip="{{trip.drv_name}}" tooltip-placement="bottom-right"
+										 show-tooltip-on-text-overflow tooltip-enable="false" tooltip-class="trip-dv-tooltip-na"><i class="fa fa-user"
+											 aria-hidden="true"></i>{{trip.drv_name}}</span></span></p>
+								<p><i class="fa fa-sitemap" aria-hidden="true"></i><span class="trip-dv"><span class="trip-licence-option"
+										 uib-tooltip="{{trip.licence_ou}}" tooltip-placement="bottom-left" show-tooltip-on-text-overflow
+										 tooltip-enable="false" tooltip-class="trip-dv-tooltip-li">{{trip.licence_ou}}</span><span class="trip-name-option"
+										 uib-tooltip="{{trip.drv_name_ou}}" tooltip-placement="bottom-right" show-tooltip-on-text-overflow
+										 tooltip-enable="false" tooltip-class="trip-dv-tooltip-na"><i class="fa fa-sitemap" aria-hidden="true"></i>{{trip.drv_name_ou}}</span></span></p>
+								<div class="divider" ng-show="$index!==$parent.tripList.length-1" ng-class="{'contin-selected-trip-divider':$parent.isNextSelected($index)}"></div>
+							</div>
+						</md-virtual-repeat-container>
+						<div ng-if="!tripList||tripList.length==0" class="marker-list-no-result">
+							<p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{'noRecord'|translate}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="marker-info-wrapper" ng-show='infoboxOpen&&tripInfo' ng-class="tripinfoFullwidth?'marker-info-fullwidth':'marker-info-normal'"
+	 ng-mousedown="dragResize($event)">
+		<div class="marker-info-content" st-persist="{{warnTable}}" st-table="displayedCollection" st-safe-src="rowCollection"
+		 st-filtered="filteredCollection">
+			<div class="marker-info-header trip-data">
+				<span class="data-tab" ng-repeat="trip in tripTags" ng-class="{'no-select':trip!==activeTrip}" ng-click="selectTag(trip)"><i
+					 class="fa fa-tags" aria-hidden="true" ng-class="checkTag(trip)"></i><i class="material-icons close-tab" ng-click="closeTag(trip,$event)">close</i></span>
+				<div class="marker-info-expand" ng-click="showDatainFull()">
+					<i class="material-icons md-scale-fa">fullscreen</i>
+				</div>
+				<div class="marker-info-func warn-refresh" ng-click="reloadWarn()">
+					<i class="fa fa-refresh" aria-hidden="true"></i>
+				</div>
+				<div class="marker-info-func warn-download" ng-csv="getcsvData(filteredCollection)" lazy-load="true" csv-header="getcsvHeader()"
+				 csv-column-order="warnExcelOrder" filename="{{'alertInfo'|translate}}.csv" ng-class="{'disabled':filteredCollection.length<=0}"
+				 add-bom="true">
+					<i class="fa fa-download" aria-hidden="true"></i>
+				</div>
+			</div>
+			<div class="btn-group btn-group-sm flex-wrap custom-btn-wrap">
+				<button type="button" class="btn btn-secondary" ng-class="{'warn-selected':switchAllWarn}" ng-click="toggleAllWarn()">{{'all'|translate}}
+					({{warnCount.all}})</button>
+				<button type="button" class="btn btn-secondary" ng-repeat="warn in warnType" ng-class="{'warn-selected':checkWarn(warn)}"
+				 ng-click="toggleWarn(warn)">{{warn|translate}} ({{$parent.warnCount[warn]}})</button>
+				<div class="vertical-divider"></div>
+				<button type="button" class="btn btn-secondary" ng-class="{'video-selected':switchVideo}" ng-click="toggleVideoFilter()"><i
+					 class="fa fa-play-circle" aria-hidden="true"></i> ({{warnCount.video}})</button>
+				<div class="vertical-divider"></div>
+				<md-switch class="switch-custom md-primary" ng-model="showWarn.switch" aria-label="all" ng-change="toggleWarnMark()"></md-switch>
+				<div class="vertical-divider"></div>
+				<div class="toggle custom-toggle-btn" ng-class="{'expert':expert}" ng-click="changeMode()">
+					<div class="toggle-group"><label class="custom-toggle-btn toggle-on-pad btn-primary toggle-on">{{'simple'|translate}}</label><label
+						 class="custom-toggle-btn toggle-off-pad btn-default toggle-off">{{'expert'|translate}}</label><span class="custom-toggle-btn btn-default toggle-handle"></span></div>
+				</div>
+			</div>
+			<div class="warn-table ng-table-content" ng-if="!regenTable">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th class="videohead">{{"video"|translate}}</th>
+							<th st-sort="warningType">{{"warnType"|translate}}</th>
+							<th st-sort="start_time">{{"startTime"|translate}}</th>
+							<th st-sort="duration">{{"duration"|translate}} (s)</th>
+							<th st-sort="start_spd" ng-if="expert">{{"startSpeed"|translate}} (kph)</th>
+							<th st-sort="end_spd" ng-if="expert">{{"endSpeed"|translate}} (kph)</th>
+							<th st-sort="top_spd">{{"topSpeed"|translate}} (kph)</th>
+							<th st-sort="hw" ng-if="expert">{{"HW"|translate}} (s)</th>
+							<th st-sort="near_hw" ng-if="expert">{{"nearHW"|translate}} (s)</th>
+							<th>{{"driverAction"|translate}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr st-select-row="row" st-select-mode="single" ng-repeat="row in displayedCollection" ng-click="selectRow(row)">
+							<td>{{rowCollection.indexOf(row)+1}}</td>
+							<td class="warn-video"><i class="fa fa-play-circle" aria-hidden="true" ng-if="row.video&&row.videoReady=='Y'"
+								 ng-click="playVideo($event,activeTrip,row.video,rowCollection.indexOf(row))"></i><i class="fa fa-pause-circle disable"
+								 aria-hidden="true" ng-if="row.video&&row.videoReady=='N'"></i></td>
+							<td>{{row.warningType|translate}}</td>
+							<td>{{row.start_time}}</td>
+							<td>{{row.duration | number:2}}</td>
+							<td ng-if="expert">{{row.start_spd}}</td>
+							<td ng-if="expert">{{row.end_spd}}</td>
+							<td>{{row.top_spd}}</td>
+							<td ng-if="expert"><span ng-if="!isNull(row.hw)">{{row.hw | number:1}}</span><span ng-if="isNull(row.hw)">{{'NA' | translate}}</span></td>
+							<td ng-if="expert"><span ng-if="!isNull(row.near_hw)">{{row.near_hw | number:1}}</span><span ng-if="isNull(row.near_hw)">{{'NA' | translate}}</span></td>
+							<td class="status">
+								<img ng-if="checkState(row.vehStatus,1)" src='/images/left_turn.png' alt="L" />
+								<img ng-if="checkState(row.vehStatus,2)" src='/images/right_turn.png' alt="R" />
+								<img ng-if="checkState(row.vehStatus,4)" src='/images/breaks.png' alt="B" />
+							</td>
+						</tr>
+						<tr ng-if="displayedCollection.length<=0">
+							<td colspan="11" style="text-align: center;">{{"noRecord"|translate}}</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="11">
+								<form class="form-inline pull-left">
+									<p class="table-page-footer table-footer-text">{{"showing"|translate}}</p>
+									<div class="table-pagination-select">
+										<select class="table-page-footer" ng-model="$parent.itemsByPage" convert-to-number ng-change="setItemPer(itemsByPage)">
+											<option value='10'>10</option>
+											<option value='25'>25</option>
+											<option value='50'>50</option>
+											<option value='100'>100</option>
+										</select></div>
+									<p class="table-page-footer table-footer-text">{{"recordperPage"|translate}}</p>
+								</form>
+								<div st-template="/view/component/paginationSummary.html" st-pagination="" st-items-by-page="itemsByPage"
+								 st-displayed-pages="displayPage"></div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="11">
+								<div st-template="/view/component/pagination.html" st-pagination="" st-items-by-page="itemsByPage"
+								 st-page-change="changePage(newPage)" st-displayed-pages="displayPage"></div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{gmapUrl}}" ng-if="mapchoosen=='googleMap'">
+		<ng-map id="map" center="22.4, 114.1" zoom="15" zoom-to-include-markers="true" zoom-control-options="{style:'DEFAULT',position:'RIGHT_TOP'}"
+		 default-style="false" class="google-map-wrap" fullscreen-control="false" street-view-control="false" scale-control="true"
+		 clickable-icons="false" min-zoom="3" max-zoom="19" gesture-handling="cooperative" map-type-control-options="{mapTypeIds:['ROADMAP','HYBRID'],position:'TOP_RIGHT'}"
+		 on-center-changed="checkBoundsGMap()" on-zoom_changed="checkZoomGMap()">
+			<marker z-index="9999999" position="{{warningPath[0][0]}}" icon="{url:'{{warnTripIcon[0]}}'}" ng-if="selectedTrip[0]"></marker>
+			<marker z-index="9999999" position="{{warningPath[0][warningPath[0].length-1]}}" icon="{url:'{{warnTripIcon[1]}}'}"
+			 ng-if="selectedTrip[0]"></marker>
+			<marker z-index="9999999" position="{{warningPath[1][0]}}" icon="{url:'{{warnTripIcon[2]}}'}" ng-if="selectedTrip[1]"></marker>
+			<marker z-index="9999999" position="{{warningPath[1][warningPath[1].length-1]}}" icon="{url:'{{warnTripIcon[3]}}'}"
+			 ng-if="selectedTrip[1]"></marker>
+			<marker z-index="9999999" position="{{warningPath[2][0]}}" icon="{url:'{{warnTripIcon[4]}}'}" ng-if="selectedTrip[2]"></marker>
+			<marker z-index="9999999" position="{{warningPath[2][warningPath[2].length-1]}}" icon="{url:'{{warnTripIcon[5]}}'}"
+			 ng-if="selectedTrip[2]"></marker>
+			<marker z-index="9999999" position="{{warningPath[3][0]}}" icon="{url:'{{warnTripIcon[6]}}'}" ng-if="selectedTrip[3]"></marker>
+			<marker z-index="9999999" position="{{warningPath[3][warningPath[3].length-1]}}" icon="{url:'{{warnTripIcon[7]}}'}"
+			 ng-if="selectedTrip[3]"></marker>
+			<shape name="polyline" path="{{warningPath[0]}}" geodesic="true" stroke-color="#ff1493" stroke-opacity="1.0"
+			 stroke-weight="2" ng-if="selectedTrip[0]&&warningPath[0].length>0"></shape>
+			<shape name="polyline" path="{{warningPath[1]}}" geodesic="true" stroke-color="#1e90ff" stroke-opacity="1.0"
+			 stroke-weight="2" ng-if="selectedTrip[1]&&warningPath[1].length>0"></shape>
+			<shape name="polyline" path="{{warningPath[2]}}" geodesic="true" stroke-color="#9400d3" stroke-opacity="1.0"
+			 stroke-weight="2" ng-if="selectedTrip[2]&&warningPath[2].length>0"></shape>
+			<shape name="polyline" path="{{warningPath[3]}}" geodesic="true" stroke-color="#228b22" stroke-opacity="1.0"
+			 stroke-weight="2" ng-if="selectedTrip[3]&&warningPath[3].length>0"></shape>
+			<marker id="trip0-{{$index}}" ng-if="verifyGPS(mark.mark)" z-index="{{$index+1}}" ng-repeat="mark in warningPointDisplay[0]" icon="{url:'/images/{{mark.warn}}.png'}"
+			 position="{{mark.mark}}" visible="{{checkWarnShow(0)}}" on-click="showMarkDetail(0,$index)"></marker>
+			<marker id="trip1-{{$index}}" ng-if="verifyGPS(mark.mark)" z-index="{{$index*100+1}}" ng-repeat="mark in warningPointDisplay[1]" icon="{url:'/images/{{mark.warn}}.png'}"
+			 position="{{mark.mark}}" visible="{{checkWarnShow(1)}}" on-click="showMarkDetail(1,$index)"></marker>
+			<marker id="trip2-{{$index}}" ng-if="verifyGPS(mark.mark)" z-index="{{$index*200+1}}" ng-repeat="mark in warningPointDisplay[2]" icon="{url:'/images/{{mark.warn}}.png'}"
+			 position="{{mark.mark}}" visible="{{checkWarnShow(2)}}" on-click="showMarkDetail(2,$index)"></marker>
+			<marker id="trip3-{{$index}}" ng-if="verifyGPS(mark.mark)" z-index="{{$index*300+1}}" ng-repeat="mark in warningPointDisplay[3]" icon="{url:'/images/{{mark.warn}}.png'}"
+			 position="{{mark.mark}}" visible="{{checkWarnShow(3)}}" on-click="showMarkDetail(3,$index)"></marker>
+			<info-window id="warn-point" on-closeclick="hideMarkDetail(infoPopData.trip)">
+				<div ng-non-bindable="">
+					<p class="warn-infowindow">
+						<i class="fa fa-tags" aria-hidden="true" ng-class="checkMarkerTag(infoPopData.trip)"></i><b>{{infoPopData.warningType|translate}}</b>
+					</p>
+					<p><b>{{"duration"|translate}}:</b> {{infoPopData.duration | number:2}} {{'seconds'|translate}}</p>
+					<p><b>{{"startSpeed"|translate}}:</b> {{infoPopData.start_spd}} kph</p>
+					<p><b>{{"endSpeed"|translate}}:</b> {{infoPopData.end_spd}} kph</p>
+					<p><b>{{"topSpeed"|translate}}:</b> {{infoPopData.top_spd}} kph</p>
+					<button type="button" class="btn btn-sm" ng-if="infoPopData.video&&infoPopData.videoReady=='Y'" ng-click="playVideo($event,selectedTrip[infoPopData.trip],infoPopData.video)"><i
+						 class="fa fa-play-circle" aria-hidden="true"></i><b>{{'playvideo'|translate}}</b></button>
+				</div>
+			</info-window>
+		</ng-map>
+	</div>
+	<div ng-if="mapchoosen=='baiduMap'">
+		<div id="map" baidu-map="{{bmapUrl}}" map-ready="bmapReady(map)" map-opts="bmapOption" class="baidu-map-wrap">
+			<b-marker z-index="9999999" position="{lat: $parent.$parent.warningPath[0][0][1], lng: $parent.$parent.warningPath[0][0][0]}"
+			 icon="{url:$parent.$parent.warnTripIcon[0],scale:[20,34]}" offset="[0,-15]" ng-if="$parent.selectedTrip[0]"></b-marker>
+			<b-marker z-index="9999999" position="{lat: $parent.$parent.warningPath[0][$parent.$parent.warningPath[0].length-1][1], lng: $parent.$parent.warningPath[0][$parent.$parent.warningPath[0].length-1][0]}"
+			 icon="{url:$parent.$parent.warnTripIcon[1],scale:[20,34]}" offset="[0,-15]" ng-if="$parent.selectedTrip[0]"></b-marker>
+			<b-marker z-index="9999999" position="{lat: $parent.$parent.warningPath[1][0][1], lng: $parent.$parent.warningPath[1][0][0]}"
+			 icon="{url:$parent.$parent.warnTripIcon[2],scale:[20,34]}" offset="[0,-15]" ng-if="$parent.selectedTrip[1]"></b-marker>
+			<b-marker z-index="9999999" position="{lat: $parent.$parent.warningPath[1][$parent.$parent.warningPath[1].length-1][1], lng: $parent.$parent.warningPath[1][$parent.$parent.warningPath[1].length-1][0]}"
+			 icon="{url:$parent.$parent.warnTripIcon[3],scale:[20,34]}" offset="[0,-15]" ng-if="$parent.selectedTrip[1]"></b-marker>
+			<b-marker z-index="9999999" position="{lat: $parent.$parent.warningPath[2][0][1], lng: $parent.$parent.warningPath[2][0][0]}"
+			 icon="{url:$parent.$parent.warnTripIcon[4],scale:[20,34]}" offset="[0,-15]" ng-if="$parent.selectedTrip[2]"></b-marker>
+			<b-marker z-index="9999999" position="{lat: $parent.$parent.warningPath[2][$parent.$parent.warningPath[2].length-1][1], lng: $parent.$parent.warningPath[2][$parent.$parent.warningPath[2].length-1][0]}"
+			 icon="{url:$parent.$parent.warnTripIcon[5],scale:[20,34]}" offset="[0,-15]" ng-if="$parent.selectedTrip[2]"></b-marker>
+			<b-marker z-index="9999999" position="{lat: $parent.$parent.warningPath[3][0][1], lng: $parent.$parent.warningPath[3][0][0]}"
+			 icon="{url:$parent.$parent.warnTripIcon[6],scale:[20,34]}" offset="[0,-15]" ng-if="$parent.selectedTrip[3]"></b-marker>
+			<b-marker z-index="9999999" position="{lat: $parent.$parent.warningPath[3][$parent.$parent.warningPath[3].length-1][1], lng: $parent.$parent.warningPath[3][$parent.$parent.warningPath[3].length-1][0]}"
+			 icon="{url:$parent.$parent.warnTripIcon[7],scale:[20,34]}" offset="[0,-15]" ng-if="$parent.selectedTrip[3]"></b-marker>
+			<b-polyline path="$parent.$parent.warningPath[0]" stroke-color="'#ff1493'" stroke-opacity="1.0" stroke-weight="2"
+			 ng-if="$parent.selectedTrip[0]"></b-polyline>
+			<b-polyline path="$parent.$parent.warningPath[1]" stroke-color="'#1e90ff'" stroke-opacity="1.0" stroke-weight="2"
+			 ng-if="$parent.selectedTrip[1]"></b-polyline>
+			<b-polyline path="$parent.$parent.warningPath[2]" stroke-color="'#9400d3'" stroke-opacity="1.0" stroke-weight="2"
+			 ng-if="$parent.selectedTrip[2]"></b-polyline>
+			<b-polyline path="$parent.$parent.warningPath[3]" stroke-color="'#228b22'" stroke-opacity="1.0" stroke-weight="2"
+			 ng-if="$parent.selectedTrip[3]"></b-polyline>
+			<b-marker id="trip0-$index" ng-if="$parent.$parent.$parent.verifyGPS(mark.mark)" ng-repeat="mark in $parent.$parent.warningPointDisplay[0]" position="{lat: mark.mark[1], lng: mark.mark[0]}"
+			 icon="{url:'/images/'+mark.warn+'.png',scale:[25,30]}" z-index="$index+1" on-click="$parent.$parent.$parent.showMarkDetail($event,0,$index)"
+			 offset="[0,-15]" visible="$parent.$parent.checkWarnShow(0)"></b-marker>
+			<b-marker id="trip1-$index" ng-if="$parent.$parent.$parent.verifyGPS(mark.mark)" ng-repeat="mark in $parent.$parent.warningPointDisplay[1]" position="{lat: mark.mark[1], lng: mark.mark[0]}"
+			 icon="{url:'/images/'+mark.warn+'.png',scale:[25,30]}" z-index="$index+1" on-click="$parent.$parent.$parent.showMarkDetail($event,1,$index)"
+			 offset="[0,-15]" visible="$parent.$parent.checkWarnShow(1)"></b-marker>
+			<b-marker id="trip2-$index" ng-if="$parent.$parent.$parent.verifyGPS(mark.mark)" ng-repeat="mark in $parent.$parent.warningPointDisplay[2]" position="{lat: mark.mark[1], lng: mark.mark[0]}"
+			 icon="{url:'/images/'+mark.warn+'.png',scale:[25,30]}" z-index="$index+1" on-click="$parent.$parent.$parent.showMarkDetail($event,2,$index)"
+			 offset="[0,-15]" visible="$parent.$parent.checkWarnShow(2)"></b-marker>
+			<b-marker id="trip3-$index" ng-if="$parent.$parent.$parent.verifyGPS(mark.mark)" ng-repeat="mark in $parent.$parent.warningPointDisplay[3]" position="{lat: mark.mark[1], lng: mark.mark[0]}"
+			 icon="{url:'/images/'+mark.warn+'.png',scale:[25,30]}" z-index="$index+1" on-click="$parent.$parent.$parent.showMarkDetail($event,3,$index)"
+			 offset="[0,-15]" visible="$parent.$parent.checkWarnShow(3)"></b-marker>
+			<b-info-window id="b-warn-point">
+				<div>
+					<p class="warn-infowindow">
+						<i class="fa fa-tags" aria-hidden="true" ng-class="checkMarkerTag(infoPopData.trip)"></i><b>{{$parent.$parent.infoPopData.warningType|translate}}</b>
+					</p>
+					<p><b>{{"duration"|translate}}:</b> {{$parent.$parent.infoPopData.duration | number:2}} {{'seconds'|translate}}</p>
+					<p><b>{{"startSpeed"|translate}}:</b> {{$parent.$parent.infoPopData.start_spd}} kph</p>
+					<p><b>{{"endSpeed"|translate}}:</b> {{$parent.$parent.infoPopData.end_spd}} kph</p>
+					<p><b>{{"topSpeed"|translate}}:</b> {{$parent.$parent.infoPopData.top_spd}} kph</p>
+					<button type="button" class="btn btn-sm" ng-show="infoPopData.video&&infoPopData.videoReady=='Y'" ng-click="playVideo($event,selectedTrip[infoPopData.trip],infoPopData.video)"><i
+						 class="fa fa-play-circle" aria-hidden="true"></i><b>{{'playvideo'|translate}}</b></button>
+				</div>
+			</b-info-window>
+		</div>
+	</div>
+</div>

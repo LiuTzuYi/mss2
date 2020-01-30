@@ -1,0 +1,155 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-25 16:36:43
+*/ -->
+<md-dialog aria-label="addEdit" class="set-dialog-wrap">
+  <form name="addEdit" ng-cloak autocomplete="off">
+    <md-toolbar class="set-dialog-toolbar">
+      <div class="md-toolbar-tools">
+        <h2 ng-if="action=='add'"><b translate="dialogAdd" translate-value-item="{{'vehicle'|translate}}"></b></h2>
+        <h2 ng-if="action=='edit'"><b translate="dialogEdit" translate-value-item="{{'vehicle'|translate}}"></b></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="cancel">
+          <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content class="set-dialog-content">
+      <div class="md-dialog-content">
+        <div class="form-group" ng-if="action=='edit'">
+          <label for="vehicleId">{{"vehicleID"|translate}}</label>
+          <input type="text" class="form-control" name="vehicleId" ng-model="row.vehicleId" disabled readonly>
+        </div>
+        <div class="form-group" ng-if="action=='edit'">
+          <label for="licence">{{"licence"|translate}}</label>
+          <input type="text" class="form-control" name="licence" ng-model="row.licence" disabled readonly>
+        </div>
+        <div class="form-group" ng-if="action!='edit'">
+          <label for="licence">{{"licence"|translate}}</label>
+          <input type="text" class="form-control" name="licence" required ng-model="row.licence"
+            ng-model-options="{allowInvalid: true}" ng-maxlength="12" ng-change="validate('licence')"
+            ng-blur="validate('licence')" ng-pattern='licenceplateregex'>
+          <div class="invalid-feedback" ng-show="addEdit.licence.$error.maxlength" translate="tooLong"
+            translate-value-column="{{'licence'|translate}}"></div>
+          <div class="invalid-feedback" ng-show="(attempt||action=='edit'||addEdit.licence.$dirty||addEdit.licence.$touched) && (addEdit.licence.$error.required||(!addEdit.licence.$error.required && addEdit.licence.$error.pattern && !addEdit.licence.$error.maxlength))" style="white-space: pre-wrap;">{{'licenceplateRegex'|translate}}</div>
+         <!--  <div class="invalid-feedback"
+           ng-show="(attempt||action=='edit'||addEdit.licence.$dirty||addEdit.licence.$touched)&& addEdit.licence.$error.required"
+           translate="required" translate-value-column="{{'licence'|translate}}"></div> -->
+        </div>
+        <div class="form-group" ng-if="action=='edit'">
+          <label for="vin">{{"vin"|translate}}</label>
+          <input type="text" class="form-control" name="vin" ng-model="row.vin" disabled readonly>
+        </div>
+        <div class="form-group" ng-if="action!='edit'">
+          <label for="vin">{{"vin"|translate}}</label>
+          <input type="text" class="form-control" name="vin" required ng-model="row.vin"
+            ng-model-options="{allowInvalid: true}" ng-maxlength="25" ng-change="validate('vin')"
+            ng-blur="validate('vin')">
+          <div class="invalid-feedback" ng-show="addEdit.vin.$error.maxlength" translate="tooLong"
+            translate-value-column="{{'vin'|translate}}"></div>
+          <div class="invalid-feedback"
+            ng-show="(attempt||action=='edit'||addEdit.vin.$dirty||addEdit.vin.$touched) && addEdit.vin.$error.required"
+            translate="required" translate-value-column="{{'vin'|translate}}"></div>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"brand"|translate}}</label>
+          <input type="text" class="form-control" name="brand" required ng-model="row.brand"
+            ng-model-options="{allowInvalid: true}" ng-maxlength="20" ng-change="validate('brand')"
+            ng-blur="validate('brand')">
+          <div class="invalid-feedback" ng-show="addEdit.brand.$error.maxlength" translate="tooLong"
+            translate-value-column="{{'brand'|translate}}"></div>
+          <div class="invalid-feedback"
+            ng-show="(attempt||action=='edit'||addEdit.brand.$dirty||addEdit.brand.$touched) && addEdit.brand.$error.required"
+            translate="required" translate-value-column="{{'brand'|translate}}"></div>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"model"|translate}}</label>
+          <input type="text" class="form-control" name="model" required ng-model="row.model"
+            ng-model-options="{allowInvalid: true}" ng-maxlength="20" ng-change="validate('model')"
+            ng-blur="validate('model')">
+          <div class="invalid-feedback" ng-show="addEdit.model.$error.maxlength" translate="tooLong"
+            translate-value-column="{{'model'|translate}}"></div>
+          <div class="invalid-feedback"
+            ng-show="(attempt||action=='edit'||addEdit.model.$dirty||addEdit.model.$touched) && addEdit.model.$error.required"
+            translate="required" translate-value-column="{{'model'|translate}}"></div>
+        </div>
+        <div class="form-group typeahead-demo">
+          <label for="type">{{"type"|translate}}</label>
+          <input id="typeahead#1" class="form-control" type="text" ng-model="row.type"
+            uib-typeahead="item as item.veh_type for item in types | filter:{veh_type:$viewValue}"
+            typeahead-editable="false" typeahead-select-on-exact="true"
+            typeahead-popup-template-url="/view/component/typeahead/typeaheadInput_vehicledtl.html"
+            typeahead-show-hint="true" typeahead-min-length="0" required name="typeTAH"
+            typeahead-no-results="noResultstypeTAH" ng-keypress="validate('typeTAH')"
+            ng-keydown="typeaheadscroll();validate('typeTAH')" typeahead-on-select="validateSelect('typeTAH')"
+            ng-blur="validate('typeTAH')" ng-trim="false">
+          <div class="invalid-feedback-custom"
+            ng-show="((attempt||action=='edit'||addEdit.typeTAH.$dirty||addEdit.typeTAH.$touched) && addEdit.typeTAH.$error.required)||((attempt||addEdit.typeTAH.$dirty||addEdit.typeTAH.$touched) && addEdit.typeTAH.$error.date && !addEdit.typeTAH.$error.required)||((attempt||addEdit.typeTAH.$dirty||addEdit.typeTAH.$touched) && dateOutrange && !addEdit.typeTAH.$error.required)"
+            translate="required" translate-value-column="{{'type'|translate}}"></div>
+        </div>
+        <div class="form-group">
+          <label for="licence">{{"year"|translate}}</label>
+          <div class="input-group set-dialog-datepicker">
+            <input type="text" class="form-control date-input" name="yearIPG" uib-datepicker-popup="yyyy"
+              ng-model="row.year" ng-model-options="{allowInvalid: true}" is-open="datepicker.opened"
+              on-open-focus="false" datepicker-options="dateOptions" required show-button-bar="false"
+              ng-change="validate('yearIPG');checkDate('yearIPG','year')" ng-blur="validate('yearIPG')" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openPicker()"><i class="fa fa-calendar"
+                  aria-hidden="true"></i></button>
+            </span>
+          </div>
+          <div class="invalid-feedback-custom"
+            ng-show="((attempt||action=='edit'||addEdit.yearIPG.$dirty||addEdit.yearIPG.$touched) && addEdit.yearIPG.$error.required)||((attempt||addEdit.yearIPG.$dirty||addEdit.yearIPG.$touched) && addEdit.yearIPG.$error.date && !addEdit.yearIPG.$error.required)||((attempt||addEdit.yearIPG.$dirty||addEdit.yearIPG.$touched) && dateOutrange && !addEdit.yearIPG.$error.required)"
+            translate="required" translate-value-column="{{'year'|translate}}"></div>
+        </div>
+        <div class="form-group typeahead-demo">
+          <label for="sel1">{{"department"|translate}}</label>
+          <input id="typeahead#2" class="form-control" type="text" ng-model="row.department"
+            uib-typeahead="item as item.department for item in departments | filter:{department:$viewValue}"
+            typeahead-editable="false" typeahead-select-on-exact="true"
+            typeahead-popup-template-url="/view/component/typeahead/typeaheadInput_department_user.html"
+            typeahead-show-hint="true" typeahead-min-length="0" required name="departmentTAH"
+            typeahead-no-results="noResultsdepartmentTAH" ng-keypress="validate('departmentTAH')"
+            ng-keydown="typeaheadscroll();validate('departmentTAH')"
+            typeahead-on-select="validateSelect('departmentTAH')" ng-blur="validate('departmentTAH')" ng-trim="false">
+          <div class="invalid-feedback-custom"
+            ng-show="noResultsdepartmentTAH && !addEdit.departmentTAH.$error.required">
+            {{"noDepartmentInList"|translate}}
+          </div>
+          <div class="invalid-feedback-custom"
+            ng-show="((attempt||addEdit.departmentTAH.$dirty||addEdit.departmentTAH.$touched) && addEdit.departmentTAH.$error.required) || (action=='edit'&&row.department.id==null&&addEdit.departmentTAH.$error.required)">
+            {{"departmentRequired"|translate}}
+          </div>
+        </div>
+        <div class="form-group" ng-if="action=='edit'">
+          <label for="licence">{{"runDistance"|translate}} ({{'km'|translate}})</label>
+          <input type="text" class="form-control" name="runDistance" ng-model="row.runDistance" disabled readonly>
+        </div>
+        <div class="form-group was-validated">
+          <label for="sel1">{{"status"|translate}}</label>
+          <select class="form-control" id="sel1" ng-model="row.status" name="status" ng-change="validate('status')"
+            required>
+            <option value="A">{{"A"|translate}}</option>
+            <option value="I">{{"I"|translate}}</option>
+          </select>
+          <div class="invalid-feedback"
+            ng-show="(attempt||addEdit.status.$dirty||addEdit.status.$touched) &&addEdit.status.$error.required">
+            {{"statusRequired"|translate}}
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" class="set-dialog-content-button">
+      <span flex></span>
+      <md-button ng-click="cancel()">
+        {{"cancel"|translate}}
+      </md-button>
+      <md-button ng-click="validateForm();addEdit.$valid&&submit(row)">
+        {{"ok"|translate}}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

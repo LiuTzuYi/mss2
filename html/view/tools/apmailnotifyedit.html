@@ -1,0 +1,39 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-09-06 18:07:24
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-06 19:00:27
+*/ -->
+
+<div class="adminpanel-wrap edit">
+	<h3 class="header"><span class="navigate" ng-click="toNav()">Admin Panel</span></h3>
+	<h5 class="header sub"><span class="navigate" ng-click="toList()">Mail Notification Management</span></h5>
+	<p class="header2"><span ng-click="toList()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</span> | <span ng-click="toLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span></p>
+	<hr>
+	<form name="editMailnotify" ng-cloak autocomplete="off" class="edit-form">
+        <div class="display-info">
+            <label for="licence">Company Code: {{mailnotify.company_code}}</label>
+            <label for="licence">Notification Item: {{mailnotify.notify_item | translate}}</label>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Status</label>
+            <div class="radio-option">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="status" ng-model="editmailnotify.status" ng-value="'ON'">On
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="status" ng-model="editmailnotify.status" ng-value="'OFF'">Off
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+        	<button type="button" ng-click="attempt=true;editMailnotify.$valid&&submit()" class="btn">
+				<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Submit
+			</button>
+		</div>
+	</form>
+</div>

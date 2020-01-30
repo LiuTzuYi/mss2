@@ -1,0 +1,661 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-11 16:29:30
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:30:12
+*/ -->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!--HTML Settings-->
+    <title>GreenSafety</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="en,zh-TW,zh-cn">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="must-revalidate" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <base href="/">
+    <!--[if IE]>
+        <script>
+            window.location.href = "/403";
+        </script>
+    <![endif]-->
+
+    <!--[if !IE]>
+        -->
+    <script>
+        if (/*@cc_on!@*/false) {
+            window.location.href = "/403";
+        }
+        else if(navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1){
+            //if(parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf("Version")+8)) < 12 ){
+                window.location.href = "/403";
+            //}
+        }
+        else if(navigator.userAgent.indexOf('Chrome') != -1){
+            if(parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf("Chrome")+7)) < 62 ){
+                window.location.href = "/403";
+            }
+        }
+        else if(navigator.userAgent.indexOf('Firefox') != -1){
+            if(parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")+8)) < 51 ){
+                window.location.href = "/403";
+            }
+        }
+    </script>
+    <!--
+    <![endif]-->
+    <script type="text/javascript" src="../../maintenance.enable"></script>
+    <script>
+        window.onload = function () {
+            var vyear = new Date().getFullYear();
+            var endTime = new Date(Date.parse(startTime) + duration * 1000 * 60 * 60);
+
+            var userlang = navigator.language || navigator.userLanguage;
+            var enlangpatt = new RegExp(/^en-\w+$/)
+            if (enlangpatt.test(userlang)) {
+                document.body.className = "en";
+                document.getElementsByClassName('footer lang-en')[0].querySelector('#vyear').innerHTML += vyear;
+                initializeClock('clockdiv_en', endTime);
+                var timeDIV = document.getElementById('time_en');
+            } else if (userlang == "zh-CN") {
+                document.body.className = "zh-cn";
+                document.getElementsByClassName('footer lang-zh-cn')[0].querySelector('#vyear').innerHTML += vyear;
+                initializeClock('clockdiv_cn', endTime);
+                var timeDIV = document.getElementById('time_cn');
+            } else if (userlang == "zh-HK" || userlang == "zh-TW") {
+                document.body.className = "zh-tw";
+                document.getElementsByClassName('footer lang-zh-tw')[0].querySelector('#vyear').innerHTML += vyear;
+                initializeClock('clockdiv_tw', endTime);
+                var timeDIV = document.getElementById('time_tw');
+            } else {
+                document.body.className = "en";
+                document.getElementsByClassName('footer lang-en')[0].querySelector('#vyear').innerHTML += vyear;
+                initializeClock('clockdiv_en', endTime);
+                var timeDIV = document.getElementById('time_en');
+            }
+
+
+            timeDIV.innerHTML += endTime.toLocaleString('en-GB', {
+                timeZone: 'Asia/Shanghai'
+            });
+        }
+
+        function getTimeRemaining(endtime) {
+            var t = Date.parse(endtime) - Date.parse(new Date());
+            if (t < 0) {
+                return {
+                    'total': 0,
+                    'days': 0,
+                    'hours': 0,
+                    'minutes': 0,
+                    'seconds': 0
+                };
+            } else {
+                var seconds = Math.floor((t / 1000) % 60);
+                var minutes = Math.floor((t / 1000 / 60) % 60);
+                var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+                var days = Math.floor(t / (1000 * 60 * 60 * 24));
+                return {
+                    'total': t,
+                    'days': days,
+                    'hours': hours,
+                    'minutes': minutes,
+                    'seconds': seconds
+                };
+            }
+        }
+
+        function initializeClock(id, endtime) {
+            var clock = document.getElementById(id);
+            var daysSpan = clock.querySelector('.days');
+            var hoursSpan = clock.querySelector('.hours');
+            var minutesSpan = clock.querySelector('.minutes');
+            var secondsSpan = clock.querySelector('.seconds');
+
+            function updateClock() {
+                var t = getTimeRemaining(endtime);
+                daysSpan.innerHTML = ('0' + t.days).slice(-2);
+                hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+                if (t.total <= 0) {
+                    clearInterval(timeinterval);
+                }
+            }
+
+            updateClock();
+            var timeinterval = setInterval(updateClock, 1000);
+        }
+    </script>
+    <style>
+        body,
+        html {
+            background-color: #ffffff;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            margin: 0 auto;
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", "Times New Roman", "宋体", "SimSun", "STXihei", -apple-system, "BlinkMacSystemFont", "Segoe UI", Roboto, "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            color: #000000;
+        }
+
+        body {
+            min-width: 300px;
+        }
+
+        body.en .lang-zh-cn,
+        body.en .lang-zh-tw,
+        body.zh-cn .lang-en,
+        body.zh-cn .lang-zh-tw,
+        body.zh-tw .lang-en,
+        body.zh-tw .lang-zh-cn {
+            display: none;
+        }
+
+        .wrapper {
+            text-align: center;
+            vertical-align: middle;
+            position: absolute;
+            width: 100%;
+        }
+
+        .header {
+            text-align: left;
+            margin-top: 20px;
+            margin-right: 20px;
+            margin-bottom: 2.5%
+        }
+
+        .content {
+            text-align: left;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer a:hover {
+            color: black;
+        }
+
+        .homeLink {
+            margin: 1.5rem 0;
+            display: inline-block;
+            text-decoration: none !important;
+            border-bottom: solid 2px #89efff;
+            transition: border-bottom .1s;
+        }
+
+        .homeLink>font {
+            color: black;
+        }
+
+        .homeLink:hover {
+            border-bottom: solid 2px #56baed;
+        }
+
+        .homeLink:hover>font {
+            color: #56baed;
+        }
+
+        .warningMessage {
+            text-align: center;
+        }
+
+        #clockdiv_en,
+        #clockdiv_cn,
+        #clockdiv_tw {
+            font-family: sans-serif;
+            color: #fff;
+            display: inline-block;
+            font-weight: 100;
+            text-align: center;
+            font-size: 30px;
+            margin: 20px 0px;
+        }
+
+        #clockdiv_en>div,
+        #clockdiv_cn>div,
+        #clockdiv_tw>div {
+            padding: 10px;
+            border-radius: 3px;
+            background: #808080;
+            display: inline-block;
+        }
+
+        #clockdiv_en div>span,
+        #clockdiv_tw div>span,
+        #clockdiv_cn div>span {
+            padding: 15px;
+            border-radius: 3px;
+            background: #989898;
+            display: inline-block;
+        }
+
+        .smalltext {
+            padding-top: 5px;
+            font-size: 16px;
+        }
+
+        #time {
+            font-weight: bold;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        @media screen and (max-width: 770px) {
+            .wrapper {
+                left: 50%;
+                transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+            }
+        }
+
+        @media screen and (max-height: 700px) and (min-width: 420px) and (max-width: 770px) {
+            .wrapper {
+                left: 50%;
+                transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+            }
+        }
+
+        @media screen and (min-height: 1400px) and (min-width: 420px) and (max-width: 770px) {
+            .wrapper {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+                -o-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+            }
+        }
+
+        @media screen and (max-height: 700px) and (min-width: 770px) {
+            .wrapper {
+                left: 50%;
+                transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+            }
+        }
+
+        @media screen and (min-height: 700px) and (min-width: 770px) {
+            .wrapper {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+                -o-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+            }
+        }
+
+        @media screen and (max-width: 413px) {
+
+            #clockdiv_en,
+            #clockdiv_tw,
+            #clockdiv_cn {
+                display: block;
+            }
+
+            #clockdiv_en>div,
+            #clockdiv_cn>div,
+            #clockdiv_tw>div {
+                margin: 5px 0px;
+            }
+        }
+
+        @media screen and (max-width: 770px) {
+            .wrapper {
+                text-align: left;
+            }
+
+            .warningMessage {
+                text-align: left;
+            }
+
+            .contact {
+                text-align: left;
+            }
+        }
+
+        @media screen and (max-width: 1055px) {
+            .wrapper {
+                text-align: left;
+            }
+        }
+
+        @media screen and (min-width: 1055px) {
+            .header {
+                margin-left: 0%;
+            }
+        }
+
+        @media screen and (min-width: 1155px) {
+            .header {
+                margin-left: 2.5%;
+            }
+        }
+
+        @media screen and (min-width: 1255px) {
+            .header {
+                margin-left: 5%;
+            }
+        }
+
+        @media screen and (min-width: 1355px) {
+            .header {
+                margin-left: 7.5%;
+            }
+        }
+
+        @media screen and (min-width: 1455px) {
+            .header {
+                margin-left: 10%;
+            }
+        }
+
+        @media screen and (min-width: 1555px) {
+            .header {
+                margin-left: 12.5%;
+            }
+        }
+
+        @media screen and (min-width: 1655px) {
+            .header {
+                margin-left: 15%;
+            }
+        }
+
+        @media screen and (min-width: 1755px) {
+            .header {
+                margin-left: 17.5%;
+            }
+        }
+
+        @media screen and (max-width: 770px) and (-ms-high-contrast:none) {
+            .wrapper {
+                right: 50%;
+                left: auto;
+                transform: translateX(50%);
+                -webkit-transform: translateX(50%);
+                -moz-transform: translateX(50%);
+                -o-transform: translateX(50%);
+                -ms-transform: translateX(50%) !important;
+            }
+        }
+
+        @media screen and (max-height: 700px) and (min-width: 420px) and (max-width: 770px) and (-ms-high-contrast:none) {
+            .wrapper {
+                right: 50%;
+                left: auto;
+                transform: translateX(50%);
+                -webkit-transform: translateX(50%);
+                -moz-transform: translateX(50%);
+                -o-transform: translateX(50%);
+                -ms-transform: translateX(50%) !important;
+            }
+        }
+
+        @media screen and (min-height: 1400px) and (min-width: 420px) and (max-width: 770px) and (-ms-high-contrast:none) {
+            .wrapper {
+                bottom: 50%;
+                right: 50%;
+                top: auto;
+                left: auto;
+                transform: translate(50%, 50%);
+                -webkit-transform: translate(50%, 50%);
+                -moz-transform: translate(50%, 50%);
+                -o-transform: translate(50%, 50%);
+                -ms-transform: translate(50%, 50%) !important;
+            }
+        }
+
+        @media screen and (max-height: 700px) and (min-width: 770px) and (-ms-high-contrast:none) {
+            .wrapper {
+                right: 50%;
+                left: auto;
+                transform: translateX(50%);
+                -webkit-transform: translateX(50%);
+                -moz-transform: translateX(50%);
+                -o-transform: translateX(50%);
+                -ms-transform: translateX(50%) !important;
+            }
+        }
+
+        @media screen and (min-height: 700px) and (min-width: 770px) and (-ms-high-contrast:none) {
+            .wrapper {
+                bottom: 50%;
+                right: 50%;
+                top: auto;
+                left: auto;
+                transform: translate(50%, 50%);
+                -webkit-transform: translate(50%, 50%);
+                -moz-transform: translate(50%, 50%);
+                -o-transform: translate(50%, 50%);
+                -ms-transform: translate(50%, 50%) !important;
+            }
+        }
+
+        @supports (-ms-ime-align:auto) {
+            @media screen and (max-width: 280px) {
+                .wrapper {
+                    right: 50%;
+                    left: auto;
+                    transform: translateX(50%);
+                    -webkit-transform: translateX(50%);
+                    -moz-transform: translateX(50%);
+                    -o-transform: translateX(50%);
+                    -ms-transform: translateX(50%) !important;
+                }
+            }
+
+            @media screen and (max-height: 700px) and (min-width: 420px) and (max-width: 770px) {
+                .wrapper {
+                    right: 50%;
+                    left: auto;
+                    transform: translateX(50%);
+                    -webkit-transform: translateX(50%);
+                    -moz-transform: translateX(50%);
+                    -o-transform: translateX(50%);
+                    -ms-transform: translateX(50%) !important;
+                }
+            }
+
+            @media screen and (min-height: 1400px) and (min-width: 420px) and (max-width: 770px) {
+                .wrapper {
+                    bottom: 50%;
+                    right: 50%;
+                    top: auto;
+                    left: auto;
+                    transform: translate(50%, 50%);
+                    -webkit-transform: translate(50%, 50%);
+                    -moz-transform: translate(50%, 50%);
+                    -o-transform: translate(50%, 50%);
+                    -ms-transform: translate(50%, 50%) !important;
+                }
+            }
+
+            @media screen and (max-height: 700px) and (min-width: 770px) {
+                .wrapper {
+                    right: 50%;
+                    left: auto;
+                    transform: translateX(50%);
+                    -webkit-transform: translateX(50%);
+                    -moz-transform: translateX(50%);
+                    -o-transform: translateX(50%);
+                    -ms-transform: translateX(50%) !important;
+                }
+            }
+
+            @media screen and (min-height: 700px) and (min-width: 770px) {
+                .wrapper {
+                    bottom: 50%;
+                    right: 50%;
+                    top: auto;
+                    left: auto;
+                    transform: translate(50%, 50%);
+                    -webkit-transform: translate(50%, 50%);
+                    -moz-transform: translate(50%, 50%);
+                    -o-transform: translate(50%, 50%);
+                    -ms-transform: translate(50%, 50%) !important;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class='header'>
+            <img src="../images/logo-header.png" width="300" height="50" alt="GREENSAFETY">
+        </div>
+        <div class="content">
+            <div class="lang-en warningMessage">
+                <h1>Maintenance in progress</h1>
+                <p>This site is currently undergoing scheduled maintenance and upgrades. We sincerely apologize for any
+                    inconvenience.</p>
+                <p>Service is expected to resume at <span id="time_en"></span> (Hong Kong Standard Time)</p>
+
+                <div id="clockdiv_en" class="container">
+                    <div>
+                        <span class="days"></span>
+                        <div class="smalltext">Days</div>
+                    </div>
+                    <div>
+                        <span class="hours"></span>
+                        <div class="smalltext">Hours</div>
+                    </div>
+                    <div>
+                        <span class="minutes"></span>
+                        <div class="smalltext">Minutes</div>
+                    </div>
+                    <div>
+                        <span class="seconds"></span>
+                        <div class="smalltext">Seconds</div>
+                    </div>
+                </div>
+                <div class="contact">
+                    <a class="homeLink" href="https://greensafety.com.hk/" target="_blank">
+                        <font>Visit Our Home Page</font>
+                    </a>
+                    <p>If you need immediate help, feel free to contact us. Service Hotline: (852) 2662 6460.</p>
+                </div>
+            </div>
+            <!-- Maintenance in progress
+                    This site is currently undergoing scheduled maintenance and upgrades. We sincerely apologize for any inconvenience.
+    
+                    Service is expected to resume at 4pm on Tuesday March 16<sup>th</sup> 2018 (Hong Kong Standard Time)
+                    <a href="https://greensafety.com.hk/" target="_blank"><font color='black'>Visit Our Home Page</font></a>
+                    访问主页
+                    訪問主頁
+                    如果您需要即时帮助，请随时与我们联系。\n服务热线: (852) 2662 6460。
+                    如果你需要即時幫助，請隨時與我們聯繫。\n服務熱線: (852) 2662 6460。
+                    <p>If you need immediate help, feel free to contact us.\nService Hotline: (852) 2662 6460.</p>-->
+            <div class="lang-zh-tw warningMessage">
+                <h1>維護中</h1>
+                <p>我們正在維修及提升系統。不便之處敬請見諒。</p>
+                <p>服務將於<span id="time_tw"></span> (香港標準時間) 回復正常。</p>
+
+                <div id="clockdiv_tw" class="container">
+                    <div>
+                        <span class="days"></span>
+                        <div class="smalltext">日</div>
+                    </div>
+                    <div>
+                        <span class="hours"></span>
+                        <div class="smalltext">時</div>
+                    </div>
+                    <div>
+                        <span class="minutes"></span>
+                        <div class="smalltext">分</div>
+                    </div>
+                    <div>
+                        <span class="seconds"></span>
+                        <div class="smalltext">秒</div>
+                    </div>
+                </div>
+
+                <div class="contact">
+                    <a class="homeLink" href="https://greensafety.com.hk/" target="_blank">
+                        <font>訪問主頁</font>
+                    </a>
+                    <p>如果你需要即時幫助，請隨時與我們聯繫。服務熱線: (852) 2662 6460。</p>
+                </div>
+            </div>
+
+            <div class="lang-zh-cn warningMessage">
+                <h1>维护中</h1>
+                <p>我们正在维修及提升系统。不便之处敬请见谅。 </p>
+                <p>服务将于<span id="time_cn"></span> (香港标准时间) 回复正常。 </p>
+
+                <div id="clockdiv_cn" class="container">
+                    <div>
+                        <span class="days"></span>
+                        <div class="smalltext">日</div>
+                    </div>
+                    <div>
+                        <span class="hours"></span>
+                        <div class="smalltext">时</div>
+                    </div>
+                    <div>
+                        <span class="minutes"></span>
+                        <div class="smalltext">分</div>
+                    </div>
+                    <div>
+                        <span class="seconds"></span>
+                        <div class="smalltext">秒</div>
+                    </div>
+                </div>
+                <div class="contact">
+                    <a class="homeLink" href="https://greensafety.com.hk/" target="_blank">
+                        <font>访问主页</font>
+                    </a>
+                    <p>如果您需要即时帮助，请随时与我们联系。服务热线: (852) 2662 6460。</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer lang-en">
+            <p>Copyright © <span id="vyear"></span> | <a href="https://greensafety.com.hk/" target="_blank">
+                    <font color='black'>GreenSafety Technology Limited</font>
+                </a> | All Rights Reserved</p>
+        </div>
+        <div class="footer lang-zh-cn">
+            <p>版权 © <span id="vyear"></span> | <a href="https://greensafety.com.hk/" target="_blank">
+                    <font color='black'>绿色安全科技有限公司</font>
+                </a> | 保留所有权利</p>
+        </div>
+        <div class="footer lang-zh-tw">
+            <p>版權 © <span id="vyear"></span> | <a href="https://greensafety.com.hk/" target="_blank">
+                    <font color='black'>綠色安全科技有限公司</font>
+                </a> | 保留所有權利</p>
+        </div>
+    </div>
+</body>
+
+</html>

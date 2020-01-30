@@ -1,0 +1,576 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 15:50:02
+*/
+
+/* warnExport.css
+ * This file provides css styles in warning export page.
+ */
+
+.warn-export-wrap {
+	height: 100%;
+}
+
+.warn-export-table-wrap {
+	border-top: 1px solid #cecece;
+	border-left: 1px solid #cecece;
+	border-right: 1px solid #cecece;
+	border-radius: 5px 5px 5px 5px;
+	margin: 5px;
+	height: calc(100% - 58px);
+}
+
+.warn-export-table-wrap>form {
+	min-height: 100%;
+}
+
+.warn-export-content-header {
+	width: 100%;
+	background-color: #616161f0;
+	background-color: rgba(97, 97, 97, 0.9411764705882353);
+	overflow: hidden;
+	float: left;
+	color: white;
+}
+
+.warn-export-content-header-func {
+	float: right;
+	display: inline-block;
+	background-color: transparent;
+	white-space: nowrap;
+}
+
+.warn-export-content-header-content1 {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 20px;
+	min-width: 100px;
+}
+
+.warn-export-content-header-content2 {
+	margin-right: 10px;
+	display: inline-block;
+	white-space: nowrap;
+	line-height: 52px;
+	vertical-align: top;
+}
+
+.warn-export-content-header-content2 button {
+	vertical-align: top;
+	margin-top: 7.5px;
+}
+
+.warn-export-content-header-content2 button:focus,
+.warn-export-content-header-content2 button:active {
+	outline: none;
+	box-shadow: none !important;
+}
+
+.warn-export-content-header-content1 p {
+	margin-top: .5rem !important;
+	margin-bottom: .5rem !important;
+	font-size: 1.5rem;
+	font-weight: 500;
+	height: 1.2;
+	font-family: inherit;
+	color: inherit;
+}
+
+.warn-export-input-box {
+	width: 100%;
+	overflow-x: auto;
+	padding: .375rem .75rem;
+	background-color: white;
+	border-radius: 0 0 .25rem .25rem;
+	-webkit-user-select: none;
+	/* Chrome/Safari */
+	-moz-user-select: none;
+	/* Firefox */
+	-ms-user-select: none;
+	/* IE10+ */
+	-o-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-khtml-user-select: none;
+	/* Konqueror HTML */
+}
+
+.warn-export-input-box>.was-validated .form-control.filename:valid:focus,
+.warn-export-input-box .form-control.filename.is-invalid:focus {
+	box-shadow: none;
+}
+
+.warn-export-input-box .form-group:not(.was-validated) .form-control.filename:not(.is-invalid):focus {
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da;
+}
+
+.warn-export-input-box .warn-export-filter-item {
+	font-size: 14px;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-export-check-container {
+	position: relative;
+	padding-left: 20px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 14px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-export-check-container.disable {
+	cursor: default !important;
+}
+
+/* Hide the browser's default checkbox */
+.warn-export-input-box .warn-export-filter-item .warn-export-check-container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-export-check-container input:disabled {
+	cursor: default !important;
+}
+
+/* Create a custom checkbox */
+.warn-export-input-box .warn-export-filter-item .warn-export-check-container .checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 16px;
+	width: 16px;
+	background-color: #eee;
+}
+
+/* When the checkbox is checked, add a blue background */
+.warn-export-input-box .warn-export-filter-item .warn-export-check-container input:checked~.checkmark {
+	background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.warn-export-input-box .warn-export-filter-item .warn-export-check-container .checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Show the checkmark when checked */
+.warn-export-input-box .warn-export-filter-item .warn-export-check-container input:checked~.checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.warn-export-input-box .warn-export-filter-item .warn-export-check-container .checkmark:after {
+	left: 6px;
+	top: 2px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.warn-export-input-box .warn-export-filter-item .row {
+	margin: 0;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.warn-export-input-box .warn-export-filter-item>.row {
+	margin: 0;
+}
+
+.warn-export-input-box .warn-export-filter-item>.row>div {
+	padding-right: 15px;
+	padding-left: 5px
+}
+
+.warn-export-input-box .warn-export-filter-item .item {
+	display: inline-block;
+	/* vertical-align: text-top;
+	font-size: 16px; */
+}
+
+.warn-export-input-box .warn-export-filter-item .item>label {
+	margin-bottom: 0 !important;
+}
+
+.warn-export-input-box .warn-export-filter-item input {
+	font-size: 14px !important;
+	line-height: 14px !important;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	min-width: 253px;
+}
+
+.warn-export-input-box .warn-export-filter-item input:focus {
+	outline: none !important;
+	box-shadow: none !important;
+	border-color: #ced4da !important;
+}
+
+.warn-export-input-box .warn-export-filter-item input:read-only {
+	cursor: default;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick {
+	display: flex;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	min-width: 253px;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .datebetween-icon {
+	margin-left: 5px;
+	margin-right: 5px;
+	height: 31px;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .dropdown-menu {
+	bottom: unset !important;
+	top: 90% !important;
+	transform: scale(.98);
+	z-index: 20;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker-popup .dropdown-menu {
+	left: -3px;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .dropdown-menu .uib-datepicker .uib-yearpicker table,
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .dropdown-menu .uib-datepicker .uib-monthpicker table {
+	min-width: 252px;
+}
+
+/* .warn-export-input-box .warn-export-filter-item .warn-date-range-pick>.input-group.after .dropdown-menu {
+	left: -134px !important;
+} */
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .warn-date-range-pick-btn {
+	border-radius: .25rem !important;
+	background-color: #ddd;
+	font-size: 14px;
+	padding: 0 1.2rem;
+	margin-left: 0 !important;
+	width: 100%;
+	text-align: center !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick span.input-group-btn {
+	width: 100%;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .warn-date-range-pick-btn.after {
+	border-left: 5px solid orange;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .warn-date-range-pick-btn.before {
+	border-left: 5px solid green;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .dropdown-menu button:focus {
+	box-shadow: none;
+	outline: none;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .dropdown-menu li:focus,
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .dropdown-menu li div:focus {
+	outline: none;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .warn-date-range-pick-btn:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .btn-info .text-info,
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .btn-info.active .text-info {
+	color: #ffffff !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .btn-info.active,
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .btn-info {
+	background-color: #4e4e4e;
+	border-color: #4e4e4e;
+	color: #ffffff;
+	box-shadow: none;
+	outline: none;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .selected-range>button {
+	background-color: #4e4e4e;
+	border-color: #4e4e4e;
+	color: #ffffff;
+	box-shadow: none;
+	outline: none;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .selected-range-before>button,
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .selected-range-after>button {
+	background-color: #4e4e4e;
+	border-color: #4e4e4e;
+	box-shadow: none;
+	outline: none;
+	color: #ffffff !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .selected-range-one>button {
+	background-color: green;
+	border-color: green;
+	box-shadow: none;
+	outline: none;
+	color: orange !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick>.input-group.after .uib-datepicker .selected-range-one>button {
+	background-color: orange;
+	border-color: orange;
+	box-shadow: none;
+	outline: none;
+	color: green !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .selected-range-one>button.btn-info {
+	background-color: green;
+	border-color: green;
+	color: orange !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .selected-range-one>button.btn-info .text-info {
+	color: orange !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick>.input-group.after .uib-datepicker .selected-range-one>button.btn-info .text-info {
+	color: green !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .selected-range-before>button.btn-info {
+	background-color: green;
+	border-color: green;
+	color: #ffffff !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .uib-datepicker .selected-range-after>button.btn-info {
+	background-color: orange;
+	border-color: orange;
+	color: #ffffff !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .warn-date-range-pick .dropdown-menu:focus {
+	outline: none;
+}
+
+.warn-export-input-box .warn-export-filter-item>.filter-item {
+	margin: 5px 15px 15px 5px;
+	height: 62px;
+	min-width: 253px;
+	flex-grow: 1;
+}
+
+.warn-export-input-box .filter-label:not(.with-explain) {
+	margin-bottom: calc(.5rem - 10px);
+}
+
+.warn-export-input-box .filter-label.with-explain {
+	margin-bottom: 0 !important;
+}
+
+.warn-export-input-box label.filter-label>sup>i {
+	margin-left: 5px;
+	color: #007bff;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.warn-export-input-box label.filter-label>sup:focus,
+.warn-export-input-box label.filter-label>sup>i:focus {
+	outline: none;
+}
+
+.warn-export-input-box .additional-info-box {
+	margin-bottom: .5rem;
+}
+
+.warn-export-input-box .additional-info-box>div {
+	background-color: #cce5ff;
+	border-left: 6px solid #b8daff;
+	border-radius: .25rem;
+	padding: 4px 16px;
+	cursor: default;
+	width: 100%;
+	display: inline-block;
+}
+
+.warn-export-input-box .additional-info-box>div>p {
+	margin-bottom: 0;
+	word-break: break-word;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+}
+
+.warn-export-input-box .warn-export-filter-item .selectButton {
+	min-width: 253px;
+	height: 31px;
+	display: block;
+	line-height: 14px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	text-align: left;
+	background-color: #e9ecef;
+}
+
+.warn-export-input-box .warn-export-filter-item .selectButton>span {
+	font-size: 14px;
+}
+
+.warn-export-input-box .warn-export-filter-item .selectButton:focus {
+	outline: none;
+	box-shadow: none;
+	border-color: #ced4da !important;
+}
+
+.warn-export-input-box .warn-export-filter-item .selectButton:disabled>span {
+	color: #868e96;
+}
+
+.warn-export-wrap .set-dialog-wrap {
+	-webkit-user-select: none;
+	/* Chrome/Safari */
+	-moz-user-select: none;
+	/* Firefox */
+	-ms-user-select: none;
+	/* IE10+ */
+	-o-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-khtml-user-select: none;
+	/* Konqueror HTML */
+}
+
+.warn-export-wrap .set-dialog-content {
+	padding: 10px;
+}
+
+.warn-export-wrap .set-dialog-content .demo-select-all-checkboxes {
+	padding-left: 30px;
+}
+
+.warn-export-wrap .set-dialog-content .demo-select-all-checkboxes.child {
+	padding-left: 60px;
+}
+
+.warn-export-wrap .set-dialog-content .checklist-wrapper ul {
+	list-style-type: none;
+}
+
+.warn-export-wrap .set-dialog-content .extraCheckbox>md-checkbox,
+.warn-export-wrap .set-dialog-content .toggleAllCheck>md-checkbox,
+.warn-export-wrap .set-dialog-content .demo-select-all-checkboxes>md-checkbox,
+.warn-export-wrap .set-dialog-content .checklist-wrapper md-checkbox {
+	margin-bottom: 0;
+	transform: scale(.8);
+	transform-origin: top left;
+}
+
+.warn-export-wrap .set-dialog-wrap .set-dialog-content .form-control:focus {
+	border-color: #ced4da;
+}
+
+.warn-export-wrap .set-dialog-content .checklist-wrapper:not(.driver-action) {
+	height: calc(60vh - 45px - 20px - 31px - 25px - 25px - 52px - 1rem);
+	overflow-y: auto;
+}
+
+.warn-export-wrap .set-dialog-content .checklist-wrapper.driver-action {
+	height: calc(60vh - 45px - 20px - 31px - 25px - 25px - 25px - 52px - 1rem);
+	overflow-y: auto;
+}
+
+.warn-export-wrap .set-dialog-content .filter-no-record {
+	text-align: center;
+}
+
+.warn-export-wrap .set-dialog-content .checklist-wrapper svg.vehtype {
+	width: 20px;
+	height: 20px;
+	vertical-align: sub;
+}
+
+@supports (-ms-ime-align:auto) {
+	.warn-export-wrap .set-dialog-content .checklist-wrapper svg.vehtype {
+		width: 20px;
+		height: 20px;
+		vertical-align: text-top;
+	}
+}
+
+@media screen and (-ms-high-contrast:none) {
+	.map-wrap .warn-date-range-pick .dropdown-menu {
+		top: auto !important;
+	}
+}
+
+@media screen and (max-width: 959px) {
+	.warn-export-wrap .set-dialog-content .checklist-wrapper:not(.driver-action) {
+		height: calc(100vh - 45px - 20px - 31px - 25px - 52px - 1rem);
+	}
+
+	.warn-export-wrap .set-dialog-content .checklist-wrapper.driver-action {
+		height: calc(100vh - 45px - 20px - 31px - 25px - 25px - 52px - 1rem);
+	}
+}
+
+@media screen and (max-width: 745px) {
+	.warn-export-content-header-func {
+		float: left;
+		margin-top: -15px;
+		display: block;
+		margin-left: 20px;
+	}
+
+	.warn-export-content-header-content1 {
+		display: block;
+	}
+
+	.warn-export-content-header-content2 {
+		margin-right: 0px;
+	}
+}
+
+@media screen and (max-width: 332px) {
+	.warn-export-content-header-func {
+		margin-left: 10px;
+	}
+
+	.warn-export-content-header-content1 {
+		margin-left: 10px;
+	}
+}
+
+@media screen and (max-width: 319px) {
+	.warn-export-content-header-func {
+		margin-left: 5px;
+	}
+
+	.warn-export-content-header-content1 {
+		margin-left: 5px;
+	}
+}

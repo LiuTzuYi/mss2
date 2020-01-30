@@ -1,0 +1,36 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-05-16 18:45:43
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-08-26 11:50:03
+*/ -->
+<div class="container h-100 adminpanel-wrap">
+	<div class="d-flex justify-content-center h-100">
+		<div class="user_card">
+			<div class="d-flex justify-content-center">
+				<div class="brand_logo_container">
+					<img src="../../images/logo.png" class="brand_logo" alt="Logo">
+				</div>
+			</div>
+			<div class="d-flex justify-content-center form_container">
+				<form>
+					<div class="input-group mb-3">
+						<div class="input-group-append">
+							<span class="input-group-text"><i class="fa fa-user"></i></span>
+						</div>
+						<input type="text" name="" ng-model="username" class="form-control input_user" value="" placeholder="Username">
+					</div>
+					<div class="input-group mb-2">
+						<div class="input-group-append">
+							<span class="input-group-text"><i class="fa fa-key"></i></span>
+						</div>
+						<input type="password" name="" ng-model="password" class="form-control input_pass" value="" placeholder="Password">
+					</div>
+				</form>
+			</div>
+			<div class="d-flex justify-content-center mt-3 login_container">
+				<button type="button" name="button" class="btn login_btn" ng-click="toLogin()">Login</button>
+			</div>
+		</div>
+	</div>
+</div>

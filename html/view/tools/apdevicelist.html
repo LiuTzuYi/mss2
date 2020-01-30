@@ -1,0 +1,81 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-05-16 18:45:43
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-08-28 17:36:11
+*/ -->
+<div class="adminpanel-wrap list">
+	<h3 class="header"><span class="navigate" ng-click="toNav()">Admin Panel</span></h3>
+	<h5 class="header sub"><span class="navigate" ng-click="toList()">Device Management</span></h5>
+	<p class="header2"><span ng-click="toNav()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</span> | <span ng-click="toLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span></p>
+	<hr>
+	<div st-table="displayedCollection" st-safe-src="realCollection">
+		<div class="action">
+			<button type="button" ng-click="addDevice()" class="btn btn-md">
+				<i class="fa fa-plus" aria-hidden="true"></i>
+			</button>
+			<button type="button" ng-click="editDevice()" class="btn btn-md" ng-disabled="!selectedRow">
+				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+			</button>
+			<button type="button" ng-click="refreshList()" class="btn btn-md">
+				<i class="fa fa-refresh" aria-hidden="true"></i>
+			</button>
+		</div>
+		<select class="form-control select-predicate" id="predicate" ng-model="selectedPredicate" ng-options="predicate.value as predicate.label for predicate in predicates"></select>
+		<input st-search="{{selectedPredicate}}" placeholder="Search" class="form-control search" type="search"/>
+		<div class="table-content">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="no-sort"></th>
+						<th st-sort="sn" st-skip-natural="true" st-sort-default="true">SN</th>
+						<th st-sort="device_type" st-skip-natural="true">Device Type</th>
+						<th st-sort="photocam_no" st-skip-natural="true">Photo Cam No.</th>
+						<th st-sort="videocam_no" st-skip-natural="true">Video Cam No.</th>
+						<th st-sort="videocam_type" st-skip-natural="true">Video Cam Type</th>
+						<th st-sort="flameout_mode" st-skip-natural="true" >Watch Video By Flameout</th>
+						<th st-sort="binding" st-skip-natural="true" >Binded</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="row in displayedCollection">
+						<td><input type="radio" name="selectedRow" ng-model="$parent.$parent.selectedRow" ng-value="row.sn" class="select-row" ng-if="row.binding=='Yes'"></td>
+						<td>{{row.sn}}</td>
+						<td>{{row.device_type}}</td>
+						<td>{{row.photocam_no}}</td>
+						<td>{{row.videocam_no}}</td>
+						<td>{{row.videocam_type}}</td>
+						<td>{{row.flameout_mode}}</td>
+						<td>{{row.binding}}</td>
+					</tr>
+					<tr ng-if="displayedCollection.length<=0" class="no-record">
+						<td colspan="8">No Record Found</td>
+					</tr>
+				</tbody>
+				<tfoot>
+			      	<tr>
+				      	<td colspan="8">
+				      		<form class="form-inline pull-left">
+				      			<p class="table-page-footer table-footer-text">Showing</p>
+				      			<div class="table-pagination-select">
+						      <select class="table-page-footer" ng-model="itemsByPage" convert-to-number>
+						        <option value='10'>10</option>
+						        <option value='25'>25</option>
+						        <option value='50'>50</option>
+						        <option value='100'>100</option>
+						      </select></div>
+						      <p class="table-page-footer table-footer-text">records per page.</p>
+						    </form>
+				          <div st-template="/view/component/paginationSummary.html" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="displayPage"></div>
+				        </td>
+			      	</tr>
+				    <tr>
+				      	<td colspan="8">
+				      		<div st-template="/view/component/pagination.html" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="displayPage"></div>
+				      	</td>
+				    </tr>
+			    </tfoot>
+			</table>
+		</div>
+	</div>
+</div>

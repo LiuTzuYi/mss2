@@ -1,0 +1,24 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:35
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-05-31 16:20:35
+*/ -->
+<div class="custom-popup-wrapper with-img" ng-style="{top: position().top+'px', left: position().left+'px'}" style="display: block;"
+    ng-show="isOpen() && !moveInProgress" aria-hidden="{{!isOpen()}}">
+    <p class="message">{{"vehicletTypetypeahead"|translate}}</p>
+
+    <ul class="dropdown-menu" role="listbox">
+        <md-virtual-repeat-container id="vertical-container" class="vertical-container" md-auto-shrink>
+            <li class="uib-typeahead-match" md-virtual-repeat="match in matches" ng-class="{active: isActive($index) }"
+                ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}"
+                flex>
+                <svg>
+                    <use ng-attr-href="{{match.model.path}}" />
+                    <!-- <use href="{{match.model.path}}"/> -->
+                </svg>
+                <div uib-typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>
+            </li>
+        </md-virtual-repeat-container>
+    </ul>
+</div>

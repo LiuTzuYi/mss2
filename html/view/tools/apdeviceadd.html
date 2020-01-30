@@ -1,0 +1,25 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-05-16 18:45:43
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-08-28 14:38:42
+*/ -->
+
+<div class="adminpanel-wrap add">
+	<h3 class="header"><span class="navigate" ng-click="toNav()">Admin Panel</span></h3>
+	<h5 class="header sub"><span class="navigate" ng-click="toList()">Device Management</span></h5>
+	<p class="header2"><span ng-click="toList()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</span> | <span ng-click="toLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span></p>
+	<hr>
+	<form name="addDevice" ng-cloak autocomplete="off" class="add-form">
+		<div class="form-group">
+			<label for="licence">SN</label>
+        	<input type="text" class="form-control" name="sn" required ng-model="sn" ng-maxlength="20" pattern="[a-zA-Z0-9]+">
+        	<div class="invalid-feedback-custom" ng-if="(attempt||addDevice.sn.$dirty||addDevice.sn.$touched) && !addDevice.sn.$valid">SN can contains &lt;A-Z&gt;, &lt;a-z&gt;, &lt;0-9&gt;. And within 20 characters length.</div>
+        </div>
+        <div class="submit">
+        	<button type="button" ng-click="attempt=true;addDevice.$valid&&submit()" class="btn">
+				<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Submit
+			</button>
+		</div>
+	</form>
+</div>

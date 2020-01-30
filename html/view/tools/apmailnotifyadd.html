@@ -1,0 +1,44 @@
+<!-- /*
+* @Author: Zilvia Kam
+* @Date:   2019-09-06 18:07:12
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-09-06 19:00:23
+*/ -->
+<div class="adminpanel-wrap add">
+	<h3 class="header"><span class="navigate" ng-click="toNav()">Admin Panel</span></h3>
+	<h5 class="header sub"><span class="navigate" ng-click="toList()">Mail Notification Management</span></h5>
+	<p class="header2"><span ng-click="toList()"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back</span> | <span ng-click="toLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></span></p>
+	<hr>
+	<form name="addMailnotify" ng-cloak autocomplete="off" class="add-form">
+		<div class="form-group">
+			<label for="licence">Company Code</label>
+        	<select class="form-control select-item" id="selectedcomp" name="selectedcomp" ng-model="selectedcomp" ng-options="comp.company_code for comp in companylist" required></select>
+        	<div class="invalid-feedback-custom" ng-if="(attempt||addMailnotify.selectedcomp.$dirty||addMailnotify.selectedcomp.$touched) && !addMailnotify.selectedcomp.$valid">Must select a company.</div>
+        </div>
+        <div class="form-group">
+			<label for="licence">Notification Item</label>
+        	<input type="text" class="form-control" name="notify_item" required ng-model="notify_item" ng-maxlength="50" pattern="[a-zA-Z0-9 \-\_]+">
+        	<div class="invalid-feedback-custom" ng-if="(attempt||addMailnotify.notify_item.$dirty||addMailnotify.notify_item.$touched) && !addMailnotify.notify_item.$valid">Notification Item can contains &lt;A-Z&gt;, &lt;a-z&gt;, &lt;0-9&gt;, space, hyphen(-), underscore(_). And within 50 characters length.</div>
+        </div>
+        <div class="form-group">
+    		<label for="licence">Status</label>
+            <div class="radio-option">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="status" ng-model="status" ng-value="'ON'">On
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="status" ng-model="status" ng-value="'OFF'">Off
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+        	<button type="button" ng-click="attempt=true;addMailnotify.$valid&&submit()" class="btn">
+				<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Submit
+			</button>
+		</div>
+	</form>
+</div>

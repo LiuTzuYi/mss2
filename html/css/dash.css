@@ -1,0 +1,61 @@
+/*
+* @Author: Zilvia Kam
+* @Date:   2019-04-04 17:39:22
+* @Last Modified by:   Zilvia Kam
+* @Last Modified time: 2019-06-25 18:21:06
+*/
+
+/* dash.css
+ * This file provides css styles in dashboard page.
+ */
+
+.dash-wrap{
+	height: 100%;
+	position: relative;
+}
+
+.dash-wrap .card-container{
+	cursor: default;
+    background-color: #fff;
+	-webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    -o-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+}
+
+.dash-wrap .nav-button{
+	cursor: pointer;
+	color: #0091ea;
+}
+
+.dash-wrap .tech-support p{
+	margin-bottom: 0;
+}
+
+.dash-wrap .tech-support p>i{
+    width: 16px;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+.dash-wrap .tech-support p.hotline{
+	margin-top: 1rem;
+}
+
+.dash-wrap .card-container>div{
+    -ms-flex: 0 0 auto;
+}
+
+.dash-wrap .card-container>div md-card{
+    -ms-flex: 1 1 auto;
+    height: 100%;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+    .dash-wrap .card-container>div md-card{
+        height: unset;
+    }
+}
